@@ -1,0 +1,134 @@
+font：绘制文本,context.font = "italic 30px 黑体";
+	最多传入五个参数，context.font = ‘font-style，font-variant,font-weight,font-size,font-family’。
+	font-style: normal(default),italic(斜体字)，oblique（倾斜字体）后两者效果基本一样。
+	font-varant: normal(default),small-caps(只用于英文，小型的大写字母).
+	font-weigth: lighter(和normal效果一样)，normal(default)，bold(加粗)，bolder（和bold效果一样）。
+	font-size: 可用px，em，30%这些css方法设置，也有文字属性值，不推荐使用。
+	font-family: 类似css设置多种字体备选，支持@font-face。
+lineWidth:
+lineGap:
+lineJoin:
+miterLimit:
+shadowOffsetX:
+shadowOffsetY:
+shadowBlur:
+shadowColor:
+textAlign:
+textBaseline:
+fillText(string ,x,y) :x,y为起始点坐标,context.fillText("Hello world!", 40, 40); 
+strokeText(string ,x,y)//x,y为起始点坐标
+fillStyle   :设置填充颜色,context.fillStyle = color;
+strokeStyle :设置边框颜色,context.strokeStyle = color;
+clip:
+rect:
+fillRect    :绘制一个填充矩形,context.fillRect(x, y, width, height) 
+strokeRect  :绘制一个边框矩形,context.strokeRect(x, y, width, height)  
+clearRect   :清除一个矩形区域，context.clearRect(x, y, width, height) 
+context.quadraticCurveTo(cpX, cpY, x, y) 贝塞尔曲线,参数：cpX,cpY控制点的坐标；x, y曲线终点的坐标。
+context.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y) 三次贝塞尔曲线，参数：cp1x第一个贝塞尔控制点的x坐标；cp1y第一个贝塞尔控制点的y坐标；cp2x第二个贝塞尔控制点的x坐标；cp2y	第二个贝塞尔控制点的y坐标；x结束点的x坐标；y结束点的y坐标
+context.toDataURL(type,args) Base64编码是一种将二进制数据编码为ASCII字符串的方法
+	type:我们将输出MIME类型指定为image/png或image/jpeg，前者为默认编码。
+	args:为备选参数，用于设置其他可能出现的参数，例如：当MIME类型为image/jpeg时设置图像质量(有效值介于0.0-1.0)
+
+context.translate(x, y)  ://将坐标原点移动到(x,y) 
+context.scale(x, y) ://将全局横纵尺寸缩放至x,y倍（即在原有数值乘上倍乘因子）    
+context.rotate(radius)  ://将画布绕着原点旋转radius弧度
+transform（a, b, c, d ,e, ,f）：图形变换矩阵，通过乘法改变当前矩阵
+	参数a:X轴水平缩放;b:水平倾斜;c:垂直倾斜;d:Y轴垂直缩放;e:沿X轴水平位移;f:沿Y轴垂直位移
+setTransform(a, b, c, d ,e, ,f）：将新矩阵覆盖原有矩阵上
+	多个transform可以叠加效果，但用的太多叠加会导致一些问题，可以用setTransform(a,b,c,d,e,f) 重置原来所有transform，从初始状态开始变换。
+
+createLinearGradient:线性渐变；
+	var grd = context.createLinearGradient(startX,startY,endX,endY) //创建线性渐变
+	grd.addColorStop(stop,color) //设置渐变关键点，grd.addColorStop(0.5,'#fff');
+createLinearGradient:径向渐变，和线性渐变相似
+	var crg = context.createRadialGradient(400, 400, 0, 400, 400, 300);//参数为起止圆x1,y1,r1,x2,y2,r2
+createPattern(填充 ,repeat-style);：背景填充，//context.createPattern(bgimg, 'repeat');
+	参数1.填充可选 img，canvas，video，均为对象形式。
+	参数2.repeat-style可选 no-repeat,repeat-x,repeat-y,repeat。
+
+ImageData对象用来保存图像像素值，它有 width、height和 data 三个属性
+Context 有三个方法用来创建、读取和设置 ImageData 对象，他们分别是
+	createImageData(width, height)：在内存中创建一个指定大小的 ImageData 	对象（即像素数组），对象中的像素点都是黑色透明的，即rgba(0,0,0,0)
+	getImageData(x, y, width, height)：返回一个 ImageData 对象，这个 IamgeData 对象中包含了指定区域的像素数组
+	putImageData(data, dx, dy,[dirtyX,dirtyY,dirtyW,dirtyH])：将ImageData对象绘制到屏幕的指定区域上,dx/dy原点的宽度和高度，dirty参数从canvas中切出一个指定选取描绘到画布上，并仅在该选取比源图像小时才有效
+内嵌图像：drawImage()有三种不同的参数系   
+	context.drawImage(image, dx, dy)  ：在(x,y)处绘制图像image  
+	context.drawImage(image, dx, dy, dw, dh)   ：在(x,y)处绘制图像image，并按照dw,dh缩放图片宽高   
+	context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh) ：将源图像的任意部分(sx,sy,sw,sh)复制至目标绘图区的制定区域(dx,dy,dw,dh)，从而扫清图像剪辑道路上的一切障碍。
+
+context.globalAlpha ：//透明度，context.globalAlpha=0.5;
+context.globalCompositeOperation 混合
+	默认值source-over :将A绘于B上，
+	source-in :仅绘出A位于B中的部分
+	source-out :仅绘出A在B之外的部分
+	source-atop :绘出B以及A与B重叠的部分
+	destination-over :
+	destination-in :将图像与文本合成，可以得到一个剪切效果
+	destination-out :
+	destination-atop :
+	lighter :为重叠区域添加颜色，并让其变浅
+	copy :将B排除并只绘出A
+	xor :将A及B的重叠部分去掉
+	vendorName-*
+
+save()和restore()
+	通过save()，我们可以随时创建一个快照，保存当前设置的属性，变化以及剪切遮罩，气候我们可以通过restore()来访问这个快照，鉴于快照也可以嵌套，规范将其描述为“绘制状态堆栈”
+
+1.设置随机颜色
+	"rgba("+parseInt(Math.random()*255)+","+parseInt(Math.random()*255)+","+parseInt(Math.random()*255)+" , 1)"
+2.将图片内容保存到本地，实现下载功能
+	var img=canvas.toDataURL("image/png").replace("image/png", "image/octet-stream;Content-Disposition: attachment;filename=foobar.png");
+	window.location.href=img;
+3.获取像素在数组中的偏移量：访问图像中某个特定坐标的像素
+	(xpos + ypos * imagedata.width) * 4
+3.canvas自适应全屏
+	function resizeCanvas() {   
+	    //canvas由jQuery获取   
+	    canvas.attr("width", $(window).get(0).innerWidth);   
+	    canvas.attr("height", $(window).get(0).innerHeight);   
+	    context.fillRect(0, 0, canvas.width(), canvas.height());   
+	}
+4.矩形函数封装
+	var roundeRect=function(x,y,w,h,r){
+        context.beginPath();
+        context.strokeStyle='blue';
+        context.moveTo(x,y+r);
+        context.arcTo(x,y,x+w,y,r);
+        context.arcTo(x+w,y,x+w,y+h,r);
+        context.arcTo(x+w,y+h,x,y+h,r);
+        context.arcTo(x,y+h,x,y,r);
+        context.closePath();
+        context.stroke();
+    };
+5.渐变球体：
+	radgrad=context.createRadialGradient(0+(r*0.15),0-(r*0.25),r/3,0,0,r);
+	//hsl
+	radgrad.addColorStop(0.0,'hsl('+i+',100%,25%)');
+	radgrad.addColorStop(0.9,'hsl('+i+',100%,25%)');
+	radgrad.addColorStop(1.0,'rgba(0,0,0,0)');
+
+	context.save();
+	context.translate(cx,cy);
+	context.beginPath();
+	context.moveTo(0+r,0);
+	context.arc(0,0,r,Math.PI*2,0);
+	context.fillStyle=radgrad;
+
+PS:
+	1.动态使用图像，必须在使用前被加载，因此需要img.onload加载函数；还有一种可行方法是先将所有相关图像作为img元素链接到HTML页面里，并设为visibility:hidden隐藏起来，在window.onload加载完成后，再通过getElementById()引用图片
+	2.任何情况下，一旦涉及旋转，都要小心，因为旋转总是以原点0/0作为旋转中心展开，所以旋转通常都应该最后一步
+	3.浏览器支持：如你需要用IE来观看canvas，请使用为canvas提供了硬件加速支持的IE9
+
+任何直角三角形的斜边，等于另外两边平方和的平方根
+三角函数：canvas中所有与角有关的API，都需要以弧度(radian)的方式指定该角的值，js中Math.sin(),Math.cos(),Math.tan()函数都采用弧度值
+	弧度与角度的关系：
+		180度等于π弧度；1弧度=度 *（π/180）；1度=（180/π）*弧度；
+		由此可得：
+			45度=（π/180）*45弧度，可以得到结果0.7853弧度
+	正弦(sin)，余弦(cos)于正切(tan)函数：快速口诀(SOHCAHTOA),分别代表S正弦，O对边，H斜边，C余弦，A邻边，H斜边，T正切，O对边，A邻边
+		con(0)=邻边/斜边
+		sin(0)=对边/斜边
+		tan(0)=对边/邻边
+		tan(0)=sin(0)/cos(0)
+		cot(0)=cos(0)/sin(0)

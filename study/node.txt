@@ -1,0 +1,2 @@
+nodejs的命令需要在前面加点，.help查看所有命令，退出命令是.exit
+退出：两次ctrl+C或者一次ctrl+D

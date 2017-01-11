@@ -1,0 +1,405 @@
+日期技巧：
+    获取本周周一的日期：nowDay - nowWeek+0+1:当天几号-当天周几+0+1；如果获取周二，那么+0改+1，以此类推
+    获取本周周一时间戳：nowTime - (nowWeek-1)*(24*60*60*1000):当天时间戳-(当天周几-1)*一天时间戳，也就是说，今天的时间戳减去少本周一天的时间戳，总能得到周一的时间戳
+
+小技巧
+    x<<1:相当于x*2;x<<2:相当于x*4
+    x>>1:
+          如果x为整数:相当于Math.floor(x/2),x>>2:相当于Math.floor(x/4);x>>4:相当于Math.floor(x/16);
+          如果x为负数:相当于Math.ceil(x/2),x>>2:相当于Math.ceil(x/4);x>>4:相当于Math.ceil(x/16);
+    String.prototype.concat.apply('aa',arr);//apply,劫持另一个对象的方法,继承另一个对象的属性;也可以理解为,把数组中的值,分别传给string的concat方法
+    console.dir()::在控制台显示内置对象的详细信息
+    cssText-设置css样式-PS:会将行间样式覆盖掉
+        Element.style.cssText = "width:400px; height:300px;";
+    左右两边居中：
+        left:(可视区的宽度 - 当前元素的宽度)/2;
+        top:鼠标滚动的高度+(可视区的高度 - 当前元素的高度)/2,
+            鼠标滚动的高度=document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;页面具有 DTD,使用documentElement,不具有 DTD使用body,safari支持pageYOffset
+    居于右下角
+        top=window.scrollY+(window.innerHeight-div9.clientHeight)
+    (兼容)事件函数中,阻止冒泡
+        方法1.var ev1=ev||event;//这里是因为event是IE低版本的全局对象,如果ev和event调换顺序的话,那么火狐下就会报错,也可以写成var ev1=window.event||ev;
+            (全兼容)ev1.cancelBubble=true;//阻止事件冒泡的
+        方法2(不兼容低版本).ev.stopPropagation()//可以同时取消事件捕获和冒泡
+    evnet的其他属性
+        ev.ctrlKey,ev.shiftKey,ev.altKey
+        兼容
+            ev.preventDefault();(不支持低版本)//阻止事件默认行为,也可以用return false(支持IE低版本)
+    拖拽的逻辑:
+        鼠标按下后,X-div.offsetLeft 等于初始化了DIV ,得到的是X点在DIV上的位置
+        鼠标移动时,X-div的位置,就等于Left值,
+        鼠标弹起,清楚移动\弹起事件
+    两个感叹号,相当于把一个变量转成bool
+        !!this.timer
+    typeof 可以用来获取一个变量是否存在，如 if(typeof a!="undefined"){alert("ok")}，而不要去使用 if(a) 因为如果 a 不存在（未声明）则会出错，对于 Array,Null 等特殊对象使用 typeof 一律返回 object，这正是 typeof 的局限性
+    var cc2=1;console.log(cc2.constructor);//得到的是Number的构造函数,因为除了typeof,还可以用constructor判断数据类型
+    在js中能用.来连接的都可以用[]来连接,在可变的情况下用[],如果[]中为一个变量就不能加"",系统中已经定义好的样式，用[]要加""。比如:object.getName => object['getName']
+    delete:1.未声明的变量可以删除,cc=1;delete cc;|2.对象的属性可以被删除;
+
+localStorage
+    //发送localStorage
+    localStorage.setItem(key, val);
+    //获取localStorage
+    localStorage.getItem(key);
+    //删除localStorage某项
+    localStorage.removeItem(key);
+    //清除所有localStorage
+    localStorage.clear();
+
+    发送对象
+    需要把object转换为字符串
+    info = {name:'joden',tel:'1399999999',sex:'男'};
+    var infoItem=JSON.stringify(info);
+    tools.setLocalStorage('info',infoItem);
+
+定时器：
+    定义：
+        var RAF =  (function(){
+            return requestAnimationFrame || webkitRequestAnimationFrame || mozRequestAnimationFrame || oRequestAnimationFrame || msRequestAnimationFrame || function (callback) {setTimeout(callback, 1000 / 60); };
+        })();
+    执行：
+        RAF(function(){
+            _this.loop();
+        })
+    
+面向对象:
+包装对象：当使用原始类型的值（string、number、boolean），在调用对应属性和方法的时候，内部会自动转成对应的对象。隐式创建的这个对象，就成为包装对象
+包装对象的特点:隐式创建对象后，可以调用对应的属性和方法，使用后，立马销毁，所以不能给原始类型的值添加属性和方法
+Boolean object.hasOwnProperty()：检测一个属性是存在实例中还是原型中。PS:只有给定属性存在对象实例中和构造函数内部,才会返回true
+Boolean object.isPrototypeOf():是用来判断要检查其原型链的对象是否存在于指定对象实例中，是则返回true，否则返回false。
+'name' in p1 : in操作符,会在通过对象能够访问给定属性时返回true,无论该属性存在于实例中还是原型中
+object.constructor:找出实例的构造函数是谁,属性返回对创建此对象的数组函数的引用,返回的是实例的构造函数。PS:当prototype = {}的时候会将prototype的值修改，那么要手动将constructor:Person,指向函数
+Array instanceof Function : instanceof运算符,二元运算符,检测Array的老爹是不是Function,1.用于判断一个变量是否某个对象的实例,2.运算检测一个函数的原型是否在要检测的对象的原型链上。
+Object.getPrototypeOf(p1).job : 返回对象的原型
+Object.keys(Person.prototype): 接受一个对象作为参数,返回一个包含所有可枚举属性的字符串数组
+Object.getOwnPropertyNames(Person.prototype);接受一个对象作为参数,返回一个包含所有可枚举属性的字符串数组,包含constructor
+对象身上有__proto__,构造函数身上有prototype也有__proto__
+prototype:原型,当函数声明出来的时候，自带的属性，而这个属性是对象类型
+__proto__属性原型链
+new:一个运算符(一元运算符)：专门运算函数的。
+
+正则:一种规则主要是用来操作字符串的（查找或者匹配某个字符串的模糊范围的） 正则特性一：懒惰特性;正则特性二：贪婪特性
+正则的书写语法：正则是由对象构造出来的。第一种写法：简洁版：/a/2个正斜线组成，里面放需要匹配的字符,类似于：[],{}; 第二种写法:标准写法,new RegExp('');转义字符：\+n|m|t.. 一般来说为转义字符
+正则表达式,可以当做变量,不要加引号,例:var pattern=/\w+/g;
+邮箱验证:一./^[A-Za-z1-9][\w(\.?)(\-?)]+@[a-z0-9]+(\.[a-z]{2,3}){1,2}$/
+中文验证:/[\u4e00-\u9fa5]/
+className验证:new RegExp('\\b'+attr+'\\b','g'); //或者new RegExp('^'+attr+'$|^'+attr+' | '+attr+' | '+attr+'$','g');
+正则去掉左右空格:pattern =/(^\s+)|(\s+)$/g;
+去掉所有的html标记:str.replace(/<\/?[^>]*>/gim,"");
+去除文章中间空格:result.replace(/\s/g,"");
+查询重复项:new RegExp('(\\w)\\1+','g')
+内容中连续输入空格数超过5个:reg=/(^\s{5,})|(\s{5,}$)|(\s{5,})/g;//头 或者 尾 或者 内部 连续5个空格
+test:返回值：布尔值 正则对象.test(string):如果在string中找到了要匹配的字符，那么返回值为true，否则为false
+search:返回值：首次出现的位置索引 string.search(明确的字符串|正则):检索指定字符串或正则表达式匹配的字符串,匹配到的字符串首次出现的位置,没有检索到返回-1
+match:返回的是数组 字符串.match(指定|正则):如果str中有指定匹配的字符就返回已经匹配出来的字符并且放到数组中，如果没有，那么返回一个空
+replace:返回值：已经修改之后的字符串 字符串.replace(指定字符|正则,要替换的内容|function):将指定或者模糊范围的字符替换成想要的字符。函数中的第一个参数：就是匹配到的字符。注意：函数中则必须要有返回值，否则为替换后的内容为undefined
+\d匹配一个数字
+\D 一个非数字
+\s匹配任意的空白字符,包括空格,制表格,换行符,中文全角空格等
+\S匹配任意不是空白字符的字符
+\w匹配字母或数字或下划线或汉字等
+\W匹配任意不是字母,数字,下划线,汉字的字符
+\B匹配不是单词开头或结束的位置
+[^x]匹配除了x以外的任意字符
+i修饰符（忽略大小写）放到正则的外面;
+g:修饰符（全局） global
+m:表示多行模式,即在到一行文本末尾还会继续查找下一行中是否存在于模式匹配的项
+()子项、提权,如果在正则表达式中有(),那么使用replace的时候，函数中从第二个参数之后就是()中要匹配的字符,这个括号叫子项:对应的函数参数中的顺序从左到右来计算的括号的
+只能从[]中选择一个。如果使用区间范围，那么是依据ASCII码表走顺序的。
+[^123]; ^写在[]开始，排除[]中的字符
+量词：+ ? *
+{1,}  重复1次到更多次  +
+{n,m}  重复n到m次
+{0,1} 重复0次或者1次  ?
+{0,}  重复0次或者多次 *
+
+BOM:
+    移动端适合
+        pageYOffset:滚动条的高度,表示文档向下滚动过的像素数,只能读取不能设置。
+        pageXOffset:滚动条的宽度,表示文档向右滚动过的像素数,只能读取不能设置。
+    (兼容)
+        innerWidth属性：(不兼容低版本,移动端比较合适)返回可视区的宽度（不包含滚动条宽度）窗口中文档显示区域的宽度，同样不包括边框。该属性可读可写。
+        解决:
+        document.documentElement.clientWidth-PC端用这个比较稳妥
+    innerHeight属性：返回窗口的文档显示区的高度。窗口中文档显示区域的高度，不包括菜单栏、工具栏等部分。该属性可读可写。
+    navigator.userAgent;用户代理信息,操作系统 、 浏览器内核 、浏览器版本等
+    window.location:获取地址栏信息,是个对象,
+    window.location.href:字符串版的地址信息;
+    window.location.search:地址栏查询信息,(问号到井号之间的信息),既可以读也可以写,如果为写操作，那么是会刷新页面的(除非有设置锚信息)。没有用人为事件触发，那么设置的时候会一直刷新。
+    window.location.hash:锚信息,(井号之后的内容),既可以读也可以写
+    window.location.reload():刷新页面
+    window.location=window.location,可以来无限刷新页面,然后在加入到点击事件中,那么就只刷新一次
+    方法:
+    window.scrollTo(x,y);参数:X\Y,设置滚条的距离
+    window.open();打开一个新窗口,参数:1.url,2.打开的方式,默认值为，_blank,如果在iframe中打开，那么在window.open的第二个参数中填写name值,3.设置窗口大小,width,height,IE下设置是否可以缩放，yes可以缩放，no不可以缩放,注意：如果要设置第三个参数，那么第二个必须为_blank
+    返回值为，新打开窗口的window,需要人为事件触发,否则除了IE,其他会拦截.--如果用了document.write,往页面写数据,那么需要配合document.close();关闭写入数据
+    window.close();关闭当前窗口,所有浏览器都能兼容的方法是：通过window.open去打开，然后就可以关闭打开的窗口。
+    addEventListener:事件绑定,适合于标准浏览器.三个参数：第一个参数：去掉on事件名,第二个参数：事件绑定函数,第三个参数：默认为false冒泡,true捕获
+    removeEventListener:解除绑定,针对指定的事件函数来解绑。第一个参数：要解绑的事件名（不带on）,第二个参数：要解绑的事件函数,第三个参数：是否捕获（默认false）
+    attachEvent:事件绑定,适合于IE低版本浏览器.两个参数：第一个参数：带on事件名,第二个参数：事件绑定函数
+    detachEvent:解除绑定,低版本IE,参数：第一个参数：带on的事件名。第二个参数：要解除的事件绑定函数。
+    fn.call:可以改变this的指向,参数：第一个参数：要修改的this,第二个参数以后(可以多个参数)：就是实参
+    fn.apply:(只有2个参数),可以改变this的指向,参数：第一个参数：要修改的this,第二个参数：就是实参集合（数组）
+    事件:
+    onorientationchange:横屏或竖屏切换时触发
+    onresize:事件会在窗口或框架被调整大小时发生
+    onmouseleave:相当与onmouseout,更加精确,离开本身元素才会触发
+    onmouseenter:相当于onmouseover,更加精确,经过本身元素才会触发
+    onkeydown:键盘按下的时候触发
+    onkeyup:键盘抬起的时候触发
+    onmousedown:鼠标按下的时候触发
+    onmouseup:鼠标抬起的时候触发
+    select:自动获取焦点,可以用来，页面加载之后就让某个焦点元素选中。
+    onclick,onmouseover,onmouseout,onmousemove,onchange,oninput,onsubmit,onreset,onload,onblur,onfocus
+    onscroll:当鼠标滚轮滚动,浏览器有滚动条时滚动会触发,通常情况下指上下滚动条滚动。
+    onmousewheel:当鼠标滚轮的时候触发。ev：可以监听到更多的细节信息。
+    区别：1.onscroll获取的用户操作信息没onmousewheel丰富；2.onscroll页面中必须要有滚动条才会触发，onmousewheel只要滚轮就会触发
+    兼容:onmousewheel-支持Chrome/IE,可以通过ev.wheelDelta来得到滚轮的方向,为正数的时候,说明向上滚动,为负数的时候：说明向下滚动
+        DOMMouseScroll:支持FF,可以通过ev.detail来得到滚轮的方向,为正数的时候,说明向下滚动,为负数的时候：说明向上滚动
+    DOMContentLoaded:仅当DOM加载完成，不包括样式表，图片，flash;而当onload事件触发时，页面上所有的DOM，样式表，脚本，图片，flash都已经加载完成了
+        兼容:高版本：DOMContentLoaded;;;IE处理方式:d.documentElement.doScroll('left');当有left的时候说明DOM加载完了。
+
+DOM
+    总结:
+        clientWidth 当前宽度 + padding
+        offsetHeight 当前宽度 + padding +border
+        scrollHeight 内容撑开的宽度
+        getBoundingClientRect() : 类似 offsetHeight
+
+    document.querySelector('.ul'):获取元素,标签名可以用class\ID\tag标签
+    document.querySelectorAll('.ul'):获取元素集,标签名可以用class\ID\tag标签
+    获取class属性:(兼容)
+        getElementsByClassName:不支持IE9以下的浏览器
+        getElementsByTagName('标签名');:通过标签名获取元素。获取的是一组元素。有length与数组类似，但是不是真正的数组（也叫类数组）
+    获取元素样式:(兼容)
+        getComputedStyle(element)["opacity"]:获取元素计算后样式,返回json;1. 接受参数: 第一个参数 需要获取样式的元素 (必填项);2. 接受参数: 第二个参数 ":after"、":before"  (选填项);3. 返回值: 一个包含了元素各个样式的json;4. getComputedStyle 是window下的一个方法(window.getComputedStyle);5.标准浏览器下获取计算后样式的方法
+        element.currentStyle["opacity"]:支持IE,对火狐支持不好,返回json;1.IE下获取计算后样式的方法;2.元素下的一个属性 (这个属性的类型是json);PS：在IE下 获取浮动用：styleFloat；在标准下获取浮动用: cssFloat || float;
+    offsetParent:最近的有定位属性的祖先节点。(找离这个元素最近的定位父级),
+        正确使用：1.父级要有定位，子级也必须要有定位;2.父级元素和子级元素都要有样式（如：width）;3.如果自身没有定位(或者有定位)，父级没有定位，那么定位父级body。;4.清楚默认样式
+    offsetLeft:(只读属性)从当前元素的左边（如果有边框算边框）[左外边距]到有定位父级的左内边距的距离。尽量不要用margin：不然计算的时候，容易出错.
+        正确使用：1.父级要有定位，子级也必须要有定位;2.父级元素和子级元素都要有样式（如：width）;3.如果自身没有定位(或者有定位)，父级没有定位，那么定位父级body(从元素本身到body的距离)。;4.要清楚默认样式。;5.一定要初始化字体大小，字体样式
+        PS:在FF下，如果给父级加了边框并且加了overflow:hidden(auto);FF都会重新计算offsetLeft的值
+    offsetTop:从当前元素的上边（如果有边框算边框）[上外边距]到有定位父级的上内边距的距离
+        正确使用：1.父级要有定位，子级也必须要有定位;2.父级元素和子级元素都要有样式（如：width）;3.如果自身没有定位(或者有定位)，父级没有定位，那么定位父级body(从元素本身到body的距离);4.要清楚默认样式;5.一定要初始化字体大小，字体样式
+    clientWidth:容器内可视区的宽高,不包滚动条等边线,容器内可视区的宽度 ,样式宽度 + padding, document.documentElement.clientWidth
+    clientHeight:容器内可视区的高度,样式高度 + padding,如果没有设置样式高度，那么结果就为内容撑出来的高度
+    offsetWidth:容器内可视区的宽度+border,样式宽度 + padding + border，包滚动条等边线
+    offsetHeight:容器内可视区的高度+border,样式高度 + padding + border,如果没有设置高度，跟内容撑开的值来走，如果设置了就走设置的高度。
+    #scrollHeight:被内容撑出来的高度（但是不是太精确，会有点点误差，可以通过统一文字的样式，这样就能精确获取）。
+    (兼容)- 解决:document.documentElement.scrollTop || document.body.scrollTop
+        scrollTop:在拖动滚动条的过程中，会读取此时的scrollTop的值.
+    方法:
+        [Function] getBoundingClientRect():获取元素的盒模型信息.返回值为对象类型-left\top\bottom\right\width\height,相对于浏览器可视区域
+DOM属性:
+    childNodes 获取某个元素的所有子节点
+    getAttribute\setAttribute\attributes 属性节点
+    (兼容)getAttribute:通过程序给对象添加属性，是可以读也可以写的。通过getAttribute就可以获取行间的属性，包括自定义的属性,可以解决通过src去做判断的问题。
+        获取img的src路径:img.getAttribute('src'),兼容问题,在IE7获取到文件绝对路径,解决方案:
+            img.getAttribute('src',2) 或者 img.getAttribute('src',3)
+    setAttribute:第一个参数：设置属性名;第二个参数：设置属性值,不要设置关键字或保留字,设置元素行间指定属性名的属性值
+    removeAttribute('要删除的属性名')
+    nodeValue\nodeName\
+    nodeType: 元素节点：1;属性节点：2;文本节点：3;注释节点：8;document:9
+节点:
+    parentNode-父节点
+    childNodes-所有子节点
+    children-元素子节点
+    (兼容)
+        firstElementChild-(IE9以下不兼容)通过父节点,查找到第一个子节点
+        firstChild-(所有浏览器兼容)获取某个元素的第一个子节点,(包括空白节点,注释节点……),因为有空文本节点,所以判断上一个是否有值,需要nodeType==1判断
+        lastElementChild--(IE9以下不兼容)通过父节点,查找到最后一个子节点
+        lastChild-(所有浏览器兼容)
+        previousElementSibling-(IE9以下不兼容)查找节点的上一个兄弟节点
+        previousSibling-(所有浏览器兼容)
+        nextElementSibling-(IE9以下不兼容)查找节点的下一个兄弟节点
+        nextSibling-(所有浏览器兼容)查找节点的下一个兄弟节点
+    document.createElement(tagName)-通过标签名的形式创建一个元素
+    parent.appendChild(添加的元素)-往一个节点里边添加一个子节点，注意是添加在最后
+    parentNode.insertBefore(要插入的元素,插到哪个元素的前面)；如果父级元素没有子节点，那么默认会往父级插入一个元素。
+    parentNode.removeChild(删除哪个),从一个节点中删除指定的子节点
+    parentNode.replaceChild(node,childNode),参数:node用来替换的节点，childNodes被替换的子节点,两个参数都必须写。
+    目标元素.cloneNode(boolean)-克隆元素-克隆一个节点,true：克隆元素和元素包含的子孙节点,flase：克隆元素但不包含元素的子孙节点
+
+表单:
+    对象：FormData-参考来源：https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/Using_FormData_Objects
+        利用FormData，通过AJAX发送表单
+        var formData = new FormData();
+        formData.append("username", "Groucho");
+        var request = new XMLHttpRequest();
+        request.open("POST", "http://foo.com/submitform.php");
+        request.send(formData);
+    $('#check').checked 判断是否选中
+    获取表格的头：table.tHead
+    获取表格的底部：table.tFoot
+    获取表格主体:tab.tBodies --获取到的是一个集合;注意加下标
+    获取表格中的某一行:tBodies[n].rows[n]
+    获取表格中的某个单元格:tBodies[n].rows[n].cells[n]
+    事件:
+    onchange:当input的value发生变化的时候触发
+    oninput:当向输入性控件输入内容时触发(oninput 是 Chrome 支持的，onpropertychange 是 IE 支持的。)
+
+string (number).toFixed(n); 保留n位小数
+in用法:console.log("name2" in obj): 判断obj对象中是否有name2这个字符串
+eval(string):只接受原始字符串作为参数，如果string参数不是原始字符串，那么该方法将不作任何改变地返回。
+    var str = "{'name':'leo'}";console.log(eval('('+str+')'));//容易注入病毒
+
+JSON:类似JS中对象格式的字符串,低版本浏览器兼容问题,需要下载json2.js
+1.object JSON.parse(JSONString) 把json格式的字符串转换成JS中对象类型
+    如果参数json的格式有问题,转换失败的话,解决:1.(new Function('','return '+JSONString))(); 2.eval('('+JSONString+')')
+2.string JSON.stringify(object,function,Number) 把object转成JSON格式的字符串,参数:1.对象; 2.回调,有两个2参数,key和value;3.格式化
+
+String
+1.str.length //字符串的length只能获取 不能设置
+2.string string.charAt(index) 方法返回字符串中指定位置的字符.如果index小于0或者大于等于字符串长度，返回空字符串
+    PS:该方法不能识别码点大于0xFFFF的字符。
+3.number str.charCodeAt(index) (JavaScript内部，字符以UTF-16的格式储存，每个字符固定为2个字节)
+    PS:处理2个字符，返回指定索引处字符的 Unicode 数值
+  str.codePointAt(index) 返回的是码点的十进制值,如果想要十六进制的值，可以使用toString(16)方法转换。ES6提供了codePointAt方法，能够正确处理4个字节储存的字符，返回一个字符的码点。
+    PS:codePointAt方法会正确返回32位的UTF-16字符的码点。对于那些两个字节储存的常规字符，它的返回结果与charCodeAt方法相同。
+4.string String.fromCharCode(value) 将unicode编码值转成文字,对象"String."是固定写法,参数"value"是要转的unicode编码,返回一个string字符
+    PS:不能识别32位的UTF-16字符（Unicode编号大于0xFFFF）
+   String.fromCodePoint：可以识别0xFFFF的字符，弥补了String.fromCharCode方法的不足。
+    PS:如果String.fromCodePoint方法有多个参数，则它们会被合并成一个字符串返回
+5.number string.indexOf(searchValue [, fromIndex]) 返回指定值在调用该方法的字符串中首次出现的位置,参数:searchValue 一个字符串表示被查找的值 fromIndex 开始查找的位置，默认值为0
+    includes('world', 6)//true：返回布尔值，表示是否找到了参数字符串。
+    startsWith('Hello', 5)//true：返回布尔值，表示参数字符串是否在源字符串的头部。
+    endsWith('Hello', 6)//6：返回布尔值，表示参数字符串是否在源字符串的尾部。
+    上面代码表示，使用第二个参数n时，endsWith的行为与其他两个方法有所不同。它针对前n个字符，而其他两个方法针对从第n个位置直到字符串结束。
+    PS:这三个方法都支持第二个参数，表示开始搜索的位置。
+6.number string.lastIndexOf(searchValue [, fromIndex]) 返回指定值在调用该方法的字符串中最后出现的位置
+7.string string.substring(indexStart [, indexEnd]) 截取指定位置之间的 字符串,返回截取后的字符串
+8.string string.substr(start [, length]) 截取指定起始位置和长度的子字符串
+    var str='/images/1.jpg';str.substr(0,7),得'images/';str.substr(-4),得'.jpg';
+9.string string.slice(beginSlice[, endSlice]) 提取字符串中的一部分，并返回这个新的字符串;
+    参数beginSlice如果是负数,那么倒着找到索引;
+    参数endSlice,找到截止的索引,如果截止的索引小于bengin的索引,那么就没有结果,也就是说,slice不能翻转
+    PS:"16px".slice(-2),可以找到 px
+10.string string.toLowerCase() 把字符串全部转成小写
+11.string string.toUpperCase() 把字符串全部转成大写
+12.string string.trim() 去掉字符串首尾的全部空格
+13.array str.split([value],[length]) 把字符串截取成数组,参数value-分隔符,length-截取数组保留的长度
+14.sre.concar(string);//返回字符串,接受多字符串参数
+
+Number:
+Number():将纯数字的字符串转化为数字。
+parseInt:将字符串转化为整数。如果转化不出来就为NaN。在转化的时候，从左往右起直到非数字止的数字会被转化。如果整个字符串都不是数字，那么会转成NaN。
+parseFloat:将字符串转化为数字，可以为（小数）浮点数。如果转化不出来就为NaN。在转化的时候，从左往右起直到非数字止的数字会被转化。如果整个字符串都不是数字，那么会转成NaN。
+
+数组
+1.array arr.splice(Number index,Number [deleteCount],[items]) 数组截取,改变原数组.返回截取后的新数组 index-截取的位数,deleteCount-截取的长度,items替换掉截取的内容
+2.string arr.join([separator = ',']) 将数组中的所有元素连接成一个字符串
+3.array arr.concat(value1, value2, ..., valueN) 将传入的数组或非数组值与原数组合并,组成一个新的数组并返回
+4.array arr.reverse() 颠倒数组中元素的位置
+5.array arr.slice(index,[end]) 数组截取,不影响原始数组.index-起始位置,end-结束位置;如果slice方法的参数中有一个负数,则用数组长度加上该数来确定相应位置.例如在一个包含5项的数组上调用slice(-2,-1)与调用slice(3,4)得到的结果相同.如果结束为止小于起始位置,则返回空数组
+6.array arr.sort([compareFunction]) 数组排序,compareFunction可选。用来指定按某种顺序进行排列的函数。如果省略，元素按照转换为的字符串的诸个字符的Unicode位点进行排序。
+7.number arr.push(element1, ..., elementN) 添加一个或多个元素到数组的末尾,返回新数组的length
+8.number arr.unshift(element1, ..., elementN) 添加一个或多个元素到数组的头部,新数组的length
+9.mixed arr.pop() 删除数组最后一个元素,返回被删除的那一个元素
+10.number arr.shift() 删除数组第一个元素,返回被删除的那一个元素
+11.number arr.indexOf(index) 从数组的开头(位置0)开始向后查找
+12.number arr.lastIndexOf() 从数组的末尾开始向后查找
+toString(),toLocalString,valueOf()
+ECMAScript5为数组定义了5个迭代方法:every(),filter(),forEach(),map(),some()
+ECMAScript5新增了两个归并数组的方法:
+    reduce():从数组的第一项遍历到最后一项,
+    reduceRight():从数组的最后一项遍历到第一项
+
+Date:
+Date.parse(),接受一个表示日期的参数,然后根据这个字符串返回响应的日期毫秒数
+Date.UTC(),返回表示日期的毫秒数,日期和时间基于本地时区而非GMT创建
+Date.now(),表示调用这个方法时的日期和时间的毫秒数
+valueOf(),可以方便使用比较操作符(小于或大于)来比较日期值
+toString()和toLocalString,在显示日期和时间时没有什么价值,仅在调试代码时比较有用
+日期格式化.
+    toDateString
+    toTimeString
+    toLocalDateString
+
+Math
+1.number Math.ceil(x) 对数进行向上取整
+2.number Math.floor(x) 对数进行向下取整
+3.number Math.round(x) 对数进行四舍五入
+4.number Math.abs(x) 取数的绝对值
+5.number Math.random(x) 返回0-1之间的随机数，不包含1
+6.Math.pow(2,8) 返回 x 的 y 次幂的值
+
+1.Math对象中的三角函数，接受的参数是弧度
+2.角度转弧度 = deg*Math.PI/180;
+Math.sin(30*Math.PI/180)
+Math.cos(30*Math.PI/180)
+Math.tan(30*Math.PI/180)
+
+ajax:
+    post：
+        数据放在send()中发送
+        用post方式请求，理论上来说是没有长度或体积限制的。
+        不会直接的暴露用户的信息，相对来说是比较安全的。
+        在send()的前面需要设置一个请求头（不设置要出错）。
+        ajax.setRequestHeader( 'Content-Type','application/x-www-form-urlencoded');
+        open的时候，不用像get那样去并数据，拼接数据是在send中填写。
+        代码示例:
+            var ajax = new XMLHttpRequest();
+            ajax.open('post','php/post.php',true);//?user='+txt.value
+            ajax.setRequestHeader( 'Content-Type','application/x-www-form-urlencoded');
+            ajax.send('user='+txt.value);
+            ajax.onload = function(){
+                console.log(ajax.responseText);//拿到传输过来的数据。
+            }
+
+    get方式：把数据放在url中发送
+        用get方式请求，是有长度限制的。通过地址栏的查询信息来请求的。
+        直接暴露了用户填写的信息，所以说不安全。
+        注意：在get拼接数据的时候要用encodeURI来包一下，
+        不然在IE低版本浏览器中使用中文会乱码的。
+        代码示例:
+            var ajax = new XMLHttpRequest();
+            ajax.open('get','php/get.php?user='+encodeURI(txt.value),true);//encodeURI:将一个中文转成URI编码,如果是中文,必须要encodeURI,否则IE下可能会乱码
+            ajax.send();
+            ajax.onload = function(){
+                console.log(ajax.responseText);//拿到传输过来的数据。
+            }
+application/x-www-form-urlencoded： 窗体数据被编码为名称/值对。这是标准的编码格式。
+multipart/form-data： 窗体数据被编码为一条消息，页上的每个控件对应消息中的一个部分。
+text/plain： 窗体数据以纯文本形式进行编码，其中不含任何控件或格式字符。
+form的enctype属性为编码方式，常用有两种：
+    application/x-www-form-urlencoded和multipart/form-data，默认为application/x-www-form-urlencoded。
+    当action为get时候，浏览器用x-www-form-urlencoded的编码方式把form数据转换成一个字串（name1=value1&name2=value2...），然后把这个字串append到url后面，用?分割，加载这个新的url。
+    当action为post时候，浏览器把form数据封装到http body中，然后发送到server。 如果没有type=file的控件，用默认的application/x-www-form-urlencoded就可以了。
+    但是如果有type=file的话，就要用到multipart/form-data了。浏览器会把整个表单以控件为单位分割，并为每个部分加上Content-Disposition(form-data或者file),Content-Type(默认为text/plain),name(控件name)等信息，并加上分割符(boundary)。
+application/json:
+以JSON格式提交表单是HTML5中一种很新的规范，只有实现了这些规范的现代浏览器才能识别 enctype='application/json'的语义，才能正确的将表单数据打包成JSON格式。而对于一些老式浏览器，以及还未实现这些标准的浏览器，它们无法识别 enctype='application/json'代表什么，于是表单的enctype会自动退化成application/x-www-form-urlencoded缺省编码格式。服务器端代码可以根据enctype的值来判断如何接收数据。
+
+break和coninute的区别:他们一般在for while循环中使用,break-退出循环,coninute-跳过循环
+toString:每一种数据类型都有自身的toString,当去使用alert的时候，系统默认会调用这个数据类型的toString；默认将输出的内容传成字符串类型。
+toString(16):可讲码点的进值转为16进值
+innerHTML:读写某个元素从开始标签到结束标签的所有内容。写操作：会覆盖之前的内容。可以加标签（直接写标签对即可）
+***如果拿a标签当按钮的时候在href中写上javascript:; | 当读取a或a的href属性的时候，输出的结果都是href值。
+在判断的时候，不要用背景色去判断，因为每个浏览器解析背景色是不一样的。建议用class来做判断。
+如果img的src是1.png就换成2.png;;目前来说，不能直接用src来做判断。
++号：如果左右两边为字符串，那么为字符串连接;如果左右两边为数字，那么会做加法运算。
+数组中有个属性叫length,length既可以读也可以写。从数组中找某位的值，用下标。下标值是从0开始计算的。
+
+JS预解析机制:
+1.var关键字预解析,js在读到一个 script 之后，会先查找整个 script 内容，找到 所有到 var关键字;把所有的 var声明的 名字 提到整个script的前边;
+2.function关键字解析,js在读到一个 script 之后，会先查找整个 script 内容，找到 所有到 function关键字把所有的 function声明的 名字和内容提到整个script的前边;
+3.预解析之后，js 会一行一行的向下读，碰到等号 才赋值
+全局变量: 在全局范围内，都可以进行使用和修改 （全局作用域）
+1.声明在 函数外边的变量
+2.变量如果不加var声明 就会变成全局变量
+3.写在window属性里
+闭包:函数表达式-函数自执行
+(function (a){
+	console.log(a);
+})(2);
+~function(a){
+	console.log(a);
+}(3);
+-function(a){
+	console.log(a);
+}(4);
++function(a){
+	console.log(a);
+}(6);
+!function(a){
+	console.log(a);
+}(5);

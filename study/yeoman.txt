@@ -1,0 +1,1 @@
+安装yeoman:  sudo npm install --global yo

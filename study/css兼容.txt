@@ -1,0 +1,75 @@
+
+兼容:
+	1.怪异盒模型(在IE下，没有文档声明，元素会陷入怪异盒模型解析),可视宽=width,content=width-padding-border
+	2.在IE6下不支持1px的点线,解决办法:用背景平铺
+	3.在IE6下元素的高度小于19px，会被当做19px来处理,解决办法:1.设置font-size;2.加overflow
+	4.在IE6下，元素的内容会撑开元素设置好的width,height,设置overflow:hidden;
+	5.在IE6下,margin传递有问题,可以用haslayout解决,它是IE渲染引擎的一个内部组成部分,触发haslayout可以使元素根据自身内容的大小，来重新组织和计算自身的width和height
+	    *display:inline-block;*height:(任何值除了auto);*float:(left 或 right);*position:absolute;*width:(任何值除了auto);*zoom:(除normal外任意值);
+	6.html5,低版本不识别的问题,可以引用 html5shiv.min.js
+	7.IE6下，只支持给a标签添加伪类，并且支持，l-v-h-a这四个伪类
+	8.在IE6，7下inline-block不支持块标签
+	9.清浮动的问题:1.clear:both;2.BFC--IE6,7下没有BFC  清浮动完整版：.clearFix{zoom:1;}.clearFix:after{content:"";display:block;clear:both;}
+	10.IE6下的双边距BUG,在IE6，块元素有浮动，有横向的margin，横向的margin值会被放大成两倍,解决办法:display:inline;
+	11.IE6下的双边距BUG,假如一行有多个li,margin-left一行的左侧第一个元素有双边距,margin-right 一行的右侧第一个元素有双边距,解决办法:display:inline;
+	12.在IE6下两个浮动元素之间有注释或者内嵌元素，并且元素的宽度和父级相差小于3px，元素最后的一些文字会被复制
+	13.3px空隙问题:当一个div浮动,另一个div用margin-left的方式,排到一排,会有3px的缝隙,解决方法:_position:relative; _left:-3px;
+	14.li下间隙问题:在IE6，7下li本身没有浮动，但是内容浮动了，li下边会多出几PX的空隙。解决方案:1.给li加浮动,2.给li加vertical-align
+	15.在IE6下，浮动元素和绝对定位元素是并列关系的话，绝对定位元素消失;解决方案：把绝对定位元素 用div包起来
+	16.在IE6，7下，相对定位元素父级的overflow对相对定位元素本身不起效果,解决办法:给相对定位元素的父级也加相对定位
+	17.在IE6绝对定位元素宽(高)是奇数的话，元素的right(bottom)有1px的偏差
+	18.IE6,7,8不识别opacity,IE6,7,8透明度-filter:alpha(opacity=)  0-100
+	19.IE6不支持固定定位,解决方案:{position:fixed;left:50px;top:100px;_position:absolute;_top:expression(eval(document.documentElement.scrollTop+100));}
+	20.表格的内容可以撑开设置好的宽高,table-layout:fixed; 不让表格的内容撑开表格设定好宽高
+	21.在IE6,7下输入类型的表单控件,上下会有1px的空隙,解决办法:给元素加浮动
+	22.在IE6下，给输入类型的表单控件，加border:none无效,解决办法:1.border:0;2.重置控件背景;
+	23.在IE6,7下输入类型的表单控件, 输入文字的时候，背景图会跟着一块移动,解决办法,同上
+	条件注释兼容IE:
+	<!--[if IE 6]><link type="text/css" rel="stylesheet" media="screen" href="ie6.css"/><![endif]-->
+	<!--[if IE 7]><link type="text/css" rel="stylesheet" media="screen" href="ie7.css"/><![endif]-->
+	<!--[if IE 8]><link type="text/css" rel="stylesheet" media="screen" href="ie8.css"/><![endif]-->
+
+background-size兼容写法：
+	/*Mozilla*/ 
+	-moz-background-size: auto(原始图片大小) || number(数值) || percentage(百分比) || cover(放大铺满) || contain(缩小铺满) 
+	/*Webkit*/ 
+	-webkit-background-size: auto(原始图片大小) || number(数值) || percentage(百分比) || cover(放大铺满) || contain(缩小铺满) 
+	/*Oprea*/ 
+	-o-background-size: auto(原始图片大小) || number(数值) || percentage(百分比) || cover(放大铺满) || contain(缩小铺满) 
+	/*W3c标准*/ 
+	background-size: auto(原始图片大小) || number(数值) || percentage(百分比) || cover(放大铺满) || contain(缩小铺满)
+
+background-color兼容写法：
+    background: #d8d8d8;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fcfcfc), to(#d8d8d8));
+    background: -moz-linear-gradient(top,  #fcfcfc,  #d8d8d8);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#d8d8d8');
+
+渐变兼容IE:background: linear-gradient(45deg, red 20%, blue 60%, yellow 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='red',endColorstr='yellow',GradientType='1');
+transform在不同浏览器内核下的书写规则:
+    -moz-transform: rotate | scale | skew | translate ;//Mozilla内核浏览器：firefox3.5+
+    -webkit-transform: rotate | scale | skew | translate ;//Webkit内核浏览器：Safari and Chrome
+    -o-transform: rotate | scale | skew | translate ;//Opera
+    -ms-transform: rotate | scale | skew | translate ;//IE9
+    transform: rotate | scale | skew | translate ;//W3C标准
+transform-origin:
+    -moz-transform-origin: x y;//Mozilla内核浏览器：firefox3.5+
+    -webkit-transform-origin: x y;//Webkit内核浏览器：Safari and Chrome
+    -o-transform-origin: x y ;//Opera
+    -ms-transform-origin: x y;//IE9
+    transform-origin: x y ;//W3C标准
+transition:
+    -moz-transition ： [<'transition-property'> || <'transition-duration'> || <'transition-timing-function'> || <'transition-delay'> [, [<'transition-property'> || <'transition-duration'> || <'transition-timing-function'> || <'transition-delay'>]]*
+    -webkit-transition ： [<'transition-property'> || <'transition-duration'> || <'transition-timing-function'> || <'transition-delay'> [, [<'transition-property'> || <'transition-duration'> || <'transition-timing-function'> || <'transition-delay'>]]*
+    -o-transition ： [<'transition-property'> || <'transition-duration'> || <'transition-timing-function'> || <'transition-delay'> [, [<'transition-property'> || <'transition-duration'> || <'transition-timing-function'> || <'transition-delay'>]]*
+    transition ： [<'transition-property'> || <'transition-duration'> || <'transition-timing-function'> || <'transition-delay'> [, [<'transition-property'> || <'transition-duration'> || <'transition-timing-function'> || <'transition-delay'>]]*
+@keyframes 规则
+    @keyframes mymove{from {top:0px;}to {top:200px;}}
+    @-moz-keyframes mymove /* Firefox */{}
+    @-webkit-keyframes mymove /* Safari 和 Chrome */
+    @-o-keyframes mymove {}/* Opera */
+animation规则:
+    animation: myfirst 5s linear 2s infinite alternate;
+    -moz-animation: myfirst 5s linear 2s infinite alternate;/* Firefox: */
+    -webkit-animation: myfirst 5s linear 2s infinite alternate;/* Safari 和 Chrome: */
+    -o-animation: myfirst 5s linear 2s infinite alternate;/* Opera: */

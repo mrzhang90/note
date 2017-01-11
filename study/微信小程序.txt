@@ -1,0 +1,74 @@
+app.js:
+    App({//不能调用getApp(),取实例用this
+      onLaunch: function() {
+        // 不能用getCurrentPage()，此时 page 还没有生成。
+      },
+      onShow: function() {
+          //当小程序启动，或从后台进入前台显示，会触发 onShow
+      },
+      onHide: function() {
+          // 当小程序从前台进入后台，会触发 onHide
+      },
+      globalData: 'I am global data'
+    })
+接收页面参数：可以获取wx.navigateTo和wx.redirectTo及<navigator/>中的 query
+对界面的设置如：wx.setNavigationBarTitle请在onReady之后设置。
+登录：wx.login()
+获取用户信息：wx.getUserInfo
+读取本地缓存：wx.getStorageSync('logs') || []
+设置本地缓存：wx.setStorageSync('logs', logs)
+对象-globalData
+    设置：this.globalData.userinfo=obj;
+    读取：this.globalData.userinfo
+
+js
+数组中添加值
+logs.unshift(Date.now())
+
+wxml:
+使用 wx:for-item 可以指定数组当前元素的变量名，
+使用 wx:for-index 可以指定数组当前下标的变量名：
+<view wx:for="{{array}}" wx:for-index="idx" wx:for-item="itemName">
+  {{idx}}: {{itemName.message}}
+</view>
+
+事件(bind事件绑定不会阻止冒泡事件向上冒泡，catch事件绑定可以阻止冒泡事件向上冒泡)：
+    冒泡：
+    touchstart	手指触摸动作开始
+    touchmove	手指触摸后移动
+    touchcancel	手指触摸动作被打断，如来电提醒，弹窗
+    touchend	手指触摸动作结束
+    tap	手指触摸后马上离开
+    longtap	手指触摸后，超过350ms再离开
+    非冒泡：
+    submit
+    input
+    scroll
+
+wxss:
+rpx:规定屏幕宽为750rpx。1rpx=1物理像素。例如iphone6，1px=2rpx(750/375屏幕宽度)，10px=750rpx(750/375*10)
+rem:规定屏幕宽为20rem,1rem=(750/20)rpx.例如ihone6,1px=屏幕宽度375/750=0.5,0.5*37.5=18.5,所以1rem=18.5
+
+快捷键：
+格式调整
+    Ctrl+S：保存文件
+    Ctrl+[， Ctrl+]：代码行缩进
+    Ctrl+Shift+[， Ctrl+Shift+]：折叠打开代码块
+    Ctrl+C Ctrl+V：复制粘贴，如果没有选中任何文字则复制粘贴一行
+    Shift+Alt+F：代码格式化
+    Alt+Up，Alt+Down：上下移动一行
+    Shift+Alt+Up，Shift+Alt+Down：向上向下复制一行
+    Ctrl+Shift+Enter：在当前行上方插入一行
+    Ctrl+Shift+F：全局搜索
+光标相关
+    Ctrl+End：移动到文件结尾
+    Ctrl+Home：移动到文件开头
+    Ctrl+i：选中当前行
+    Shift+End：选择从光标到行尾
+    Shift+Home：选择从行首到光标处
+    Ctrl+Shift+L：选中所有匹配
+    Ctrl+D：选中匹配
+    Ctrl+U：光标回退
+界面相关
+    Ctrl + \：隐藏侧边栏
+    Ctrl + m: 打开或者隐藏模拟器

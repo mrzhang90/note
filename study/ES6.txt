@@ -1,0 +1,195 @@
+声明变量的6种方式：
+  var、function、let、const、import、class
+方法：
+    1.Object.freeze() :对象冻结；对象的属性也可以冻结
+        例如：const foo = Object.freeze({});常量foo指向一个冻结的对象，所以添加新属性不起作用，严格模式时还会报错
+    2.str.codePointAt(index) 返回的是码点的十进制值,如果想要十六进制的值，可以使用toString(16)方法转换。ES6提供了codePointAt方法，能够正确处理4个字节储存的字符，返回一个字符的码点。
+      PS:codePointAt方法会正确返回32位的UTF-16字符的码点。对于那些两个字节储存的常规字符，它的返回结果与charCodeAt方法相同。
+    3.String.fromCodePoint：可以识别0xFFFF的字符，弥补了String.fromCharCode方法的不足。
+      PS:如果String.fromCodePoint方法有多个参数，则它们会被合并成一个字符串返回
+    4.at():ES5对字符串对象提供charAt方法，不能识别码点大于0xFFFF的字符，目前，有一个提案，提出字符串实例的at方法，可以识别Unicode编号大于0xFFFF的字符，返回正确的字符
+      例：'𠮷'.at(0) // "𠮷"
+    5.normalize方法可以接受一个参数来指定normalize的方式
+      NFC，默认参数，表示“标准等价合成”，返回多个简单字符的合成字符。所谓“标准等价”指的是视觉和语义上的等价。
+      NFD，表示“标准等价分解”，即在标准等价的前提下，返回合成字符分解的多个简单字符。
+      NFKC，表示“兼容等价合成”，返回合成字符。所谓“兼容等价”指的是语义上存在等价，但视觉上不等价，比如“囍”和“喜喜”。（这只是用来举例，normalize方法不能识别中文。）
+      NFKD，表示“兼容等价分解”，即在兼容等价的前提下，返回合成字符分解的多个简单字符。
+      PS:normalize方法目前不能识别三个或三个以上字符的合成。这种情况下，还是只能使用正则表达式，通过Unicode编号区间判断
+      例如：'\u01D1'.normalize()
+    6.includes('world', 6)//true：返回布尔值，表示是否找到了参数字符串。
+      startsWith('Hello', 5)//true：返回布尔值，表示参数字符串是否在源字符串的头部。
+      endsWith('Hello', 6)//6：返回布尔值，表示参数字符串是否在源字符串的尾部。
+      上面代码表示，使用第二个参数n时，endsWith的行为与其他两个方法有所不同。它针对前n个字符，而其他两个方法针对从第n个位置直到字符串结束。
+      PS:这三个方法都支持第二个参数，表示开始搜索的位置。
+    7.str.repeat(3) :repeat方法返回一个新字符串，表示将原字符串重复n次。
+        参数是小数则取整；NAN 或者 0到-1之间都视为0；负数或Infinity报错；字符串则先转成数字
+    8.padStart用于头部补全，padEnd用于尾部补全。
+      接受两个参数，第一个参数用来指定字符串的最小长度，第二个参数是用来补全的字符串。
+      'xxx'.padStart(2, 'ab')
+      如果省略第二个参数，则会用空格补全长度。
+      如果原字符串的长度，等于或大于指定的最小长度，则返回原字符串。
+      如果用来补全的字符串与原字符串，两者的长度之和超过了指定的最小长度，则会截去超出位数的补全字符串。
+      '12'.padStart(10, 'YYYY-MM-DD')
+      这种方式：提示字符串格式
+    9.raw()
+      String.raw方法可以作为处理模板字符串的基本方法，它会将所有变量替换，而且对斜杠进行转义，方便下一步作为字符串来使用。
+封装：
+  //利用codePointAt方法测试一个字符由两个字节还是由四个字节组成的最简单方法。
+  function is32Bit(c){
+      return c.codePointAt(0) > 0xFFFF;
+  }
+let:
+  let 块级作用域
+  ES6允许块级任意嵌套：{{{{{let insane = 'Hello World'}}}}};
+  笔记：
+    1.不存在变量提升;2.暂时性死区(如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域);3.不允许重复生命
+  作用：
+    1.外层作用域无法读取内层作用域的变量;
+    2.内层作用域可以定义外层作用域的同名变量;
+    3.块级作用域的出现，可以代替立即执行函数表达式(function(){})();
+    4.ES6引入了块级作用域，明确允许在块级作用域之中声明函数;
+    5.块级作用域内声明的函数类似于let，对作用域之外没有影响
+    6.考虑到浏览器环境差异太大，建议用函数表达式var aa=function;而不是用函数声明语句function aa(){}
+    7.ES6的块级作用域允许声明函数的规则，只在使用大括号的情况下成立，如果没有使用大括号，就会报错。例如：if(true) function f(){}
+    for循环var和let的区别
+      用var，每次循环，新的i值都会覆盖旧值
+      用let，因为当前的i只在本轮循环有效，所以每一次循环的i其实都是一个新的变量
+do表达式-块级作用域返回值
+  目前有个提案，使得块级作用域可以变为表达式，也就是说可以返回值，办法就是在块级作用域之前加上do，使它变为do表达式。
+  let x = do { let t = f(); t * t + 1; };
+const命令 
+  1.const声明一个只读的常量。一旦声明，常量的值就不能改变。
+  2.const一旦声明变量，就必须立即初始化，不能留到以后赋值。
+  3.const的作用域与let命令相同：只在声明所在的块级作用域内有效。
+  4.const命令声明的常量也是不提升，同样存在暂时性死区，只能在声明的位置后面使用。
+  5.const声明的常量，也与let一样不可重复声明。
+  6.对于复合类型的变量，变量名不指向数据，而是指向数据所在的地址。const命令只是保证变量名指向的地址不变，并不保证该地址的数据不变，所以将一个对象声明为常量必须非常小心。例如：const aa={};
+顶层对象-window
+  在ES5中，全局变量即顶层对象，在ES6中，let命令、const命令、class命令声明的全局变量讲不属于顶层对象的属性
+global 对象
+  ES5的window对象在环境中问题：
+  1.浏览器里面，顶层对象是window，但 Node 和 Web Worker 没有window。
+  2.浏览器和 Web Worker 里面，self也指向顶层对象，但是Node没有self。
+  3.Node 里面，顶层对象是global，但其他环境都不支持。
+  现在有一个提案，在语言标准的层面，引入global作为顶层对象。也就是说，在所有环境下，global都是存在的，都可以从它拿到顶层对象。
+解构：（如果等号右边不是数组，会报错，因为是不可遍历的结构）
+  解构适用于var、let、const
+  解构赋值允许指定默认值。
+  对象的解构也可以指定默认值。
+  可以从数组中提取值，按照对应位置，对变量赋值。如果解构不成功，变量的值就等于undefined。
+    例如：let [a,b,c]=[1,2,3];这种写法属于“模式匹配”，只要等号两边的模式相同，左边的变量就会被赋予对应的值。
+  另一种情况是不完全解构，即等号左边的模式，只匹配一部分的等号右边的数组。这种情况下，解构依然可以成功。
+    例如：let [a,b]=[1,2,3];完全匹配等到左边数组即可成功
+  对于Set结构，也可以使用数组的解构赋值。
+    let [x, y, z] = new Set(["a", "b", "c"]);
+  ES6内部使用严格相等运算符（===），判断一个位置是否有值。所以，如果一个数组成员不严格等于undefined，默认值是不会生效的。
+    [x, y = 'b'] = ['a', undefined]; // x='a', y='b'
+  如果一个数组成员是null，默认值就不会生效，因为null不严格等于undefined。
+    var [x = 1] = [null];// x=null
+  如果默认值是一个表达式(function声明的函数即表达式)，那么这个表达式是惰性求值的，即只有在用到的时候，才会求值。
+    let [x = f()] = [1];//这种情况f()函数不会执行，因为是惰性。如果[1]为undefined那么可以执行
+  解构不仅可以用于数组，还可以用于对象。
+  对象的解构与数组有一个重要的不同。对象的属性没有次序，变量必须与属性同名，才能取到正确的值。
+    var { bar, foo } = { foo: "aaa", bar: "bbb" };
+  对象的解构赋值的内部机制，是先找到同名属性，然后再赋给对应的变量。真正被赋值的是后者，而不是前者。
+    var { foo: foo, bar: bar } = { foo: "aaa", bar: "bbb" };
+  默认值生效的条件是，对象的属性值严格等于undefined。
+    var {x = 3} = {x: undefined};//x=3
+  如果x属性等于null，就不严格相等于undefined，导致默认值不会生效。
+    var {x = 3} = {x: null}; //x=null
+  解构赋值允许，等号左边的模式之中，不放置任何变量名。因此，可以写出非常古怪的赋值表达式。
+    ({} = [true, false]);
+  对象的解构赋值，可以很方便地将现有对象的方法，赋值到某个变量。
+    let { log, sin, cos } = Math;//将Math对象的对数、正弦、余弦三个方法，赋值到对应的变量上
+  由于数组本质是特殊的对象，因此可以对数组进行对象属性的解构。
+    var arr = [1, 2, 3];
+    var {0 : first, [arr.length - 1] : last} = arr;
+  字符串也可以解构赋值。这是因为此时，字符串被转换成了一个类似数组的对象。
+    var [a,b,c,d,e]='hello';
+  类似数组的对象都有一个length属性，因此还可以对这个属性解构赋值。
+    var {length:len}='hello';//len=5
+  解构赋值时，如果等号右边是数值和布尔值，则会先转为对象。
+    var {toString:s}='hello';
+    console.log(s===String.prototype.toString);//s=true
+  解构赋值的规则是，只要等号右边的值不是对象，就先将其转为对象。由于undefined和null无法转为对象，所以对它们进行解构赋值，都会报错。
+    let { prop: x } = undefined; // TypeError
+    let { prop: x } = null; // TypeError
+  函数的参数也可以使用解构赋值。
+    function add([x,y]){//函数add的参数表面上是一个数组，但在传入参数的那一刻，数组参数就被解构成变量x和y
+        return(x+y);
+    }
+    console.log(add([1,2]))//3
+  map解构:
+    [[1, 2], [3, 4]].map(([a, b]) => a + b);
+    [1, undefined, 3].map((x = 'yes') => x);  //[ 1, 'yes', 3 ] //undefined就会触发函数参数的默认值。
+  函数参数的解构也可以使用默认值。
+    function move({x=0,y=0}={}){
+        console.log(x+y)
+    }
+    move({x:1})
+  可以使用圆括号的情况只有一种：赋值语句的非模式部分，可以使用圆括号。
+    下面代码的写法会报错，因为JavaScript引擎会将{x}理解成一个代码块，从而发生语法错误。只有不将大括号写在行首，避免JavaScript将其解释为代码块，才能解决这个问题。 
+      var x;{x} = {x: 1};//错误写法
+      ({x} = {x: 1});//正确写法,将整个解构赋值语句，放在一个圆括号里面，就可以正确执行。
+      [(b)] = [3]; // 正确
+      [(parseInt.prop)] = [3]; // 正确
+  不能使用圆括号的情况：
+    1.变量声明语句中，不能带有圆括号。
+      var [(a)] = [1];//报错
+    2.函数参数中，模式不能带有圆括号。函数参数也属于变量声明，因此不能带有圆括号。
+      function f([(z)]) { return z; }//报错 
+    3.赋值语句中，不能将整个模式，或嵌套模式中的一层，放在圆括号之中。
+      ({ p: a }) = { p: 42 };//报错
+      ([a]) = [5];//报错
+      [({ p: a }), { x: c }] = [{}, {}];//报错
+  变量解构的用途：
+    1.交换变量的值
+      [x,y]=[y,x];//交换变量x和y的值，这样的写法不仅简洁，而且易读，语义非常清晰。
+    2.从函数返回多个值,函数返回对象或数组，取值方便
+      function obj1(){
+            return {x:1,y:2};
+        }
+        var {x,y}=obj1();
+    3.函数参数的定义。解构赋值可以方便地将一组参数与变量名对应起来。
+      function arr1([x,y,z]){//如果无序可以用对象
+          console.log(x+y+z);
+      }
+      arr1([1,2,3]);
+    4.提取JSON数据
+      var json={
+          id:1,
+          name:'jobs',
+          num:[2,3,4]
+      }
+      var {id,name,num:number}=json;
+    5.函数参数的默认值
+      function ajax(url,async=true,cache=true){
+          console.log(url,async,cache)
+      }
+    6.遍历Map结构-Map结构原生支持Iterator接口，配合变量的解构赋值，获取键名和键值就非常方便。
+      var map = new Map();
+      map.set('first', 'hello');
+      map.set('second', 'world');
+      for (let [key, value] of map) {
+        console.log(key + " is " + value);
+      }
+    7.输入模块的指定方法-加载模块时，往往需要指定输入那些方法。解构赋值使得输入语句非常清晰。
+      const { SourceMapConsumer, SourceNode } = require("source-map");
+      
+在所有情况下，都取到顶层对象。下面是两种勉强可以使用的方法。
+// 方法一
+(typeof window !== 'undefined'
+   ? window
+   : (typeof process === 'object' &&
+      typeof require === 'function' &&
+      typeof global === 'object')
+     ? global
+     : this);
+
+// 方法二
+var getGlobal = function () {
+  if (typeof self !== 'undefined') { return self; }
+  if (typeof window !== 'undefined') { return window; }
+  if (typeof global !== 'undefined') { return global; }
+  throw new Error('unable to locate global object');
+};

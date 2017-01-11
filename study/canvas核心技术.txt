@@ -1,0 +1,2 @@
+本书配套网站：http://corehtml5canvas.com/
+Philip实现了将近800个与canvas有关的测试用例：https://philip.html5.org/tests/canvas/suite/tests/

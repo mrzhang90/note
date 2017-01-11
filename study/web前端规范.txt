@@ -1,0 +1,181 @@
+文件规范
+	1.html文件，将对应界面放在同目录中
+	2.css文件命名,公用base.css，特殊special.css,首页index.css，其他页面以实际模块需求命名
+		主要的 master.css 
+	    布局，版面 layout.css 
+	    专栏 columns.css 
+	    文字 font.css 
+	    打印样式 print.css 
+	    主题 themes.css
+		base.css一般包括：
+			1、“标签的重置和设置默认值”（以消除不同浏览器之间的差异）
+			2、“统一调用背景图和清除浮动或其他需统一处理的长样式（这样就无需对每个进行分别的处理）”
+			3、grid-“网站通用布局”
+				将页面分割为几个大块，通常有头部、主体、主栏、侧栏、尾部等
+			4、module-“通用模块和其扩展”
+				即语义化的可以重复使用的较大的整体。如导航、登陆、注册、列表、评论、搜索等
+			5、unit-“元件和其扩展”
+				通常是一个不可再分的较为小巧的个体，被重复用于各种模块中，比如按钮、输入框、loading、图表等
+			6、function-“功能类样式”
+				为方便一些常用样式的使用，我们将这些使用率较高的样式剥离出来，按需使用，通常这些选择器具有固定样式表现，比如清除浮动
+			7、skin-“皮肤类样式”
+				如产品需要换肤功能，那么我们就需要将颜色、背景等抽离出来放在这里，方便管理
+		special.css
+			对某个维护率较高的栏目或者某个与网站整体差异较大的页面独立引入这样一个特殊型样式，方便我们维护
+	3.js文件命名，公用common.js,其他依实际需求命名
+html书写规范
+	1.需要为html添加自定义属性的时候，首先考虑html元素自身的属性，如果没有，可以使用"data-"为前缀添加自定义属性
+	2.语义化html, 如 标题根据重要性用h*(同一页面只能有一个h1), 段落标记用p, 列表用ul, 内联元素中不可嵌套块级元素;
+	3.尽可能减少div嵌套
+		如：<div><div class=”welcome”>欢迎访问XXX, 您的用户名是<div class=”name”>用户名</div></div></div>
+		替代: <div><p>欢迎访问XXX, 您的用户名是<span>用户名</span></p></div>;
+	4.书写链接地址时, 必须避免重定向，例如：href=”http://itaolun.com/”, 即须在URL地址后面加上“/”；
+	5.必须为含有描述性表单元素(input, textarea)添加label, 
+		如<p>姓名: <input type=”text” id=”name” name=”name” /></p>须写成:<p><label for=”name”>姓名: </label><input type=”text” id=”name” /></p>
+	6.能以背景形式呈现的图片, 尽量写入css样式中;
+	7.重要图片必须加上alt属性; 给重要的元素和截断的元素加上title;
+	8.给区块代码及重要功能(比如循环)加上注释, 方便后台添加功能;
+	9.特殊符号使用: 尽可能使用代码替代: 比如 <(<) & >(&gt;) & 空格( ) & »(») 等等;
+	10.非特殊情况下css样式文件必须外链至<head>…</head>之间;非特殊情况下Js文件必须外链至页面</body>之上;
+css书写规范：(class默认小驼峰的写法,id默认大驼峰的写法)
+	1. 编码统一为utf-8;
+	2. 协作开发及分工: 根据各个模块, 同时根据页面相似程序, 事先写好大体框架文件, 分配给前端人员实现内部结构&表现&行为; 共用css文件base.css, 协作开发过程中, 每个页面请务必都要引入
+		此文件包含reset及头部底部样式, 此文件不可随意修改;
+	3. class与id的使用: id是唯一的并是父级的, class是可以重复的并是子级的, 所以id仅使用在大的模块上, class可用在重复使用率高及子级中; id原则上都是由分发框架文件时命名的（如#header #footer #content #nav 等）, 为JavaScript预留钩子的除外;
+	4. 为JavaScript预留钩子的命名, 请以 j_ 起始，比如: .j_hidePic #j_HidePic;
+	5.使用单个字母+“-”为前缀。比如：对于header部分，我们可以这样写:
+		<div class="g-header"></div> //g代表css内部分类方法中的布局（grid）的第一个字母
+		<div class="m-log"></div>。此div即为登陆框这个模块
+		<img class="u-img" src="../images/iam.png" alt="pic">对于元件部分，即不可再分的个体
+		<div class="f-clearFloat"></div>对于功能（function）部分
+		<div class="s-changeSkin">对于皮肤（skin）部分
+		PS:
+			1.在css中，样式的选择器总是要以上面的 .g-  .m- .u- .f- .s-这五类开头，然后再里面使用后代选择器。
+			2.这并不是说所有的className都需要加这些前缀，对于一些不属于这几种的元素，我们完全可以不加前缀，作为后代选择器使用
+			后代选择器，约定不以单个字母+“-”为前缀且长度大于等于2的类选择器为后代选择器
+				如：.g-date .u-rightArrow{  float: right;} 这个就是不合适的，我们直接写成 .u-rightArrow{  float: right;}即可
+	6. 子级命名
+		a） 通过从属写法
+			例如：<div id=”mainnav”><div>…</div></div>,
+			样式写法: #mainnav .firstnav{…….}
+		b）取父级元素id/class命名部分命名
+			例如：<div id=”mainnav”><div>…</div></div>,
+			样式写法: .main_firstnav{…….}
+	7. css属性书写顺序, 建议遵循: 
+		布局定位属性–>自身属性–>文本属性–>其他属性. 此条可根据自身习惯书写, 但尽量保证同类属性写在一起. 
+		属性列举: 
+			布局定位属性包括: display & list-style & position（相应的 top,right,bottom,left） ＆ float & clear ＆ visibility ＆ overflow
+			自身属性主要包括: width & height & margin & padding & border & background; 
+			文本属性主要包括：color & font & text-decoration & text-align & vertical-align & white- space & 其他 & content;
+		如：.m-box{position:relative;padding:5px;line-height:20px;height:20px; color:#000;}
+	8. 充分利用html自身属性及样式继承原理减少代码量, 
+		比如:<ul><li>这儿是标题列表<span>2010-09- 15</span></ul>
+		定义:ul.list li span{position:absolute; right:0}
+	9.样式表中中文字体名, 请务必转码成unicode码, 以避免编码错误时乱码;
+	10.背景图片请尽可能使用sprite技术, 减小http请求, 考虑到多人协作开发, sprite按模块制作;
+	11.使用table标签时(尽量避免使用table标签), 请不要用width/ height/cellspacing/cellpadding等table属性直接定义表现, 应尽可能的利用table自身私有属性分离结构与表现
+		如:thead,tr,th,td,tbody,tfoot,colgroup,scope; (cellspaing及cellpadding的css控制方法:table{border:0;margin:0;border- collapse:collapse;} table th, table td{padding:0;}, base.css文件中初始化表格样式)
+	12.杜绝使用<meta http-equiv=”X-UA-Compatible” content=”IE=7″ /> 兼容 ie8;
+	13.用png图片做图片时, 要求图片格式为png-8格式,若png-8实在影响图片质量或其中有半透明效果, 请为ie6单独定义背景:
+		_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader (sizingMethod=crop, src=’img/bg.png’);
+	14.减少使用影响性能的属性, 比如position:absolute || float ;
+	15.必须为大区块样式添加注释, 小区块适量注释;
+	16.选择器、属性和值都是用小写。
+	17.单行写完一个选择器定义。
+	18.最后一个值也要一分号结尾。
+	19.省略值为0的单位
+	20.使用16进制表示颜色值，其中的字母使用大写形式，并尽量缩写。
+	21.私有在前，标准在后。
+		.m-box{-webkit-box-shadow:0 0 0 #000;-moz-box-shadow:0 0 0 #000;box-shadow:0 0 0 #000;}	
+	PS:通常我们最常用主要命名有：wrap（外套、最外层）、header（页眉、头部）、nav(导航条)、menu(菜单)、title(栏目标题、一般配合h1\h2\h3\h4标签使用)、content (内容区)、footer(页脚、底部)、logo（标志、可以配合h1标签使用）、banner（广告条，一般在顶部）、copyRight（版权）。其它可根据自己需要选择性使用。
+		建议：主要的、重要的、最外层的盒子用“#”(井号)选择符号开头命名，其它都用“.”（小写句号）选择符号开头命名。
+JavaScript书写规范
+	1. 文件编码统一为utf-8, 每行代码结束必须有分号; 原则上所有功能均根据项目需求原生开发, 以避免网上down下来的代码造成的代码污染(沉冗代码 || 与现有代码冲突 || …);
+		为避免外链引入库命名冲突，项目可采用命名空间方式对JS代码进行规范：即将代码按照功能进行分组，以组的形式附加到单全局对象上。
+	2. 库引入: 原则上仅引入jQuery库, 若需引入第三方库, 须与团队其他人员讨论决定;
+	3. 变量命名: 驼峰式命名,前缀应当是名词
+		要求变量集中声明, 避免全局变量.
+		尽量在变量名字中体现所属类型，如:length、count等表示数字类型；而包含name、title表示为字符串类型。
+		开头字母用变量类型的缩写，其余部分用变量的英文或英文的缩写，要求单词第一个字母大写。
+			s：表示字符串。例如：sName，sHtml；
+			n：表示数字。例如：nPage，nTotal；
+			b：表示逻辑。例如：bChecked，bHasLogin；
+			a：表示数组。例如：aList，aGroup；
+			r：表示正则表达式。例如：rDomain，rEmail；
+			f：表示函数。例如：fGetHtml，fInit；
+			o：表示以上未涉及到的其他对象，例如：oButton，oDate；
+			g：表示全局变量，例如：gUserName，gLoginTime；
+	4. 函数命名: 首字母小写驼峰式命名，前缀应当为动词（以此区分函数和变量）
+		函数命名：统一使用动词或者动词+名词形式 ---- fnInit()
+		对象方法命名使用fn+对象类名+动词+名词形式   fnAnimateDoRun() 
+		某事件响应函数命名方式为fn+触发事件对象名+事件名或者模块名  fnDivClick()
+		附常用的动词列表：
+		可使用常见动词约定：
+			can,判断是否执行某个动作，返回bool，true：可执行
+			has，判断是否含有某个值，返回bool，true：含有此值
+			is，判断是否为某个值，返回bool，true：为某个值
+			get 获取/set 设置, add 增加/remove 删除
+			create 创建/destory 移除 start 启动/stop 停止
+			open 打开/close 关闭, read 读取/write 写入
+			load 载入/save 保存, create 创建/destroy 销毁
+			begin 开始/end 结束, backup 备份/restore 恢复
+			import 导入/export 导出, split 分割/merge 合并
+			inject 注入/extract 提取, attach 附着/detach 脱离
+			bind 绑定/separate 分离, view 查看/browse 浏览
+			edit 编辑/modify 修改, select 选取/mark 标记
+			copy 复制/paste 粘贴, undo 撤销/redo 重做
+			insert 插入/delete 移除, add 加入/append 添加
+			clean 清理/clear 清除, index 索引/sort 排序
+			find 查找/search 搜索, increase 增加/decrease 减少
+			play 播放/pause 暂停, launch 启动/run 运行
+			compile 编译/execute 执行, debug 调试/trace 跟踪
+			observe 观察/listen 监听, build 构建/publish 发布
+			input 输入/output 输出, encode 编码/decode 解码
+			encrypt 加密/decrypt 解密, compress 压缩/decompress 解压缩
+			pack 打包/unpack 解包, parse 解析/emit 生成
+			connect 连接/disconnect 断开, send 发送/receive 接收
+			download 下载/upload 上传, refresh 刷新/synchronize 同步
+			update 更新/revert 复原, lock 锁定/unlock 解锁
+			check out 签出/check in 签入, submit 提交/commit 交付
+			push 推/pull 拉, expand 展开/collapse 折叠
+			begin 起始/end 结束, start 开始/finish 完成
+			enter 进入/exit 退出, abort 放弃/quit 离开
+			obsolete 废弃/depreciate 废旧, collect 收集/aggregate 聚集
+	5.构造函数.大驼峰命名，前缀为名称
+		例：Student(name)
+	6. 类命名: 
+		a.公共属性和方法：跟变量和函数的命名一样。例：function getName()
+		b.私有属性和方法：前缀为_(下划线)，后面跟公共属性和方法一样的命名方式。var _name
+	7.常亮.名称全部大写，使用大写字母和下划线来组合命名
+	8. 命名语义化, 尽可能利用英文单词或其缩写;
+	9. 尽量避免使用存在兼容性及消耗资源的方法或属性, 比如eval_r() & innerText;
+	10. 后期优化中, JavaScript非注释类中文字符须转换成unicode编码使用, 以避免编码错误时乱码显示;
+	11. 代码结构明了, 加适量注释. 提高函数重用率;
+	12. 注重与html分离, 减小reflow, 注重性能.
+	13.注释
+		函数(方法)注释：
+			/** 
+			* 函数说明 
+			* @关键字 
+			*/
+图片规范
+	1. 所有页面元素类图片均放入img文件夹, 测试用图片放于demoimg文件夹;
+	2. 图片格式仅限于gif || png || jpg;
+	3. 命名全部用小写英文字母 || 数字 || _ 的组合，其中不得包含汉字 || 空格 || 特殊字符；尽量用易懂的词汇, 便于团队其他成员理解; 
+		另, 命名分头尾两部分, 用下划线隔开, 比如ad_left01.gif || btn_submit.gif;
+	4. 在保证视觉效果的情况下选择最小的图片格式与图片质量, 以减少加载时间;
+	5. 尽量避免使用半透明的png图片(若使用, 请参考css规范相关说明);
+	6. 运用css sprite技术集中小的背景图或图标, 减小页面http请求, 但注意, 请务必在对应的sprite psd源图中划参考线, 并保存至img目录下.
+	命名规则：
+		1.使用缩写，如button用btn代替，background用bg代替
+		2.通用图标
+			以功能开头，功能_名称_[状态]，如btn_share_pressed。
+		3.模块图标
+			以先模块名称开头，模块_功能_名称_[状态]，如pic_btn_share_normal
+		4.对于两个模块都用到的图标，也就是通用图片
+			不需要加前缀模块。通用图标命名为主，少部分模块内需要区别于通用图标的，才使用模块内图标方式命名
+		5.命名尽量短，图片尽量复用。模块图标被复用后，得改名为通用图标命名方式
+开发及测试工具约定
+	1.编码必须格式化, 比如缩进;
+	2.测试工具: 前期开发仅测试Chrome & FireFox & IE8+ , 后期优化时加入Opera & Safari & 其他高端浏览器;
+

@@ -1,0 +1,126 @@
+http://www.css88.com/doc/underscore/#filter :推荐阅读
+http://www.myexception.cn/web/2016594.html :createClass方法中的 prpTypes回调说明
+JSX:
+    JSX 的基本语法规则：遇到 HTML 标签（以 < 开头），就用 HTML 规则解析；遇到代码块（以 { 开头），就用 JavaScript 规则解析。
+    JSX 允许直接在模板插入 JavaScript 变量。如果这个变量是一个数组，则会展开这个数组的所有成员
+    React 允许将代码封装成组件（component），然后像插入普通 HTML 标签一样，在网页中插入这个组件。React.createClass 方法就用于生成一个组件类
+AJAX:
+    组件的数据来源，通常是通过 Ajax 请求从服务器获取，可以使用 componentDidMount 方法设置 Ajax 请求，等到请求成功，再用 this.setState 方法重新渲染 UI
+方法
+    创建元素
+        React.createElement(标签名,属性,元素内容)
+    渲染元素
+        ReactDOM.render(标签|组件,容器,渲染后回调)
+    使用JSX语法
+        设置type="text/babel"
+    定义组件
+        var DummyMixin = {
+          componentDidMount: function(){
+            console.log('mixin');
+          }
+        };
+        //组件名首字母必须大写,组件类只能包含一个顶层标签
+        var Component = React.createClass({
+            mixins: [DummyMixin], //mixin，可以非常简单的理解，他就是把 一个 mixin 对象上的方法都混合到了另一个组件上，和 $.extend 方法做的事情类似。
+            componentDidMount: function(){  //执行结果,会先执行mixin 的 componentDidMount ，最后执行这里的 componentDidMount 方法。
+                console.log('component');
+            },
+            getInitialState: function() {//设置默认初始化状态,获取时用this.state.linked,修改用this.setState({liked: !this.state.liked});修改以后，自动调用this.render方法，再次渲染组件
+                return {liked: false};
+            },
+            getDefaultProps:function (){//用来设置组件属性的默认值
+                return {
+                    title:"123"
+                }
+            },
+            propTypes:function(){//验证传入数据的有效性,注意为了性能考虑，只在开发环境验证 propTypes
+                // 可以声明 prop 为指定的 JS 基本类型。默认
+                // 情况下，这些 prop 都是可传可不传的。
+                optionalArray: React.PropTypes.array,
+                optionalFunc: React.PropTypes.func,
+                optionalObject: React.PropTypes.object,
+                optionalString: React.PropTypes.string,
+                // 自定义验证器。如果验证失败需要返回一个 Error 对象。不要直接
+                // 使用 `console.warn` 或抛异常，因为这样 `oneOfType` 会失效。
+                customProp: function(props, propName, componentName) {
+                  if (!/matchme/.test(props[propName])) {
+                    return new Error('Validation failed!');
+                  }
+                }
+            },
+            render:function(){//组件类都必须有自己的 render 方法，用于输出组件。
+                return <h1 className="aa" htmlFor="bb">hi,{this.props.name}</h1>  //class 属性需要写成 className ，for 属性需要写成 htmlFor ，这是因为 class 和 for 是 JavaScript 的保留字
+            }
+        });
+
+propTypes
+    组件的属性可以接受任意值，字符串、对象、函数等等都可以。有时，我们需要一种机制，验证别人使用组件时，提供的参数是否符合要求。
+
+props:
+    传递数据:作为组件的属性进行传递;{} 大括号中的内容会解析为js代码执行
+    获取数据:this.props.属性名;this.props.children;forEach、map方法使用
+    语法糖:{...args}
+    定义默认数据:getDefaultProps
+    验证数据:propTypes	customProp	React.PropTypes.array
+    PS:this.props 对象的属性与组件的属性一一对应，但是有一个例外，就是 this.props.children 属性。它表示组件的所有子节点
+    PS:1.this.props.children 的值有三种可能：如果当前组件没有子节点，它就是 undefined ;如果有一个子节点，数据类型是 object ；如果有多个子节点，数据类型就是 array 。所以，处理 this.props.children 的时候要小心。
+       2.React 提供一个工具方法 React.Children 来处理 this.props.children 。我们可以用 React.Children.map 来遍历子节点，而不用担心 this.props.children 的数据类型是 undefined 还是 object。
+    获取: var NotesList = React.createClass({
+            React.Children.map(this.props.children, function (child) {
+                return <li>{child}</li>;
+            })
+          });
+    设置: ReactDOM.render(
+              <NotesList>
+                <span>hello</span>
+                <span>world</span>
+              </NotesList>,
+              document.getElementById('example')
+           );
+
+组件状态:将组件看成是一个状态机，一开始有一个初始状态，然后和用户交互，导致状态变化，从而触发重新渲染页面
+	getInitialState	初始化状态
+	setState(nextState,callback) 更新组件状态，会触发diff算法，判断区别，更新页面
+	this.state.属性 取对应状态的值
+	组件之外或使用this.state改变状态调用: forceUpdate(callback)
+	    var html = ReactDOM.render(...);
+        html.state.title = "欢迎来到妙味课堂";
+        html.forceUpdate();
+生命周期：
+    Mounting：已插入真实 DOM
+    Updating：正在被重新渲染
+    Unmounting：已移出真实 DOM
+    componentWillMount() : 插入真实DOM之前；will函数在进入状态之前调用;
+    componentDidMount() : 插入真实DOM之后；did函数在进入状态之后调用;
+    componentWillUpdate(object nextProps, object nextState) : 正在被重新渲染之前
+    componentDidUpdate(object prevProps, object prevState) : 正在被重新渲染之后
+    componentWillUnmount() : 已移除真实DOM之前，在组件从 DOM 中移除的时候立刻被调用;在该方法中执行任何必要的清理，比如无效的定时器，或者清除在componentDidMount中创建的DOM元素
+
+1.this.props和this.state
+    1. this.state组件免不了要与用户互动，React 的一大创新，就是将组件看成是一个状态机，一开始有一个初始状态，然后用户互动，导致状态变化，从而触发重新渲染 UI
+    2. this.props 和 this.state 都用于描述组件的特性，可能会产生混淆。一个简单的区分方法是，this.props 表示那些一旦定义，就不再改变的特性，而 this.state 是会随着用户互动而产生变化的特性。
+    3. 用户在表单填入的内容，属于用户跟组件的互动，所以不能用 this.props 读取,可以用: event.target.value
+2,react内注释用/**/
+3.获取虚拟DOM
+4.todoList todomve.com
+5.ref和refs:
+    1.定义ref: <input type="text" ref="ts"/>
+      用refs获取定义的ref: this.refs.ts.value
+    2.this.refs.[refName] 属性获取的是真实DOM，所以必须等到虚拟DOM插入文档以后，才能使用这个属性;通过为组件指定Click事件的回调函数，确保了只有等到真实DOM发生Click事件之后，才会读取this.refs.[refName]属性
+6.获取原生事件: ev.nativeEvent
+7.bind绑定方法
+    1.设置:changeHaddle={prop.changeSelected.bind(this,item.id)}
+      调用:<input onChange={prop.changeHaddle}/>
+    2.设置:setInterval(function () {}.bind(this), 100);
+    3.$.get(url, function(result) {}.bind(this));
+
+注意:
+    1.渲染是,参数1的</>里,记得加/,不然出错,都不知道怎么回事
+    2.<script type="text/babel">
+    4.class属性需要写成 className ，for 属性需要写成 htmlFor ，这是因为 class 和 for 是 JavaScript 的保留字。
+    5.input的value属性值,要写成defaultValue
+    6.Browser.js 的作用是将 JSX 语法转为 JavaScript 语法，这一步很消耗时间，实际上线的时候，应该将它放到服务器完成。
+        命令:babel src --out-dir build :可以将 src 子目录的 js 文件进行语法转换，转码后的文件全部放在 build 子目录。
+    7.组件的style属性的设置方式也值得注意,因为 React 组件样式是一个对象，所以第一重大括号表示这是 JavaScript 语法，第二重大括号表示样式对象。
+        不能写成 : style="opacity:{this.state.opacity};"
+        而要写成 : style={{opacity: this.state.opacity}}

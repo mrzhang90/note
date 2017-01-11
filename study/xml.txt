@@ -1,0 +1,40 @@
+jquery加载并解析XML
+很多情况下XML文件不能正常解析都是由于Content-Type没有设置好,如果Content-Type本身就是一个xml文件则不需要设置;如果是有后台动态生成的,则需要设置Content-Type为"text/xml",否则jquery会以默认的"text/html"处理,导致解析失败
+设置Content-Type的方式: header("Content-Type:text/xml");
+
+获取xml:
+$.ajax({
+    url:'ajax.xml,
+    type:'GET',
+    datType:'xml',
+    timeout:1000,  //设定超时
+    cache:false,   //禁用缓存
+    error:function(xml){
+        alert('加载xml文件出错');
+    },
+    success:function(xml){
+        //这里用于解析XML
+    }
+})
+也可以简单的$.get()和$.post()方法获取:
+$.get('ajax.xml',function(xml){
+    //这里用于解析XML
+})
+
+解析XML文档与解析DOM一样,可以用find()\children()等函数来解析,each()来遍历,也可用text()\attr()来获取节点文本和属性
+success:function(xml){
+    var frag=$("<ul/>"); //建立ul
+    $(xml).find("student").each(function(i){ //查找所有student节点并遍历
+        var id=$(this).children("id");       //取得子节点
+        var id_value=id.text();              //取节点文本
+        //alert(id_value);                    //这里就是id的值了
+        email=$(this).attr("email");        //获取student下的email属性
+        frag.append("<li>"+id_value+"-"+email+"</li>");
+    })
+    frag.appendTo("#load");
+}
+
+禁用缓存方式很多种:
+如果是通过$.post()方法获取的数据,那么默认就是禁用缓存的;
+如果是用了$.get(),那么可以通过时间戳来避免缓存,可以在URL后面加个"+(+new Date)",//(+new Date)等价于 new Date().getTime();
+如果使用了$.ajax()来获取数据,只需要设置cache:false即可
