@@ -3,6 +3,7 @@
     获取本周周一时间戳：nowTime - (nowWeek-1)*(24*60*60*1000):当天时间戳-(当天周几-1)*一天时间戳，也就是说，今天的时间戳减去少本周一天的时间戳，总能得到周一的时间戳
 
 小技巧
+    x=+x //这是另一种隐士的将x转为数字的方式
     x<<1:相当于x*2;x<<2:相当于x*4
     x>>1:
           如果x为整数:相当于Math.floor(x/2),x>>2:相当于Math.floor(x/4);x>>4:相当于Math.floor(x/16);
@@ -35,6 +36,9 @@
     var cc2=1;console.log(cc2.constructor);//得到的是Number的构造函数,因为除了typeof,还可以用constructor判断数据类型
     在js中能用.来连接的都可以用[]来连接,在可变的情况下用[],如果[]中为一个变量就不能加"",系统中已经定义好的样式，用[]要加""。比如:object.getName => object['getName']
     delete:1.未声明的变量可以删除,cc=1;delete cc;|2.对象的属性可以被删除;
+    将类数组转为真正的数组，可用在获取元素集和arguments对象
+        写法1.Array.prototype.slice.call(arrayLike)
+        写法2.[].slice.call(element)
 
 localStorage
     //发送localStorage
@@ -141,6 +145,7 @@ BOM:
     fn.call:可以改变this的指向,参数：第一个参数：要修改的this,第二个参数以后(可以多个参数)：就是实参
     fn.apply:(只有2个参数),可以改变this的指向,参数：第一个参数：要修改的this,第二个参数：就是实参集合（数组）
     事件:
+    onhashchange :浏览器地址栏hash值发生变化时触发
     onorientationchange:横屏或竖屏切换时触发
     onresize:事件会在窗口或框架被调整大小时发生
     onmouseleave:相当与onmouseout,更加精确,离开本身元素才会触发

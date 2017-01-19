@@ -181,11 +181,11 @@
         next(): 匹配元素后面紧邻的同辈元素
         prev(): 匹配元素前面紧邻的同辈元素
         siblings(): 取得匹配元素前后所有的同辈元素
-        closest(): 取得最近的匹配元素,如果匹配到,返回元素本身,如果不匹配,逐级向上匹配,如果没有,则向上返回一个jquery
         filter(expr):刷选出于指定表达式匹配的元素集合,其中expr可以多个选择器的组合,
             1.例如:$('ul li').filter(":contains('bb'),:contains('dd')").addClass('prot');
             2.cbk.filter(':checked').length //cbk中已选中的checkbox的长度
         find() nextAll()  prevAll()
+        closest(): 取得最近的匹配元素,如果匹配到,返回元素本身,如果不匹配,逐级向上匹配,如果没有,则向上返回一个jquery
         parent() :获取父级
         parents():获取所有父级,parents("tr"):获取为tr的父级
     遍历:

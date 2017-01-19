@@ -1,3 +1,35 @@
+代码段：
+1.ajax提交图片
+    //封装函数-实现功能：当按钮点击后，调用file控件，弹出图片上传。上传图片后，ajax提交图片，然后通过回调,处理数据
+    function add_photo(address,successFn){
+        $('#btn_upload').click(function(){
+            uploadFile.click();
+        })
+        $('#uploadFile').on('change',function(){
+            uploadImage($(this)[0])
+        })
+        //利用表单的FormData对象，推入file值
+        var data = new FormData();
+        data.append('uploadFile', $('#uploadFile').files[0]);
+        file_post(url,data,'',function(data){
+            data=JSON.parse(data);
+            successFn(data);
+        });
+        function file_post(address,data,method,successFn,errorFn){
+            $.ajax({
+                url:address,
+                type:method || 'post',
+                data:data,
+                contentType: false,    //不可缺
+                processData: false,    //不可缺
+                success:successFn,
+                error:errorFn ||function(){
+                    alert('系统获取异常');
+                }
+            })
+        }
+    }
+    
 动态元素:
 appendChild是动态控制元素,把ul的节点追加到ul内,相当于替换,那么因为每次改变指针,所以位置发生改变如下:
 for(var i= 0,len=li.length;i<len;i++){
@@ -24,7 +56,8 @@ for(var i= 0,len=li.length;i<len;i++){
     Number:如果只要一个数字,那么会转成数字,如果两个数字以上,那么就是NaN
 
 2.隐士类型转换
-    调取的是Number类型转换
+    1.调取的是Number类型转换
+    2.x=+x //这是另一种隐士的将x转为数字的方式
 200200200
 3.多条件比较
     &&:true-会一直执行,直到最后;false-停到flase,输出当前条件的结果;
