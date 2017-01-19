@@ -1,0 +1,14 @@
+获取父类ID
+	{dede:field.typeid function="GetTopid(@me)"/}
+获取栏目名称
+	{dede:field.typename/}
+字段为空，则隐藏元素
+	{dede:field.t_title1 runphp='yes'}if(@me ==''){@me='style="display:none;"';}{/dede:field.t_title1}
+	
+获取栏目下的子类-如果当前栏目ID等于其中某个子类，那么就选中当前子类
+	<select name="" id="" onchange="window.location=this.value;">
+        <option value='/plus/list.php?tid={dede:field.typeid function="GetTopid(@me)"/}'>--默认全部--</option>
+        {dede:channel type='son' currentstyle="<option value='~typelink~' selected=''>~typename~</option>"} 
+        <option value="[field:typelink /]">[field:typename/]</option>
+        {/dede:channel} 
+    </select>
