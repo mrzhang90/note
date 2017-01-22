@@ -4,11 +4,20 @@
 	{dede:field.typename/}
 字段为空，则隐藏元素
 	{dede:field.t_title1 runphp='yes'}if(@me ==''){@me='style="display:none;"';}{/dede:field.t_title1}
-	
+获取指定栏目名称
+	{dede:type typeid='17'}
+    [field:typename/] 
+    {/dede:type}
 获取栏目下的子类-如果当前栏目ID等于其中某个子类，那么就选中当前子类
 	<select name="" id="" onchange="window.location=this.value;">
         <option value='/plus/list.php?tid={dede:field.typeid function="GetTopid(@me)"/}'>--默认全部--</option>
-        {dede:channel type='son' currentstyle="<option value='~typelink~' selected=''>~typename~</option>"} 
-        <option value="[field:typelink /]">[field:typename/]</option>
+        {dede:channel typeid="11"} 
+        <option value="[field:typelink /]#a[field:global name='autoindex' runphp='yes'][/field:global]">[field:typename/]</option>
         {/dede:channel} 
     </select>
+SQL联表查询:
+	{dede:sql sql="select a.litpic,d.t_classic,d.t_style,d.t_customer from dede_archives as a,dede_cgjs as d where a.id = d.aid and d.aid=33"}
+	{/dede:sql}    
+解决的问题：
+	织梦中自定义图片字段会自动添加一段代码：
+		文件路径： templets\system\channel_article_image.htm文件
