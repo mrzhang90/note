@@ -1,13 +1,22 @@
+mysql:
+	查找flag字段中包含h或包含g的记录
+	select * from dede_archives where find_in_set('h',flag) or find_in_set('g',flag)
+sql内的判断：
+	[field:t_title6 runphp='yes']if(@me ==''){@me='style="display:none;"';}else{@me='';}/]
 获取父类ID
 	{dede:field.typeid function="GetTopid(@me)"/}
 获取栏目名称
 	{dede:field.typename/}
-字段为空，则隐藏元素
-	{dede:field.t_title1 runphp='yes'}if(@me ==''){@me='style="display:none;"';}{/dede:field.t_title1}
+判断-字段为空，则隐藏元素-//必须有else,而且必须有分号
+	{dede:field.t_title1 runphp='yes'}if(@me ==''){@me='style="display:none;"';}else{@me='';}{/dede:field.t_title1}
 获取指定栏目名称
 	{dede:type typeid='17'}
     [field:typename/] 
     {/dede:type}
+获取文章列表
+	{dede:arclist typeid='11'}
+    <a href="[field:arcurl/]"><img src="[field:litpic/]" /></a>
+    {/dede:arclist}
 获取栏目下的子类-如果当前栏目ID等于其中某个子类，那么就选中当前子类
 	<select name="" id="" onchange="window.location=this.value;">
         <option value='/plus/list.php?tid={dede:field.typeid function="GetTopid(@me)"/}'>--默认全部--</option>
@@ -15,9 +24,70 @@
         <option value="[field:typelink /]#a[field:global name='autoindex' runphp='yes'][/field:global]">[field:typename/]</option>
         {/dede:channel} 
     </select>
+每隔9个li，结束ul
+{dede:arclist typeid="10" row="100"}
+    <li> <a class="picimglink" href="[field:arcurl/]" target="_blank"> <img src="[field:litpic/]"/><span class="pic-txt">[field:title/]</span> </a></li>
+    [field:global name=autoindex runphp="yes"]
+        @me%9==0?@me='</ul><ul class="bigUl kuzhan-ul clearfix">':@me='';
+    [/field:global]
+    //以上可以替换-<a href="[field:global.autoindex/]=='1'?'active':''">
+{/dede:arclist}
+扩展：dede:arclist 里面写判断
+{dede:arclist flag=’h’ row=’11’ typeid=’15,16,17,18,19,20′ orderby =’pubdate’ orderway=’asc’}
+	//根据自动增量的索引来判断是否是第一个  第一个的话加一个first样式  否则不加
+	[field:global name=autoindex runphp=”yes”]@me==1? @me='<span class=”first”>’ :@me= ‘<span>';[/field:global]
+	//根据flag来判断
+	[field:flag runphp=”yes”]
+		//如果包括a
+		if(strpos(@me,’a’)!==false){
+			@me = '<strong>';
+		}else{
+			@me='';
+		};
+	[/field:flag]
+	<a href=”[field:arcurl/]” target=”_blank” title=”[field:title/]”>[field:title/]</a>
+	[field:flag runphp=”yes”]
+		if(strpos(@me,’a’)!==false){
+			@me = ‘</strong></span>';
+		}else{
+			@me='</span>';
+		}
+	[/field:flag]
+{/dede:arclist}
 SQL联表查询:
 	{dede:sql sql="select a.litpic,d.t_classic,d.t_style,d.t_customer from dede_archives as a,dede_cgjs as d where a.id = d.aid and d.aid=33"}
 	{/dede:sql}    
 解决的问题：
 	织梦中自定义图片字段会自动添加一段代码：
 		文件路径： templets\system\channel_article_image.htm文件
+	DedeCMS织梦自定义图片字段调用的问题出现{dede:img :
+		文件路径： include\extend.func.php文件
+			function GetOneImgUrl($img,$ftype=1){   
+			    if($img <> ''){   
+			        $dtp = new DedeTagParse();   
+			        $dtp->LoadSource($img);   
+			        if(is_array($dtp->CTags)){   
+			            foreach($dtp->CTags as $ctag){   
+			                if($ctag->GetName()=='img'){   
+			                    $width = $ctag->GetAtt('width');   
+			                    $height = $ctag->GetAtt('height');   
+			                    $imgurl = trim($ctag->GetInnerText());   
+			                    $img = '';   
+			                    if($imgurl != ''){   
+			                        // if($ftype==1){   
+			                        //     $img .= $imgurl;   
+			                        // }   
+			                        // else{   
+			                        //     $img .= '<img src="'.$imgurl.'" width="'.$width.'" height="'.$height.'" />';   
+			                        // } 
+			                        $img .= $imgurl;  
+			                    }   
+			                               
+			                }   
+			            }   
+			        }   
+			        $dtp->Clear();   
+			        return $img;       
+			    }
+		    } 
+	    模版调用：[field:t_yykcpic1 function='GetOneImgUrl(@me,0)'/]
