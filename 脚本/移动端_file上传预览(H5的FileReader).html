@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="new_file.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		
+		<input type="file" accept="video/*;capture=camcorder"> 
+		<input type="file" accept="audio/*;capture=microphone">
+		<input type="file" accept="image/*;capture=camera">  <!-- 直接调用相机 -->
+			
+  		<!-- 还是要根据手机的类型来说，有些手机只能调相机，有些手机只能调相册，或者两者都行。以上，希望能帮助到你。 -->
+		<!-- 设置不透明为0 就看不到了 -->
+		<input type="file" accept="image/*" style="opacity: 0.3; background: hotpink;" >  
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+	<input type="file" accept="image/*" id="xdaTanFileImg" style="opacity: 0.1; background: red;" onchange="xmTanUploadImg(this)" />
+	<img id="xmTanImg"/>
+	
+	<script type="text/javascript">
+		//判断浏览器是否支持FileReader接口
+		if (typeof FileReader == 'undefined') {
+			//使选择控件不可操作
+			document.getElementById("xdaTanFileImg").setAttribute("disabled", "disabled");
+			alert('当前浏览器不支持FileReader接口 也就是当前浏览器不能选择头像');
+		}
+		
+		//选择图片，马上预览
+		function xmTanUploadImg(obj) {
+			var file = obj.files[0];
+			console.log(obj);console.log(file);
+			console.log("file.size = " + file.size);  //file.size 单位为byte
+			var reader = new FileReader();
+			
+			//读取文件过程方法
+			reader.onloadstart = function (e) {
+				console.log("开始读取....");
+			}
+			reader.onprogress = function (e) {
+				console.log("正在读取中....");
+			}
+			reader.onabort = function (e) {
+				console.log("中断读取....");
+			}
+			reader.onerror = function (e) {
+				console.log("读取异常....");
+			}
+			reader.onload = function (e) {
+				console.log("成功读取....");
+				var img = document.getElementById("xmTanImg");
+				img.src = e.target.result;
+				//或者 img.src = this.result;  //e.target == this
+			}
+			reader.readAsDataURL(file)
+		}
+
+	</script>
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+
+
+
+
+
+
+
+
+
+
+
+		
+	</body>
+</html>
+
+
+<!--  -->
