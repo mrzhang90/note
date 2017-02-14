@@ -3,6 +3,8 @@
     获取本周周一时间戳：nowTime - (nowWeek-1)*(24*60*60*1000):当天时间戳-(当天周几-1)*一天时间戳，也就是说，今天的时间戳减去少本周一天的时间戳，总能得到周一的时间戳
 
 小技巧
+    valueAsDate：日期控件的类型date，设置value值。
+        document.getElementById('xxx').valueAsDate = new Date();
     x=+x //这是另一种隐士的将x转为数字的方式
     x<<1:相当于x*2;x<<2:相当于x*4
     x>>1:
@@ -39,7 +41,6 @@
     将类数组转为真正的数组，可用在获取元素集和arguments对象
         写法1.Array.prototype.slice.call(arrayLike)
         写法2.[].slice.call(element)
-
 localStorage
     //发送localStorage
     localStorage.setItem(key, val);
