@@ -145,6 +145,10 @@ BOM:
     detachEvent:解除绑定,低版本IE,参数：第一个参数：带on的事件名。第二个参数：要解除的事件绑定函数。
     fn.call:可以改变this的指向,参数：第一个参数：要修改的this,第二个参数以后(可以多个参数)：就是实参
     fn.apply:(只有2个参数),可以改变this的指向,参数：第一个参数：要修改的this,第二个参数：就是实参集合（数组）
+        apply方法能劫持另外一个对象的方法，继承另外一个对象的属性
+        Function.apply(obj,args)方法能接收两个参数
+        obj：这个对象将代替Function类里this对象
+        args：这个是数组，它将作为参数传给Function（args-->arguments）
     事件:
     onhashchange :浏览器地址栏hash值发生变化时触发
     onorientationchange:横屏或竖屏切换时触发
