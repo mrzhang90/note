@@ -143,12 +143,14 @@ BOM:
     removeEventListener:解除绑定,针对指定的事件函数来解绑。第一个参数：要解绑的事件名（不带on）,第二个参数：要解绑的事件函数,第三个参数：是否捕获（默认false）
     attachEvent:事件绑定,适合于IE低版本浏览器.两个参数：第一个参数：带on事件名,第二个参数：事件绑定函数
     detachEvent:解除绑定,低版本IE,参数：第一个参数：带on的事件名。第二个参数：要解除的事件绑定函数。
+    call和apply的区别：
+        obj.call(thisObj, arg1, arg2, ...);
+        obj.apply(thisObj, [arg1, arg2, ...]);
+        两者作用一致，都是把obj(即this)绑定到thisObj，这时候thisObj具备了obj的属性和方法。
+        唯一区别是apply接受的是数组参数，call接受的是连续参数。
     fn.call:可以改变this的指向,参数：第一个参数：要修改的this,第二个参数以后(可以多个参数)：就是实参
     fn.apply:(只有2个参数),可以改变this的指向,参数：第一个参数：要修改的this,第二个参数：就是实参集合（数组）
         apply方法能劫持另外一个对象的方法，继承另外一个对象的属性
-        Function.apply(obj,args)方法能接收两个参数
-        obj：这个对象将代替Function类里this对象
-        args：这个是数组，它将作为参数传给Function（args-->arguments）
     事件:
     onhashchange :浏览器地址栏hash值发生变化时触发
     onorientationchange:横屏或竖屏切换时触发
