@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+<embed src="http://static.video.qq.com/TPout.swf?vid=s03437ilv33&auto=1&outhost=http://cf.qq.com/" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+<script>
+    window.onclick=function(ev){
+        console.log(ev.pageX+'-'+ev.pageY);
+    }
+   window.onload=function(){
+       setTimeout(function(){
+//           return false;
+           console.log('执行了')
+           function imitateClick(oElement, iClientX, iClientY) {
+               var oEvent;
+               if (document.createEventObject) { //For IE
+                   oEvent = document.createEventObject();
+                   oEvent.clientX = iClientX;
+                   oEvent.clientY = iClientY;
+                   oElement.fireEvent("onclick", oEvent);
+               } else {
+                   oEvent = document.createEvent("MouseEvents");
+                   oEvent.initMouseEvent("click", true, true, document.defaultView, 0, 0, 0,
+                           iClientX, iClientY/*, false, false, false, false, 0, null*/);
+                   oElement.dispatchEvent(oEvent);
+               }
+           }
+           var body = document.body;
+           body.onclick = function(event) {
+               alert("clicked at (" + event.clientX + "," + event.clientY + ")");
+           };
+           imitateClick(body, 22, 351);
+       },5000)
+   }
+</script>
+</body>
+</html>

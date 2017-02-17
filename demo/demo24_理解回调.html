@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" onclick="dianji1()">
+<script>
+    var obj={};
+    function dianji1(){
+        obj.num=obj.num+1 || 0;
+        console.log(obj.num);
+    }
+    addNum(1,2,3,function(str){
+        console.log(str);
+    })
+    function addNum(a,b,c,fn){
+        fn(a+b+c);
+    }
+</script>
+</body>
+</html>

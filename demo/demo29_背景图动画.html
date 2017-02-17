@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{width:270px;height:129px;background:url("images/baidu.png") no-repeat;}
+    </style>
+</head>
+<body>
+<div></div>
+<script>
+    window.onload=function(){
+        var div=document.getElementsByTagName('div')[0],i=0;
+        setInterval(function(){
+            i+=270;
+            if(i>27540){
+                i=0;
+            }
+            div.style.backgroundPosition=-i+'px 0px';
+        },100)
+    }
+</script>
+</body>
+</html>

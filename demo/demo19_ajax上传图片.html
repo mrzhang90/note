@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<from enctype="multipart/form-data">
+    <input type="file" id="file_photo" style="display:none;">
+    <input type="button" value="上传" id="btn_upload">
+</from>
+<script src="js/jquery-3.1.0.min.js"></script>
+<script src="js/ajaxfileupload.js"></script>
+<script>
+    $(function(){
+        var btn_upload=$('#btn_upload');
+        var file_photo=$('#file_photo');
+        btn_upload.click(function(){
+            file_photo.click();
+        })
+        file_photo.on('change',function(){
+            uploadImage($(this).get(0))
+        })
+        function uploadImage(obj) {
+            var tmpFilePath=obj.value;
+            if(validateImage(obj)) {
+                $.ajaxFileUpload({
+                    url:"###",             //需要链接到服务器地址
+                    secureuri:false,
+                    fileElementId:'photo',                         //文件选择框的id属性
+                    dataType: 'json',                                     //服务器返回的格式，可以是json
+                    success: function (data, status)             //相当于java中try语句块的用法
+                    {
+                        alert('上传图片成功')
+                    },
+                    error: function (data, status, e)
+                    {
+                        alert('上传图片失败');
+                    }
+                });
+            }
+        }
+        //校验图片格式及大小 Add Date 2012-6-14 LIUYI
+        function validateImage(obj) {
+            var file = obj;
+            var tmpFileValue = file.value;
+            //校验图片格式
+            if(/^.*?\.(gif|png|jpg|jpeg|bmp)$/.test(tmpFileValue.toLowerCase())){
+                //校验图片大小,这段代码需调整浏览器安全级别(调到底级)和添加可信站点(将服务器站点添加到可信站点中)
+                var maxSize = 1024 * 1024 * 2; //最大2MB
+                if(file.value != ""){
+                    var size=obj.files[0].size;
+                    if(size<0 || size>maxSize){
+                        alert("当前文件大小" + (size/1024/1024).toFixed(2) + "MB, 超出最大限制"+(maxSize/1024/1024)+"MB");
+                        return false;
+                    }else{
+                        return true;
+                    }
+                }else{
+                    alert("请选择上传的文件!");
+                    return false;
+                }
+            } else {
+                alert("只能上传jpg、jpeg、png、bmp或gif格式的图片!");
+                return false;
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //标签模板其实不是模板，而是函数调用的一种特殊形式。“标签”指的就是函数，紧跟在后面的模板字符串就是它的参数。
+//    alert`123`;
+        //    等同于alert(123)
+
+    //如果模板字符里面有变量，就不是简单的调用了，而是会将模板字符串先处理成多个参数，再调用函数。
+    var a=5,b=6;
+    tag`hello ${a+b} world ${a}+${b} 哈哈`;
+    tag1`hello ${a+b} world ${a}+${b} 呵呵`;
+        //相当于 ['hello ',' world ','+',''] 11 5 6
+    //这个例子展示了，如何将各个参数按照原来的位置拼合回去。
+    //PS:这个函数可以理解为ag(['hello ',' world ','+','']，11，5，6)，第一个函数是字符串中的普通字符，第二三四个都是变量，所以arguments从1开始
+    function tag(param){
+        var i=0,result='';
+        while(i<param.length){
+            result+=param[i++];
+            if(i<arguments.length){
+                result+=arguments[i];
+            }
+        }
+        console.log(result);
+    }
+    //采用rest参数的写法如下,结果同上
+    function tag1(literals, ...values) {
+        console.log(literals.raw)
+        var output = "";
+        for (var index = 0; index < values.length; index++) {
+            output += literals[index] + values[index];
+        }
+        output += literals[index];
+        console.log(output);
+    }
+    console.log('__________________________');
+
+    //raw(): String.raw方法可以作为处理模板字符串的基本方法，它会将所有变量替换，而且对斜杠进行转义，方便下一步作为字符串来使用。
+    //String.raw方法，往往用来充当模板字符串的处理函数，返回一个斜杠都被转义（即斜杠前面再加一个斜杠）的字符串，对应于替换变量后的模板字符串。
+//    String.raw的代码基本如下。
+    String.raw=function(strings,...values){
+        var s='';
+        for(var i=0;i<values.length;i++){
+            s+=strings.raw[i]+values[i];
+        }
+        s+=strings.raw[i];
+        return s;
+    }
+    console.log(String.raw`hi,\\n${2+3} heihei`);
+    console.log(String.raw({ raw: 'test' }, 0, 1, 2));
+    console.log(String.raw({ raw:['t','e','s','t'] }, 0, 1, 2));
+</script>
+</body>
+</html>

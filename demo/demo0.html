@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+<script>
+    $(function(){
+        var aa=$('#aa');
+        var btn=$('#btn');
+        btn.click(function(){
+            var frm=$('<form id="dd" action="aa.html" method="post">');
+            frm.append('<input type="text" name="aa" value="'+aa.prop('value')+'">');
+            $('body').append(frm);
+            frm.submit();
+        })
+    })
+    var ll='1,22,3,44';
+    console.log(ll.split(','));
+    function aa(){
+        var c=document.getElementById('cc');
+        var fd=new FormData(c);
+        console.log(fd);
+    }
+</script>
+<input type="text" id="aa">
+<input type="button" id="btn">
+<form id="cc" action="http://localhost:8080/uc/markmessage.do" method="post">
+    <input type="checkbox" name="messageId" value="10012">
+    <input type="checkbox" name="messageId" value="10011">
+    <input type="button" onclick="aa()">
+</form>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{width:100%;height:100%;}
+        h2{font-size:1rem;}
+    </style>
+    <script>
+        var scale=window.devicePixelRatio;
+        scale=scale>1?1/scale:1;
+        document.write('<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>');
+        var oHtml=document.getElementsByTagName('html')[0];
+        var iwidth=oHtml.clientWidth;
+        oHtml.style.fontSize=iwidth/15+'px';
+    </script>
+</head>
+<body>
+
+</body>
+</html>

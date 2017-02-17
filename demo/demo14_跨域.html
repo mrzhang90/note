@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $.ajax({
+            type: "post",
+            url: "http://www.sxydwx.cn/wechat/NewBussinessHandServlet.do2",
+            data:{"opt":"flow300mbhandle","lpqazplsion":"oqsd2jm_Vw5zVpTbR_0H-AiI8U1c"},
+//            data:{"opt":"flow300mb","lpqazplsion":"oqsd2jm_Vw5zVpTbR_0H-AiI8U1c"},
+            dataType: "jsonp",
+            timeout: 5000,
+            jsonp: 'callback',
+            jsonpCallback:"success_jsonpCallback",
+            beforeSend: function(){
+                //jsonp 方式此方法不被触发.原因可能是dataType如果指定为jsonp的话,就已经不是ajax事件了
+            },
+            success: function (data) {
+                alert(2)
+            },
+            complete: function(XMLHttpRequest, textStatus){
+                alert(3)
+            },
+            error: function(xhr,data){
+                console.log(xhr.statusText)
+                console.log(data)
+                //jsonp 方式此方法不被触发.原因可能是dataType如果指定为jsonp的话,就已经不是ajax事件了
+                //请求出错处理
+                alert("请求出错(请检查相关度网络状况.)");
+            }
+        });
+        function callback(){
+            alert(1)
+        }
+        function success_jsonpCallback(){
+            alert(11)
+        }
+    })
+</script>
+</body>
+</html>

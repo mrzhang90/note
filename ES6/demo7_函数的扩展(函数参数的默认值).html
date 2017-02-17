@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function defualt(x=0,y){
+        console.log(x,y);
+    }
+    defualt(undefined,1);//undefined触发默认值
+    defualt(null,1);//null不能触发默认值
+
+    function log(x,y){
+        y=y||'ceshi';
+        console.log(x,y);
+    }
+    log(1);
+    log(1,0);
+    log(1,1);
+    log(1,'');
+    log(1,false);
+
+    function Point(x=0,y=0){
+        this.a1=x;
+        this.y=y || 'world';
+    }
+    var s=new Point(1,'');
+    console.log(s);
+
+    console.log('//参数默认值是变量，那么参数就不是传值，而是每次都要重新计算默认表单式的值，也就是说，参数默认值是惰性的');
+    let x=99;
+    function aa(i=x+1){
+        console.log(i)
+    }
+    aa();
+    x=100
+    aa();
+
+    console.log('//与解构赋值默认值结合使用');
+    function bb({x,y=5}){
+        console.log(x,y);
+    }
+    bb({});
+    bb({x:1});
+    //bb();参数不是对象，结构不成立，会保存
+    function fetch(url,{method='post',body='',header=''}){
+        console.log(arguments);
+    }
+    fetch('aa.html',{method:'GET',body:'123456',header:'header'});
+    fetch('bb.html',{});
+    console.log('//对函数的参数设置默认值，第一个参数的默认值设置了空对象，但是设置了对象解构赋值的默认值；第二个参数的默认值是一个有具体属性的对象，但是没有设置对象解构赋值的默认值')
+    function m1({x=0,y=0}={}) {
+        console.log(x,y)
+    }
+    function m2({x,y}={x:0,y:0}){
+        console.log(x,y);
+    }
+    m1();
+    m2();
+    m1({x:1,y:2});
+    m2({x:1,y:2});
+    m1({x:1})
+    m2({x:1})
+    m1({y:2});
+    m2({y:2});
+    m1({z:2});
+    m2({z:2});
+
+    console.log('//函数的length属性');
+    console.log('指定了默认值以后，函数的length属性，将返回没有指定默认值的参数个数。也就是说，指定了默认值后，length属性将失真。');
+    console.log((function(x){}).length);
+    console.log((function(x=1){}).length);
+    console.log((function(a,b,c=1){}).length);//定义了3个参数，其中一个参数c指定了默认值，因此length属性等于3-1，得到2
+    console.log('length属性的含义是，该函数预期传入的参数个数。某个参数指定默认值以后，预期传入的参数个数就不包括这个参数了。同理，rest参数也不会计入length属性。');
+    console.log((function(...args){}).length);//0 rest参数也不会计入length属性
+    console.log('如果设置了默认值的参数不是尾参数，那么length属性也不再计入后面的参数了。');
+    console.log((function(x=0,y,c){}).length);//0 默认值参数后的参数，也不会计入length
+    console.log((function(x,y=1,c){}).length);//1
+
+    console.log('一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域');
+    var xx=1;
+    function f(xx,yy=xx){
+        console.log(yy);
+    }
+    console.log('调用函数f时，参数形成一个单独的作用域。在这个作用域里面，默认值变量x指向第一个参数x，而不是全局变量x')
+    f(2);
+    console.log('函数bar的参数func的默认值是一个匿名函数，返回值为变量aa。函数参数形成的单独作用域里面，并没有定义变量aa，所以aa指向外层的全局变量aa，因此输出outer。');
+    var aa='outer';
+    function bar(func=e=>aa){
+        let aa=22;
+        console.log(func());
+    }
+    bar();
+
+    console.log('函数foo的参数形成一个单独作用域。这个作用域里面，首先声明了变量e，然后声明了变量f，f的默认值是一个匿名函数。这个匿名函数内部的变量e，指向同一个作用域的第一个参数e。' +
+        '函数foo内部又声明了一个内部变量e，该变量与第一个参数e由于不是同一个作用域，所以不是同一个变量，因此执行f后，内部变量e和外部全局变量e的值都没变。');
+    var e=1;
+    function foo(e,f=function(){e=2}){
+        var e=3;
+        f();
+        console.log(e)
+    }
+    foo();//3
+    console.log(e);//1
+    console.log('如果将var e = 3的var去除，函数foo的内部变量e就指向第一个参数e，与匿名函数内部的e是一致的，所以最后输出的就是2，而外层的全局变量e依然不受影响。')
+    var e = 1;
+    function foo(e, f = function() { e = 2; }) {
+        e = 3;
+        f();
+        console.log(e);
+    }
+
+    foo() // 2
+    console.log(e) // 1
+
+    //利用参数默认值，可以指定某一个参数不得省略，如果省略就抛出一个错误。
+    function throwIfMissing(){
+        throw new Error('Missing paramter');
+    }
+    function ee(mustBeProvider=throwIfMissing()){
+        console.log(mustBeProvider);
+    }
+    //ee();//如果调用函数ee的时候没有参数，就会调用默认值throwIfMissing函数，从而抛出一个错误。
+    ee('必须有值，不然抛错');
+</script>
+</body>
+</html>

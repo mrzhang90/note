@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        @keyframes move1 {
+            from{
+                width:0px;
+            }
+            to{
+                width:300px;
+            }
+        }
+        @keyframes move {
+            from{
+                height:50px;
+            }
+            to{
+                height:0px;
+            }
+        }
+        .jindu{position:relative;padding-top:20px;width:300px;height:100px;background:#198ac2;}
+        .tiao{float:left;position:relative;width:300px;height:10px;background:#fff;border-radius:5px;overflow:hidden;}
+        .tiao i{position:absolute;top:0;left:0;width:10px;height:10px;background:blue;
+            animation:move1 3s forwards;
+        }
+        .buling{float:right;padding-right:15px;position:relative;width:30px;height:50px;}
+        .buling b{position:absolute;top:0;left:0;width:30px;height:30px;border-radius:50%;background:blue;}
+        .buling i{position:absolute;top:30px;left:10px;width:10px;height:20px;background:blue;}
+        .buling_fff{position:absolute;right:0;height:50px;overflow:hidden;
+            animation:move 3s 3s forwards;
+        }
+        .buling_fff .buling{}
+        .buling_fff b{background:#fff;top: -1px;left: -1px;border: solid 1px #fff;}
+        .buling_fff i{background:#fff;}
+    </style>
+</head>
+<body>
+<div class="jindu">
+    <div class="buling">
+        <b></b>
+        <i></i>
+    </div>
+    <div class="buling_fff">
+        <div class="buling">
+            <b></b>
+            <i></i>
+        </div>
+    </div>
+    <div class="tiao">
+        <i></i>
+    </div>
+</div>
+</body>
+</html>

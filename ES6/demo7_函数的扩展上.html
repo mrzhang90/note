@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<script>
+    console.log('ES6 引入 rest 参数（形式为“...变量名”），用于获取函数的多余参数，这样就不需要使用arguments对象了' +
+        'rest 参数搭配的变量是一个数组，该变量将多余的参数放入数组中。');
+    function add(...values){
+        var n=0;
+        for(var val of values){
+            n+=val;
+        }
+        console.log(n)
+    }
+    add(1,2,3,5);
+    //arguments变量排序
+    function sortNumbers(){
+//        console.log(arguments)
+        console.log(Array.prototype.slice.call(arguments).sort());
+    }
+    sortNumbers(1,2,3,4,6,0,01,15);
+    console.log('\nrest 参数中的变量代表一个数组，所以数组特有的方法都可以用于这个变量。下面是一个利用 rest 参数改写数组push方法的例子。');
+    function push(array,...items){
+        items.forEach(function(item){
+            array.push(item);
+        })
+        return array;
+    }
+    console.log(push([],1,2,3));
+    function add(x,y,z){
+        console.log(x+y+z);
+    }
+    add(...[3,5,6]);
+
+    console.log('\n扩展运算符（spread）是三个点（...）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。');
+    console.log(...[1,2,3]);
+    console.log(1,...[2,3,4],5);
+    console.log(...[document.querySelectorAll('div')]);
+    console.log('扩展运算符与正常的函数参数可以结合使用，非常灵活。');
+    function f(a,b,c,d,e,f,g){
+        console.log(arguments);
+    }
+    var arg=[3,6,8];
+    f(-1,...arg,2,...[7,9]);
+
+    console.log('\n替代数组的apply方法 ');
+    function f1(x,y,z){
+        console.log(x,y,z);
+    }
+    f1.apply(null,[1,2,3]);
+
+    console.log('\nES5 两数组push')
+    var a1=[1,2,3];
+    var a2=[4,5,6];
+    Array.prototype.push.apply(a1,a2);
+    console.log(a1)
+    console.info('//ES6 两数组push')
+    var a1=[1,2,3];
+    var a2=[4,5,6];
+    a1.push(...a2)
+    console.log(a1)
+    console.info('ES5 把数组转换日期')
+    console.log(new (Date.bind.apply(Date,[null,2017,02,14])));
+    console.info('ES6 把数组转换日期')
+    console.log(new Date(...[2017,02,13]))
+
+    console.log('\n扩展运算符提供了数组合并的新写法。');
+    var more=[3,4,5];
+    console.log('ES5',[1,2].concat(more))
+    console.log('ES6',[1,2,...more])
+    var ar1=[1,2,3],ar2=[4,5,6],ar3=[7,8,9,10];
+    console.log('ES5',ar1.concat(ar2,ar3))
+    console.log('ES6',[...ar1,...ar2,...ar3])
+    console.log('扩展运算符可以与解构赋值结合起来，用于生成数组。');
+    console.log('ES5的方式获取数组:'+more[0],more.slice(1))
+    console.log('ES6的方式获取数组:'+([x,...y]=more));
+
+    console.log('\n扩展运算符还可以将字符串转为真正的数组,同时这种写法能够正确识别32位的Unicode字符')
+    console.log([...'hello'])
+    console.log('凡是涉及到操作32位Unicode字符的函数，获取长度都有问题。因此，最好都用扩展运算符改写。')
+    function length(str){
+        return [...str].length;
+    }
+    console.log(length('x\uD83D\uDE80y'))
+    console.log('如果不用扩展运算符，字符串的reverse操作就不正确')
+    var str = 'x\uD83D\uDE80y';
+    console.log(str.split('').reverse().join(''));
+    console.log([...str].reverse().join(''))
+    console.log('\n任何Iterator接口的对象，都可以用扩展运算符转为真正的数组。');
+    var nodeList=document.querySelectorAll('div');
+    console.log('nodeList是一个类数组，扩展运算符可以将其转为真正的数组，原因就在于NodeList对象实现了Iterator接口。');
+    console.log(...nodeList);
+    //如果对没有iterator接口的对象，使用扩展运算符，将会报错。
+    var arrayLike = {
+        '0': 'a',
+        '1': 'b',
+        '2': 'c',
+        length: 3
+    };
+//    console.log(...arrayLike);//arrayLike是一个类似数组的对象，但是没有部署Iterator接口，扩展运算符就会报错。
+
+    console.log('\nMap和Set结构，Generator函数');
+    console.log('扩展运算符内部调用的是数据结构的Iterator接口，因此只要具有Iterator接口的对象，都可以使用扩展运算符，比如Map结构。');
+    var map=new Map([
+        [1,'one'],
+        [2,'two'],
+        [3,'three']
+    ])
+    console.log(...map.keys());
+    console.log('Generator函数运行后，返回一个遍历器对象，因此也可以使用扩展运算符。');
+    var go=function*(){
+        yield 1;
+        yield 2;
+        yield 3;
+    }
+    console.log([...go()]);
+</script>
+</body>
+</html>

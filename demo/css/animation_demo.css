@@ -1,0 +1,241 @@
+/*来源：http://apeclass.cn/99/index.html*/
+body,dd,dl,dt,h1,h2,h3,h4,p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+a{text-decoration:none}
+img{border:0}
+html{width:100%;overflow-x:hidden}
+body{background:#000;font-family:"微软雅黑";color:#fff}
+.center:after,.clear:after{clear:both;content:'';display:block}
+.center{width:960px;margin:0 auto}
+/*整个页面颤动的感觉*/
+@keyframes shake{
+    0%{margin:0}
+    10%{margin:-30px 0 0 -30px}
+    20%{margin:-30px -30px 0 0}
+    30%{margin:0 -30px -30px 0}
+    40%{margin:0 0 -30px -30px}
+    50%{margin:0 0 -30px -30px}
+    60%{margin:-10px 0 0 -10px}
+    70%{margin:-10px -10px 0 0}
+    80%{margin:0 -10px -10px 0}
+    90%{margin:0 0 -10px -10px}
+}
+nav{height:60px}
+.navLogo{float:left;margin-left:50px}
+.navLogo img{height:60px}
+nav ul{float:left}
+nav li{display:inline;padding:0 40px}
+nav li a{color:#fff;font:700 16px/60px "寰蒋闆呴粦"}
+nav li a:hover{color:#3fd99e}
+#banner{width:100%;height:500px;display:table;margin-bottom:60px;background:url(../img/bg1.jpg) no-repeat center}
+#banner .center{text-align:center;display:table-cell;vertical-align:middle}
+#banner p{font:26px/45px "寰蒋闆呴粦";color:#fff}
+#banner p:nth-of-type(2){font-size:20px}
+#banner .text{height:72px;margin:0 auto;position:relative;display:flex;justify-content:space-between;transition:.1s;width:100%;opacity:0}
+#banner .text div{width:200px;height:72px}
+#banner .text div:nth-of-type(1){background:url(../img/text_left.png)}
+#banner .text div:nth-of-type(2){background:url(../img/text_right.png)}
+/*按钮背景色切换 start*/
+@keyframes colorChange{
+    0%{background:#84050e}
+    50%{background:#08b573}
+    100%{background:#b60202}
+}
+.btn{margin-top:70px}
+.btn a{width:100px;font:18px/44px "寰蒋闆呴粦";color:#fff;display:inline-block;text-align:center;margin:0 15px;background:#08b573}
+.btn a:nth-of-type(2){animation:5s colorChange infinite}
+/*按钮背景色切换 end*/
+.header{text-align:center}
+.header h2{font-size:36px;font-weight:400}
+.line{width:103px;height:4px;background:#fff;overflow:hidden;margin:14px auto;transition:.5s;transform:scaleX(0)}
+.header h3{font-size:22px;font-weight:400;color:#d1d1d1}
+.circle{width:700px;height:548px;position:relative;margin:20px auto 0 auto;background:url(../img/circle.jpg)}
+.circle>div{position:absolute;text-align:center}
+.circle p{font-size:14px;line-height:20px}
+.circle strong{font-size:16px;font-weight:400}
+.circle>div:nth-of-type(1){left:269px;bottom:441px}
+.circle>div:nth-of-type(1) p:nth-of-type(4){padding-top:15px}
+.circle>div:nth-of-type(2){left:474px;top:169px;padding:5px 10px 0 10px;background:url(../img/text_leftBottom.png) no-repeat left 8px,url(../img/text_rightTop.png) no-repeat right top}
+.circle>div:nth-of-type(2) p:nth-of-type(1){padding-bottom:15px}
+.circle>div:nth-of-type(3){left:471px;top:356px;padding:5px 10px 0 10px;background:url(../img/text_leftTop.png) no-repeat left top,url(../img/text_rightBottom.png) no-repeat right 10px}
+.circle>div:nth-of-type(3) p:nth-of-type(1){padding-bottom:15px}
+.circle>div:nth-of-type(4){left:286px;top:451px}
+.circle>div:nth-of-type(4) p:nth-of-type(1){padding-bottom:15px}
+.circle>div:nth-of-type(5){right:500px;top:357px;padding-top:8px;background:url(../img/text_rightTop.png) no-repeat right top,url(../img/text_leftBottom.png) no-repeat left 9px}
+.circle>div:nth-of-type(5) p:nth-of-type(1){padding-bottom:15px}
+.circle>div:nth-of-type(6){right:499px;top:176px;padding:5px 10px 0 10px;background:url(../img/text_leftTop.png) no-repeat left top,url(../img/text_rightBottom.png) no-repeat right 10px}
+.circle>div:nth-of-type(6) p:nth-of-type(1){padding-bottom:15px}
+/*方块旋转 start
+    div class='number'
+        div 6
+        div 6
+        div 6
+        div 6
+        div 6
+        div 6
+*/
+@keyframes move{
+    100%{transform:perspective(800px) rotateX(360deg) rotateY(360deg) rotateZ(360deg)}
+}
+.number{
+    width:80px;height:80px;position:absolute;left:296px;top:223px;
+    transform-style:preserve-3d;
+    transform-origin:center center center;
+    transform:perspective(1200px) rotateX(0) rotateY(0) rotateZ(0);
+    animation:10s move linear infinite
+}
+/*方块旋转 end*/
+.number div{width:80px;height:80px;position:absolute;left:0;top:0;font-size:60px;font-family:arial;line-height:100px;border:3px solid #19decd;box-shadow:0 0 100px #19decd;text-shadow:0 0 20px #fff}
+.number div:nth-of-type(1){transform:translateZ(40px)}
+.number div:nth-of-type(2){transform:translateZ(-47px)}
+.number div:nth-of-type(3){transform-origin:top;transform:translateZ(40px) rotateX(-90deg)}
+.number div:nth-of-type(4){transform-origin:bottom;transform:translateZ(40px) rotateX(90deg)}
+.number div:nth-of-type(5){transform-origin:left;transform:translateZ(40px) rotateY(90deg)}
+.number div:nth-of-type(6){transform-origin:right;transform:translateZ(40px) rotateY(-90deg)}
+/*方块旋转 end*/
+#third{margin:150px auto 0 auto;height:610px;background:url(../img/section3_bg.jpg) no-repeat center}
+#third .text{width:400px;height:400px;margin:0 auto;font-size:0;position:relative}
+#third dl{width:170px;height:160px;padding:40px 15px 0 15px;display:inline-block;transform:scale(0);float:left}
+#third dt{font:16px/48px "寰蒋闆呴粦"}
+#third dd{font-size:14px;line-height:20px;color:#ccc}
+#third dl:nth-of-type(1){transition:.3s .3s}
+#third dl:nth-of-type(2){transition:.3s .6s}
+#third dl:nth-of-type(3){transition:.3s .9s}
+#third dl:nth-of-type(4){transition:.3s 1.2s}
+#third dl:nth-of-type(3),#third dl:nth-of-type(4){height:190px;padding-top:10px}
+.xLine{width:400px;height:25px;position:absolute;left:0;top:50%;margin-top:-13px;background:url(../img/xLine.png);transform:scale(0);transition:.5s}
+.yLine{width:25px;height:400px;position:absolute;left:50%;top:0;margin-left:-13px;background:url(../img/yLine.png);transform:scale(0);transition:.5s}
+#photo ul{width:600px;margin:0 auto}
+#photo li{float:left;cursor:pointer}
+#photo li img{float:left;margin-right:3px}
+#photo li div{float:left;width:0;height:191px;background:#313131;overflow:hidden;transition:.3s}
+#photo li:nth-of-type(1) div{width:224px}
+#photo li dl{width:212px;padding:5px 0 0 12px}
+#photo li dt{font:22px/45px "寰蒋闆呴粦"}
+#photo li dd{font:12px/20px "寰蒋闆呴粦"}
+#photo li div a{display:block;width:21px;height:21px;background:url(../img/ico_01.jpg);margin:10px 0 0 100px}
+#fourth{margin-top:30px}
+#fourth .header{height:110px;padding-top:60px;background:url(../img/head_bg.jpg) center}
+.mainBg{background:url(../img/main_bg.jpg) top center no-repeat}
+.main{width:547px;width:551px;height:581px;margin:0 auto;padding-top:20px;display:flex;justify-content:center}
+.main .left{width:235px}
+.main .box{position:relative;margin-bottom:15px;opacity:0;transition:1s}
+.main .box:nth-last-child(1){margin-bottom:0}
+.blur{-webkit-filter:blur(3px);-ms-filter:(3px);filter:blur(3px)}
+.order{width:50px;height:50px;border:2px solid #fff;font:30px/50px "寰蒋闆呴粦";text-align:center;float:left}
+.topLine{width:165px;height:2px;overflow:hidden;background:#fff;margin-top:25px}
+.left .topLine{float:left}
+.left dl{height:80px;border-left:2px solid #fff;padding-left:10px;float:left}
+.left dt,.right dt{font-size:16px;line-height:24px}
+.left dd,.right dd{font-size:14px;line-height:18px}
+.year{width:14px;font-size:12px;text-align:center}
+.left .year{padding:5px 5px 0 17px;float:left}
+.mCenter{width:82px;margin-top:18px;opacity:0}
+/*宽度从0弹性展开
+    opacity: 1; animation: 1s linear 0s normal none 1 running fold;
+*/
+@keyframes fold{
+    0%{width:0;opacity:0}
+    20%{width:0;opacity:.2}
+    30%{width:132px;opacity:1}
+    40%{width:32px}
+    50%{width:122px}
+    60%{width:52px}
+    70%{width:102px}
+    80%{width:72px}
+    100%{width:82px}
+}
+.mCenter .arc{height:75px;display:flex;flex-direction:column;justify-content:space-between}
+.mCenter div.arc:nth-of-type(2n){transform:scaleX(-1)}
+.mCenter div.arc:nth-last-of-type(1){height:15px;margin-top:-2px}
+.arc div{width:5px;height:5px;background:#fff;border-radius:50%;position:relative}
+.arc div.active{box-shadow:0 0 10px #6aeff8;background:#6aeff8;transform:scale(2.5)}
+.arc div:nth-of-type(1){width:15px;height:15px;left:0}
+.arc div:nth-of-type(2){left:20%}
+.arc div:nth-of-type(3){left:40%}
+.arc div:nth-of-type(4){left:60%}
+.arc div:nth-of-type(5){left:80%}
+.arc div:nth-of-type(6){left:100%}
+.main .right{width:235px}
+.right .year{float:right;padding:5px 17px 0 5px}
+.right dl{float:right;height:80px;padding-right:10px;border-right:2px solid #fff;text-align:right}
+.right .order{float:right}
+.right .topLine{float:right;margin-top:19px}
+.rightBtn{margin-left:5px}
+.rightBtn div{width:27px;text-align:center;opacity:0}
+.rightBtn div span{display:block;transition:1s;font-size:25px;display:table-cell;vertical-align:middle;font-size:16px;line-height:25px;transition:1s transform}
+.rightBtn div:nth-of-type(1){height:114px;border:2px solid #6aeff8;box-shadow:0 0 10px #6aeff8,inset 0 0 10px #6aeff8;border-radius:5px;transform-origin:left;display:table}
+/*斜发光*/
+@keyframes breath{
+    0%{box-shadow:0 0 0 #6aeff8,inset 0 0 0 #6aeff8}
+    100%{box-shadow:0 0 60px #6aeff8,inset 0 0 60px #6aeff8}
+}
+/*外发光*/
+@keyframes breathWhite{
+    0%{box-shadow:0 0 0 #fff,inset 0 0 0 #fff}
+    100%{box-shadow:0 0 30px #fff,inset 0 0 30px #fff}
+}
+/*矩形 倾斜晃动*/
+@keyframes lightSpeedIn{
+    0%{transform:translateY(600px) skewY(0)}
+    40%{transform:skewY(-50deg);opacity:1}
+    50%{transform:skewY(50deg)}
+    60%{transform:skewY(-30deg)}
+    70%{transform:skewY(30deg)}
+    80%{transform:skewY(-10deg)}
+    90%{transform:skewY(10deg)}
+    100%{transform:skewY(0);opacity:1}
+}
+.rightBtn div:nth-of-type(2){height:436px;border:2px solid #fff;background:rgba(0,0,0,.5);transform:skewY(-45deg);margin-top:10px;transition:1s;display:table}
+.rightBtn div:nth-of-type(2) span{color:#fff}
+.yuyue{height:150px;background:url(../img/yuyue_bg.jpg) no-repeat center top}
+.yuyue a{display:block;width:130px;height:48px;background:#02472d;text-align:center;font:20px/48px "寰蒋闆呴粦";color:#fff;margin:0 auto;position:relative;top:25px;animation:5s colorTransition infinite}
+@keyframes colorTransition{0%{background:#026cff}
+    40%{background:#02cb7f}
+    70%{background:#02472d}
+    100%{background:#026cff}
+}
+#fifth{margin-bottom:50px}
+#fifth .header{margin:20px auto 40px auto}
+.fCenter{width:620px;height:618px;margin:-618px auto 0 auto;position:relative}
+.fImg{width:620px;height:618px;margin:0 auto;overflow:hidden;transform:scale(1.2);background:url(../img/blackhole.png) center no-repeat;background-size:cover}
+/*让元素旋转放大1倍 然后缩小至消失*/
+@keyframes black{
+    30%{transform:scale(1.4) rotate(30deg)}
+    50%{transform:scale(1.6) rotate(50deg)}
+    70%{transform:scale(1.8) rotate(70deg)}
+    90%{transform:scale(2) rotate(90deg)}
+    100%{transform:scale(.1) rotate(110deg)}
+}
+/*360旋转*/
+@keyframes blackRotate{
+    0%{transform:scale(1.2) rotate(0)}
+    100%{transform:scale(1.2) rotate(360deg)}
+}
+.fCenter div{transition:1.2s}
+.fCenter dt{font:22px/40px "寰蒋闆呴粦";color:#fff}
+.fCenter dd{font:14px/22px "寰蒋闆呴粦";color:#fff}
+.fCenter span{font-size:40px}
+.fCenter i{font-style:normal;transition:.3s}
+.fCenter div:nth-of-type(1){position:absolute;left:70px;top:215px}
+.fCenter div:nth-of-type(2){position:absolute;top:60px;left:220px}
+.fCenter div:nth-of-type(2) dl,.fCenter div:nth-of-type(2) span{float:left;margin-right:10px}
+.fCenter div:nth-of-type(3){position:absolute;width:150px;left:400px;top:200px;text-align:right}
+.fCenter div:nth-of-type(4){position:absolute;top:440px;left:140px;text-align:right}
+.fCenter div:nth-of-type(4) dl,.fCenter div:nth-of-type(4) span{float:right;margin-left:10px}
+.date{height:300px;text-align:center;background:url(../img/date_bg.gif)}
+.date h4{font-size:40px;line-height:100px}
+.date div{font-size:0;color:#fff;display:flex;justify-content:center}
+.date div span{font-size:100px;padding:0 10px;line-height:150px;font-family:"寰蒋闆呴粦";vertical-align:middle;transition:.2s;display:block;text-shadow:0 0 10px #fff}
+.date div span.active{transform:scaleY(0);text-shadow:0 0 100px #fff}
+.date div span.colon{font-size:50px}
+.problem .header{margin:40px auto}
+.problem dl{width:800px;margin:0 auto 40px auto}
+.problem dt{font:20px/34px "寰蒋闆呴粦";border-bottom:2px dashed #087fab}
+.problem dt span{font-size:30px;color:#087fab;padding-right:5px}
+.problem dd{line-height:30px;text-indent:2em;font-size:14px}
+footer{text-align:center;line-height:50px;background:#212121;border-top:1px solid #444;font-size:12px}
+footer a{color:#c1c1c1}
+#shadow{width:100%;height:100%;background:rgba(0,0,0,.6);position:absolute;left:0;top:0;z-index:100}
+#video{width:960px;height:540px;position:fixed;left:50%;top:50%;margin-left:-480px;margin-top:-270px;z-index:101}
+#back{width:70px;height:70px;background:#08b573;font:25px/70px "寰蒋闆呴粦";text-align:center;color:#fff;position:fixed;right:0;bottom:20px;cursor:pointer;display:none}

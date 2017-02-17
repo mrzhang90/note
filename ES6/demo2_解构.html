@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+//    aa();
+    bb();
+    //数组解构
+    function aa(){
+        var [a,b,c]=[1,2,3];
+        console.log(a,b,c)
+        var [a,[b,c]]=[1,[2,3]]
+        console.log(a,b,c)
+        var [,,c]=['a','b','c'];
+        console.log(c)
+        var [a,...b]=[1,2,3,4,5];
+        console.log(a,b)
+        var [x,y,...z]=[1]
+        console.log(x,y,z)
+        var [foo]=[];//解构不成功，返回undefined
+        console.log(foo)
+        var [x,y]=[1,2,3];
+        console.log(x,y)
+        var [a]=[1]
+        console.log(a)
+        let [aa,bb]=new Set([11,22]);
+        console.log(aa,bb);
+        var [a='as']=[];
+        console.log(a)
+        var [a='as',b,c=2,d=3]=[1,2,undefined,null];
+        console.log(a,b,c,d)
+        var [f=f()]=[1]
+        function f(){
+            alert(1)
+        }
+    }
+    //对象解构
+    function bb(){
+        var {foo,bar}={foo:1,bar:2};
+        console.log(foo,bar);
+        var a;
+        ({a}={a:'a'});//括号写法
+        console.log(a)
+        var obj={
+            p:[
+                    'a',
+                    {y:'b'}
+            ]
+        }
+        var {p:[x,{y}]}=obj;
+        console.log(x,y);
+        var obj={
+            a1:{
+                b1:{
+                    c1:1,
+                    d1:2
+                }
+            }
+        }
+        var {a1:{b1:{c1}}}=obj;
+        console.log(c1)
+        var obj={};
+        var arr=[];
+        ({a:obj['prop'],b:arr[0]}={a:1,b:2});//括号写法
+        console.log(obj)
+        console.log(arr)
+
+        let { log, sin, cos } = Math;
+        console.log(log, sin, cos)
+
+        var arr=[1,2,3];
+        var {0:first,[arr.length-1]:last}=arr;
+        console.log(first,last)
+
+        var [a,b,c,d,e]='hello';
+        console.log(a,b,c,d,e)
+
+        var {length:len}='hello';
+        console.log(len)
+
+        var {toString:s}='hello';
+        console.log(s===String.prototype.toString);
+        var {toString:s}=123;
+        console.log(s===Number.prototype.toString);
+        var {toString:s}=false;
+        console.log(s===Boolean.prototype.toString);
+//        var {prop:x}=null;
+//        var {prop:x}=undefined;
+
+        function add([x,y]){
+            return(x+y);
+        }
+        console.log(add([1,2]))
+
+        function move({x=0,y=0}={}){
+            console.log(x+y)
+        }
+        move({x:1})
+
+        var x=1,y=2;
+        [x,y]=[y,x];//交换变量x和y的值，这样的写法不仅简洁，而且易读，语义非常清晰。
+        console.log(x,y);
+        function obj1(){
+            return {x:1,y:2};
+        }
+        var {x,y}=obj1();
+        console.log(x,y)
+
+        function arr1([x,y,z]){
+            console.log(x+y+z);
+        }
+        arr1([1,2,3]);
+
+        var json={
+            id:1,
+            name:'jobs',
+            num:[2,3,4]
+        }
+        var {id,name,num:number}=json;
+        console.log(id,name,number);
+
+        function ajax(url,async=true,cache=true){
+            console.log(url,async,cache)
+        }
+        ajax('aa')
+
+        var map=new Map();
+        map.set('first','hello');
+        map.set('last','hi');
+        for(let [a,b] of map){
+            console.log(a,b)
+        }
+        for(let [key,value] of map){
+            console.log(key,value)
+        }
+
+//        const { SourceMapConsumer, SourceNode } = require("source-map");
+    }
+</script>
+</body>
+</html>

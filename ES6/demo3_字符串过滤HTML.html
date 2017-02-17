@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤HTML字符串</title>
+</head>
+<body>
+<!--<script>alert("aaa")</script>-->
+<input type="text" value="" id="input">
+<div id="div1"></div>
+<script>
+    //“标签模板”的一个重要应用，就是过滤HTML字符串，防止用户输入恶意内容。
+    document.getElementById('input').onblur=function(){
+        var sender = this.value;
+        var str=SaferHTML`<p>${sender} has sent you a message.</p>`;
+        document.getElementById('div1').innerHTML=str;
+    }
+    function SaferHTML(templateData){
+        var s = templateData[0];
+        for (var i = 1; i < arguments.length; i++) {
+            var arg = String(arguments[i]);
+
+            // Escape special characters in the substitution.
+            s += arg.replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+
+            // Don't escape special characters in the template.
+            s += templateData[i];
+        }
+        return s;
+    }
+</script>
+</body>
+</html>

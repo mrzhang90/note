@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/calendar_1.0.css">
+</head>
+<body>
+<div id="calendar" style="width:264px;">
+    <div class="container">
+        <div class="arrow">
+            <span class="close">close</span>
+            <span class="prev">prev</span>
+            <span class="next">next</span>
+        </div>
+        <div class="content-box">
+
+        </div>
+    </div>
+</div>
+<script src="js/jquery-3.1.0.min.js"></script>
+<script>
+    $(function(){
+        var calendar=$('#calendar');
+        var prev=$('.prev',calendar);
+        var next=$('.next',calendar);
+        var close=$('.close',calendar);
+        var now=0;
+        crearCalendar(now);
+        function crearCalendar(){
+            var content_box=$('.content-box');
+            content_box.html('');
+            var inner=$('<div class="inner"></div>');//创建inner元素，用来添加日历表格
+
+            var oDate=new Date();
+            //设置时间--默认当前月份的第一天，当点击下一月的话，就是下一个月的第一天，点击上月同理
+            oDate.setMonth(oDate.getMonth()+now);
+            oDate.setDate(1);
+            //number7是记录整个日历，每7天一次<tr></tr>
+            var number7=m=oDate.getDay();//获取当前设置时间是周几，如果为0，就是周日
+            if(m==0){
+                number7=m=7;
+            }
+
+            var nYear=oDate.getFullYear();//获取当前年份
+            var nMonth=oDate.getMonth()+1;//获取当前月份
+            var h4Html=$('<h4></h4>');
+            h4Html.html(nYear+'年'+nMonth+'月');
+            inner.append(h4Html);//添加日历头部的年月
+
+            var table=$('<table></table>');
+            var thead=$('<thead><tr><th class="weekend">日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th class="weekend">六</th></tr></thead>');
+            table.append(thead);//往表格里，添加thead
+
+            var tbody=$('<tbody></tbody>')//创建日历表格的tbody，然后开始生成日历内容
+
+
+            //上个月的空白
+            var pDate=new Date();
+            pDate.setMonth(pDate.getMonth());
+            pDate.setDate(0);
+            var dateCount=pDate.getDate();//上月多少天
+            var surplusDay=dateCount-m;//上月到当前月空白的几天
+            var tr=$('<tr></tr>');
+            for(var i=0;i<m;i++){
+                var td=$('<td class="disabled"></td>');
+                var a=$('<a href="javascript:;"></a>');
+                a.html(++surplusDay);
+                td.append(a);
+                tr.append(td);
+            }
+//            tbody.append(tr);//把上个月到当前月份空白的几天，添加到日历内
+
+            //当前月份
+            var nDate=new Date();
+            var toDay=nDate.getDate();//获取今天是几号
+            //通过下两句，是为了获取now月多少天
+            nDate.setMonth(nDate.getMonth()+now+1);//首先获取now月的下一个月
+            nDate.setDate(0);//然后找到now月的最后一天，通过getDate获取到now月有多少天。
+            var m=nDate.getDate();//获取now月多少天，通过上面的设置，这里就可以获取到了
+            for(var i=0;i<m;i++){
+                if(number7%7==0){
+                    tbody.append(tr);//判断每7天，往日历内添加一个tr
+                    tr=$('<tr></tr>');
+                }
+                var td=$('<td></td>');
+                var a=$('<a href="javascript:;"></a>');
+                if(now==0 && i==toDay-1){
+                    a.addClass('today ');
+                }
+                a.html(i+1);
+                tr.append(td);
+                td.append(a);
+                number7++;
+            }
+            tbody.append(tr);//把最后一个tr,添加到日历内
+
+            //下一个月空白
+            var countTd=42;//总共应该有35个td
+            var nowTd=number7;//已经有了这么多td
+            var surplusTd=countTd-nowTd;//还应该有几个td
+            for(var i=0;i<surplusTd;i++){
+                if(number7%7==0){
+                    tbody.append(tr);//判断每7天，往日历内添加一个tr
+                    tr=$('<tr></tr>');
+                }
+                var td=$('<td class="disabled"></td>');
+                var a=$('<a href="javascript:;"></a>');
+                a.html(i+1);
+                tr.append(td);
+                td.append(a);
+                number7++;
+            }
+            tbody.append(tr);//把最后一个tr,添加到日历内
+//            console.log(pDate.getMonth()+1);
+//            console.log(pDate.getDate());
+
+            table.append(tbody);//往表格里，添加tbody
+            inner.append(table);//添加日历表格
+            content_box.append(inner);
+        }
+        close.click(function(){
+            calendar.hide(500);
+        })
+        prev.click(function(){
+            --now;
+            crearCalendar(now);
+        })
+        next.click(function(){
+            ++now;
+            crearCalendar(now);
+        })
+    })
+</script>
+</body>
+</html>

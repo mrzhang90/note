@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <!-- IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 兼容国产浏览器的高速模式 -->
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="css/trip-calendar.css"/>
+    <style>
+        .calendar-start-icon{visibility: hidden;}
+    </style>
+</head>
+<body>
+<input type="text" class="startTime" placeholder="出发时间"/>
+
+<script src="js/yui-min.js"></script>
+<script>
+    YUI({
+        modules: {
+            'trip-calendar': {
+                fullpath: 'js/trip-calendar.js',
+                type    : 'js',
+                requires: ['css/trip-calendar-css']
+            },
+            'trip-calendar-css': {
+                fullpath: 'css/trip-calendar.css',
+                type    : 'css'
+            }
+        }
+    }).use('trip-calendar', function(Y) {
+        var oCal = new Y.TripCalendar({
+            triggerNode: '.startTime'
+        });
+        //日期点击事件
+        oCal.on('dateclick', function() {
+            var selectedDate = this.get('selectedDate');
+            alert(selectedDate + '\u3010' + this.getDateInfo(selectedDate) + '\u3011');
+        });
+        oCal.set('isHoliday', true)//隐藏节假日
+                .set('minDate', new Date)//时间范围限定
+                .set('maxDate', '')
+                .set('afterDays', '')
+                .set('date', new Date())
+                .render();
+    });
+</script>
+</body>
+</html>

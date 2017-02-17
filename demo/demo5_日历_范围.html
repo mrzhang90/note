@@ -1,0 +1,39 @@
+
+<!DOCTYPE HTML>
+<html lang="ru-RU">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/kalendae.css" type="text/css" charset="utf-8">
+    <script src="js/kalendae.standalone.min.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css" media="screen">
+        .kalendae span.closed {
+            background:red;
+        }
+    </style>
+</head>
+<body>
+<p>Range Select</p>
+<script type="text/javascript" charset="utf-8">
+    new Kalendae(document.body, {
+        months:1,
+        mode:'range',
+        selected:[Kalendae.moment().subtract({M:1}), Kalendae.moment().add({M:1})]
+    });
+
+    new Kalendae({
+        attachTo:document.body,
+        months:2,
+        mode:'range',
+        selected:[Kalendae.moment().subtract({M:1}), Kalendae.moment().add({M:1})]
+    });
+
+    new Kalendae({
+        attachTo:document.body,
+        months:3,
+        mode:'range',
+        selected:[Kalendae.moment().subtract({M:1}), Kalendae.moment().add({M:1})]
+    });
+</script>
+</body>
+</html>

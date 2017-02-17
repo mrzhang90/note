@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p><a href="http://es6.ruanyifeng.com/#docs/let">来源</a></p>
+<h1>let 块级作用域</h1>
+<p>ES6允许块级任意嵌套：{{{{{let insane = 'Hello World'}}}}};</p>
+<p>笔记：1.不存在变量提升;2.暂时性死区;3.不允许重复生命</p>
+<ul style="padding:0">作用：
+    <li>1.外层作用域无法读取内层作用域的变量;</li>
+    <li>2.内层作用域可以定义外层作用域的同名变量;</li>
+    <li>3.块级作用域的出现，可以代替立即执行函数表达式(function(){})();</li>
+    <li>4.ES6引入了块级作用域，明确允许在块级作用域之中声明函数;</li>
+    <li>5.块级作用域内声明的函数类似于let，对作用域之外没有影响</li>
+    <li>6.考虑到浏览器环境差异太大，建议用函数表达式var aa=function;而不是用函数声明语句function aa(){}</li>
+    <li>7.ES6的块级作用域允许声明函数的规则，只在使用大括号的情况下成立，如果没有使用大括号，就会报错。例如：if(true) function f(){}</li>
+</ul>
+<h2>do表达式-块级作用域返回值</h2>
+<p><b>目前有个提案</b>，使得块级作用域可以变为表达式，也就是说可以返回值，办法就是在块级作用域之前加上do，使它变为do表达式。</p>
+<p>let x = do {
+    let t = f();
+    t * t + 1;
+    };
+</p>
+<h2>const命令</h2>
+<ul>
+    <li>1.const声明一个只读的常量。一旦声明，常量的值就不能改变。</li>
+    <li>2.const一旦声明变量，就必须立即初始化，不能留到以后赋值。</li>
+    <li>3.const的作用域与let命令相同：只在声明所在的块级作用域内有效。</li>
+    <li>4.const命令声明的常量也是不提升，同样存在暂时性死区，只能在声明的位置后面使用。</li>
+    <li>5.const声明的常量，也与let一样不可重复声明。</li>
+    <li>6.对于复合类型的变量，变量名不指向数据，而是指向数据所在的地址。const命令只是保证变量名指向的地址不变，并不保证该地址的数据不变，所以将一个对象声明为常量必须非常小心。例如：const aa={};</li>
+</ul>
+<h2>顶层对象-window</h2>
+<p>在ES5中，全局变量即顶层对象，在ES6中，let命令、const命令、class命令声明的全局变量讲不属于顶层对象的属性</p>
+<h2>global 对象</h2>
+<p>ES5的window对象在环境中问题：<br/>1.浏览器里面，顶层对象是window，但 Node 和 Web Worker 没有window。<br/>2.浏览器和 Web Worker 里面，self也指向顶层对象，但是Node没有self。<br/>3.Node 里面，顶层对象是global，但其他环境都不支持。</p>
+<p>现在有一个提案，在语言标准的层面，引入global作为顶层对象。也就是说，在所有环境下，global都是存在的，都可以从它拿到顶层对象。</p>
+<script>
+    //1.打印let报错，let类似var，但是所声明的变量，只在let命令所在的代码块内有效
+    {
+        var a=1;
+        let b=2;
+    }
+//    console.log(a);
+//    console.log(b);//因为会报错，所以屏蔽
+
+    //2.for循环比较适合let,在代码块内是有效的
+    for(let i=0;i<3;i++){
+        console.log('2:'+i);
+    }
+
+    //3.for循环var和let的区别
+    var arr=[];
+//    for(var i=0;i<3;i++){//用var，那么输出结果始终是2，因为每次循环，新的i值都会覆盖旧值
+    for(let i=0;i<3;i++){//用let,那么输出结果为0，因为当前的i只在本轮循环有效，所以每一次循环的i其实都是一个新的变量
+        arr[i]=function(){
+            console.log(i);
+        }
+    }
+    arr[0]()
+
+    //4.let不存在变量提升，所以变量一定要后使用
+//    console.log(c4);
+//    let c4='ccccc4';
+
+//    5.暂时性死区-如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域
+    var tmp=123;
+    if(true){
+        let tmp;
+        tmp=456;
+        console.log(tmp);
+    }
+    console.log(tmp);
+
+//    6
+    console.info(window)
+</script>
+</body>
+</html>

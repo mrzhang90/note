@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //ES6提供了二进制和八进制数值的新的写法，分别用前缀0b（或0B）和0o（或0O）表示。
+    console.log(0b111110111 === 503)
+    console.log(0o767 === 503 )
+
+    //Number 将0b和0o前缀的字符串数值转为十进制
+    console.log(Number(0b111))
+    console.log(Number('0b111'))
+
+    //isFinite和isNaN这两个新方法只对数值有效，非数值一律返回false
+    //Number.isFinite()用来检查一个数值是否为有限的（finite）。
+    console.log(Number.isFinite(121.123))
+    console.log(Number.isFinite(NaN))
+    console.log(Number.isFinite(Infinity))
+    console.log(Number.isFinite('1'))
+    console.log(Number.isFinite(true))
+
+    //Number.isNaN()用来检查一个值是否为NaN。
+    console.log(Number.isNaN(NaN));
+
+    //Number.isFinite和Number.isNaN与传统的全局方法isFinite()和isNaN()的区别在于，传统方法先调用Number()将非数值的值转为数值，再进行判断，而这两个新方法只对数值有效，非数值一律返回false。
+    isFinite(25) // true
+    isFinite("25") // true
+    Number.isFinite(25) // true
+    Number.isFinite("25") // false
+
+    //ES6将全局方法parseInt()和parseFloat()，移植到Number对象上面，行为完全保持不变。
+    Number.parseInt('12.34') // 12
+    Number.parseFloat('123.45#') // 123.45
+
+    //Number.isInteger()用来判断一个值是否为整数。需要注意的是，在JavaScript内部，整数和浮点数是同样的储存方法，所以3和3.0被视为同一个值。
+    console.log(Number.isInteger(20))
+    console.log(Number.isInteger(20.0))
+    console.log(Number.isInteger(20.1))
+    console.log(Number.isInteger(true))
+
+    //ES6在Number对象上面，新增一个极小的常量Number.EPSILON。
+    console.log(Number.EPSILON.toFixed(20));
+    //误差检查函数
+    function withinErrorMargin (left, right) {
+        return Math.abs(left - right) < Number.EPSILON;
+    }
+    console.log(withinErrorMargin (0.1+0.2,0.3));
+
+    //超出2的53次方之后，数字就不精确了。
+    console.log(Math.pow(2,53))
+    console.log(Math.pow(2,53)+1)
+    console.log(Math.pow(2,53) === Math.pow(2,53)+1)
+
+    //ES6引入了Number.MAX_SAFE_INTEGER和Number.MIN_SAFE_INTEGER这两个常量，用来表示这个范围的上下限。
+    console.log(Number.MAX_SAFE_INTEGER)
+    console.log(Number.MIN_SAFE_INTEGER)
+    //Number.isSafeInteger()则是用来判断一个整数是否落在这个范围之内。
+    console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER+1))
+    console.log(Number.isSafeInteger(Number.MIN_SAFE_INTEGER-1))
+    //9007199254740993不是一个安全整数，但是Number.isSafeInteger会返回结果，显示计算结果是安全的。这是因为，这个数超出了精度范围，导致在计算机内部，以9007199254740992的形式储存。
+    console.log(Number.isSafeInteger(9007199254740993 - 990))//true
+</script>
+</body>
+</html>

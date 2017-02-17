@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        html,body{width:100%;height:100%;}
+        ul{overflow:hidden;}
+        ul,li{position:absolute;left:0;top:0;width:980px;height:753px;background:#fff;}
+        li{transform:translateX(100%);}
+        li.pageNext{transform:translateX(0);}
+        li.pageNow{transform:translateX(-100%);}
+    </style>
+</head>
+<body>
+<ul>
+    <li class="pageNext"><img src="temp/2.jpg" alt=""></li>
+    <li><img src="temp/2.jpg" alt=""></li>
+    <li><img src="temp/2.jpg" alt=""></li>
+    <li><img src="temp/2.jpg" alt=""></li>
+    <li><img src="temp/2.jpg" alt=""></li>
+</ul>
+<script src="js/jquery-3.1.0.min.js"></script>
+<script src="js/jquery.touchSwipe.min.js"></script>
+<script>
+//    ../Online_retailers/
+    $(function(){
+        //给最大的盒子增加事件监听
+        var now=0,zIndex=0;
+        var li=$('li');
+        var length=li.length;
+        var speed='0.4s';
+        li.swipe(
+                {
+                    swipe:function(event, direction, distance, duration, fingerCount) {
+                        if(direction == "left"){//next
+                            var next=now+1;
+                            if(next>length-1){
+                                next=0;
+                            }
+                            li.eq(next).css({'transition':'0s'}).attr('class','');
+                            setTimeout(
+                                    function(){
+                                        li.eq(next).css({'transition':speed}).attr('class','pageNext');
+                                        li.eq(now).css({'transition':speed}).attr('class','pageNow');
+                                        now = next;
+                                    },30
+                            );
+                        }else if(direction == "right"){//up
+                            var next=now-1;
+                            if(next<0){
+                                next=length-1;
+                            }
+                            li.eq(next).css({'transition':'0s'}).attr('class','pageNow');
+                            setTimeout(
+                                    function(){
+                                        li.eq(next).css({'transition':speed}).attr('class','pageNext');
+                                        li.eq(now).css({'transition':speed}).attr('class','');
+                                        now = next;
+                                    },30
+                            );
+                        }
+                    }
+                }
+        );
+    })
+</script>
+</body>
+</html>

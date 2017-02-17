@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        @keyframes move {
+            0%{
+                bottom:0;
+                opacity:1;
+            }
+            100%{
+                bottom:150%;
+                opacity:0;
+            }
+        }
+        section{
+            margin:0 auto;
+            width:50%;
+        }
+        .left{float:left;}
+        .right{float:left;}
+        .clear:after{content:"";display:block;clear: both;}
+        .input_div{}
+        .input_div #red_btn{float:left;}
+        .input_div #blue_btn{float:right;}
+        .input_div span{width:50%;padding-bottom:10px;}
+        .input_div span.right{text-align:right;}
+        .elem{padding-top:10px;}
+        .elem span{float:left;width:50%;line-height:30px;text-align:center;color:#fff;}
+        .elem span.red{background:red;}
+        .elem span.blue{background:blue;}
+        .div{position:relative;margin:0px auto 0;padding-top:100px;width:100px;height:100px;}
+        .div span{position:absolute;right:0;bottom:0;color:red;font-size:20px;opacity:0;}
+        .move{animation:move 3s;}
+        .div a{position:absolute;bottom:0;left:0;width:100%;}
+    </style>
+</head>
+<body>
+<div class="div">
+    <span id="move">+1</span>
+    <a href="javascript:void(0)" onclick="add1()">点击+1</a>
+</div>
+<section>
+    <div class="input_div clear">
+        <span class="left" id="red_num">50人</span>
+        <span class="right" id="blue_num">50人</span>
+        <input type="button" value="红队" id="red_btn"/>
+        <input type="button" value="蓝队" id="blue_btn">
+    </div>
+    <div class="elem clear">
+        <span class="red" id="red_color">红</span>
+        <span class="blue" id="blue_color">蓝</span>
+    </div>
+</section>
+<h2>
+    投票思路：
+        初始化：ajax判断此用户是否投票，如投票则按钮不可点；如没有投则可点；
+        点击投票后，ajax给后台发送此用户的请求，后台执行红或蓝+1，返回投票数
+</h2>
+<script>
+    function $(id){
+        return document.getElementById(id);
+    }
+    function add1(){
+        var move=$('move');
+        move.className='move';
+        setTimeout(function(){
+            move.className='';
+        },2000)
+    }
+    var red_num=$('red_num');
+    var red_color=$('red_color');
+    var blue_num=$('blue_num');
+    var blue_color=$('blue_color');
+    var red_load=123,blue_load=91;
+    load();
+    var isClick=0;
+    var red_btn=$('red_btn');
+    var blue_btn=$('blue_btn');
+    red_btn.onclick=function(){
+        oneClick(function(){
+            red_load++;
+            load();
+        })
+    }
+    blue_btn.onclick=function(){
+        oneClick(function(){
+            blue_load++;
+            load();
+        })
+    }
+    function oneClick(fn){
+        isClick++;
+        if(isClick>1){
+            return false;
+        }else{
+            fn();
+        }
+    }
+    function load(){
+        red_num.innerHTML=red_load+'人';
+        blue_num.innerHTML=blue_load+'人';
+        var voteArr=vote_scale();
+        red_color.style.width=voteArr[0]+'%';
+        blue_color.style.width=voteArr[1]+'%';
+    }
+    function vote_scale(){
+        var count=red_load+blue_load;
+        return [red_load/count*100,blue_load/count*100];
+    }
+</script>
+</body>
+</html>

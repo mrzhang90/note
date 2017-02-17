@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<script>
+    console.log("\u{7A}")
+    var s='𠮷';
+    console.log(s.charCodeAt(0))
+    console.log(s.charCodeAt(1))
+    console.log(s.codePointAt(0).toString())//toString把10进值转为16进值
+    console.log(s.codePointAt(1).toString())
+    console.log('--------')
+    function is32Bit(c){
+        return c.codePointAt(0) > 0xFFFF;
+    }
+    console.log(is32Bit('吉'));
+    console.log(is32Bit('𠮷'));
+    console.log('--------')
+    var s=String.fromCodePoint(0x20bb7);//s=𠮷
+    for(var i=0;i<s.length;i++){
+        console.log(s[i])
+    }
+    //normalize方法
+    console.log('\u01D1'.normalize())
+    console.log('\u004F\u030C'.normalize())
+    console.log('\u004F\u030C'.normalize('NFKC'))
+
+    //repeat
+    var str='1'.repeat("a3");
+    console.log(str);
+
+    //padStart
+    var str='xxx'.padStart(5, 'ab');
+    console.log(str);
+
+    //padStart
+    var str='xxx'.padEnd(15, 'ab');
+    var str0='10'.padEnd(10, '0');
+    var str01='10'.padStart(10, '0');
+    var str1='15'.padStart(10,'YYYY-mm-dd');
+    var str2='09-15'.padStart(10,'YYYY-mm-dd');
+    console.log(str0);
+    console.log(str01);
+    console.log(str1);
+    console.log(str2);
+
+    //模版字符串
+    //输出模版，所有空格和缩进都会被保留在输出中
+    document.getElementById('div1').innerHTML=`
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    `;
+    console.log(`
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    `)
+    //上面所有模板字符串的空格和换行，都是被保留的，<ul>标签前面会有一个换行。如果你不想要这个换行，可以使用trim方法消除它。
+    console.log(`
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    `.trim())
+    //普通字符串
+    var str=`hello'\n' world`;
+    console.log(str);
+    //多行字符串
+    var str=`这是行1
+    这是行2`;
+    console.log(str);
+    //字符串嵌入变量，需要将变量写在${}中
+    var a=1,b=2;
+    console.log(`嵌入变量:${a},嵌入变量:${b}`);
+    //在反引号中嵌入反引号
+    var str=`反引号中在嵌入一个\`反引号\``;
+    console.log(str)
+    //字符串嵌套变量，进行运算
+    console.log(`${a}+${b}=${a+b}`);
+    console.log(`${a}+${b*2}=${a+(b*2)}`);
+    var obj={x:2,y:3};
+    console.log(`${obj.x}+${obj.y}=${obj.x+obj.y}`);
+    //模版字符串还可以调用函数
+    function strFn(){
+        return 'lili';
+    }
+    console.log(`hi,${strFn()},hao are you`);
+
+    //如果大括号中的值不是字符串，将按照一般的规则转为字符串。比如，大括号中是一个对象，将默认调用对象的toString方法。
+    //变量没有声明，报错
+//    console.log(`hi,${aa}`);
+    //如果大括号内部是变量，也可以直接输出
+    console.log(`hi,${'liLei'}`);
+    //模板字符串甚至还能嵌套。
+    const tmpl = addrs => `
+      <table>
+      ${addrs.map(addr => `
+        <tr><td>${addr.first}</td></tr>
+        <tr><td>${addr.last}</td></tr>
+      `).join('')}
+      </table>
+    `;
+    const data = [
+        { first: '<Jane>', last: 'Bond' },
+        { first: 'Lars', last: '<Croft>' },
+    ];
+    console.log(tmpl(data));
+
+    //需要引用模版字符转本身，写法1
+    let lStr='return '+'`hi,${name}`';
+    let lFn=new Function('name',lStr);
+    console.log(lFn('lili'));
+
+    // 写法二
+    let lstr1 = '(name) => `Hello ${name}!`';
+    let lfunc1 = eval.call(null, lstr1);
+    console.log(lfunc1('Jack')) // "Hello Jack!"
+</script>
+</body>
+</html>
