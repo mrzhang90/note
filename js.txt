@@ -166,7 +166,7 @@ BOM:
     onmousedown:鼠标按下的时候触发
     onmouseup:鼠标抬起的时候触发
     select:自动获取焦点,可以用来，页面加载之后就让某个焦点元素选中。
-    onclick,onmouseover,onmouseout,onmousemove,onchange,oninput,onsubmit,onreset,onload,onblur,onfocus
+    onclick,ondblclick,onmouseover,onmouseout,onmousemove,onchange,oninput,onsubmit,onreset,onload,onblur,onfocus
     onscroll:当鼠标滚轮滚动,浏览器有滚动条时滚动会触发,通常情况下指上下滚动条滚动。
     onmousewheel:当鼠标滚轮的时候触发。ev：可以监听到更多的细节信息。
     区别：1.onscroll获取的用户操作信息没onmousewheel丰富；2.onscroll页面中必须要有滚动条才会触发，onmousewheel只要滚轮就会触发
