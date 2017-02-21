@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    console.log('属性的简洁表示法')
+    console.log('ES6 允许在对象之中，直接写变量。这时，属性名为变量名, 属性值为变量的值。');
+
+    var foo='bar';
+    var baz={foo};//Object {foo: "bar"}
+    //等同于
+    //var baz={foo:'bar'}//Object {foo: "bar"}
+    console.log(baz);
+
+    function f(x,y){
+        console.log({x,y});
+        //等同于
+        //console.log({x:x,y:y});
+    }
+    f(1,2);
+
+    console.log('除了属性简写，方法也可以简写。')
+    var o = {
+        method() {
+            return "Hello!";
+        }
+    };
+    //等同于
+    var i={
+        method:function(){
+            return "Hello!";
+        }
+    }
+    console.log(o.method());
+    console.log(i.method());
+
+    console.log('另一个属性简写和方法简写')
+    var birth="2010/01/02";
+    var Person={
+        name:"张三",
+        //等同于birth:birth
+        birth,
+        hello(){console.log('这是简写方法，简写的属性名是：'+this.birth)},
+    }
+    console.log(Person);
+
+    console.log('这种写法用于函数返回值，非常方便');
+    function getPointer(){
+        var x=0,y=1;
+        return {x,y};
+    }
+    console.log(getPointer());
+
+    console.log('属性的赋值器（setter）和取值器（getter），事实上也是采用这种写法');
+    var cart = {
+        _wheels: 4,
+
+        get_wheels () {
+            return this._wheels;
+        },
+
+        set_wheels (value) {
+            if (value < this._wheels) {
+                throw new Error('数值太小了！');
+            }
+            this._wheels = value;
+        }
+    }
+
+    console.log(cart.set_wheels(5))
+    console.log(cart.get_wheels())
+</script>
+</body>
+</html>

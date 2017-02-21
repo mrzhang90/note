@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    console.log('JS语言定义对象的属性，有两种方法');
+    foo.bar=true;//直接用标识符作为属性名
+    foo['bar']=true;//用表达式作为属性名，将表达式放到方括号
+
+    var propKey='foo';
+    var obj={
+        [propKey]:true,
+        ['a'+'bc']:123
+    }
+    console.log(obj);
+</script>
+</body>
+</html>
