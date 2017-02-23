@@ -17,6 +17,20 @@ sql内的判断：
 	{dede:arclist typeid='11'}
     <a href="[field:arcurl/]"><img src="[field:litpic/]" /></a>
     {/dede:arclist}
+索引加1、按权重排序
+<article class="style[field:global name=autoindex runphp="yes"]@me=(@me%6)+1;[/field:global]" isweight='y' orderby='weight'>
+    <img src="[field:litpic/]" alt="" />
+  	<a href="[field:arcurl /]">
+    <h2>HI[field:title/]</h2>
+      <p>[field:description/]</p>
+  	</a>
+</article>
+{/dede:arclist}
+指定文章ID的内容
+{dede:arclist idlist='14' limit='0,1'  titlelen='300' infolen='500'}
+	<h1>{dede:global.phone/}</h1>
+    <p>[field:infos/]</p>
+{/dede:arclist}
 获取栏目下的子类-如果当前栏目ID等于其中某个子类，那么就选中当前子类
 	<select name="" id="" onchange="window.location=this.value;">
         <option value='/plus/list.php?tid={dede:field.typeid function="GetTopid(@me)"/}'>--默认全部--</option>
