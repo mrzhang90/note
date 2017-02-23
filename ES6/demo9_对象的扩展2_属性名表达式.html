@@ -7,15 +7,38 @@
 <body>
 <script>
     console.log('JS语言定义对象的属性，有两种方法');
-    foo.bar=true;//直接用标识符作为属性名
-    foo['bar']=true;//用表达式作为属性名，将表达式放到方括号
+    //foo.bar=true;//直接用标识符作为属性名
+    //foo['bar']=true;//用表达式作为属性名，将表达式放到方括号
 
+    console.log('//表达式放在方括号内');
     var propKey='foo';
     var obj={
-        [propKey]:true,
+        [propKey]:'yes',
         ['a'+'bc']:123
     }
     console.log(obj);
+    console.log(obj[propKey]);
+    console.log(obj['foo'])
+
+    console.log('//用表达式定义方法名');
+    var obj1={
+        ['h'+'ello'](){
+            return 'hello world';
+        }
+    }
+    console.log(obj1.hello());
+
+    console.log('PS1:属性名表达式与简洁表示法，不能同时使用，会报错。');
+    var foo='bar';
+//    console.log({[foo]})//报错
+    console.log({foo})
+    console.log('PS2:属性名表达式如果是一个对象，默认情况下会自动将对象转为字符串[object Object]，这一点要特别小心。')
+    var obja={'a':1};
+    var objb={'b':1};
+    console.log({
+        [obja]:'va',
+        [objb]:'vb',
+    })//Object {[object Object]: "vb"},因为va和vb都得到[object Object]，所以会覆盖va
 </script>
 </body>
 </html>
