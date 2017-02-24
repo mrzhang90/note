@@ -7,7 +7,54 @@
 <body>
 <script>
     console.log('函数的name属性，返回函数名。对象方法也是函数，因此也有name属性。');
+    var person={
+        getName(){
+            console.log('xiao zhang');
+        }
+    }
+    console.log(person.getName.name)//getName-方法的name属性返回函数名
+    console.log('有两种特殊情况：bind方法创造的函数，name属性返回bound加上原函数的名字；Function构造函数创造的函数，name属性返回anonymous。');
+    var a=(new Function()).name;//anonymous
+    console.log(a)
+    var doString=function(){}
+    var b=doString.bind().name;//bound doString
+    console.log(b)
+    console.log('如果对象的方法是一个 Symbol 值，那么name属性返回的是这个 Symbol 值的描述。');
+    const key1 = Symbol('description');
+    const key2 = Symbol();
+    let obj = {
+        [key1]() {},
+        [key2]() {},
+    };
+    console.log(obj[key1].name) // "[description]"
+    console.log(obj[key2].name) // ""
 
+    console.log('\nObject.is()');
+    console.log('ES5中相等运算符(==)和严格相等运算符(===)都有缺点，前者会自动转换数据类型，后者的NaN不等于自身，以及+0等于-0。JavaScript缺乏一种运算，在所有环境中，只要两个值是一样的，它们就应该相等。')
+    console.log('Object.is就是解决同值相等的算法，它用来比较两个值是否严格相等');
+    console.log('object.is于===相同之处')
+    console.log(Object.is('foo','foo'));//true
+    console.log(Object.is({},{}));//false
+    console.log('object.is于===不同之处有两个：一是+0不等于-0，二是NaN等于自身');
+    console.log(+0===-0);//true
+    console.log(Object.is(+0,-0))//false
+    console.log(NaN===NaN);//false
+    console.log(Object.is(NaN,NaN));//true
+
+    //ES5部署Object.is
+    Object.defineProperty(Object, 'is', {
+        value: function(x, y) {
+            if (x === y) {
+                // 针对+0 不等于 -0的情况
+                return x !== 0 || 1 / x === 1 / y;
+            }
+            // 针对NaN的情况
+            return x !== x && y !== y;
+        },
+        configurable: true,
+        enumerable: false,
+        writable: true
+    });
 </script>
 </body>
 </html>
