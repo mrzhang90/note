@@ -3,6 +3,9 @@
     获取本周周一时间戳：nowTime - (nowWeek-1)*(24*60*60*1000):当天时间戳-(当天周几-1)*一天时间戳，也就是说，今天的时间戳减去少本周一天的时间戳，总能得到周一的时间戳
 
 小技巧
+    Object.defineProperty：都是通过它实现双向绑定的
+    Object.getOwnPropertyDescriptor({foo:123},'foo'):方法可以获取该属性的描述对象
+        描述对象的enumerable属性，称为”可枚举性“，如果该属性为false，就表示某些操作会忽略当前属性。
     valueAsDate：日期控件的类型date，设置value值。
         document.getElementById('xxx').valueAsDate = new Date();
     x=+x //这是另一种隐士的将x转为数字的方式

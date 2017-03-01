@@ -1,0 +1,26 @@
+1.listView
+	//数据初始化
+	listView.init({
+        url: "/gm/activity/data.json",
+        columns: [
+             { "data": "name" },
+             { "data": "status" }
+
+     	],
+        rowCallback: function( row, data, index ) {
+                $('td:eq(1)', row).html( data.status.desc );
+                $('td:eq(2)', row).html('-');
+        }
+    });
+    //ajax刷新数据-当某条数据编辑后，调用ajax刷新
+	listView.api().ajax.reload();
+2.dialog,设置-打开-关闭
+	dialog = $( "#dialog-message" ).dialog({
+		title: "创建联赛",
+        width: 800,
+        height: 800,
+        autoOpen: true,
+        position: {my: "top", at: "center top+0px ", of: window}
+   	});
+	dialog.dialog("open");
+	dialog.dialog("close");

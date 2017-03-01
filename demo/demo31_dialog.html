@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>dialog</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="css/jquery-ui.min.css"/>
+    <link rel="stylesheet" href="css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style"/>
+</head>
+<body>
+<div>
+	<button type="button" class="btn btn-info btn-sm" id="btnCreateUser" onclick="update()">
+        <i class="ace-icon fa bigger-110 fa-plus"></i>创建联赛信息要求
+    </button>
+	<div id="addUserDialog" style="display: none; padding-right: 70px;">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 真实姓名 </label>
+
+                <div class="col-sm-9" id="form-field-1">
+                    <select class="form-control" id="selActualName">
+                        <option value="1">必要</option>
+                        <option value="2">非必要</option>
+                    </select>
+                </div>
+            </div>
+            <div class="space-4"></div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 身份证号 </label>
+
+                <div class="col-sm-9" id="form-field-2">
+                    <select class="form-control" id="selIdNumber">
+                        <option value="1">必要</option>
+                        <option value="2">非必要</option>
+                    </select>
+                </div>
+            </div>
+            <div class="space-4"></div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-4"> 生日 </label>
+
+                <div class="col-sm-9" id="form-field-4">
+                    <select class="form-control" id="selBirthday">
+                        <option value="1">必要</option>
+                        <option value="2">非必要</option>
+                    </select>
+                </div>
+            </div>
+            <div class="space-4"></div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-5"> 年龄 </label>
+
+                <div class="col-sm-9" id="form-field-5">
+                    <select class="form-control" id="selAge">
+                        <option value="1">必要</option>
+                        <option value="2">非必要</option>
+                    </select>
+                </div>
+            </div>
+            <div class="space-4"></div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-3"> 身高 </label>
+
+                <div class="col-sm-9" id="form-field-3">
+                    <select class="form-control" id="selHeight">
+                        <option value="1">必要</option>
+                        <option value="2">非必要</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-3"> 体重 </label>
+
+                <div class="col-sm-9" id="form-field-6">
+                    <select class="form-control" id="selWeight">
+                        <option value="1">必要</option>
+                        <option value="2">非必要</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-3"> 联赛 </label>
+
+                <div class="col-sm-9" id="form-field-7">
+                    <select class="form-control" id="selActivity">
+
+                    </select>
+                </div>
+            </div>
+            <div class="space-4"></div>
+        </form>
+    </div>
+</div>
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script type="text/javascript">
+function update(){
+	alert(1)
+	$("#addUserDialog").dialog({
+        title: "添加联赛要求",
+        width: 450,
+        height: 200,
+        autoOpen: true,
+        position: {my: "top", at: "center top+150px ", of: window},
+        buttons: [
+            {
+                text: "取消",
+                "class": "btn btn-minier",
+                click: function () {
+                    $(this).dialog("close");
+                }
+            },
+            {
+                text: "确定",
+                "class": "btn btn-primary btn-minier",
+                click: function () {
+                    var actualName = $("#selActualName").val();
+                    var idNumber = $("#selIdNumber").val();
+                    var birthday = $("#selBirthday").val();
+                    var age = $("#selAge").val();
+                    var height = $("#selHeight").val();
+                    var weight = $("#selWeight").val();
+                    var activity = $("#selActivity").val();
+                    var url = "/gm/activityMessage/create.json";
+                    ajax({
+                        url: url,
+                        data: {
+                            actId: activity,
+                            name: actualName,
+                            idNumber: idNumber,
+                            birthday: birthday,
+                            age: age,
+                            height: height,
+                            weight: weight
+                        },
+                        callback: function (result) {
+                            location = '/gm/activityMessage/list.html';
+                        }
+                    });
+                }
+            }
+        ]
+    });
+}
+</script>
+</body>
+</html>
