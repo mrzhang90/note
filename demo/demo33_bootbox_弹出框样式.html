@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootbox.js"></script>
+<script>
+//    bootbox.alert("Hello world!", function(data) {
+//        console.log('alert关闭了')
+//    });
+//    bootbox.confirm("Hello world!", function(data) {
+//        console.log(data?'你点了确认':'你点了取消');
+//    });
+//    bootbox.prompt("Hello world!", function(data) {
+//        console.log(data)
+//    });
+    bootbox.dialog({
+        message: "这是dialog的内容",
+        title: "这是标题",
+        buttons: {
+            Cancel: {
+                label: "取消",
+                className: "btn-default",
+                callback: function () {
+                    alert("Cancel");
+                }
+            }
+            , OK: {
+                label: "确认",
+                className: "btn-primary",
+                callback: function () {
+                    alert("OK");
+                }
+            }
+        }
+    });
+
+    //confim
+    bootbox.confirm({
+        buttons: {
+            confirm: {
+                label: '我是确认按钮',
+                className: 'btn-myStyle'
+            },
+            cancel: {
+                label: '我是取消按钮',
+                className: 'btn-default'
+            }
+        },
+        message: '提示信息',
+        callback: function(result) {
+            if(result) {
+                alert('点击确认按钮了');
+            } else {
+                alert('点击取消按钮了');
+            }
+        },
+        //title: "bootbox confirm也可以添加标题哦",
+    });
+    //alert
+    bootbox.alert({
+        buttons: {
+            ok: {
+                label: '我是ok按钮',
+                className: 'btn-myStyle'
+            }
+        },
+        message: '提示信息',
+        callback: function() {
+            alert('关闭了alert');
+        },
+        title: "bootbox alert也可以添加标题哦",
+    });
+</script>
+</body>
+</html>
