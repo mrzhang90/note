@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a = Object.assign({}, {a:1});
+    console.log(a)
+    let b=Object.assign({}, { x: 1, y: 2 }, a);
+    console.log(b)
+    let c= Object.assign({ x: 1, y: 2 }, a);
+    console.log(c)
+    let d = Object.create({ x: 1, y: 2 });
+    d.z = 3;
+    console.log(d)
+    let e1={'a':1};
+    let e2={'b':2};
+    e1.__proto__=e2;
+    console.log(e1);
+
+    console.log('ES5有一个Object.getOwnPropertyDescriptor方法，返回某个对象属性的描述对象（descriptor）。');
+    var obj={p:'a',q:'c'};
+    console.log(Object.getOwnPropertyDescriptor(obj,'p'));
+
+    console.log('ES2017 引入了Object.getOwnPropertyDescriptors方法，返回指定对象所有自身属性（非继承属性）的描述对象。')
+    console.log('实现这个方法')
+    function getOwnPropertyDescriptors(obj) {
+        const result = {};
+        for (let key of Reflect.ownKeys(obj)) {
+            result[key] = Object.getOwnPropertyDescriptor(obj, key);
+        }
+        console.log(result)
+        return result;
+    }
+    getOwnPropertyDescriptors(obj)
+
+    console.log('该方法的引入目的，主要是为了解决Object.assign()无法正确拷贝get属性和set属性的问题。')
+    const source = {
+        set foo(value) {
+            console.log(value);
+        }
+    };
+    const target1 = {};
+    Object.assign(target1, source);
+    console.log(Object.getOwnPropertyDescriptor(target1, 'foo'))
+    console.log('上面代码中，source对象的foo属性的值是一个赋值函数，Object.assign方法将这个属性拷贝给target1对象，结果该属性的值变成了undefined。这是因为Object.assign方法总是拷贝一个属性的值，而不会拷贝它背后的赋值方法或取值方法。')
+    console.log('这时，Object.getOwnPropertyDescriptors方法配合Object.defineProperties方法，就可以实现正确拷贝。')
+    const target2 = {};
+    Object.defineProperties(target2, Object.getOwnPropertyDescriptors(source));
+    console.log(Object.getOwnPropertyDescriptor(target2, 'foo'))
+
+    var obj7={a:1,b:2,c:3};
+    var obj8=Object.create(obj7);
+    obj8.d=4;
+    console.log(obj8)//Object{d:4}  __proto__:{a:1,b:2,c:3}
+
+    var obj10=Object.assign(
+        Object.create(
+            Object.getOwnPropertyDescriptors({
+                foo: 123,
+            })
+        )
+    )
+    console.log(obj10)
+
+    console.log('Object.getOwnPropertyDescriptors也可以用来实现 Mixin（混入）模式。')
+    let mix = (object) => ({
+        with: (...mixins) => mixins.reduce(
+        (c, mixin) => Object.create(
+        c, Object.getOwnPropertyDescriptors(mixin)
+    ), object)
+    });
+    var a1 = {a: 'a'};
+    var b1 = {b: 'b'};
+    var c1 = {c: 'c'};
+    var d1 = mix(c1).with(a1, b1);
+    console.log(d1)
+    console.log('出于完整性的考虑，Object.getOwnPropertyDescriptors进入标准以后，还会有Reflect.getOwnPropertyDescriptors方法。')
+
+    console.log('\n编程实务中，如果读取对象内部的某个属性，往往需要判断一下该对象是否存在。比如，要读取message.body.user.firstName，安全的写法是写成下面这样。');
+    var message={firstName:'lili'}
+    var firstName=(message && message.firstName) || 'default';
+    console.log(firstName)
+
+    console.log('这样的层层判断非常麻烦，因此现在有一个提案，引入了“Null 传导运算符”（null propagation operator）?.，简化上面的写法。')
+//    var lastName=message?.body?.user?.firstName || 'default';
+//    console.log(lastName) //报错 浏览器不认
+</script>
+</body>
+</html>

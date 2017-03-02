@@ -5,6 +5,59 @@
     <title>Title</title>
 </head>
 <body>
+<script>
+    console.log('ES5 引入了Object.keys方法，返回一个数组，成员是参数对象自身的（不含继承的）所有可遍历（enumerable）属性的键名。');
+    var obj1={a:1,b:2,c:3};
+    console.log(Object.keys(obj1))
+    console.log('ES2017 引入了跟Object.keys配套的Object.values和Object.entries，作为遍历一个对象的补充手段，供for...of循环使用。');
+    let {keys,values,entries}=Object;
+    console.log(keys(obj1));
+    console.log(values(obj1));
+    console.log(entries(obj1));
 
+    console.log('返回数组的成员顺序，与本章的《属性的遍历》部分介绍的排列规则一致。')
+    var obj2 = { 100: 'a', 2: 'b', 7: 'c' };
+    console.log(Object.values(obj2))// ["b", "c", "a"]
+
+    console.log('Object.values只返回对象自身的可遍历属性。')
+    var obj3=Object.create({},{p:{value:3}});
+    console.log(Object.values(obj3))//Array []
+    console.log('上面代码中，Object.create方法的第二个参数添加的对象属性（属性p），如果不显式声明，默认是不可遍历的，因为p的属性描述对象的enumerable默认是false，Object.values不会返回这个属性。只要把enumerable改成true，Object.values就会返回属性p的值。')
+    var obj4=Object.create({},{p:{
+        value:42,
+        enumerable:true
+    }})
+    console.log(Object.values(obj4));//Array [42]
+    console.log('Object.values会过滤属性名为 Symbol 值的属性。')
+    console.log(values({[Symbol()]:'1','foo':'v2'}))//Array [ "v2" ]
+    console.log(values('123'));//Array [ "1", "2", "3" ]
+    console.log(values(123))//Array [  ]
+    console.log(values(true))//Array [  ]
+
+    var obj5={'foo':'bar','baz':42}
+    console.log(Object.entries(obj5))//Array [ Array[foo,bar], Array[baz,42] ]
+    console.log('如果原对象的属性名是一个 Symbol 值，该属性会被忽略。')
+    console.log(Object.entries({[Symbol()]:'123','foo':'bar'}));//Array [ Array['foo','bar] ]
+    console.log('Object.entries的基本用途是遍历对象的属性。');
+    var obj6={one:1,two:2};
+    for(var [k,v] of entries(obj6)){
+        console.log(`${JSON.stringify(k)}:${JSON.stringify(v)}`);
+        // "one": 1
+        // "two": 2
+    }
+    console.log('Object.entries方法的另一个用处是，将对象转为真正的Map结构。')
+    var map=new Map(entries(obj6));
+    console.log(map)//Map { one: 1, two: 2 }
+    console.log('自己实现Object.entries方法，非常简单。')
+    function entrices(obj){
+        var arr=[];
+        for(var k of keys(obj)){
+            arr.push([k,obj[k]])
+        }
+        console.log(arr)
+        return arr;
+    }
+    entrices(obj6);//Array [ Array['one',1], Array['two',2] ]
+</script>
 </body>
 </html>
