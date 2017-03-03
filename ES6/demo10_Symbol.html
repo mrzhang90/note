@@ -6,8 +6,78 @@
 </head>
 <body>
 <script>
+    console.log('ES6引入了一种新的原始数据类型Symbol，表示独一无二的值。它是JavaScript语言的第七种数据类型，前六种是：Undefined、Null、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）。');
     var s=Symbol();
-    console.log(typeof s);
+    console.log(typeof s);//symbol
+    console.log('上面代码中，变量s就是一个独一无二的值。typeof运算符的结果，表明变量s是Symbol数据类型，而不是字符串之类的其他类型。');
+    console.log('Symbol函数可以接受一个字符串作为参数，表示对Symbol实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分。');
+    var s1=Symbol('bar');
+    console.log(s1);//Symbol(bar)
+    console.log(s1.toString());//'Symbol(bar)'
+    console.log(String(s1));//'Symbol(bar)'
+    console.log('以上两种方式，将Symbol转为字符串')
+    console.log('还可以转为bool，但不能转为数字类型')
+    console.log(Boolean(Symbol()));//true
+    console.log(!Symbol())//false
+//    console.log(Number(Symbol()))//Uncaught TypeError: Cannot convert a Symbol value to a number
+    console.log('如果 Symbol 的参数是一个对象，就会调用该对象的toString方法，将其转为字符串，然后才生成一个 Symbol 值。');
+    var obj={
+        toString(){
+            return 'abc';
+        }
+    }
+    console.log(Symbol(obj));//Symbol(bar)
+    console.log('Symbol函数的参数只是表示对当前 Symbol 值的描述，因此相同参数的Symbol函数的返回值是不相等的。');
+    console.log(Symbol()==Symbol());//flase
+    console.log(Symbol('foo')==Symbol('foo'));//false
+    console.log('Symbol值不能与其他类型的值进行运算，会报错。')
+//    console.log('my name is '+Symbol('john'));//Uncaught TypeError: Cannot convert a Symbol value to a string
+//    console.log(`my name is ${Symbol('john')}`);//Uncaught TypeError: Cannot convert a Symbol value to a string
+
+    console.log('\n由于每一个Symbol值都是不相等的，这意味着Symbol值可以作为标识符，用于对象的属性名，就能保证不会出现同名的属性。这对于一个对象由多个模块构成的情况非常有用，能防止某一个键被不小心改写或覆盖。')
+    console.log('以下三种写法，都能得到同样的结果');
+    var symbol=Symbol();
+    var a={};
+    console.log('注意，Symbol值作为对象属性名时，不能用点运算符。')
+    a.symbol='hello world';//undefined
+    a[symbol]='hello world';
+    var b={
+        [symbol]:'hello world'
+    }
+    var c={};
+    Object.defineProperty(c,symbol,{value:'hello world'});
+    console.log(a[symbol])//hello world
+    console.log(b[symbol])//hello world
+    console.log(c[symbol]);//hello world
+
+    const COLOR_RED=Symbol('red');
+    const COLOR_BLUR=Symbol('blur');
+    function getCom(color){
+        switch(color){
+            case COLOR_RED:
+                return COLOR_BLUR;
+            case COLOR_BLUR:
+                return COLOR_RED;
+            default:
+                return 'error';
+        }
+    }
+    console.log(getCom(COLOR_RED));
+
+    console.log('因为下边的type的值不需要使用，所以可以使用Symbol，这样也确保不会跟其他shapType值冲突')
+    var sharpType={
+        type:Symbol()
+    };
+    function getArea(sharpe,options){
+        var area=0;
+        switch(sharpe){
+            case sharpType.type:
+                area=0.5+options.width+options.height;
+                break;
+        }
+        return area;
+    }
+    console.log(getArea(sharpType.type,{width:100,height:50}))
 </script>
 </body>
 </html>
