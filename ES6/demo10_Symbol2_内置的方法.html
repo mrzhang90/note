@@ -69,6 +69,27 @@
     a2[0]=6;
     a2[1]=7;
     console.log([1,2,3].concat(a1,a2))//[1, 2, 3, 4, 5, [6,7]]
+
+    console.log('对象的Symbol.species属性，指向当前对象的构造函数。创造实例时，默认会调用这个方法，即使用这个属性返回的函数当作构造函数，来创造新的实例对象。');
+    class MyArray extends Array{
+        static get [Symbol.species](){return Array;}
+    }
+    var a=new MyArray(1,2,3);
+    var mapped=a.map(x=>x*x);
+    console.log(mapped instanceof MyArray)
+    console.log(mapped instanceof Array)
+
+    console.log('对象的Symbol.match属性，指向一个函数。当执行str.match(myObject)时，如果该属性存在，会调用它，返回该方法的返回值。');
+    console.log(String.prototype.match('ew'))
+    class MyMatcher {
+        [Symbol.match](string) {
+            return 'hello world'.indexOf(string);
+        }
+    }
+    console.log('e'.match(new MyMatcher())) // 1
+
+    console.log('对象的Symbol.replace属性，指向一个方法，当该对象被String.prototype.replace方法调用时，会返回该方法的返回值。');
+    console.log(String.prototype.replace('e','a'))
 </script>
 </body>
 </html>
