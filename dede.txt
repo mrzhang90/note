@@ -18,7 +18,9 @@ sql内的判断：
     <a href="[field:arcurl/]"><img src="[field:litpic/]" /></a>
     {/dede:arclist}
 索引加1、按权重排序
-<article class="style[field:global name=autoindex runphp="yes"]@me=(@me%6)+1;[/field:global]" isweight='y' orderby='weight'>
+方案1：
+{dede:arclist titlelen='38' flag='h' noflag='a' isweight='y' orderby='weight'}
+<article class="style[field:global name=autoindex runphp="yes"]@me=(@me%6)+1;[/field:global]">
     <img src="[field:litpic/]" alt="" />
   	<a href="[field:arcurl /]">
     <h2>HI[field:title/]</h2>
@@ -26,6 +28,14 @@ sql内的判断：
   	</a>
 </article>
 {/dede:arclist}
+方案2：
+{dede:sql sql="SELECT a.*,t.typedir,t.typename,t.isdefault,t.defaultname,t.namerule, t.namerule2,t.ispart, t.moresite,t.siteurl,t.sitepath FROM `dede_archives` as a JOIN `dede_arctype` AS t ON a.typeid=t.id WHERE typeid=1 ORDER BY a.weight ASC LIMIT 0,12"}
+    <img src="[field:litpic/]" alt="" />
+  <a href="[field:id runphp='yes'] $id=@me;@me='';$url=GetOneArchive($id);@me=$url['arcurl'];[/field:id]">
+    <h2>[field:title/]</h2>
+      <p>[field:description/]</p>
+  </a>
+{/dede:sql}
 指定文章ID的内容
 {dede:arclist idlist='14' limit='0,1'  titlelen='300' infolen='500'}
 	<h1>{dede:global.phone/}</h1>
