@@ -21,21 +21,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="demo11_3_Map结构.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ES6/demo11_3_Map结构.html">
+      <file leaf-file-name="demo11_31_Map属性和操作方法.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ES6/demo11_31_Map属性和操作方法.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="171">
-              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="demo9_对象的扩展8__proto_属性.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ES6/demo9_对象的扩展8__proto_属性.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="49">
-              <caret line="13" column="41" lean-forward="true" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+              <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -98,6 +88,7 @@
         <option value="$PROJECT_DIR$/ES6/demo11_Set 和 Map 数据结构.html" />
         <option value="$PROJECT_DIR$/ES6/demo11_2_WeakSet结构.html" />
         <option value="$PROJECT_DIR$/ES6/demo11_3_Map结构.html" />
+        <option value="$PROJECT_DIR$/ES6/demo11_31_Map属性和操作方法.html" />
       </list>
     </option>
   </component>
@@ -127,8 +118,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -157,6 +146,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -258,11 +249,13 @@
       <workItem from="1488940048140" duration="8723000" />
       <workItem from="1489049828257" duration="6481000" />
       <workItem from="1489112778202" duration="6390000" />
+      <workItem from="1489201098069" duration="602000" />
+      <workItem from="1489369876734" duration="4508000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90780000" />
+    <option name="totallyTimeSpent" value="95890000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-12" y="0" width="1936" height="1056" extended-state="0" />
@@ -297,11 +290,42 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/ES6/demo11_30_Map基本用法.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ES6/demo9_对象的扩展8__proto_属性.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ES6/demo11_30_Map基本用法.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ES6/demo9_对象的扩展8__proto_属性.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ES6/demo11_1_Set数据结构.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2622">
           <caret line="138" column="51" lean-forward="false" selection-start-line="138" selection-start-column="51" selection-end-line="138" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -309,7 +333,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -541,7 +564,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1178">
           <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -549,22 +571,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1650">
           <caret line="138" column="51" lean-forward="false" selection-start-line="138" selection-start-column="51" selection-end-line="138" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ES6/demo11_3_Map结构.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ES6/demo9_对象的扩展8__proto_属性.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="13" column="41" lean-forward="true" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+        <state relative-caret-position="494">
+          <caret line="26" column="47" lean-forward="false" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ES6/demo11_30_Map基本用法.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1474">
+          <caret line="79" column="12" lean-forward="true" selection-start-line="79" selection-start-column="11" selection-end-line="79" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ES6/demo11_31_Map属性和操作方法.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
           <folding />
         </state>
       </provider>
