@@ -235,6 +235,7 @@ DOM属性:
         nextElementSibling-(IE9以下不兼容)查找节点的下一个兄弟节点
         nextSibling-(所有浏览器兼容)查找节点的下一个兄弟节点
     document.createElement(tagName)-通过标签名的形式创建一个元素
+    document.createdocumentfragment()-方法创建了一虚拟的节点对象，节点对象包含所有属性和方法。当你想提取文档的一部分，改变，增加，或删除某些内容及插入到文档末尾可以使用createDocumentFragment() 方法。
     parent.appendChild(添加的元素)-往一个节点里边添加一个子节点，注意是添加在最后
     parentNode.insertBefore(要插入的元素,插到哪个元素的前面)；如果父级元素没有子节点，那么默认会往父级插入一个元素。
     parentNode.removeChild(删除哪个),从一个节点中删除指定的子节点

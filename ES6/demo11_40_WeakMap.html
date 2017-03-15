@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>1</div>
+<input type="button" id="btn">
+<script>
+    console.log('WeakMap结构与Map结构基本类似，唯一的区别是它只接受对象作为键名（null除外），不接受其他类型的值作为键名，而且键名所指向的对象，不计入垃圾回收机制')
+    var map=new WeakMap();
+    //map.set('a',1)//TypeError: Invalid value used as weak map key
+    //map.set(Symbol(),2)//TypeError: Invalid value used as weak map key
+    console.log('WeakMap的设计目的在于，键名是对象的弱引用（垃圾回收机制不将该引用考虑在内），所以其所对应的对象可能会被自动回收。' +
+        '当对象被回收后，WeakMap自动移除对应的键值对。典型应用是，一个对应DOM元素的WeakMap结构，当某个DOM元素被清除，其所对应的WeakMap记录就会自动被移除。' +
+        '基本上，WeakMap的专用场合就是，它的键所对应的对象，可能会在将来消失。WeakMap结构有助于防止内存泄漏。')
+    var map=new WeakMap();
+    var div=document.getElementsByTagName('div')[0];
+    map.set(div,'element');
+    console.log(map.get(div))//element
+    div.parentNode.removeChild(div)
+    div=null
+    console.log(map.get(div))//undefined
+    console.log('WeakMap与Map在API上的区别主要是两个，一是没有遍历操作（即没有key()、values()和entries()方法），也没有size属性；' +
+        '二是无法清空，即不支持clear方法。这与WeakMap的键不被计入引用、被垃圾回收机制忽略有关。因此，WeakMap只有四个方法可用：get()、set()、has()、delete()。')
+    var map=new WeakMap();
+    console.log(map.size);//undefined
+
+    console.log('前文说过，WeakMap应用的典型场合就是DOM节点作为键名。下面是一个例子。');
+    var input=document.querySelector('#btn');
+    var map=new WeakMap();
+    map.set(input,{num:1});
+    input.onclick=function(){
+        var obj=map.get(this);//obj为赋址，所以下面obj改变，map也改变了
+        ++obj['num']
+        console.log(map)
+    }
+    console.log('上面代码，input是一个DOM节点，每当发生click事件，就更新一下状态。我们将状态值作为键存入WeakMap，一旦DOM节点删除，该状态自动消失，不存在内存溢出风险')
+
+    console.log('\nWeakMap 的另一个用处是部署私有属性。')
+    var _a=new WeakMap();
+    var _b=new WeakMap();
+    class CountDown{
+        constructor(a,b){
+            _a.set(this,a);
+            _b.set(this,b);
+        }
+        dec(){
+            let a=_a.get(this);
+            if(a<1) return '小于1';
+            _a.set(this,--a);
+            if(_a.get(this)===0){
+                _b.get(this)();
+            }
+        }
+    }
+    var l=new CountDown(2,()=>console.log('hello world'));
+    l.dec();
+    l.dec();//hello world
+    console.log('上面代码中，Countdown类的两个内部属性_a和_b，是实例的弱引用，所以如果删除实例，它们也就随之消失，不会造成内存泄漏。');
+</script>
+</body>
+</html>

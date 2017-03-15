@@ -54,7 +54,13 @@
         }
         return ""
     }    
-    
+3.判断手机设备是不是iphone，获取iphone版本号
+  var p = String(navigator.platform);
+  if( p === 'iPad' || p === 'iPhone' || p === 'iPod touch' ){
+    var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+    if (parseInt(v[1], 10)>=7) {// iOS >=7
+    }
+  }  
 动态元素:
 appendChild是动态控制元素,把ul的节点追加到ul内,相当于替换,那么因为每次改变指针,所以位置发生改变如下:
 for(var i= 0,len=li.length;i<len;i++){

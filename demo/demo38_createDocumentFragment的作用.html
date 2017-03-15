@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="mylist">
+    <p>a1</p>
+    <p>a2</p>
+    <p>a3</p>
+    <p>a4</p>
+</div>
+<script>
+    console.log('createdocumentfragment()方法创建了一虚拟的节点对象，节点对象包含所有属性和方法。' +
+        '当你想提取文档的一部分，改变，增加，或删除某些内容及插入到文档末尾可以使用createDocumentFragment() 方法。' +
+        '你也可以使用文档的文档对象来执行这些变化，但要防止文件结构被破坏，createDocumentFragment() 方法可以更安全改变文档的结构及节点。')
+    var arr=[1,2,3,4,5,56,67,7,8,89,9];
+    var ogg=document.createDocumentFragment();
+    for(var i=0,len=arr.length;i<len;i++){
+        var div=document.createElement('div');
+        div.appendChild(document.createTextNode(arr[i]));
+//        document.body.appendChild(div);
+        ogg.appendChild(div);
+//        console.log(ogg.removeChild(div))
+    }
+    document.body.appendChild(ogg);
+
+    //创建副本节点，并在副本上操作，然后新节点覆盖老节点
+    var old=document.getElementById('mylist');
+    var clone=old.cloneNode(true);
+    for(var i=0;i<100;i++){
+        clone.appendChild(document.createTextNode(i));
+    }
+    old.parentNode.replaceChild(clone,old)
+//    clone.appendChild(div);
+//    clone.parentNode.replaceChild(clone,old);
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<vrobject>
+    <input overlap="1" levelqueuebmp="5" preview="4" states="1" levelqueueraw="20" windowwidth="640" width="1024" preload="0" rows="5" fileextension="jpg" windowheight="640" levelmembmp="200" imagepath="images" levelmemraw="300" height="1024" columns="36" levelbias="0.4000000059604645"
+           leveltileurl="http://www.superhz.com/ty/yiheyuan/objects/object01/tiles/c%c_l%r_%y_%x.jpg" leveltilesize="512">
+        <level width="1024" embed="0" height="1024" preload="0" predecode="0"/>
+        <level width="512" embed="0" height="512" preload="1" predecode="0"/>
+    </input>
+    <control simulatemass="1" lockedmouse="0" swapxy="0" lockedkeyboard="0" dblclickfullscreen="0" revx="1" invertwheel="0" revy="0" wrapx="1" wrapy="0" trapwheel="1" automovemode="0" lockedwheel="0" speedwheel="1" controller="1" sensitivity="10"/>
+    <view>
+        <start row="3" column="33" state="0"/>
+        <zoom default="1" centerx="0" centery="0" min="1" max="4"/>
+        <viewer imagescaling="1" backgroundcolor="0x000000" background="1"/>
+    </view>
+    <autorotate speed="1" delay="5" start="0"/>
+    <userdata title="" datetime="" description="" copyright="" author="" source="" comment="" info=""/>
+    <qthotspots enabled="0" reuse="8">
+        <label width="180" backgroundalpha="1" enabled="1" height="20" backgroundcolor="0xffffff" bordercolor="0x000000" border="1" textcolor="0x000000" background="1" borderalpha="1" borderradius="1" wordwrap="1" textalpha="1"/>
+    </qthotspots>
+    <hotspots>
+        <label width="180" backgroundalpha="1" enabled="1" height="20" backgroundcolor="0xffffff" bordercolor="0x000000" border="1" textcolor="0x000000" background="1" borderalpha="1" borderradius="1" wordwrap="1" textalpha="1"/>
+        <polystyle mode="0" backgroundalpha="0.2509803921568627" backgroundcolor="0x0000ff" bordercolor="0x0000ff" borderalpha="1"/>
+    </hotspots>
+</vrobject>

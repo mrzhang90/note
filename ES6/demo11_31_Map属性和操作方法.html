@@ -5,6 +5,149 @@
     <title>Title</title>
 </head>
 <body>
+<script>
+    console.log('1.size属性返回Map结构的成员总数。')
+    var m=new Map();
+    m.set('a',1);
+    m.set('b',2)
+    console.log(m.size);//2
+    console.log('2.set方法设置key所对应的键值，然后返回整个Map结构。如果key已经有值，则键值会被更新，否则就新生成该键。');
+    console.log('set方法返回的是Map本身，因此可以采用链式写法。');
+    var m=new Map();
+    m.set('edit',6)
+    .set(undefined,1)
+    .set(null,true)
+    .set(123,456)
+    .set(123,789);
+    console.log(m)//Map {"edit" => 6, undefined => 1, null => true, 123 => 789}
+    console.log('3.get方法读取key对应的键值，如果找不到key，返回undefined')
+    var m1=new Map();
+    var hello=function(){console.log('hello');}
+    m1.set(hello,'hello');
+    console.log(m1);//Map {function => "hello"}
+    console.log(m1.get(hello));//hello
+    console.log('4.has方法返回一个布尔值，表示某个键是否在Map数据结构中。')
+    console.log(m1.has(hello))//true
+    console.log(m.has('edit'))//true
+    console.log(m.has(null))//true
+    console.log('5.delete方法删除某个键，返回true。如果删除失败，返回false')
+    console.log(m.delete(null))//true
+    console.log(m.delete(null))//false
+    console.log(m.has(null))//false
+    console.log('6.clear方法清除所有成员，没有返回值。')
+    console.log(m.clear())//undefined
+    console.log(m.size)//0
 
+    console.log('\nMap原生提供三个遍历器生成函数和一个遍历方法。' +
+        'keys()：返回键名的遍历器。' +
+        'values()：返回键值的遍历器。' +
+        'entries()：返回所有成员的遍历器。' +
+        'forEach()：遍历Map的所有成员。需要特别注意的是，Map的遍历顺序就是插入顺序。');
+    console.log('需要特别注意的是，Map的遍历顺序就是插入顺序。')
+    var map=new Map([
+        ['a',1],
+        ['b',2]
+    ])
+    for(var keys of map.keys()){
+        console.log(keys)//a b
+    }
+    for(var values of map.values()){
+        console.log(values)//1 2
+    }
+    for(var items of map.entries()){
+        console.log(items)//["a", 1] ["b", 2]
+    }//等同
+    for(var [k,v] of map.entries()){
+        console.log([k,v]);//["a", 1] ["b", 2]
+    }//等同
+    for(var [k,v] of map){
+        console.log([k,v])//["a", 1] ["b", 2]
+    }
+    console.log('上面代码最后的那个例子，表示Map结构的默认遍历器接口（Symbol.iterator属性），就是entries方法。')
+    console.log('map[Symbol.iterator] === map.entries// true')
+    console.log('Map结构转为数组结构，比较快速的方法是结合使用扩展运算符（...）。')
+    console.log([...map.keys()]);//["a", "b"]
+    console.log([...map.values()]);//[1, 2]
+    console.log([...map.entries()]);//[["a", 1], ["b", 2]]
+    console.log([...map])//[["a", 1], ["b", 2]]
+
+    console.log('\n结合数组的map方法、filter方法，可以实现Map的遍历和过滤（Map本身没有map和filter方法）。');
+    var map=new Map([
+        [1,'a'],
+        [2,'b'],
+        [3,'c']
+    ]);
+    var m2=new Map(
+        [...map].filter(([k,v])=>k<3)
+    )
+    console.log(m2)//Map {1 => "a", 2 => "b"}
+    var m3=new Map(
+        [...map].map(([k,v])=>[k*2,'_'+v])
+    )
+    console.log(m3)//Map {2 => "_a", 4 => "_b", 6 => "_c"}
+
+    console.log('\n此外，Map还有一个forEach方法，与数组的forEach方法类似，也可以实现遍历。');
+    map.forEach(function(k,v,map){
+        console.log("key:%s,value:%s",k,v)//key:a,value:1 key:b,value:2 key:c,value:3
+        console.log(map)//Map {1 => "a", 2 => "b", 3 => "c"}
+    })
+    console.log('forEach方法还可以接受第二个参数，用来绑定this');
+    var objs={
+        obj:function(k,v){
+            console.log('key:%s,value:%s',k,v);
+        }
+    }
+    map.forEach(function(k,v,map){
+        //这里的this指向的是objs
+        this.obj(k,v);////key:a,value:1 key:b,value:2 key:c,value:3
+    },objs)
+
+    console.log('\n1.Map转为数组')
+    console.log([...map])//[Array[2], Array[2], Array[2]]
+    console.log('2.数组转为Map')
+    console.log(new Map([[true,1],[123,456],[null,undefined]]))//Map {true => 1, 123 => 456, null => undefined}
+    console.log('3.Map转为对象。如果所有Map的键都是字符串，它可以转为对象。')
+    function strMapToObj(strMap){
+        let obj=Object.create(null);
+        for(let [k,v] of strMap){
+            obj[k]=v;
+        }
+        return obj;
+    }
+    var map=new Map().set('a',1).set('b',2);
+    var obj=strMapToObj(map)
+    console.log(obj);//Object {a: 1, b: 2}
+    console.log('4.对象转为Map')
+    function objToStrMap(obj){
+        let map=new Map();
+//        for(let k in obj){//等同于
+        for(let k of Object.keys(obj)){
+            map.set(k,obj[k]);
+        }
+        return map;
+    }
+    console.log(objToStrMap(obj))//Map {"a" => 1, "b" => 2}
+    console.log('5.Map转为JSON。Map转为JSON要区分两种情况。一种情况是，Map的键名都是字符串，这时可以选择转为对象JSON。')
+    function strMapToJSON(map){
+        return JSON.stringify(strMapToObj(map));
+    }
+    console.log(strMapToJSON(map));//{"a":1,"b":2}
+    console.log('另一种情况是，Map的键名有非字符串，这时可以选择转为数组JSON。');
+    function mapToArrayJSON(map){
+        return JSON.stringify([...map])
+    }
+    var m=new Map([[true,1],[123,456],[null,undefined]]).set({foo:3},['abcd']);
+    console.log(mapToArrayJSON(m));//[[true,1],[123,456],[null,null],[{"foo":3},["abcd"]]]
+    console.log("6.JSON转为Map。JSON转为Map，正常情况下，所有键名都是字符串。")
+    function JsonToStrMap(json){
+        return objToStrMap(JSON.parse(json));
+    }
+    console.log(JsonToStrMap('{"a":1,"b":2}'));//Map {"a" => 1, "b" => 2}
+    console.log('但是，有一种特殊情况，整个JSON就是一个数组，且每个数组成员本身，又是一个有两个成员的数组。这时，它可以一一对应地转为Map。这往往是数组转为JSON的逆操作。');
+    function JsonToMap(json){
+        return new Map(JSON.parse(json));
+    }
+    console.log(JsonToMap('[[true,1],[123,456],[null,null],[{"foo":3},["abcd"]]]'));//Map {true => 1, 123 => 456, null => null, Object {foo: 3} => ["abcd"]}
+</script>
 </body>
 </html>
