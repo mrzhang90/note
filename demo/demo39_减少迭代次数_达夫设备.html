@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>总耗时：7秒</h1>
+<p>达夫设备是一个循环体展开技术，在一次迭代中实际执行了多次迭代。</p>
+<p>达夫设备背后的基本理念是：每次循环中最多可8次执行，总数除以8，余数指出第一次循环多少次，然后整除倍数指出循环多少个8次</p>
+<script>
+    console.log(new Date().getMinutes(),new Date().getSeconds());//47 25
+    var l=50000;
+    var zc=Math.ceil(l/8);
+    var m=l%8
+    do{
+        switch(m){
+            case 0:
+                console.log(m);
+            case 7:
+                console.log(m);
+            case 6:
+                console.log(m);
+            case 5:
+                console.log(m);
+            case 4:
+                console.log(m);
+            case 3:
+                console.log(m);
+            case 2:
+                console.log(m);
+            case 1:
+                console.log(m);
+        }
+        m=0
+    }while(--zc);
+    console.log(new Date().getMinutes(),new Date().getSeconds());//47 32
+</script>
+</body>
+</html>

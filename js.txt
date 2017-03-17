@@ -337,6 +337,11 @@ toString()和toLocalString,在显示日期和时间时没有什么价值,仅在�
     toDateString
     toTimeString
     toLocalDateString
+兼容IOS5以上版本：
+    new Date('2013/10/21');
+    或者
+    var d = new Date(date);
+    d = d.getFullYear() > 0 ? d : new Date(Date.parse(date.replace(/-/g, "/")));
 
 Math
 1.number Math.ceil(x) 对数进行向上取整

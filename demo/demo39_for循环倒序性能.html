@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>总耗时：10秒</h1>
+<p>倒叙循环是编程语言中常用的性能优化方法，可以略微提高循环性能。</p>
+<p>利用非零数字自动转为true，而零等于false 将每个迭代中两次比较减少到一次可以大幅度提高循环速度，通过倒序循环和最小化属性查询，速度比正序提高50%-60%</p>
+<script>
+    console.log(new Date().getMinutes(),new Date().getSeconds());//49 20
+    for(var i=50000;i--;){
+        console.log(i);
+    }
+    console.log(new Date().getMinutes(),new Date().getSeconds());//49 30
+</script>
+</body>
+</html>

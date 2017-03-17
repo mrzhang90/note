@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>总耗时：5秒</h1>
+<p>此代码使用两个循环代替先前的一个，但它去掉了循环体中的switch表达式，速度更快</p>
+<script>
+    console.log(new Date().getMinutes(),new Date().getSeconds());//48 48
+    var l=50000;
+    var i=l%8
+    while(i){
+        console.log(i--);
+    }
+    i=Math.floor(l/8);
+    while(i--){
+        console.log(i);
+        console.log(i);
+        console.log(i);
+        console.log(i);
+        console.log(i);
+        console.log(i);
+        console.log(i);
+        console.log(i);
+    }
+    console.log(new Date().getMinutes(),new Date().getSeconds());//48 53
+</script>
+</body>
+</html>
