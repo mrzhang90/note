@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS的内建函数reduce</title>
+</head>
+<body>
+<h2>reduce函数，是ECMAScript5规范中出现的数组方法。在平时的工作中，相信大家使用的场景并不多，一般而言，可以通过reduce方法实现的逻辑都可以通过forEach方法来变相的实现，虽然不清楚浏览器的js引擎是如何在C＋＋层面实现这两个方法，但是可以肯定的是reduce方法肯定也存在数组的遍历，在具体实现细节上是否针对数组项的操作和存储做了什么优化，则不得而知。</h2>
+<script>
+    console.log('reduce方法有两个参数，第一个参数是一个callback，用于针对数组项的操作；第二个参数则是传入的初始值，这个初始值用于单个数组项的操作。需要注意的是，reduce方法返回值并不是数组，而是形如初始值的经过叠加处理后的操作。')
+    var items=[10,20,33];
+    var reducer=function add(aa,bb){return aa+bb;};
+    var total=items.reduce(reducer,0);
+    console.log(total);//63
+    console.log('前文中也提到，reduce函数的返回结果类型和传入的初始值相同，上个实例中初始值为number类型，同理，初始值也可为object类型。');
+    var reducer=function add(aa,bb){
+        aa.sum=aa.sum+bb;
+        return aa;
+    }
+    var total=items.reduce(reducer,{sum:0});
+    console.log(total.sum);//63
+    console.log('使用reduce方法可以完成多维度的数据叠加。如上例中的初始值{sum: 0}，这仅仅是一个维度的操作，如果涉及到了多个属性的叠加，如{sum: 0,totalInEuros: 0,totalInYen: 0}，则需要相应的逻辑进行处理。');
+    console.log('在下面的方法中，采用分而治之的方法，即将reduce函数第一个参数callback封装为一个数组，由数组中的每一个函数单独进行叠加并完成reduce操作。所有的一切通过一个manager函数来管理流程和传递初始参数。');
+    var fn={
+        a:function(s,item){
+            return s.price1+=item.price*0.1;
+        },
+        b:function(s,item){
+            return s.price2+=item.price*0.1;
+        }
+    }
+    var add=function(fn){
+        return function(s,item){
+//            console.log(s)//Object {price: 0}
+//            console.log(item)//,{"price":10}
+            return Object.keys(fn).reduce(function(ns,key){
+                fn[key](s,item)
+                return s;
+            },{})
+        }
+    }
+    var item=[{"price":10},{"price":20}];
+    var total=item.reduce(add(fn),{"price1":10,"price2":20});
+    console.log(total);
+</script>
+</body>
+</html>

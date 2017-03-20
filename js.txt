@@ -324,7 +324,7 @@ parseFloat:将字符串转化为数字，可以为（小数）浮点数。如果
 toString(),toLocalString,valueOf()
 ECMAScript5为数组定义了5个迭代方法:every(),filter(),forEach(),map(),some()
 ECMAScript5新增了两个归并数组的方法:
-    reduce():从数组的第一项遍历到最后一项,
+    reduce():从数组的第一项遍历到最后一项,该方法有两个参数，第一个参数是一个callback，用于针对数组项的操作；第二个参数则是传入的初始值，这个初始值用于单个数组项的操作。需要注意的是，reduce方法返回值并不是数组，而是形如初始值的经过叠加处理后的操作。
     reduceRight():从数组的最后一项遍历到第一项
 
 Date:
