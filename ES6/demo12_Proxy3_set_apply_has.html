@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    console.log('set方法用来拦截某个属性的赋值操作。' +
+        '假定Person对象有一个age属性，该属性应该是一个不大于200的整数，那么可以使用Proxy保证age的属性值符合要求。');
+    var validator={
+        set:function(obj,attr,val,proxy){
+            if(attr==='age'){
+                if(isNaN(val)){
+                    console.error('The age is not an integer');
+                    return false;
+                }
+                if(val>=200){
+                    console.error('The age seems invalid');
+                    return false;
+                }
+            }
+            obj[attr]=val;
+        }
+    }
+    var person=new Proxy({},validator);
+    person.age=100;
+    person.age=200;
+    person.age='不是数字';
+    person.age=NaN;
+    person.sex='男';
+    console.log(person);
+    console.log('\n有时，我们会在对象上面设置内部属性，属性名的第一个字符使用下划线开头，表示这些属性不应该被外部使用。结合get和set方法，就可以做到防止这些内部属性被外部读写。');
+    var hanlder={
+        get:function(target,key){
+            validate(key,'get')
+            return target[key]
+        },
+        set:function(target,key,value) {
+            validate(key,'set')
+            target[key]=value;
+            return true;
+        }
+    }
+    function validate(key,action){
+        if(key[0]==='_'){
+            console.error(`Invalid attempt to ${action} private "${key}" property`)
+        }
+    }
+    var proxy=new Proxy({},hanlder);
+    proxy._prop=1
+    console.log(proxy._prop)
+    console.log('上面代码中，只要读写的属性名的第一个字符是下划线，一律抛错，从而达到禁止读写内部属性的目的。');
+    console.log('\napply方法拦截函数的调用、call和apply操作。' +
+        'apply方法可以接受三个参数，分别是目标对象、目标对象的上下文对象（this）和目标对象的参数数组。');
+    var target=function(){return "I am the targer"};
+    var handler={
+        apply:function(){
+            return 'I am the proxy';
+        }
+    }
+    var p=new Proxy(target,handler);
+    console.log(p())//I am the proxy
+    console.log('上面代码中，变量p是 Proxy 的实例，当它作为函数调用时（p()），就会被apply方法拦截，返回一个字符串。');
+    var twice={
+        apply:function(target,ctx,args){
+            return Reflect.apply(...arguments);
+        }
+    }
+    function sum(left,right){
+        return left+right;
+    }
+    var proxy=new Proxy(sum,twice);
+    console.log(proxy(1,2));//3
+    console.log(proxy.call(null,5,6))//11
+    console.log(proxy.apply(null,[5,6]))//11
+    console.log('上面代码中，每当执行proxy函数（直接调用或call和apply调用），就会被apply方法拦截。' +
+        '另外，直接调用Reflect.apply方法，也会被拦截。')
+    console.log(Reflect.apply(proxy, null, [9, 10]))//19
+</script>
+</body>
+</html>

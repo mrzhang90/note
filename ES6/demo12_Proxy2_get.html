@@ -16,7 +16,6 @@
                 console.log(target[property])
                 return target[property];
             }else{
-//                throw new Error("Property "+property+" does not exist");
                 console.error("Property "+property+" does not exist");
             }
         }
@@ -64,6 +63,53 @@
     var pow=n=>n*n;
     var reverseInt=n=>n.toString().split("").reverse().join("") | 0;
     console.log(pipe(3).double.pow.reverseInt.get);
+
+    console.log('\n下面的例子则是利用get拦截，实现一个生成各种DOM节点的通用函数dom。');
+    var dom=new Proxy({},{
+        get:function(target,prop){
+            return function(attrs={},...children){
+                var el=document.createElement(prop);
+                for(var attr of Object.keys(attrs)){
+                    //console.log(attr)//href href target
+                    el.setAttribute(attr,attrs[attr]);
+                }
+                for(var child of children){
+                    if(typeof child==='string'){
+                        child=document.createTextNode(child)
+                    }
+                    //console.log(child)
+                    el.appendChild(child)
+                }
+                return el;
+            }
+        }
+    })
+    var el=dom.div({},'hello,my name is',dom.a({"href":'//aa.com'},'Mark'),dom.ul({},
+        dom.li({},dom.a({"href":"//bb.com","target":"_blank"},'aa')),
+        dom.li({},'bb'),
+        dom.li({},'cc')
+    ));
+    document.body.appendChild(el)
+
+    console.log('如果一个属性不可配置（configurable）和不可写（writable），则该属性不能被代理，通过 Proxy 对象访问该属性会报错。');
+    var target=Object.defineProperties({},{
+        foo:{
+            value:123,
+            writable:false,
+            configurable:false
+        }
+    })
+    var hanlder={
+        get:function(){
+            return 'abc'
+        }
+    }
+    var proxy=new Proxy(target,hanlder);
+    try{
+        console.log(proxy.foo)
+    }catch(ex){
+        console.error(ex);// TypeError: Invariant check failed
+    }
 </script>
 </body>
 </html>
