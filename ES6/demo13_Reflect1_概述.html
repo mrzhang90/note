@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    console.log('Reflect对象的设计目的有这样几个。');
+    console.log('1.将Object对象的一些明显属于语言内部的方法（比如Object.defineProperty），放到Reflect对象上。' +
+        '现阶段，某些方法同时在Object和Reflect对象上部署，未来的新方法将只部署在Reflect对象上。也就是说，从Reflect对象上可以拿到语言内部的方法。')
+    console.log('2.修改某些Object方法的返回结果，让其变得更合理。比如，Object.defineProperty(obj, name, desc)在无法定义属性时，' +
+        '会抛出一个错误，而Reflect.defineProperty(obj, name, desc)则会返回false');
+    console.log('3.让Object操作都变成函数行为。某些Object操作是命令式，' +
+        '比如name in obj和delete obj[name]，而Reflect.has(obj, name)和Reflect.deleteProperty(obj,name)让它们变成了函数行为')
+    console.log('4.Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法。' +
+        '这就让Proxy对象可以方便地调用对应的Reflect方法，完成默认行为，作为修改行为的基础。也就是说，' +
+        '不管Proxy怎么修改默认行为，你总可以在Reflect上获取默认行为')
+    var loggedObj=new Proxy({},{
+        get:function(target,name){
+            console.log('get',target,name);
+            return Reflect.get(target,name);
+        },
+        deleteProperty:function(target,name){
+            console.log('delete'+name);
+            return Reflect.deleteProperty(target,name);
+        },
+        has:function(target,name){
+            console.log('has'+name);
+            return Reflect.has(target,name);
+        }
+    })
+    console.log('上面代码中，每一个Proxy对象的拦截操作（get、delete、has），内部都调用对应的Reflect方法，保证原生行为能够正常执行。' +
+        '添加的工作，就是将每一个操作输出一行日志')
+    console.log('有了Reflect对象以后，很多操作会更易读。');
+    console.log(Function.prototype.apply.call(Math.floor,undefined,[1.75]))//1 老写法
+    console.log(Reflect.apply(Math.floor,undefined,[1,75]))//1 新写法
+
+    console.log('\n\n Reflect对象一共有13个静态方法。' +
+        'Reflect.apply(target,thisArg,args)' +
+        'Reflect.construct(target,args)' +
+        'Reflect.get(target,name,receiver)' +
+        'Reflect.set(target,name,value,receiver)' +
+        'Reflect.defineProperty(target,name,desc)' +
+        'Reflect.deleteProperty(target,name)' +
+        'Reflect.has(target,name)' +
+        'Reflect.ownKeys(target)' +
+        'Reflect.isExtensible(target)' +
+        'Reflect.preventExtensions(target)' +
+        'Reflect.getOwnPropertyDescriptor(target, name)' +
+        'Reflect.getPrototypeOf(target)' +
+        'Reflect.setPrototypeOf(target, prototype)');
+    console.log('Reflect.get方法查找并返回target对象的name属性，如果没有该属性，则返回undefined')
+    var myObject={
+        foo:1,bar:2,
+        get baz(){
+            return this.foo+this.bar;
+        }
+    }
+    console.log(Reflect.get(myObject,'foo'));
+    console.log(Reflect.get(myObject,'bar'));
+    console.log(Reflect.get(myObject,'baz'));
+    console.log('如果name属性部署了读取函数（getter），则读取函数的this绑定receiver');
+    var myObject={
+        foo:1,bar:2,
+        get baz(){
+            return this.foo+this.bar;
+        }
+    }
+    var myReceiverObject={
+        foo:4,bar:4
+    }
+    console.log(Reflect.get(myObject,'baz',myReceiverObject));//8
+    console.log('如果第一个参数不是对象，Reflect.get方法会报错');
+//    console.log(Reflect.get(1, 'foo'))//报错
+//    console.log(Reflect.get(false, 'foo'))//报错
+</script>
+</body>
+</html>

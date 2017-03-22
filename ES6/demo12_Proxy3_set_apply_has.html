@@ -30,7 +30,7 @@
     person.age=NaN;
     person.sex='男';
     console.log(person);
-    console.log('\n有时，我们会在对象上面设置内部属性，属性名的第一个字符使用下划线开头，表示这些属性不应该被外部使用。结合get和set方法，就可以做到防止这些内部属性被外部读写。');
+    console.log('\n 有时，我们会在对象上面设置内部属性，属性名的第一个字符使用下划线开头，表示这些属性不应该被外部使用。结合get和set方法，就可以做到防止这些内部属性被外部读写。');
     var hanlder={
         get:function(target,key){
             validate(key,'get')
@@ -51,7 +51,7 @@
     proxy._prop=1
     console.log(proxy._prop)
     console.log('上面代码中，只要读写的属性名的第一个字符是下划线，一律抛错，从而达到禁止读写内部属性的目的。');
-    console.log('\napply方法拦截函数的调用、call和apply操作。' +
+    console.log('\n apply方法拦截函数的调用、call和apply操作。' +
         'apply方法可以接受三个参数，分别是目标对象、目标对象的上下文对象（this）和目标对象的参数数组。');
     var target=function(){return "I am the targer"};
     var handler={
@@ -77,6 +77,54 @@
     console.log('上面代码中，每当执行proxy函数（直接调用或call和apply调用），就会被apply方法拦截。' +
         '另外，直接调用Reflect.apply方法，也会被拦截。')
     console.log(Reflect.apply(proxy, null, [9, 10]))//19
+
+    console.log('\n has方法用来拦截HasProperty操作，即判断对象是否具有某个属性时，这个方法会生效。典型的操作就是in运算符。');
+    console.log('下面的例子使用has方法隐藏某些属性，不被in运算符发现。');
+    var hanlder={
+        has:function(target,key){
+            if(key[0]==='_'){
+                return false;
+            }
+            return key in target
+        }
+    }
+    var target={'_proto':'foo','proto':'foo'};
+    var proxy=new Proxy(target,hanlder);
+    console.log('proto' in proxy)//true
+    console.log('_proto' in proxy)//false
+    console.log('如果原对象不可配置或者禁止扩展，这时has拦截会报错。');
+    var obj={a:10};
+    Object.preventExtensions(obj);//obj对象禁止扩展，结果使用has拦截就会报错
+    var hl={
+        has:function(target,prop){
+            return false;
+        }
+    }
+    var proxy=new Proxy(obj,hl);
+    //console.log('a' in proxy);// TypeError is thrown
+    console.log('值得注意的是，has方法拦截的是HasProperty操作，而不是HasOwnProperty操作，即has方法不判断一个属性是对象自身的属性，还是继承的属性。');
+    var stu1={'name':'小张','score':59};
+    var stu2={'name':'大王','score':99};
+    var hanld={
+        has:function(target,prop){
+            if(prop=='score' && target[prop]<60){
+                console.log(`${target['name']}不合格`);
+                return false;
+            }
+            return prop in target;
+        }
+    }
+    var p1=new Proxy(stu1,hanld);
+    var p2=new Proxy(stu2,hanld);
+    console.log('score' in p1);//false 小张不合格
+    console.log('score' in p2);//true
+    for(var v1 in p1){
+        console.log(v1+':'+p1[v1])//name:小张 score:59
+    }
+    for(var v1 in p2){
+        console.log(v1+':'+p2[v1])//name:大王 score:99
+    }
+    console.log('上面代码中，has拦截只对in循环生效，对for...in循环不生效，导致不符合要求的属性没有被排除在for...in循环之外。')
 </script>
 </body>
 </html>
