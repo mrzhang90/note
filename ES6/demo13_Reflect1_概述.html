@@ -57,9 +57,9 @@
             return this.foo+this.bar;
         }
     }
-    console.log(Reflect.get(myObject,'foo'));
-    console.log(Reflect.get(myObject,'bar'));
-    console.log(Reflect.get(myObject,'baz'));
+    console.log(Reflect.get(myObject,'foo'));//1
+    console.log(Reflect.get(myObject,'bar'));//2
+    console.log(Reflect.get(myObject,'baz'));//3
     console.log('如果name属性部署了读取函数（getter），则读取函数的this绑定receiver');
     var myObject={
         foo:1,bar:2,
@@ -74,6 +74,66 @@
     console.log('如果第一个参数不是对象，Reflect.get方法会报错');
 //    console.log(Reflect.get(1, 'foo'))//报错
 //    console.log(Reflect.get(false, 'foo'))//报错
+
+    console.log('\n Reflect.set方法设置target对象的name属性等于value');
+    var myObj={
+        foo:1,
+        set bar(value){
+            this.foo=value;
+        }
+    }
+    console.log(myObj.foo)//1
+    Reflect.set(myObj,'foo',2);
+    console.log(myObj.foo)//2
+    Reflect.set(myObj,'bar',3);
+    console.log(myObj.foo);//3
+    var newObj={
+        foo:0
+    }
+    Reflect.set(myObj,'foo',4,newObj);
+    console.log(myObj.foo);//3
+    console.log(newObj.foo);//4
+    console.log('PS:如果第一个参数不是对象，Reflect.set会报错。')
+    //Reflect.set(1,'foo',{});//报错
+
+    console.log('\n Reflect.has方法对应name in obj里面的in运算符');
+    var obj={
+        'foo':123
+    }
+    console.log('foo' in obj);//true
+    console.log(Reflect.has(obj,'foo'));//true
+
+    console.log('\n Reflect.deleteProperty方法等同于delete obj[name]，用于删除对象的属性');
+    var obj={'foo':123,'bar':'abc'};
+    delete obj.foo;
+    Reflect.deleteProperty(obj,'bar')//该方法返回一个布尔值。如果删除成功，或者被删除的属性不存在，返回true；删除失败，被删除的属性依然存在，返回false。
+    console.log(obj);
+
+    console.log('\n Reflect.construct方法等同于new target(...args)，这提供了一种不使用new，来调用构造函数的方法');
+    function Gretting(name){
+        this.name=name;
+    }
+    console.log(new Gretting('aa'));
+    console.log(Reflect.construct(Gretting,['bb']))
+
+    console.log('\n Reflect.getPrototypeOf方法用于读取对象的__proto__属性，对应Object.getPrototypeOf(obj)');
+    var obj=new Function();
+    console.log(Object.getPrototypeOf(obj)==Function.prototype);
+    console.log(Reflect.getPrototypeOf(obj)==Function.prototype);
+    console.log('Reflect.getPrototypeOf和Object.getPrototypeOf的一个区别是，如果参数不是对象，Object.getPrototypeOf会将这个参数转为对象，然后再运行，而Reflect.getPrototypeOf会报错');
+    console.log(Object.getPrototypeOf(1));//Number {[[PrimitiveValue]]: 0}
+    //console.log(Reflect.getPrototypeOf(1))//报错
+
+    console.log('\n Reflect.setPrototypeOf方法用于设置对象的__proto__属性，返回第一个参数对象，对应Object.setPrototypeOf(obj, newProto)');
+    var fn=function(){
+        return 2;
+    };
+    var other=function(){
+        return 1;
+    };
+    console.log(other.prototype)
+    Object.setPrototypeOf(fn,other.prototype);
+    console.log(fn)
 </script>
 </body>
 </html>
