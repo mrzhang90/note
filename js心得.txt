@@ -60,7 +60,18 @@
     var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
     if (parseInt(v[1], 10)>=7) {// iOS >=7
     }
-  }  
+  }
+4.序列化2个参数，传多组数据给一个接口
+var dataArr=[];
+check.each(function(){
+    dataArr.push($.param({
+        'a':$(this).attr('data-a'),
+        'b':$(this).attr('data-b')
+    }))
+})
+dataArr.join(',')//a=1&b=2,a=1&b=3
+如果是一组数据的话，就简单了，//a=1&a=2&a=3
+
 动态元素:
 appendChild是动态控制元素,把ul的节点追加到ul内,相当于替换,那么因为每次改变指针,所以位置发生改变如下:
 for(var i= 0,len=li.length;i<len;i++){
