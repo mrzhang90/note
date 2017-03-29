@@ -29,6 +29,12 @@
             })
         }
     }
+1-1.传递多组参数(data传递利用上面的file_post方法):
+    var data=new FormData();//传递多组数组给后端，后端要支持接受字符串数组
+    $('input['type=checkbox']').each(function(){
+        data.append('campusId',$(this).attr('data-campusId'))
+        data.append('detailId',$(this).attr('data-detailId'))
+    })
 2.设置cookie
     function setCookie(c_name,value,expiredays)
     {
@@ -61,16 +67,6 @@
     if (parseInt(v[1], 10)>=7) {// iOS >=7
     }
   }
-4.序列化2个参数，传多组数据给一个接口
-var dataArr=[];
-check.each(function(){
-    dataArr.push($.param({
-        'a':$(this).attr('data-a'),
-        'b':$(this).attr('data-b')
-    }))
-})
-dataArr.join(',')//a=1&b=2,a=1&b=3
-如果是一组数据的话，就简单了，//a=1&a=2&a=3
 
 动态元素:
 appendChild是动态控制元素,把ul的节点追加到ul内,相当于替换,那么因为每次改变指针,所以位置发生改变如下:

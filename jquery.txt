@@ -299,7 +299,12 @@ ajax的全局事件:
         $(":checkbox,:radio").serializeArray()
     $.param() :它是serialize()的核心,用来对一个数组或对象key/value进行序列化
         $.param({a:1,b:2});//a=1&a=2&a=3
-    传递多组参数,详情参考《js心得》:array.push($.param({'a':element.attr('data-a'),'b':element.attr('data-b')})).join(',')////a=1&b=2,a=1&b=3
+    传递多组参数,详情参考《js心得》:
+        var data=new FormData();//传递多组数组给后端，后端要支持接受字符串数组
+        $('input['type=checkbox']').each(function(){
+            data.append('campusId',$(this).attr('data-campusId'))
+            data.append('detailId',$(this).attr('data-detailId'))
+        })
 
 CSS-DOM操作:
     css(name,value): 读取和设置style对象的各种属性,也可以用json,例如:css({'color':'red','backgroundColor':'blue'});
