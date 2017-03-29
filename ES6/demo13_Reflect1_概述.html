@@ -125,19 +125,76 @@
     //console.log(Reflect.getPrototypeOf(1))//报错
 
     console.log('\n Reflect.setPrototypeOf方法用于设置对象的__proto__属性，返回第一个参数对象，对应Object.setPrototypeOf(obj, newProto)');
-    var fn=function(){
-        this.b=2
-    };
-    var fn2=function(){
-        this.a=1
+    var fn={aa:1}
+    var fn2={bb:2}
+    //Object.setPrototypeOf(fn,fn2)
+    //等同于
+    Reflect.setPrototypeOf(fn,fn2);
+    console.log(fn)//Object {aa: 1,__proto__:{bb:2}}
+    console.log('如果第一个参数不是对象，Object.setPrototypeOf会返回第一个参数本身，而Reflect.setPrototypeOf会报错');
+    console.log(Object.setPrototypeOf(2,{}))//2
+    //console.log(Reflect.setPrototypeOf(3,{}))//报错
+    console.log('如果第一个参数是undefined或null，Object.setPrototypeOf和Reflect.setPrototypeOf都会报错');
+    //console.log(Object.setPrototypeOf(null,{}));//报错
+    //console.log(Reflect.setPrototypeOf(null,{}))//报错
+
+    console.log('\n Reflect.apply方法等同于Function.prototype.apply.call(func, thisArg, args)，用于绑定this对象后执行给定函数');
+    var ages=[11,22,3,4,5];
+    var min=Math.min.apply(Math,ages);
+    var max=Math.max.apply(Math,ages);
+    console.log(min,max)//3 22
+    var type=Object.prototype.toString.call(min);
+    console.log(type)
+
+    var min=Reflect.apply(Math.min,Math,ages);
+    var max=Reflect.apply(Math.max,Math,ages);
+    console.log(min,max)//3 22
+    //var type=Reflect.apply(Object.prototype.toString,min);//报错
+
+    console.log('\n Reflect.defineProperty方法基本等同于Object.defineProperty，用来为对象定义属性。未来，后者会被逐渐废除，请从现在开始就使用Reflect.defineProperty代替它');
+    console.log('如果Reflect.defineProperty的第一个参数不是对象，就会抛出错误，比如Reflect.defineProperty(1, foo)。')
+    function myDate(){
     }
-    fn2.prototype={
-        tmp:function(){
-            return 'hello world';
-        }
-    }
-    Object.setPrototypeOf(fn,fn2.prototype);
-    console.log(fn.prototype)
+//    Object.defineProperty(myDate, 'now', {
+//            value: () => new Date()
+//    });
+    Reflect.defineProperty(myDate,'now',{
+        value:()=>new Date()
+    })
+    console.log(myDate.now());//Wed Mar 29 2017 18:27:49 GMT+0800 (中国标准时间)
+
+    console.log('Reflect.getOwnPropertyDescriptor基本等同于Object.getOwnPropertyDescriptor，用于得到指定属性的描述对象，将来会替代掉后者');
+    console.log('Reflect.getOwnPropertyDescriptor和Object.getOwnPropertyDescriptor的一个区别是，如果第一个参数不是对象，Object.getOwnPropertyDescriptor(1,foo)不报错，返回undefined，而Reflect.getOwnPropertyDescriptor(1,foo)会抛出错误，表示参数非法')
+    var myObj={};
+    Object.defineProperty(myObj,'hidden',{
+        value:true,
+        enumerabl:false
+    })
+    var the=Object.getOwnPropertyDescriptor(myObj,'hidden');
+    console.log(the);//Object {value: true, writable: false, enumerable: false, configurable: false}
+    var the=Reflect.getOwnPropertyDescriptor(myObj,'hidden');
+    console.log(the);//Object {value: true, writable: false, enumerable: false, configurable: false}
+
+    console.log('\n Reflect.isExtensible方法对应Object.isExtensible，返回一个布尔值，表示当前对象是否可扩展');
+    console.log('如果参数不是对象，Object.isExtensible会返回false，因为非对象本来就是不可扩展的，而Reflect.isExtensible会报错');
+    var obj={};
+    console.log(Object.isExtensible(obj));
+    console.log(Reflect.isExtensible(obj))
+    console.log(Object.isExtensible(1)) // false
+    //Reflect.isExtensible(1) // 报错
+
+    console.log('\n Reflect.preventExtensions对应Object.preventExtensions方法，用于让一个对象变为不可扩展。它返回一个布尔值，表示是否操作成功');
+    console.log('如果参数不是对象，Object.isExtensible在 ES5 环境报错，在 ES6 环境返回这个参数，而Reflect.preventExtensions会报错');
+    console.log(Object.preventExtensions(obj));//Object {}
+    console.log(Reflect.preventExtensions(obj))//true
+    console.log(Object.preventExtensions(1));//1
+    //console.log(Reflect.preventExtensions(1))//报错
+
+    console.log('\n Reflect.ownKeys方法用于返回对象的所有属性，基本等同于Object.getOwnPropertyNames与Object.getOwnPropertySymbols之和');
+    var obj={ foo:1,bar:2,[Symbol.for('baz')]:3,[Symbol.for('bing')]:4};
+    console.log(Object.getOwnPropertyNames(obj))//["foo", "bar"]
+    console.log(Object.getOwnPropertySymbols(obj));//[Symbol(baz), Symbol(bing)]
+    console.log(Reflect.ownKeys(obj));//["foo", "bar", Symbol(baz), Symbol(bing)]
 </script>
 </body>
 </html>

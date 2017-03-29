@@ -21,11 +21,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="demo13_Reflect1_概述.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ES6/demo13_Reflect1_概述.html">
+      <file leaf-file-name="demo13_Reflect2_实现观察者模式.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ES6/demo13_Reflect2_实现观察者模式.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="657">
-              <caret line="128" column="16" lean-forward="false" selection-start-line="128" selection-start-column="16" selection-end-line="128" selection-end-column="16" />
+            <state relative-caret-position="304">
+              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -42,10 +42,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.css</find>
-      <find>.do</find>
-      <find>data</find>
-      <find>entries</find>
       <find>obj4</find>
       <find>source</find>
       <find>target</find>
@@ -72,6 +68,10 @@
       <find>console</find>
       <find>'a',</find>
       <find>myObject</find>
+      <find>Reflect</find>
+      <find>console.log(the);//Object {value: true, writable: false, enumerable: false, configurable: false}</find>
+      <find>obj</find>
+      <find>queuedObservers</find>
     </findStrings>
     <replaceStrings>
       <replace>i</replace>
@@ -123,7 +123,9 @@
         <option value="$PROJECT_DIR$/ES6/demo12_Proxy4_方法.html" />
         <option value="$PROJECT_DIR$/ES6/demo12_Proxy5_this问题和web服务.html" />
         <option value="$PROJECT_DIR$/demo/demo41_百度地图API.html" />
+        <option value="$PROJECT_DIR$/移动端问题解决方案.txt" />
         <option value="$PROJECT_DIR$/ES6/demo13_Reflect1_概述.html" />
+        <option value="$PROJECT_DIR$/ES6/demo13_Reflect2_实现观察者模式.html" />
       </list>
     </option>
   </component>
@@ -297,18 +299,18 @@
       <workItem from="1490147412353" duration="21691000" />
       <workItem from="1490320439257" duration="753000" />
       <workItem from="1490691825921" duration="4145000" />
-      <workItem from="1490758427346" duration="530000" />
+      <workItem from="1490758427346" duration="11472000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="183819000" />
+    <option name="totallyTimeSpent" value="194761000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="0" width="1290" height="1056" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20442571" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11421725" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -337,21 +339,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ES6/demo10_Symbol2_内置的方法.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ES6/demo10_Symbol.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ES6/demo10_Symbol.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -668,13 +655,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="23" column="47" lean-forward="false" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/移动端问题解决方案.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8518">
+          <caret line="21" column="6" lean-forward="true" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ES6/demo13_Reflect1_概述.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="657">
-          <caret line="128" column="16" lean-forward="false" selection-start-line="128" selection-start-column="16" selection-end-line="128" selection-end-column="16" />
+        <state relative-caret-position="681">
+          <caret line="196" column="81" lean-forward="false" selection-start-line="196" selection-start-column="81" selection-end-line="196" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ES6/demo13_Reflect2_实现观察者模式.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
       </provider>

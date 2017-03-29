@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const person = observable({
+        name: '张三',
+        age: 20
+    });
+
+    function print() {
+        console.log(`${person.name}, ${person.age}`)
+    }
+
+    observe(print);
+    person.name = '李四';
+    console.log(person)
+</script>
+</body>
+</html>
