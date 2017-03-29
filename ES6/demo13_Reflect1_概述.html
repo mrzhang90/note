@@ -126,14 +126,18 @@
 
     console.log('\n Reflect.setPrototypeOf方法用于设置对象的__proto__属性，返回第一个参数对象，对应Object.setPrototypeOf(obj, newProto)');
     var fn=function(){
-        return 2;
+        this.b=2
     };
-    var other=function(){
-        return 1;
-    };
-    console.log(other.prototype)
-    Object.setPrototypeOf(fn,other.prototype);
-    console.log(fn)
+    var fn2=function(){
+        this.a=1
+    }
+    fn2.prototype={
+        tmp:function(){
+            return 'hello world';
+        }
+    }
+    Object.setPrototypeOf(fn,fn2.prototype);
+    console.log(fn.prototype)
 </script>
 </body>
 </html>
