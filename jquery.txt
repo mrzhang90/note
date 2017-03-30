@@ -17,8 +17,8 @@
         写法:$('button').hover(function(){},function(){})
     事件冒泡:
         停止事件冒泡:ev.stopPropagation(),用来阻止事件中其他对象的事件处理函数,js原生的stopPropagation()方法在IE中无效,jquery封装做了兼容
-        阻止默认行为:ev.preventDefault(),js原生的方法在IE中无效,jquery封装做了兼容
-        同时调用stopPropagation和preventDefault,可以简写成return false;
+        阻止默认行为:ev.preventDefault(),阻止事件的默认行为（比如点击链接，会自动打开新页面;js原生的方法在IE中无效,jquery封装做了兼容
+        同时调用stopPropagation和preventDefault,可以简写成return false;停止事件向上层元素冒泡
     事件捕获:jquery不支持捕获,可直接用js原生
     ev.type:获取事件类型 //例如:输出click
     ev.target():获取触发事件的元素 //例如:ev.target.href,输出a元素的href属性值
@@ -35,7 +35,7 @@
     one(type,[data],fn) :每个对象上,事件处理函数只会被执行一次;使用方法与bind()相同
 
 模拟操作:
-    模拟点击: elem.trigger('click') 等价于 elem.click()
+    模拟点击: elem.trigger('click') 等价于 elem.click()//自动触发时间
     自定义事件: 1.elem.bind('myClick',fn); 2.elem.tigger('myClick');
     传递数据: trigger(type[,data]) :参数1.事件的类型;参数2.事件处理函数的附加数据,以数组形式.
     默认操作:elem.trigger('focus') :不仅会触发elem的focus事件,也会是elem本身得到焦点(这是浏览器的默认操作)
@@ -59,7 +59,7 @@
        6.animate()内置了一种特定样式属性的简写形式animate({height:"toggle",width:"show",opacity:"hide"},400) 等价于show(400),fadeIn(400)
        7.做轮播图是,从最后一张跳到第一张 elem.animate({left:'0px'},"normal");这里用了normal,是为了快速跳到第一张
        8.滚动条滚动到指定的位置: animate({scrollTop:"-=50px"},500)
-    stop([clearQueue][,gotoEnd]):停止元素动画,都是可选参数,bool值,参数1.清空未执行的动画队列;参数2.直接将正在执行的动画直接到结束时刻的状态
+    stop([clearQueue][,gotoEnd]):等同于delay(),停止或延缓特效动画,都是可选参数,bool值,参数1.清空未执行的动画队列;参数2.直接将正在执行的动画直接到结束时刻的状态
     PS:1.elem.stop().animate() :当鼠标hover元素,如果鼠标划入速度过快,可能会导致动画错乱,那么加入stop会结束当前正在进行的动画,并立即执行队列中的下一个动画
        2.elem.stop(true).animate().animate() :stop会结束当前的动画,并继续第二个的animate,那么还会错乱,这时候加上stop的第一个参数,会把当前元素尚未执行的动画队列全部清空
 
@@ -128,6 +128,7 @@
     $('li:first')
     $('.div1 > li > span')
 方法:
+    $.fx.off如果设置为true，则关闭所有网页特效
     $('ul li:gt(2):not(:last)')
     is()
         $category.is(".on"),判断元素是否存在on的className
@@ -246,7 +247,7 @@ ajax
             5.statusText属性:仅当readyStatus属性值3或4时才可用
             6.onreadystatechange属性:每当readyState属性发生改变时,就会触发onreadystatechange事件,一般都通过该事件来触发回传处理函数
             7.open(method,uri,async,username,password):
-                参数1.method必须提供,用于指定用来发送请求的HTTP方法(GET,POST,PUT,DELETE或HEAD).按照规范,该参数要大写
+                参数1.method必须提供,用于指定用来发送请求的HTTP方法(GET,POST,PUT,stopETE或HEAD).按照规范,该参数要大写
                 参数2.uri用于指定XMLHttpRequest对象请求发送到得服务器相应的URI,该地址自动解析成绝对地址
                 参数3.async用户指定是否请求是异步,默认为true
                 参数4.如果需要服务器验证用户的情况,那么可以设置username和password这两个参数

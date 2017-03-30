@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    console.log('Promise是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理');
+    console.log('Promise对象代表一个异步操作，有三种状态：Pending（进行中）、Resolved（已完成，又称 Fulfilled）和Rejected（已失败）');
+    console.log('Promise构造函数接受一个函数作为参数，该函数的两个参数分别是resolve和reject。它们是两个函数，由JavaScript引擎提供，不用自己部署');
+    console.log('Promise实例具有then方法，所以then方法是定义在对象Promise.prototype上的')
+    console.log('可以发现reject方法的作用，等同于抛出错误。Promise状态已经变成Resolved，再抛出错误是无效的');
+    var promise=new Promise(function(resolve,reject){//实例
+        //code
+        if(resolve){/*异步操作成功*/
+            resolve('value');
+        }else{
+            reject('error');
+        }
+    });
+    console.log('then方法可以接受两个回调函数作为参数。第一个回调函数是Promise对象的状态变为Resolved时调用，第二个回调函数是Promise对象的状态变为Reject时调用。其中，第二个函数是可选的，不一定要提供');
+    promise.then(function(value) {//实例
+        // success
+    }, function(error) {
+        // failure
+    })
+
+    console.log('\n 下面imeout方法返回一个Promise实例，表示一段时间以后才会发生的结果。' +
+        '过了指定的时间（ms参数）以后，Promise实例的状态变为Resolved，就会触发then方法绑定的回调函数')
+    function timeout(ms){
+        return new Promise((resolve,reject)=>{
+            setTimeout(resolve,ms,'done')
+    })
+    }
+    timeout(100).then((value)=>{
+        console.log(value);
+    })
+
+    console.log('\n 下面实例，Promise新建后就会立即执行')
+    var promise=new Promise(function(resolve,reject){
+        console.log('Pending');
+        resolve();
+    })
+    promise.then(function(){
+        console.log('resolve')
+    })
+    console.log('Hi promise')
+
+    console.log('\n 下面是异步加载图片的例子');
+    function loadImageAsync(url){
+        return new Promise(function(resolve,reject){
+            var img=new Image();
+            img.onload=function(){
+                resolve(img);
+            }
+            img.onerror=function(){
+                reject(new Error('Could not load image at '+url));
+            }
+            img.src=url;
+        })
+    }
+    loadImageAsync('https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1246824636,1580964257&fm=117&gp=0.jpg').then(function(img){
+        console.log(img)
+        document.body.appendChild(img)
+    },function(error){
+        console.log(error)
+    })
+
+    console.log('\n 下面是Promise对象实现的Ajax操作的例子');
+    var getJSON=function(url){
+        return new Promise(function(resolve,reject){
+            var xhr=new XMLHttpRequest();
+            xhr.open('GET',url);
+            xhr.onreadystatechange=hanlder;
+            xhr.responseType="json";
+            xhr.setRequestHeader('Accept','application/json');
+            xhr.send();
+            function hanlder(){
+                if(this.readyState!==4){
+                    return;
+                }
+                if(this.status===200){
+                    resolve(this.response);
+                }else{
+                    reject(new Error(this.statusText));
+                }
+            }
+        })
+    }
+    //写法1
+    getJSON('/note/data.json').then(function(json){
+        console.log("Content1:"+JSON.stringify(json));
+    },function(error){
+        console.log('出错了'+error);
+    })
+    //写法2-then的链式操作
+    getJSON('/note/data.json').
+        then(function(json){console.log("Content2:"+JSON.stringify(json));}).
+        then(function(error){console.log('出错了'+error);})
+    //写法3-catch的写法,建议的写法，理由：即可代替reject抛出的错，同时可以接受resolve中的错误
+    getJSON('/note/data.json').then(function(json){console.log("Content3:"+JSON.stringify(json));}).catch(function(error){console.log('error:'+error)});
+
+    console.log('\n p1和p2都是Promise的实例，但是p2的resolve方法将p1作为参数，即一个异步操作的结果是返回另一个异步操作')
+    var p1=new Promise(function(resolve,reject){
+        setTimeout(resolve(new Error('fail')),3000);
+    })
+    var p2=new Promise(function(resolve,reject){
+        setTimeout(resolve(p1),1000)
+    })
+    p2.then(result=>console.log(result)).catch(error=>console.log(error))
+</script>
+</body>
+</html>
