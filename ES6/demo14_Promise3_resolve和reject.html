@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    console.log('\n Promise.resolve将现有对象转为Promise对象')
+    //将jQuery生成的deferred对象，转为一个新的Promise对象
+    //var jsPromise = Promise.resolve($.ajax('/whatever.json'));
+    console.log(Promise.resolve('foo'))//Promise {[[PromiseStatus]]: "resolved", [[PromiseValue]]: "foo"}
+    //等同于
+    console.log(new Promise(resolve=>resolve('foo')))//Promise {[[PromiseStatus]]: "resolved", [[PromiseValue]]: "foo"}
+
+    console.log('下面代码，Promise.resolve将obj转化为Promise对象，从而立即执行最后的then方法')
+    var obj={
+        then:function(resolve,reject){
+            resolve(42)
+        }
+    };
+    var p=Promise.resolve(obj);
+    p.then(function(value){
+        console.log(value)//42
+    })
+
+    console.log('下面代码，由于字符串hello不属于异步操作(判断方法是它不具有then方法的对象)，返回Promise实例状态从一生成就是Resolve,所以回调函数立即执行')
+    var p=Promise.resolve('hello');
+    p.then(function(v){
+        console.log(v);//hello
+    })
+
+    console.log('下面代码，setTimeout(fn,0)在下一轮“事件循环”开始时执行，Promise.resolve在本轮“事件循环”结束时执行，console.log()则是立即执行')
+    setTimeout(function(){console.log('three')},0)
+    Promise.resolve().then(function(){console.log('two')});
+    console.log('one')
+    //one two three
+
+    console.log('\n Promise.reject(reason)方法也会返回一个新的 Promise 实例，该实例的状态为rejected');
+    var p1=Promise.reject('出错了');
+    var p2=new Promise((resolve,reject)=>reject('又出错了'))
+    p1.then(null,function(s){console.log(new Error(s));})//Error: 出错了(…)
+    //等同于
+    p2.catch(function(error){console.error(error)})//又出错了
+
+    console.log('下面代码，Promise.reject执行后，后台的catch方法的参数抛出的不是“出错了”字符串，而是obj1对象')
+    var obj1={
+        then:function(resolve,reject){
+            reject('又又出错了')
+        }
+    }
+    Promise.reject(obj1).catch(e=>console.log(e===obj1))//true
+</script>
+</body>
+</html>

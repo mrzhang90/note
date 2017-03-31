@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var asyncFunc=function(){
+        return new Promise(function(resolve,reject){
+            resolve('asyncFunc ok')
+        })
+    }
+    var f1=function(r){
+        return new Promise(function(resolve,reject){
+            reject('f1 error')
+        })
+    }
+    var r1=function(e){
+        return new Promise(function(resolve,rejevt){
+            resolve('r1 ok')
+        })
+    }
+    var e1=function(){
+        return new Promise(function(resolve,reject){
+            reject('e1 error')
+        })
+    }
+    console.log('Promise对象的回调链，不管以then方法或catch方法结尾，要是最后一个方法抛出错误，都有可能无法捕捉到（因为Promise内部的错误不会冒泡到全局）。' +
+        '因此，我们可以提供一个done方法，总是处于回调链的尾端，保证抛出任何可能出现的错误')
+    Promise.prototype.done=function(onFullcted,onRejected){
+        this.then(onFullcted,onRejected).catch(function(e){
+            setTimeout(()=>console.log(e),0)
+        })
+    }
+    //asyncFunc().then(f1).catch(r1).then(e1).catch(e=>console.log(e));//e1 error
+    //等同于
+    asyncFunc().then(f1).catch(r1).then(e1).done();//e1 error
+
+    console.log('\n finally方法用于指定不管Promise对象最后状态如何，都会执行的操作。它与done方法的最大区别，它接受一个普通的回调函数作为参数，该函数不管怎样都必须执行');
+    var server=function(){
+        return new Promise(function(resolve,reject){
+            resolve('server ok'),
+            reject('server error')
+        })
+    }
+    var stop=function(){
+       return 'stop'
+    }
+    Promise.prototype.finally=function(callback){
+        var P=this.constructor;
+        return this.then(
+            r=>P.resolve(callback()).then((r)=>console.log(r)),
+            e=>P.reject(callback()).catch((e)=>console.error(e))
+        )
+    }
+    server().then(r=>console.log(r)).finally(stop)//server ok stop | server error stop
+
+    console.log('\n 加载图片')
+    var preladImage=function(path){
+        return new Promise(function(resolve,reject){
+            var img=new Image();
+            img.onload=resolve(img);
+            img.onerror=reject('onLoad error');
+            img.src=path;
+        })
+    }
+    preladImage('/note/demo/images/1_o_0.jpg').then(img=>document.body.appendChild(img)).catch(e=>console.log(e));
+</script>
+</body>
+</html>

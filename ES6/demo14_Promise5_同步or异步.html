@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var f=()=>console.log('now');
+    Promise.resolve().then(f)
+    console.log('next')
+    //next now
+    console.log('上面代码中，函数f是同步的，但是用Promise包装后，就变成异步执行了')
+    console.log(Promise.try(f))
+</script>
+</body>
+</html>
