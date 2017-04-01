@@ -20,7 +20,36 @@
         width: 800,
         height: 800,
         autoOpen: true,
-        position: {my: "top", at: "center top+0px ", of: window}
+        position: {my: "top", at: "center top+0px ", of: window},
+        buttons: [ 
+            {
+                text: "取消",
+                "class" : "btn btn-minier",
+                click: function() {
+                    $( this ).dialog( "close" ); 
+                } 
+            },
+            {
+                text: "确定",
+                "class" : "btn btn-primary btn-minier",
+                click: function() {
+                    $("#addImgForm").submit();
+                }
+            }
+        ]
    	});
 	dialog.dialog("open");
 	dialog.dialog("close");
+3.上传
+$("input[type=file]").ace_file_input({
+    style: 'well',
+    btn_choose: "图片",
+    btn_change: null,
+    no_icon: 'ace-icon fa fa-cloud-upload',
+    droppable: true,
+    thumbnail: 'small'
+    ,
+    preview_error : function(filename, error_code) {
+    }
+
+}).on('change', function(){});

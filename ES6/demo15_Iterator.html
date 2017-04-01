@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    console.log("javascript四种数据集合：数组、对象、Map和Set")
+    console.log('遍历器(Iterator)是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署Iterator接口，就可以完成遍历')
+    console.log('Iterator作用有三个：' +
+        '1.为各种数据结构，提供一个统一的、简便的访问接口' +
+        '2.使得数据结构的成员能够按某种次序排列' +
+        '3.Interator接口主要供for...of消费')
+    function makeIterator(array){
+        var nextIndex=0;
+        return {
+            next:function(){
+                return nextIndex<array.length?
+                    {value:array[nextIndex++],key:nextIndex}:
+                    {value:undefined,key:nextIndex}
+            }
+        }
+    }
+    var it=makeIterator(['a','b']);
+    console.log(it.next())//Object {value: "a", key: 1}
+    console.log(it.next());//Object {value: "b", key: 1}
+    console.log(it.next());//Object {value: undefined, key: 2}
+</script>
+</body>
+</html>
