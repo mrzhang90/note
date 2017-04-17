@@ -13,19 +13,93 @@
         '2.使得数据结构的成员能够按某种次序排列' +
         '3.Interator接口主要供for...of消费')
     function makeIterator(array){
-        var nextIndex=0;
+        var index=0;
         return {
             next:function(){
-                return nextIndex<array.length?
-                    {value:array[nextIndex++],key:nextIndex}:
-                    {value:undefined,key:nextIndex}
+                return index<array.length?
+                    {value:array[index++],index:index}:
+                    {value:undefined,index:index}
             }
         }
     }
-    var it=makeIterator(['a','b']);
-    console.log(it.next())//Object {value: "a", key: 1}
-    console.log(it.next());//Object {value: "b", key: 1}
-    console.log(it.next());//Object {value: undefined, key: 2}
+    console.log(makeIterator())
+    var arr=makeIterator(['a','b']);
+    console.log(arr.next());//Object {value: "a", index: 1}
+    console.log(arr.next());//Object {value: "b", index: 2}
+    console.log(arr.next());//Object {value: undefined, index: 2}
+
+    console.log('\n ES6规定，默认的Iterator接口部署在数据结构的Symbol.iterator属性，或者说，一个数据结构只要具有Symbol.iterator属性，就可以认为是“可遍历的”');
+    console.log('Symbol.iterator属性本身是一个函数，就是当前数据结构默认的遍历器生成函数');
+    //实例
+    var obj={
+        [Symbol.iterator]:function(){
+            return {
+                next:function(){
+                    return {value:1,done:true}
+                }
+            }
+        }
+    }
+    console.log('上面代码中，对象obj是可遍历的（iterable），因为具有Symbol.iterator属性。执行这个属性，会返回一个遍历器对象');
+    console.log('\n 在ES6中，有三类数据结构原生具备Iterator接口：数组、某些类似数组的对象、Set和Map结构')
+    var arr=['a','b','c'];
+    var iter=arr[Symbol.iterator]();
+    console.log(iter.next())
+    console.log(iter.next())
+    console.log(iter.next())
+    console.log('上面代码中，变量arr是一个数组，原生就具有遍历器接口，部署在arr的Symbol.iterator属性上面。所以，调用这个属性，就得到遍历器对象')
+    console.log('一个对象如果要有可被for...of循环调用的Iterator接口，就必须在Symbol.iterator的属性上部署遍历器生成方法（原型链上的对象具有该方法也可）')
+    class RangeIterator{
+        constructor(start,stop){
+            this.value=start;
+            this.stop=stop;
+        }
+        [Symbol.iterator](){return this;}
+        next(){
+            var value=this.value;
+            if(value<this.stop){
+                this.value++;
+                return {done:false,value:value}//done:false表示遍历为结束，这句可以省略
+            }
+            return {done:true}//表示遍历可以结束
+        }
+    }
+    var range=function(start,stop){
+        return new RangeIterator(start,stop);
+    }
+    for(var value of range(0,3)){
+        console.log(value)
+    }
+
+    console.log('\n 下面是通过遍历器实现指针结构的例子');
+    function Obj(value){
+        this.value=value;
+        this.next=null;
+    }
+    Obj.prototype[Symbol.iterator]=function(){
+        var iterator={next:next};
+        var current=this;
+        function next(){
+            if(current){
+                var value=current.value;
+                current=current.next;
+                return {done:false,value:value};
+            }else{
+                return {done:true}
+            }
+        }
+        return iterator;
+    }
+    var one=new Obj(1)
+    var two=new Obj(2)
+    var three=new Obj(3)
+    one.next=two
+    two.next=three
+
+    console.log(one)
+    for(var value of one){
+        console.log(value)
+    }
 </script>
 </body>
 </html>

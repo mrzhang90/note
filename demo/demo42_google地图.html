@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<!-- <script src="http://ditu.google.com/maps?file=api&hl=zh-CN&v=2&key=AIzaSyCZurGBCQNi2nGPubR-_gjs_x2WefTrzYs" type="text/javascript"></script> -->
+	<script src="http://ditu.google.com/maps?file=api&hl=en&v=2&key=AIzaSyCZurGBCQNi2nGPubR-_gjs_x2WefTrzYs" type="text/javascript"></script>
+</head>
+<body>
+<div class="contactmap" style="padding-top:20px;width:300px;height:300px;" id="l-map"></div>
+<p>
+【地址取经纬度】
+http://maps.google.cn/maps/api/geocode/json?address=地址
+例如http://maps.google.cn/maps/api/geocode/json?address=beijing
+
+【经纬度取地址】
+http://maps.google.cn/maps/api/geocode/json?latlng=纬度,经度
+例如http://maps.google.cn/maps/api/geocode/json?latlng=40.714224,-73.961452
+</p>
+<script type="text/javascript">
+    var map= new GMap2(document.getElementById("l-map"),{size:GSize(300,200), backgroundColor:"#FF0000"});
+    map.addControl(new GSmallMapControl());//添加一个地图左侧的缩放按钮控件
+    map.addControl(new GMapTypeControl());//添加地图类型控件包括普通地图、卫星地图、混合地图
+    var point=new GLatLng(39.990719,116.409764);
+    map.setCenter(point, 17); //实例化一个维度为37.4419、经度为 -122.1419的经纬度实例，然后设置地图的中心。地图缩放值为13
+    var marker = new GMarker(point);//实例化一个标点
+    map.addOverlay(marker);//把标点添加到地图覆盖物
+</script>
+</body>
+</html>

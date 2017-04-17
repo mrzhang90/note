@@ -103,6 +103,14 @@ loadXML = function(xmlString){
 
         return xmlDoc;
 }
+5.判断数组中是否存在值
+intNum.contains(arr)
+Array.prototype.contains = function ( needle ) {
+  for (i in this) {
+    if (this[i] == needle) return true;
+  }
+  return false;
+}
 
 动态元素:
 appendChild是动态控制元素,把ul的节点追加到ul内,相当于替换,那么因为每次改变指针,所以位置发生改变如下:
