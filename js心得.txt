@@ -29,6 +29,17 @@
             })
         }
     }
+1-0.Ajax请求默认的都是异步的，如果想同步 async设置为false,然后
+    var html = $.ajax({
+      url: "some.php",
+      async: false
+    }).responseText; 
+
+    或者在全局设置Ajax属性
+    $.ajaxSetup({
+      async: false
+      });
+    再用post，get就是同步的了
 1-1.传递多组参数(data传递利用上面的file_post方法):
     var data=new FormData();//传递多组数组给后端，后端要支持接受字符串数组
     $('input['type=checkbox']').each(function(){
