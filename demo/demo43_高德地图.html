@@ -1,0 +1,162 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <style type="text/css">
+        body,html,#container{
+            height: 100%;
+            margin: 0px;
+        }
+        #container{width:600px;height:500px;}
+
+        .amap-marker .marker-route {
+            position: absolute;
+            width: 40px;
+            height: 44px;
+            color: #e90000;
+            background: url(http://webapi.amap.com/theme/v1.3/images/newpc/poi-1.png) no-repeat;
+            cursor: pointer;
+        }
+        .amap-marker .marker-marker-bus-from {
+            background-position: -334px -180px;
+        }
+        .amap-marker .marker-marker-bus-end {
+            background-position: -334px -138px;
+        }
+    </style>
+    <title>快速入门</title>
+</head>
+<body>
+<label>搜索关键词：</label><input type="text" placeholder="请输入关键字进行搜索" id="tipinput">
+<div id="container" tabindex="0"></div>
+<div class="button-group">
+    <input id="en" type="button" class="button" value="显示英文底图" />
+    <input id="zh_en" type="button" class="button" value="显示中英文对照底图" />
+    <input id="zh_cn" type="button" class="button" value="显示中文底图" />
+</div>
+<p id="tip"></p>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=22aaafb77efdf8ff0475be02fac7ead9&plugin=AMap.Autocomplete"></script>
+<script type="text/javascript">
+//    var map = new AMap.Map('container',{
+//        resizeEnable: true,
+//        zoom: 10,
+//        center: [116.480983, 40.0958]
+//    });
+/***************************************
+ 由于Chrome、IOS10等已不再支持非安全域的浏览器定位请求，为保证定位成功率和精度，请尽快升级您的站点到HTTPS。
+ ***************************************/
+var map, geolocation;
+//加载地图，调用浏览器定位服务
+map = new AMap.Map('container', {
+    resizeEnable: true,
+    zoom:13
+});
+// 设置缩放级别和中心点
+map.setZoomAndCenter(14);
+map.plugin('AMap.Geolocation', function() {
+    geolocation = new AMap.Geolocation({
+        enableHighAccuracy: true,//是否使用高精度定位，默认:true
+        timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+        buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+        //zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+        buttonPosition:'RB'
+    });
+    map.addControl(geolocation);
+    geolocation.getCurrentPosition();
+    AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+    AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+});
+//搜索地址
+var auto = new AMap.Autocomplete({
+    input: "tipinput"
+});
+AMap.event.addListener(auto, "select", select);//注册监听，当选中某条记录时会触发
+function select(e) {
+    if (e.poi && e.poi.location) {
+        map.setZoom(15);
+        map.setCenter(e.poi.location);
+    }
+}
+//绑定按钮点击事件
+['en', 'zh_en', 'zh_cn'].forEach(function(btn) {
+    var button = document.getElementById(btn);
+    AMap.event.addDomListener(button,'click',clickListener)
+});
+//中英文切换
+function clickListener(){
+    map.setLang(this.id);//en zh_en zh_cn
+}
+//添加自定义标记
+function addFromAndEnd(position){
+    //添加一个普通标记
+    var marker = new AMap.Marker({
+        map: map,
+        position: [position.getLng(), position.getLat()]
+    });
+    //添加自定义起始点标记
+    var marker1 = new AMap.Marker({
+        map: map,
+        position: [116.397428, 39.90923], //基点位置
+        offset: new AMap.Pixel(-17, -42), //相对于基点的偏移位置
+        draggable: true,  //是否可拖动
+        content: '<div class="marker-route marker-marker-bus-from"></div>'   //自定义点标记覆盖物内容
+    });
+    //添加自定义终点标记
+    var marker2 = new AMap.Marker({
+        map: map,
+        position: [position.getLng(), position.getLat()], //基点位置
+        offset: new AMap.Pixel(-17, -42), //相对于基点的偏移位置
+        draggable: true,  //是否可拖动
+        content: '<div class="marker-route marker-marker-bus-end"></div>'   //自定义点标记覆盖物内容
+    });
+    // 设置点标记的动画效果，此处为弹跳效果
+    marker1.setAnimation('AMAP_ANIMATION_BOUNCE');
+    marker2.setAnimation('AMAP_ANIMATION_BOUNCE');
+}
+//点击地图，打印经纬度
+map.on('click', function(e) {
+    console.log(e.lnglat.getLng() + ',' + e.lnglat.getLat());
+});
+//地图上覆盖一个圆，根据传入的经纬度
+function mapDraw(position){
+    var lineArr = [
+        [position.getLng(), position.getLat()]
+    ];
+    var circle = new AMap.Circle({
+        map: map,
+        center: lineArr[0],          //设置线覆盖物路径
+        radius: 1500,
+        strokeColor: "#3366FF", //边框线颜色
+        strokeOpacity: 0.3,       //边框线透明度
+        strokeWeight: 3,        //边框线宽
+        fillColor: "#FFA500", //填充色
+        fillOpacity: 0.35//填充透明度
+    });
+    //给绘制的圆加一个点击事件
+    circle.on('click', function() {
+        alert('您点击了圆');
+    });
+}
+//解析定位结果
+function onComplete(data) {
+    var str=['定位成功'];
+    str.push('经度：' + data.position.getLng());
+    str.push('纬度：' + data.position.getLat());
+    //地图上覆盖一个圆，根据传入的经纬度
+    mapDraw(data.position);
+    //添加自定义标记
+    addFromAndEnd(data.position)
+    if(data.accuracy){
+        str.push('精度：' + data.accuracy + ' 米');
+    }//如为IP精确定位结果则没有精度信息
+    str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
+    document.getElementById('tip').innerHTML = str.join('<br>');
+}
+//解析定位错误信息
+function onError(data) {
+    document.getElementById('tip').innerHTML = '定位失败';
+}
+</script>
+</body>
+</html>

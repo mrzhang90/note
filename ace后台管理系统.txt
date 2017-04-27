@@ -53,3 +53,35 @@ $("input[type=file]").ace_file_input({
     }
 
 }).on('change', function(){});
+4.文本框设置成支持回车变 标签
+var tag_input = $('#content');
+try{
+    tag_input.tag(
+      {
+        placeholder:tag_input.attr('placeholder'),
+        //enable typeahead by specifying the source array
+        source: ace.vars['US_STATES'],//defined in ace.js >> ace.enable_search_ahead
+        /**
+        //or fetch data from database, fetch those that match "query"
+        source: function(query, process) {
+          $.ajax({url: 'remote_source.php?q='+encodeURIComponent(query)})
+          .done(function(result_items){
+            process(result_items);
+          });
+        }
+        */
+      }
+    )
+
+    //programmatically add/remove a tag
+    var $tag_obj = $('#content').data('tag');
+    $tag_obj.add('小组赛');
+    $tag_obj.add('上下半场循环赛');
+    $tag_obj.add('半决赛');
+    $tag_obj.add('决赛');
+    var index = $tag_obj.inValues('some tag');
+    $tag_obj.remove(index);
+}
+catch(e) {
+    tag_input.after('<textarea id="'+tag_input.attr('id')+'" name="'+tag_input.attr('name')+'" rows="3">'+tag_input.val()+'</textarea>').remove();
+}

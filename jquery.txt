@@ -194,6 +194,7 @@
         childCheck.each(function(item){//each遍历选中的checkbox
             console.log($(this).is(':checkbox'))
         })
+        each跳出：break时用return false；continue时用return ture
     扩展类:
         extend:
             $.extend(dest,src1,src2,src3...)//它的含义是讲src1,src2,src3合并到dest,会修改dest结构;用一个或多个其他对象来扩展一个对象，返回被扩展的对象;
