@@ -1,0 +1,56 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Title</title>
+    <style type="text/css">
+        body,html,#container{
+            height: 100%;
+            margin: 0px;
+        }
+        #container{width:600px;height:500px;}
+
+        .amap-marker .marker-route {
+            position: absolute;
+            width: 40px;
+            height: 44px;
+            color: #e90000;
+            background: url(http://webapi.amap.com/theme/v1.3/images/newpc/poi-1.png) no-repeat;
+            cursor: pointer;
+        }
+        .amap-marker .marker-marker-bus-from {
+            background-position: -334px -180px;
+        }
+        .amap-marker .marker-marker-bus-end {
+            background-position: -334px -138px;
+        }
+    </style>
+</head>
+<body>
+<div id="container" tabindex="0"></div>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=22aaafb77efdf8ff0475be02fac7ead9&plugin=AMap.Autocomplete"></script>
+<script type="text/javascript">
+    var lendLongitude="116.405285";
+    var lendLatitude="39.904989";
+    var lendStationName="北京";
+    var backLongitude="117.190182";
+    var backLatitude="39.125596";
+    var backStationName="天津";
+    var map = new AMap.Map('container',{resizeEnable: true,zoom:13});
+    var markers = [];
+    var marker;
+    marker = new AMap.Marker({
+        position: [lendLongitude,lendLatitude],
+        title: lendStationName,
+        map: map
+    });
+    markers.push(marker);
+    marker = new AMap.Marker({
+        position: [backLongitude,backLatitude],
+        title: backStationName,
+        map: map
+    });
+    markers.push(marker);
+    map.setFitView();
+</script>
+</body>
+</html>
