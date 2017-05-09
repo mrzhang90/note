@@ -1,0 +1,27 @@
+来源：http://blog.csdn.net/u012581020/article/details/41649193
+
+问题分析:   将字符串转换成json对象，IE8兼容模式不支持通过JSON.parse将字符串转换成JSON对象的方法。虽然我是IE8的浏览器，用IE8打开也能够支持，
+但是WINFORM开发下调用IE兼容模式核心仍然不能解析。
+解决方案1:
+     eval方式解析，恐怕这是最早的解析方式了。如下：
+[html] view plain copy print?
+function strToJson(str){  
+        var json = eval('(' + str + ')');  
+        return json;  
+}  
+解决方案2:
+    new Function形式，比较怪异哦。如下：
+[html] view plain copy print?
+function strToJson(str){  
+     var json = (new Function("return " + str))();  
+     return json;  
+}   
+解决方案3(推荐)：
+   把json2.js引入到页面，就OK了。so easy 妈妈在也不用担心我的学习了
+   https://github.com/douglascrockford/JSON-js
+   若上面Git资源地址无效，请自行百度
+解决方案4(推荐)：
+   <meta http-equiv="X-UA-Compatible" content="IE=8" />
+   在浏览器head里面加上这句即可
+   X-UA-Compatible是针对ie8新加的一个设置，对于ie8之外的浏览器是不识别的
+   作用是将浏览器的兼容模式关闭，用户不可选择ie的显示模式为兼容模式

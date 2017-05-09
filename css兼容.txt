@@ -28,7 +28,24 @@
 	<!--[if IE 6]><link type="text/css" rel="stylesheet" media="screen" href="ie6.css"/><![endif]-->
 	<!--[if IE 7]><link type="text/css" rel="stylesheet" media="screen" href="ie7.css"/><![endif]-->
 	<!--[if IE 8]><link type="text/css" rel="stylesheet" media="screen" href="ie8.css"/><![endif]-->
-
+	方法：如果大于IE8或者不是IE，那么使用最新jquery；如果是IE8及其以内的，使用jquery1.9.1版本
+	    <![if (gt IE 8)|(!IE)]>
+	    <script src="js/jquery-3.1.0.min.js"></script>
+	    <![endif]>
+	    <!--[if lte IE 8]> 
+	    <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+	    <![endif]-->
+    问题：在IE的几个浏览器下都好了，但是在FF出问题了，用!important又会把IE7做的不兼容，想，有没有什么方法只对FF下进行操做，我用过这个方法，感觉得是百试不爽，就是在属性前面加符号如：*、&，￥，#，@，—，+，加过符号的属性只有IE的浏览器才识别，而FF不识别，方法如下(注意有符号的属性和没符号的属性的顺序)
+		height:100px;/*FF下显示100的高*/
+		+height:120px;/*IE678下显示120高*/
+	问题：如果我想在设计的时候，实现IE6，IE7,FF下出现三种不同的效果，比如IE6下背景红色，IE7下蓝色FF下绿色，这里，我自己试过，可以，用兼容的方法（注意顺序，可以好好理解一下）。
+		background:red;/*FF里显示的红色*/
+		+background:blue!important;/*IE7下面显示的蓝色*/
+		+background:green;/*IE6下面显示的绿色*/
+	方法：把这段代码放到<head>里面，在IE8里面的页面解析起来就跟IE7一模一样的了，所以，基本上可以无视IE8，剩下的代码只需要这样写就可以了
+		<metahttp-equivmetahttp-equiv="x-ua-compatible"content="IE=7"/> 	
+	方法：兼容IE5/6/7
+		height:63px;+height:62px;//只有IE5/6/7识别，其他浏览都不识别
 background-size兼容写法：
 	/*Mozilla*/ 
 	-moz-background-size: auto(原始图片大小) || number(数值) || percentage(百分比) || cover(放大铺满) || contain(缩小铺满) 

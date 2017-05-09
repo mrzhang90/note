@@ -79,50 +79,88 @@
     }
   }
 4.加载XML
-loadXML = function(xmlString){
-        var xmlDoc=null;
-        //判断浏览器的类型
-        //支持IE浏览器 
-        if(!window.DOMParser && window.ActiveXObject){   //window.DOMParser 判断是否是非ie浏览器
-            var xmlDomVersions = ['MSXML.2.DOMDocument.6.0','MSXML.2.DOMDocument.3.0','Microsoft.XMLDOM'];
-            for(var i=0;i<xmlDomVersions.length;i++){
+    loadXML = function(xmlString){
+            var xmlDoc=null;
+            //判断浏览器的类型
+            //支持IE浏览器 
+            if(!window.DOMParser && window.ActiveXObject){   //window.DOMParser 判断是否是非ie浏览器
+                var xmlDomVersions = ['MSXML.2.DOMDocument.6.0','MSXML.2.DOMDocument.3.0','Microsoft.XMLDOM'];
+                for(var i=0;i<xmlDomVersions.length;i++){
+                    try{
+                        xmlDoc = new ActiveXObject(xmlDomVersions[i]);
+                        xmlDoc.async = false;
+                        xmlDoc.loadXML(xmlString); //loadXML方法载入xml字符串
+                        break;
+                    }catch(e){
+                    }
+                }
+            }
+            //支持Mozilla浏览器
+            else if(window.DOMParser && document.implementation && document.implementation.createDocument){
                 try{
-                    xmlDoc = new ActiveXObject(xmlDomVersions[i]);
-                    xmlDoc.async = false;
-                    xmlDoc.loadXML(xmlString); //loadXML方法载入xml字符串
-                    break;
+                    /* DOMParser 对象解析 XML 文本并返回一个 XML Document 对象。
+                     * 要使用 DOMParser，使用不带参数的构造函数来实例化它，然后调用其 parseFromString() 方法
+                     * parseFromString(text, contentType) 参数text:要解析的 XML 标记 参数contentType文本的内容类型
+                     * 可能是 "text/xml" 、"application/xml" 或 "application/xhtml+xml" 中的一个。注意，不支持 "text/html"。
+                     */
+                    domParser = new  DOMParser();
+                    xmlDoc = domParser.parseFromString(xmlString, 'text/xml');
                 }catch(e){
                 }
             }
-        }
-        //支持Mozilla浏览器
-        else if(window.DOMParser && document.implementation && document.implementation.createDocument){
-            try{
-                /* DOMParser 对象解析 XML 文本并返回一个 XML Document 对象。
-                 * 要使用 DOMParser，使用不带参数的构造函数来实例化它，然后调用其 parseFromString() 方法
-                 * parseFromString(text, contentType) 参数text:要解析的 XML 标记 参数contentType文本的内容类型
-                 * 可能是 "text/xml" 、"application/xml" 或 "application/xhtml+xml" 中的一个。注意，不支持 "text/html"。
-                 */
-                domParser = new  DOMParser();
-                xmlDoc = domParser.parseFromString(xmlString, 'text/xml');
-            }catch(e){
+            else{
+                return null;
             }
-        }
-        else{
-            return null;
-        }
 
-        return xmlDoc;
-}
+            return xmlDoc;
+    }
 5.判断数组中是否存在值
-intNum.contains(arr)
-Array.prototype.contains = function ( needle ) {
-  for (i in this) {
-    if (this[i] == needle) return true;
-  }
-  return false;
-}
-
+    intNum.contains(arr)
+    Array.prototype.contains = function ( needle ) {
+      for (i in this) {
+        if (this[i] == needle) return true;
+      }
+      return false;
+    }
+6.获取浏览器版本，判断是不是IE $.browser
+使用：
+    if($.browser.msie && parseInt($.browser.version) <=8){//解决ie8\ie7不支持nth-child的bug
+        $('.hot_list li:nth-child(3n+1)').css("margin-left",0)
+    }
+方法：
+    var userAgent = navigator.userAgent.toLowerCase();
+    // Figure out what browser is being used 
+    jQuery.browser = {
+        version: (userAgent.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [])[1],
+        safari: /webkit/.test(userAgent),
+        opera: /opera/.test(userAgent),
+        msie: /msie/.test(userAgent) && !/opera/.test(userAgent),
+        mozilla: /mozilla/.test(userAgent) && !/(compatible|webkit)/.test(userAgent)
+    }; 
+7.解决IE8 placeholder 不兼容的问题
+    if($.browser.msie){
+        jQuery('[placeholder]').focus(function() {
+          var input = jQuery(this);
+          if (input.val() == input.attr('placeholder')) {
+            input.val('');
+            input.removeClass('placeholder');
+          }
+        }).blur(function() {
+          var input = jQuery(this);
+          if (input.val() == '' || input.val() == input.attr('placeholder')) {
+            input.addClass('placeholder');
+            input.val(input.attr('placeholder'));
+          }
+        }).blur().parents('form').submit(function() {
+          jQuery(this).find('[placeholder]').each(function() {
+            var input = jQuery(this);
+            if (input.val() == input.attr('placeholder')) {
+              input.val('');
+            }
+          })
+        });
+    }
+    
 动态元素:
 appendChild是动态控制元素,把ul的节点追加到ul内,相当于替换,那么因为每次改变指针,所以位置发生改变如下:
 for(var i= 0,len=li.length;i<len;i++){
