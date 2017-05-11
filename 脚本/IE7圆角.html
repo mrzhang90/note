@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="description" content="IE7/IE8浏览器纯CSS实现圆角效果 » 张鑫旭-鑫空间-鑫生活" />
+<meta name="description" content="web前端学习实例页面之IE7/IE8浏览器纯CSS实现圆角效果" />
+<meta name="keywords" content="css, IE7, IE8, 圆角, border-radius" />
+<meta name="author" content="张鑫旭, zhangxinxu" />
+<title>IE7/IE8浏览器纯CSS实现圆角效果 » 张鑫旭-鑫空间-鑫生活</title>
+<link rel="stylesheet" href="../css/demo.css" type="text/css" />
+<link rel="stylesheet" href="../css/hl.css" type="text/css" />
+<style>
+p{margin:0;font-family:simhei;}
+.box {
+	width: 150px; height: 150px;
+	line-height: 150px;
+	position: relative;
+	overflow: hidden;
+}
+.radius {
+	position: absolute;
+	width: 100%; height: 100%;
+	border-radius: 50%;
+	border: 149px dotted;
+	margin: 0 0 1px 1px;
+	border-width: 0vw;
+	margin: 0vw;
+	color: #cd0000;
+	background-color: currentColor;
+}
+.text {
+	position: relative;
+	color: #fff;
+	text-align: center;
+	font-size: 24px;
+}
+</style>
+</head>
+
+<body>
+<div id="header">
+	<a href="/" class="logo" title="回到鑫空间-鑫生活首页">
+    	<img alt="张鑫旭-鑫空间-鑫生活" src="/php/image/zxx_home_logo.png" border="0" />
+    </a>
+</div>
+<div id="main">
+	<h1>IE7/IE8浏览器纯CSS实现圆角效果实例页面</h1>
+    <a href="http://www.zhangxinxu.com/wordpress/?p=5494" id="back">回到相关文章 &raquo;</a>
+    <div id="body">
+    	<div id="code" class="part">
+        	<h3>代码：</h3>
+            <div class="show">
+                <h5>CSS代码：</h5>
+                <pre name="code" class="css">
+.box {
+    width: 150px; height: 150px;
+    line-height: 150px;
+    position: relative;
+    overflow: hidden;
+}
+.radius {
+    position: absolute;
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    border: 149px dotted;
+    /* IE7,IE8圆尺寸要小1像素同时有1像素偏移 */
+    margin: 0 0 1px 1px;
+    border-width: 0vw;
+    margin: 0vw;
+    color: #cd0000;
+    background-color: currentColor;
+}
+.text {
+    position: relative;
+    color: #fff;
+    text-align: center;
+    font-size: 24px;
+}
+                </pre>
+                <h5>HTML代码：</h5>
+                <pre name="code" class="html">
+&lt;div class="box"&gt;
+    &lt;i class="radius"&gt;&lt;/i&gt;
+    &lt;p class="text"&gt;美女&lt;/p&gt;
+&lt;/div&gt;
+                </pre>
+            </div>
+        </div>
+        <div id="effect" class="part">
+        	<h3>效果：</h3>
+            <div class="show">
+            	<div class="demo">
+                	<div class="box">
+                    	<i class="radius"></i>
+                        <p class="text">美女</p>
+                    </div>
+                </div>
+            </div>
+        </div>       
+    </div>
+</div>
+</body>
+</html>

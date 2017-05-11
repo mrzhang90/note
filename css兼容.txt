@@ -8,7 +8,12 @@
 	    *display:inline-block;*height:(任何值除了auto);*float:(left 或 right);*position:absolute;*width:(任何值除了auto);*zoom:(除normal外任意值);
 	6.html5,低版本不识别的问题,可以引用 html5shiv.min.js
 	7.IE6下，只支持给a标签添加伪类，并且支持，l-v-h-a这四个伪类
-	8.在IE6，7下inline-block不支持块标签
+	8.在IE6，7下inline-block不支持块标签;PS:input、select、button、textarea的默认display皆为inline-block,所以在布局时应加以注意
+		第一种：专门为IE7写Hack
+			display:inline-block;*display:inline;*zoom:1;//特别是 ZOOM:1 这个必须的
+		第二种：//注意这两个 display要先后放在两个CSS声明中才有效果，这是IE的一个经典bug，如果先定义了display:inline-block，然后再将 display设回inline或block，layout不会消失
+			.selector { display: inline-block }
+			.selector { *display: inline }
 	9.清浮动的问题:1.clear:both;2.BFC--IE6,7下没有BFC  清浮动完整版：.clearFix{zoom:1;}.clearFix:after{content:"";display:block;clear:both;}
 	10.IE6下的双边距BUG,在IE6，块元素有浮动，有横向的margin，横向的margin值会被放大成两倍,解决办法:display:inline;
 	11.IE6下的双边距BUG,假如一行有多个li,margin-left一行的左侧第一个元素有双边距,margin-right 一行的右侧第一个元素有双边距,解决办法:display:inline;
@@ -35,17 +40,12 @@
 	    <!--[if lte IE 8]> 
 	    <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
 	    <![endif]-->
-    问题：在IE的几个浏览器下都好了，但是在FF出问题了，用!important又会把IE7做的不兼容，想，有没有什么方法只对FF下进行操做，我用过这个方法，感觉得是百试不爽，就是在属性前面加符号如：*、&，￥，#，@，—，+，加过符号的属性只有IE的浏览器才识别，而FF不识别，方法如下(注意有符号的属性和没符号的属性的顺序)
-		height:100px;/*FF下显示100的高*/
-		+height:120px;/*IE678下显示120高*/
-	问题：如果我想在设计的时候，实现IE6，IE7,FF下出现三种不同的效果，比如IE6下背景红色，IE7下蓝色FF下绿色，这里，我自己试过，可以，用兼容的方法（注意顺序，可以好好理解一下）。
-		background:red;/*FF里显示的红色*/
-		+background:blue!important;/*IE7下面显示的蓝色*/
-		+background:green;/*IE6下面显示的绿色*/
 	方法：把这段代码放到<head>里面，在IE8里面的页面解析起来就跟IE7一模一样的了，所以，基本上可以无视IE8，剩下的代码只需要这样写就可以了
 		<metahttp-equivmetahttp-equiv="x-ua-compatible"content="IE=7"/> 	
 	方法：兼容IE5/6/7
 		height:63px;+height:62px;//只有IE5/6/7识别，其他浏览都不识别
+	方法:兼容IE6~IE8 "\9"
+	
 background-size兼容写法：
 	/*Mozilla*/ 
 	-moz-background-size: auto(原始图片大小) || number(数值) || percentage(百分比) || cover(放大铺满) || contain(缩小铺满) 
