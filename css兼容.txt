@@ -29,6 +29,7 @@
 	21.在IE6,7下输入类型的表单控件,上下会有1px的空隙,解决办法:给元素加浮动
 	22.在IE6下，给输入类型的表单控件，加border:none无效,解决办法:1.border:0;2.重置控件背景;
 	23.在IE6,7下输入类型的表单控件, 输入文字的时候，背景图会跟着一块移动,解决办法,同上
+	24.IE8下，select垂直居中：{padding：8px  0};
 	条件注释兼容IE:
 	<!--[if IE 6]><link type="text/css" rel="stylesheet" media="screen" href="ie6.css"/><![endif]-->
 	<!--[if IE 7]><link type="text/css" rel="stylesheet" media="screen" href="ie7.css"/><![endif]-->
@@ -45,6 +46,14 @@
 	方法：兼容IE5/6/7
 		height:63px;+height:62px;//只有IE5/6/7识别，其他浏览都不识别
 	方法:兼容IE6~IE8 "\9"
+	方法：兼容IE10/1E11
+		@media all and (-ms-high-contrast:none)
+	     {
+	     	.foo { color: green } /* IE10 */
+	     	*::-ms-backdrop, .foo { color: red } /* IE11 */
+	     }
+     今天大拿直接一行代码把我之前的IE11兼容性问题全解决了。不服不行。小伙伴们下次遇到兼容性问题记得先加上这行代码试试:
+ 		* {box-sizing: content-box;-moz-box-sizing: inherit;-webkit-box-sizing: inherit;}
 	
 background-size兼容写法：
 	/*Mozilla*/ 
