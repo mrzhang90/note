@@ -1,0 +1,46 @@
+1.判断手机设备是不是iphone，获取iphone版本号
+  var p = String(navigator.platform);
+  if( p === 'iPad' || p === 'iPhone' || p === 'iPod touch' ){
+    var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+    if (parseInt(v[1], 10)>=7) {// iOS >=7
+    }
+  }
+
+2.获取浏览器版本，判断是不是IE $.browser
+使用：
+    if($.browser.msie && parseInt($.browser.version) <=8){//解决ie8\ie7不支持nth-child的bug
+        $('.hot_list li:nth-child(3n+1)').css("margin-left",0)
+    }
+方法：
+    var userAgent = navigator.userAgent.toLowerCase();
+    // Figure out what browser is being used 
+    jQuery.browser = {
+        version: (userAgent.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [])[1],
+        safari: /webkit/.test(userAgent),
+        opera: /opera/.test(userAgent),
+        msie: (/msie/.test(userAgent)||/rv:/.test(userAgent)) && !/opera/.test(userAgent),
+        mozilla: /mozilla/.test(userAgent) && !/(compatible|webkit)/.test(userAgent)
+    }; 
+3.解决IE8 placeholder 不兼容的问题
+    if($.browser.msie){
+        jQuery('[placeholder]').focus(function() {
+          var input = jQuery(this);
+          if (input.val() == input.attr('placeholder')) {
+            input.val('');
+            input.removeClass('placeholder');
+          }
+        }).blur(function() {
+          var input = jQuery(this);
+          if (input.val() == '' || input.val() == input.attr('placeholder')) {
+            input.addClass('placeholder');
+            input.val(input.attr('placeholder'));
+          }
+        }).blur().parents('form').submit(function() {
+          jQuery(this).find('[placeholder]').each(function() {
+            var input = jQuery(this);
+            if (input.val() == input.attr('placeholder')) {
+              input.val('');
+            }
+          })
+        });
+    }

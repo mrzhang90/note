@@ -58,7 +58,7 @@
        5.以回调的形式应用动画时,动画是以顺序发生的
        6.animate()内置了一种特定样式属性的简写形式animate({height:"toggle",width:"show",opacity:"hide"},400) 等价于show(400),fadeIn(400)
        7.做轮播图是,从最后一张跳到第一张 elem.animate({left:'0px'},"normal");这里用了normal,是为了快速跳到第一张
-       8.滚动条滚动到指定的位置: animate({scrollTop:"-=50px"},500)
+       8.滚动到指定的位置: $('body,html').animate({scrollTop:"-=50px"},500)
     stop([clearQueue][,gotoEnd]):等同于delay(),停止或延缓特效动画,都是可选参数,bool值,参数1.清空未执行的动画队列;参数2.直接将正在执行的动画直接到结束时刻的状态
     PS:1.elem.stop().animate() :当鼠标hover元素,如果鼠标划入速度过快,可能会导致动画错乱,那么加入stop会结束当前正在进行的动画,并立即执行队列中的下一个动画
        2.elem.stop(true).animate().animate() :stop会结束当前的动画,并继续第二个的animate,那么还会错乱,这时候加上stop的第一个参数,会把当前元素尚未执行的动画队列全部清空

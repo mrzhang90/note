@@ -1,4 +1,3 @@
-
 兼容:
 	1.怪异盒模型(在IE下，没有文档声明，元素会陷入怪异盒模型解析),可视宽=width,content=width-padding-border
 	2.在IE6下不支持1px的点线,解决办法:用背景平铺
@@ -7,6 +6,9 @@
 	5.在IE6下,margin传递有问题,可以用haslayout解决,它是IE渲染引擎的一个内部组成部分,触发haslayout可以使元素根据自身内容的大小，来重新组织和计算自身的width和height
 	    *display:inline-block;*height:(任何值除了auto);*float:(left 或 right);*position:absolute;*width:(任何值除了auto);*zoom:(除normal外任意值);
 	6.html5,低版本不识别的问题,可以引用 html5shiv.min.js
+		<!--[if lt IE 9]>
+	    <script src="js/html5shiv.min.js"></script>
+	    <![endif]-->
 	7.IE6下，只支持给a标签添加伪类，并且支持，l-v-h-a这四个伪类
 	8.在IE6，7下inline-block不支持块标签;PS:input、select、button、textarea的默认display皆为inline-block,所以在布局时应加以注意
 		第一种：专门为IE7写Hack
@@ -23,7 +25,9 @@
 	15.在IE6下，浮动元素和绝对定位元素是并列关系的话，绝对定位元素消失;解决方案：把绝对定位元素 用div包起来
 	16.在IE6，7下，相对定位元素父级的overflow对相对定位元素本身不起效果,解决办法:给相对定位元素的父级也加相对定位
 	17.在IE6绝对定位元素宽(高)是奇数的话，元素的right(bottom)有1px的偏差
-	18.IE6,7,8不识别opacity,IE6,7,8透明度-filter:alpha(opacity=)  0-100
+	18.IE6,7,8不识别opacity,IE6,7,8
+		透明度-filter:alpha(opacity=)  0-100
+		背景透明：filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#aa000000,endColorstr=#aa000000);
 	19.IE6不支持固定定位,解决方案:{position:fixed;left:50px;top:100px;_position:absolute;_top:expression(eval(document.documentElement.scrollTop+100));}
 	20.表格的内容可以撑开设置好的宽高,table-layout:fixed; 不让表格的内容撑开表格设定好宽高
 	21.在IE6,7下输入类型的表单控件,上下会有1px的空隙,解决办法:给元素加浮动
