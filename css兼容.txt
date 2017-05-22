@@ -1,4 +1,11 @@
 兼容:
+	body{min-width:1180px;}可以解决两个问题：1.浏览器窗口放大缩小,最外围div的宽度100%时，拖动横向滚动条不错乱;2.手机浏览器查看时，不错乱
+	IE9 Filter bug:由于IE9识别filter和css3，解决方法：(参考：https://www.bokeyy.com/post/tag/ie9-filter)
+		1.利用ie9识别root和filter，而ie6/7/8都不识别root
+			input{background:rgba(38,141,183,.8);filter:progid:DXImageTransform.Microsoft.Gradient(startColorStr=#dd298fb8,endColorStr=#dd298fb8);}
+			:root input{filter:progid:none;}
+		2.条件注释法：
+			<!--[if IE 9 ]><![endif]-->
 	1.怪异盒模型(在IE下，没有文档声明，元素会陷入怪异盒模型解析),可视宽=width,content=width-padding-border
 	2.在IE6下不支持1px的点线,解决办法:用背景平铺
 	3.在IE6下元素的高度小于19px，会被当做19px来处理,解决办法:1.设置font-size;2.加overflow

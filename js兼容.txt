@@ -1,11 +1,26 @@
-1.判断手机设备是不是iphone，获取iphone版本号
+1.
+   //判断手机设备是不是iphone，获取iphone版本号
   var p = String(navigator.platform);
   if( p === 'iPad' || p === 'iPhone' || p === 'iPod touch' ){
     var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
     if (parseInt(v[1], 10)>=7) {// iOS >=7
     }
   }
-
+  //验证是不是手机
+  function isPhone(){
+    var mobileAgent = new Array("iphone", "ipod", "ipad", "android", "mobile", "blackberry", "webos", "incognito", "webmate", "bada", "nokia", "lg", "ucweb", "skyfire");
+    var browser = navigator.userAgent.toLowerCase(); 
+    var isMobile = false; 
+    for (var i=0; i<mobileAgent.length; i++){
+        if(browser.indexOf(mobileAgent[i])!=-1){
+            isMobile = true; 
+            alert(mobileAgent[i]);
+            // location.href = '手机网址';
+            break;
+        }
+    }
+    return isMobile;
+}
 2.获取浏览器版本，判断是不是IE $.browser
 使用：
     if($.browser.msie && parseInt($.browser.version) <=8){//解决ie8\ie7不支持nth-child的bug
@@ -44,3 +59,19 @@
           })
         });
     }
+4.解决window.open被IE拦截的bug
+auto_submit('/search.jsp',$.param(obj),'get');
+//自动提交表单
+function auto_submit(address,obj,method){
+    method=method || 'POST';
+    if(method.toLowerCase()=='get'){
+        window.location.href=address+'?'+obj;
+    }else{
+        var frm=$('<form id="frmSubmit" action='+address+' method="post"></form>');
+        for(var key in obj){
+            frm.append('<input type="text" name="'+key+'" value="'+obj[key]+'">');
+        }
+        $('body').append(frm);
+        $('#frmSubmit').submit();
+    }
+}
