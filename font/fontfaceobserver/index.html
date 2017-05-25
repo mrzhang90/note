@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="fontfaceobserver.js"></script>
+	<style type="text/css">
+		h1 {
+		  font-family: "Arial", "Helvetica", sans-serif;
+		}
+
+		h1.font-loaded{
+		  font-family: "wryh";
+		}
+		@font-face {
+		  font-family: "wryh";
+		  font-weight: 400;
+		  font-style: normal;
+		  src: url("wryh.ttf") format("woff2");
+		  font-display: swap;
+		}
+	</style>
+</head>
+<body>
+<h1 id="h1">微软雅黑</h1>
+<h1>微软雅黑</h1>
+<p><a href="https://segmentfault.com/a/1190000006664033">来源：https://segmentfault.com/a/1190000006664033</a></p>
+<script type="text/javascript">
+	const font = new FontFaceObserver('wryh');
+	const h1 = document.getElementById('h1')
+	font.load().then(function () {
+	  h1.classList.add('font-loaded')
+	})
+</script>
+</body>
+</html>

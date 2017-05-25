@@ -188,6 +188,7 @@ BOM:
         兼容:高版本：DOMContentLoaded;;;IE处理方式:d.documentElement.doScroll('left');当有left的时候说明DOM加载完了。
 
 DOM
+    document.scripts[0]:获取页面里，第一个script脚本
     总结:
         clientWidth 当前宽度 + padding
         offsetHeight 当前宽度 + padding +border
