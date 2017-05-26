@@ -84,5 +84,6 @@
 				</table>
 			</div>
 		</div>	
+		<p><a href="http://www.runoob.com/w3cnote/swfupload-guide.html">来源：http://www.runoob.com/w3cnote/swfupload-guide.html</a></p>
 	</body>
 </html>

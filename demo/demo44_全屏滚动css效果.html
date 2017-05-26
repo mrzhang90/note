@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style type="text/css">
+    	.fiexd{position:fixed;top:0;left:0;width:100%;}
+		.absolute{position:absolute;top:0;left:0;width:100%}
+		body.bottom{margin-bottom:2200px;}
+		.home_head{height:1000px;background: #000;z-index:1;}
+		.home_cont{height:1200px;background:red;z-index:0;}
+    </style>
+</head>
+<body class="bottom">
+<header class="home_head absolute">
+
+</header>
+<section class="home_cont fiexd">
+    <h2>1</h2>
+    <h2>1</h2>
+    <h2>1</h2>
+    <h2>1</h2>
+    <h2>1</h2>
+    <h2>1</h2>
+    <h2>1</h2>
+    <h2>1</h2>
+</section>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(window).on('scroll',function(){
+    if($(this).scrollTop()>666){
+        $(document.body).removeClass('bottom')
+        $('.home_cont').removeClass('fiexd').addClass('absolute').css('top',1000)
+    }else{
+        $(document.body).addClass('bottom')
+        $('.home_cont').removeClass('absolute').addClass('fiexd').css('top',0)
+    }
+})
+</script>
+</body>
+</html>

@@ -46,7 +46,12 @@
         data.append('campusId',$(this).attr('data-campusId'))
         data.append('detailId',$(this).attr('data-detailId'))
     })
-2.设置cookie
+2.调用cookie:来源-https://my.oschina.net/crazymus/blog/425650
+    //设置cookie，有效期为365天
+    setCookie('username','123',365);
+    //取回，若cookie失效，将返回空
+    getCookie('username');
+设置cookie
     function setCookie(c_name,value,expiredays)
     {
         var exdate=new Date()

@@ -33,7 +33,9 @@
 	16.在IE6，7下，相对定位元素父级的overflow对相对定位元素本身不起效果,解决办法:给相对定位元素的父级也加相对定位
 	17.在IE6绝对定位元素宽(高)是奇数的话，元素的right(bottom)有1px的偏差
 	18.IE6,7,8不识别opacity,IE6,7,8
-		透明度-filter:alpha(opacity=)  0-100
+		透明度：
+			写法1.filter:alpha(opacity=)  0-100
+   			写法2.-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 		背景透明：filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#aa000000,endColorstr=#aa000000);
 	19.IE6不支持固定定位,解决方案:{position:fixed;left:50px;top:100px;_position:absolute;_top:expression(eval(document.documentElement.scrollTop+100));}
 	20.表格的内容可以撑开设置好的宽高,table-layout:fixed; 不让表格的内容撑开表格设定好宽高
@@ -65,7 +67,15 @@
 	     }
      今天大拿直接一行代码把我之前的IE11兼容性问题全解决了。不服不行。小伙伴们下次遇到兼容性问题记得先加上这行代码试试:
  		* {box-sizing: content-box;-moz-box-sizing: inherit;-webkit-box-sizing: inherit;}
-	
+使用@media实现IE hack的方法:（来源：http://blog.sina.com.cn/s/blog_6d208b470102v35u.html）
+	仅IE6和IE7识别：@media screen\9 {   .selector {  property: value; } } 
+　　仅IE6和IE7、IE8识别：@media \0screen\,screen\9 {   .selector {  property: value; } }
+　　仅IE8识别：@media \0screen {   .selector {  property: value; } }
+　　仅IE8-10识别：@media screen\0 {   .selector {  property: value; } } 
+　　仅IE9和IE10识别：@media screen and (min-width:0\0) {   .selector {  property: value; } } 
+　　仅IE10识别：@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {    /* IE10-spe 　
+	仅支持谷歌：@media screen and (-webkit-min-device-pixel-ratio:0) {.footer .layout-help { padding-bottom:357px; } }　
+
 background-size兼容写法：
 	/*Mozilla*/ 
 	-moz-background-size: auto(原始图片大小) || number(数值) || percentage(百分比) || cover(放大铺满) || contain(缩小铺满) 

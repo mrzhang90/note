@@ -75,3 +75,9 @@ function auto_submit(address,obj,method){
         $('#frmSubmit').submit();
     }
 }
+5.window.screenX判断浏览器的,678是undefined，91011是number,chrome浏览器也是true 
+if (typeof window.screenX === "number") {
+		
+} else {
+	alert("您现在使用的浏览器内力不足，为防止走火入魔，建议使用IE9+或Chrome 20+浏览器~~");	
+}
