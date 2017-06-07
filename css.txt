@@ -36,6 +36,9 @@
     垂直水平居中：（参考地址：http://www.cnblogs.com/zhangzhu/p/3958676.html）
         div{display: table-cell;vertical-align:middle;*display: block; *font-size: 115px;*font-family:'arial';width:193px;height:129px;text-align:center;}
         div img{width:100%;vertical-align:middle;}
+    定位居中：(css3技巧)
+        position: fixed; top: 50%; left: 0; width: 80px; height: auto; transform: translate3d(0,-50%,0);
+        
 盒模型:
 padding:内边距(内填充),元素和它的内容之间距离,padding区域也会显示元素的背景(background-position的00点 从元素padding的左上角开始),
 content=width||height;

@@ -195,6 +195,12 @@
             console.log($(this).is(':checkbox'))
         })
         each跳出：break时用return false；continue时用return ture
+        each以此执行：
+            $('.element').each(function(i){
+                setTimeout(function(){
+                    //定时执行
+                },i*100)
+            })
     扩展类:
         extend:
             $.extend(dest,src1,src2,src3...)//它的含义是讲src1,src2,src3合并到dest,会修改dest结构;用一个或多个其他对象来扩展一个对象，返回被扩展的对象;
@@ -316,6 +322,9 @@ CSS-DOM操作:
                 1.区别是:前者获取高度值与样式的设置有关,可能会得到auto,也可以得到10px之类的字符串;而height()方法获取的高度值则是元素在页面中的实际高度,与样式设置无关,并且不带单位
                 2.height(50),设置样式的高度
             4.css("font-size")//获取字体大小
+    height() 方法设置或返回元素的高度（不包括内边距、边框或外边距）
+    innerHeight():返回元素的高度（包括内边距）
+    outerHeight() 方法返回元素的高度（包括内边距和边框）
     offset():获取元素在当前视窗的相对偏移,可以获取两个属性,left和top,只对块级元素有效,例如:$('p').offset().left;
     position():获取元素相对于最近一个position样式属性设置为relative或者absolute的祖父节点的相对偏移,同样有left和top
     scrollTop()和scrollLeft():分别是获取元素的滚动条距顶端和距左侧的距离
