@@ -2,6 +2,7 @@
     1.translateZ:开启3D,解决移动端硬件加速
     2.:解决闪屏
     3.解决在scale为0.5的情况下，p的字体被浏览器自动放大,width:100%;display:table;height:1px;
+    4.css计算top距离：top:-webkit-calc(100vh * 0.3873);top:calc(100vh * 0.3873);
     background:同一个元素可以添加多张背景图，先写的在上边，后写的在下边
     <base target="_blank" href="http://www.sina.com.cn" /> 定义页面上所有链接的打开方式 默认的链接地址
     input{ outline:none;}去掉默认边框-解决输入框获取焦点后,显示的蓝色边框-兼容火狐--::-moz-focus-inner{border:0px;}

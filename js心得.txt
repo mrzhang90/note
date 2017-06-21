@@ -127,89 +127,116 @@
         // $(".phoneWidth").css("width",width);
     }
 7.HTML5 实现手机拍照上传
-//引用：https://my.oschina.net/zyxchuxin/blog/700381
-//上传图片有原生的方法<input type="file" accept="image/*">，如果只想要拍照上传，不希望用户选择图片上传，可以通过添加capture属性，该属性值有camcorder/microphone/camera...，此处选择camera。PS：该属性存在浏览器兼容性问题，不是所有的浏览器都支持。
-HTML:<input type="file" accept="image/*" capture="camera" >
-调用：
-if(typeof FileReader == 'undefined'){
-    $('#xdaTanFileImg').setAttribute("disabled","disabled");  
-}
-$('#xdaTanFileImg').on('change',function(){
-    var reader = new FileReader();
-    reader.readAsDataURL(this.files[0]);
-    reader.onload = function (e) {
-        //调用图片压缩方法：compress();
-        var fileSize = (this.files[0].size/1024/1024).toFixed(2);
-        // console.log(this.files[0]);
-        // console.log(this.files[0].size);
-        // console.log(fileSize);
-        // console.log(this.result)
-        compress(this.result,fileSize,function(dataUrl){
-            var data = new FormData();
-            data.append('uploadFile', dataUrl);
-            file_post('/img/userphoto/uploadImg.do',data,'',function(data){
-              data=JSON.parse(data);
-              data=JSON.parse(data);
-              imgUrl=data.url;
-              saveImage(imgUrl,function(){
-                // $('#photoUrl').attr('src',imgUrl)
-                // $('#photoUrl').css('background-image','url("'+imgUrl+'")')
-                imgCenter($('#photoUrl'),dataUrl)
-              })
-            });
-        })
-    };
-})
-封装：function compress(res,fileSize,callback) { //res代表上传的图片，fileSize大小图片的大小
-    var img = new Image(),
-        maxW = 640; //设置最大宽度
+    //引用：https://my.oschina.net/zyxchuxin/blog/700381
+    //上传图片有原生的方法<input type="file" accept="image/*">，如果只想要拍照上传，不希望用户选择图片上传，可以通过添加capture属性，该属性值有camcorder/microphone/camera...，此处选择camera。PS：该属性存在浏览器兼容性问题，不是所有的浏览器都支持。
+    HTML:<input type="file" accept="image/*" capture="camera" >
+    调用：
+    if(typeof FileReader == 'undefined'){
+        $('#xdaTanFileImg').setAttribute("disabled","disabled");  
+    }
+    $('#xdaTanFileImg').on('change',function(){
+        var reader = new FileReader();
+        reader.readAsDataURL(this.files[0]);
+        reader.onload = function (e) {
+            //调用图片压缩方法：compress();
+            var fileSize = (this.files[0].size/1024/1024).toFixed(2);
+            // console.log(this.files[0]);
+            // console.log(this.files[0].size);
+            // console.log(fileSize);
+            // console.log(this.result)
+            compress(this.result,fileSize,function(dataUrl){
+                var data = new FormData();
+                data.append('uploadFile', dataUrl);
+                file_post('/img/userphoto/uploadImg.do',data,'',function(data){
+                  data=JSON.parse(data);
+                  data=JSON.parse(data);
+                  imgUrl=data.url;
+                  saveImage(imgUrl,function(){
+                    // $('#photoUrl').attr('src',imgUrl)
+                    // $('#photoUrl').css('background-image','url("'+imgUrl+'")')
+                    imgCenter($('#photoUrl'),dataUrl)
+                  })
+                });
+            })
+        };
+    })
+    封装：function compress(res,fileSize,callback) { //res代表上传的图片，fileSize大小图片的大小
+        var img = new Image(),
+            maxW = 640; //设置最大宽度
 
-    img.onload = function () {
-        //对上传的图片进行压缩，需要借助于canvas API
-        var cvs = document.createElement( 'canvas'),
-            ctx = cvs.getContext( '2d');
-        //设置压缩后的最大宽度 or 高度
-        if(img.width > maxW) {
-            img.height *= maxW / img.width;
-            img.width = maxW;
+        img.onload = function () {
+            //对上传的图片进行压缩，需要借助于canvas API
+            var cvs = document.createElement( 'canvas'),
+                ctx = cvs.getContext( '2d');
+            //设置压缩后的最大宽度 or 高度
+            if(img.width > maxW) {
+                img.height *= maxW / img.width;
+                img.width = maxW;
+            }
+
+            cvs.width = img.width;
+            cvs.height = img.height;
+
+            ctx.clearRect(0, 0, cvs.width, cvs.height);
+            ctx.drawImage(img, 0, 0, img.width, img.height);
+
+            var compressRate = getCompressRate(1,fileSize);
+
+            var dataUrl = cvs.toDataURL( 'image/jpeg', compressRate);//将图片按照一定的压缩比进行压缩，得到base64编码
+
+            // document.body.appendChild(cvs);
+            // console.log(dataUrl);
+            callback && callback(dataUrl);
         }
 
-        cvs.width = img.width;
-        cvs.height = img.height;
-
-        ctx.clearRect(0, 0, cvs.width, cvs.height);
-        ctx.drawImage(img, 0, 0, img.width, img.height);
-
-        var compressRate = getCompressRate(1,fileSize);
-
-        var dataUrl = cvs.toDataURL( 'image/jpeg', compressRate);//将图片按照一定的压缩比进行压缩，得到base64编码
-
-        // document.body.appendChild(cvs);
-        // console.log(dataUrl);
-        callback && callback(dataUrl);
+        img.src = res;
     }
+    //设置压缩比例，根据图片的不同size大小，设置不同的压缩比。
+    function getCompressRate(allowMaxSize,fileSize){ //计算压缩比率，size单位为MB
+          var compressRate = 1;
+          if(fileSize/allowMaxSize > 4){
+               compressRate = 0.5;
+          } else if(fileSize/allowMaxSize >3){
+               compressRate = 0.6;
+          } else if(fileSize/allowMaxSize >2){
+               compressRate = 0.7;
+          } else if(fileSize > allowMaxSize){
+               compressRate = 0.8;
+          } else{
+               compressRate = 0.9;
+          }
 
-    img.src = res;
-}
-//设置压缩比例，根据图片的不同size大小，设置不同的压缩比。
-function getCompressRate(allowMaxSize,fileSize){ //计算压缩比率，size单位为MB
-      var compressRate = 1;
-      if(fileSize/allowMaxSize > 4){
-           compressRate = 0.5;
-      } else if(fileSize/allowMaxSize >3){
-           compressRate = 0.6;
-      } else if(fileSize/allowMaxSize >2){
-           compressRate = 0.7;
-      } else if(fileSize > allowMaxSize){
-           compressRate = 0.8;
-      } else{
-           compressRate = 0.9;
-      }
-
-      alert(fileSize/allowMaxSize,compressRate)
-      return compressRate;
-}
-
+          alert(fileSize/allowMaxSize,compressRate)
+          return compressRate;
+    }
+8.预加载
+    //img.onload=img.onerror：是为了解决图片加载失败时，可以继续执行脚本
+    function progressBar(){
+        var element='<div id="overlay-bar"><div id="progress"></div><div class="loadLogo"><img src="img/logo.png"/></div><div id="progressNum">0%</div></div>';
+        $(document.body).append(element);
+        var num=0,arr=$('img');
+        arr.each(function(){
+            var img=new Image();
+            img.onload=img.onerror=function(){
+                try{
+                    num++;
+                    var scale=Math.floor((num/arr.length)*100);
+                    $('#progress').width(scale+'%');
+                    $('#progressNum').text(scale+'%')
+                    if(scale==100){
+                        $('#overlay-bar').animate({'opacity':0},{ duration: 300, queue: false, complete: function() {
+                            $(this).hide();
+                            $('#other-wrap').fadeIn();
+                        }
+                        });
+                    }
+                }catch(e){
+                    console.log(e);
+                }
+            }
+            img.src='http://shenbo.igalaxy.com.cn/'+$(this).attr('src');
+        })
+    }
 动态元素:
 appendChild是动态控制元素,把ul的节点追加到ul内,相当于替换,那么因为每次改变指针,所以位置发生改变如下:
 for(var i= 0,len=li.length;i<len;i++){
