@@ -21,21 +21,31 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="demo43_高德地图_普通定位.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demo/demo43_高德地图_普通定位.html">
+      <file leaf-file-name="font.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/font/webfontloader/font.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="817">
-              <caret line="43" column="16" lean-forward="false" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
+            <state relative-caret-position="551">
+              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="demo43_高德地图_定位标记英文.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/demo/demo43_高德地图_定位标记英文.html">
+      <file leaf-file-name="38_根据兄弟元素的数量来设置样式.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CSS解密/38_根据兄弟元素的数量来设置样式.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="102" column="74" lean-forward="false" selection-start-line="102" selection-start-column="8" selection-end-line="102" selection-end-column="74" />
+            <state relative-caret-position="304">
+              <caret line="16" column="166" lean-forward="false" selection-start-line="16" selection-start-column="166" selection-end-line="16" selection-end-column="166" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="font.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/font/webfontloader/font.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="1" column="34" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -53,8 +63,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>http://www.jslover.com/demo/pano/</find>
-      <find>.jpg</find>
       <find>dikuantu</find>
       <find>basePath</find>
       <find>src</find>
@@ -83,6 +91,8 @@
       <find>pageNow</find>
       <find>wbSite</find>
       <find>markers</find>
+      <find>Wei Ruan Ya Hei</find>
+      <find>wryh</find>
     </findStrings>
     <replaceStrings>
       <replace>i</replace>
@@ -94,9 +104,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ES6/demo9_对象的扩展4_Object.assign().html" />
-        <option value="$PROJECT_DIR$/ES6/demo9_对象的扩展6_属性的可枚举性.html" />
-        <option value="$PROJECT_DIR$/ES6/demo9_对象的扩展7_属性的遍历.html" />
         <option value="$PROJECT_DIR$/ES6/demo9_对象的扩展8__proto_属性.html" />
         <option value="$PROJECT_DIR$/demo/demo32_spinJS_动态加载的GIF图.htm" />
         <option value="$PROJECT_DIR$/demo/demo33_bootbox_弹出框样式.html" />
@@ -145,6 +152,9 @@
         <option value="$PROJECT_DIR$/demo/demo43_高德地图.html" />
         <option value="$PROJECT_DIR$/demo/demo43_高德地图_普通定位.html" />
         <option value="$PROJECT_DIR$/demo/ceshi.html" />
+        <option value="$PROJECT_DIR$/font/webfontloader/font.css" />
+        <option value="$PROJECT_DIR$/font/webfontloader/font.html" />
+        <option value="$PROJECT_DIR$/CSS解密/38_根据兄弟元素的数量来设置样式.html" />
       </list>
     </option>
   </component>
@@ -197,7 +207,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="demo" />
+              <option name="myItemId" value="CSS解密" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -209,7 +219,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="D:/font" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -332,17 +342,19 @@
       <workItem from="1493258812501" duration="2039000" />
       <workItem from="1493702492778" duration="4454000" />
       <workItem from="1495680972705" duration="611000" />
+      <workItem from="1498120661090" duration="2033000" />
+      <workItem from="1498441413038" duration="3496000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="267430000" />
+    <option name="totallyTimeSpent" value="272959000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1691254" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1691254" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -371,29 +383,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/demo/demo32_spinJS_动态加载的GIF图.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="64" column="31" lean-forward="false" selection-start-line="64" selection-start-column="24" selection-end-line="64" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/js/bootbox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/demo33_bootbox_弹出框样式.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="19" column="53" lean-forward="false" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/apache-tomcat-8.5.8/webapps/ROOT/qg_0227/wxwap/js/login.js" />
-    <entry file="file://D:/apache-tomcat-8.5.8/webapps/ROOT/qg_0227/wxwap/login.jsp" />
     <entry file="file://$PROJECT_DIR$/ES6/demo9_对象的扩展9_方法keys,values,entries.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="752">
@@ -694,7 +683,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="817">
           <caret line="43" column="16" lean-forward="false" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -703,6 +691,46 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
           <caret line="102" column="74" lean-forward="false" selection-start-line="102" selection-start-column="8" selection-end-line="102" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/font/fontfaceobserver/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/font/webfontloader/webfont.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/font/webfontloader/font.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="34" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/font/webfontloader/font.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CSS解密/38_根据兄弟元素的数量来设置样式.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="166" lean-forward="false" selection-start-line="16" selection-start-column="166" selection-end-line="16" selection-end-column="166" />
           <folding />
         </state>
       </provider>

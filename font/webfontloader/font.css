@@ -1,4 +1,4 @@
-@font-face {
-            font-family:"Wei Ruan Ya Hei";
-            src:url("http://shenbo.igalaxy.com.cn/css/CN/PingFang_SC_LIght.ttf") format("woff");
-        }
+@font-face{
+    font-family:'PingFangSC-Light1';
+    src: url('http://image.gogocbd.com/font/CN/font-spider/PingFang_SC_LIght.ttf') format('truetype')
+}

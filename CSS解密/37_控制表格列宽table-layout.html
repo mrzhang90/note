@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>精细控制表格列宽</title>
+	<style type="text/css">
+		#wrap{margin:0 auto;display:table;width:100%;max-width:1000px;background:red;
+			table-layout:fixed;/*只有定了fixed固定布局算法，下面的宽度才能奏效*/
+		}
+		#wrap .row{display:table-row;}
+		#wrap .cell{display:table-cell;vertical-align: middle;
+			text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+		}
+		#wrap .cell:first-child{width:250px;height:10px;background:blue;}
+		#wrap .cell:nth-child(2){width:500px;height:20px;background:green;
+			word-break:keep-all;/* 不换行 */
+			white-space:nowrap;/* 不换行 */
+			overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+		}
+		#wrap .cell:last-child{width:250px;height:30px;background:yellow;}
+	</style>
+</head>
+<body>
+<div id="wrap">
+	<div class="row">
+		<div class="cell">css2.1中，table-layout默认为auto,是自动表格布局算法，还可以接受fixed，是固定表格布局算法。</div>
+		<div class="cell">因为这里使用了禁止折行超出隐藏，那么就会变成单行，否则高度会被文字撑开</div>
+		<div class="cell">这里没有禁止折行，那么高度会被文字撑开，高度就变得不可控，对此无能为力了</div>
+	</div>
+	<div class="row">2</div>
+	<div class="row">3</div>
+</div>
+<h1>css2.1中，table-layout默认为auto,是自动表格布局算法，还可以接受fixed，是固定表格布局算法。</h1>
+<p>在使用时，只需要对table元素或具有display:table的元素使用table-layout属性即可，为了确保属性奏效，需要为表格元素指定一个宽度(那怕是100%)。</p>
+<p>同样，为了让text-overflow:ellipsis奏效，我们也需要为那一列指定宽度。</p>
+</body>
+</html>

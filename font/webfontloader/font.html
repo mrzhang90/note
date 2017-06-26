@@ -18,7 +18,7 @@
         }
         WebFont.load({
             custom: {
-                families: ['Wei Ruan Ya Hei'],
+                families: ['PingFangSC-Light1'],
                 urls:["font.css"]
             },
       loading: function() {
@@ -26,6 +26,7 @@
       },
       active: function() {
         progress('active');
+          h1.classList.add('Light')
       },
       inactive: function() {
         progress('inactive');
@@ -43,11 +44,11 @@
     </script>
     <style type="text/css">
         body{font-family: "宋体"}
-        .wryh{font-family: "Wei Ruan Ya Hei,宋体"}
+        .Light{font-family: "PingFangSC-Light1,宋体"}
     </style>
 </head>
 <body>
-<h1 class="wryh">微软雅黑</h1>
+<h1>微软雅黑</h1>
 <h1>微软雅黑</h1>
   <ol id="events"></ol>
 </body>

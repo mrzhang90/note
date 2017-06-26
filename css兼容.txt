@@ -1,5 +1,5 @@
 兼容:
-	PC网站自适应移动端。
+	PC网站自适应移动端。-青古项目
 		解决两个问题：1.浏览器窗口缩小,div宽度100%时，拖动横向滚动条不错乱;2.手机浏览器查看时，不错乱
 		CSS:body{min-width:1180px;}
 		HTML:<meta name="viewport" content="width=1180,inital-scale=1">
@@ -15,7 +15,7 @@
 	解决方案：
 		1、为父元素增加上边框，但父元素会变高；2.通过为父元素设置上内边距来取代子元素的上外边距，但也会增加父元素的高度；3.在父元素中，增加一个空 <table>元素，但会在页面中增加一个空元素	
 	完美方案：
-		使用内容生成before。代码：#container:before{ content:""; display:table; }
+		使用内容生成before。代码：#container:before{ content:""; display:table;opacity:0;}
 	1.怪异盒模型(在IE下，没有文档声明，元素会陷入怪异盒模型解析),可视宽=width,content=width-padding-border
 	2.在IE6下不支持1px的点线,解决办法:用背景平铺
 	3.在IE6下元素的高度小于19px，会被当做19px来处理,解决办法:1.设置font-size;2.加overflow
