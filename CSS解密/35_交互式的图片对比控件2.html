@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .image-slider{
+            position:relative;
+            display:inline-block;
+        }
+        .image-slider > div{
+            position: absolute;
+            top:0;bottom:0;left:0;
+            width:50%;
+            max-width:100%;
+            height:min-content;
+            overflow:hidden;
+        }
+        .image-slider img{display:block;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .image-slider input{
+            position:absolute;
+            left:0;bottom:0;
+            width:100%;margin:0;
+            /*让控件在视觉上与整个控件更加统一，用混合模式和滤镜组合来实现*/
+            filter:contrast(.5);
+            mix-blend-mode:luminosity;
+            /*增加用户的可操作性区域，提升使用体验(源于fitts法则)*/
+            width:50%;
+            transform:scale(2);
+            transform-origin:left bottom;
+        }
+    </style>
+</head>
+<body>
+<div class="image-slider">
+    <img src="http://csssecrets.io/images/adamcatlace-before.jpg" alt="">
+    <img src="http://csssecrets.io/images/adamcatlace.jpg" alt="">
+</div>
+<script>
+    const slider=document.getElementsByClassName('image-slider');
+    var div=document.createElement('div');
+    var img=slider[0].querySelector('img');
+    div.appendChild(img);
+    slider[0].insertBefore(div,slider[0].childNodes[0]);
+
+    var range=document.createElement('input');
+    range.type="range";
+    range.oninput=function(){
+        div.style.width=this.value+'%';
+    }
+    slider[0].appendChild(range);
+</script>
+</body>
+</html>

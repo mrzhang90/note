@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        figure{
+            padding:10px;
+            border:solid 1px #828282;
+            max-width:300px;
+            max-width:-webkit-min-content;
+            max-width:-moz-min-content;
+            max-width:min-content;
+            margin:auto;
+        }
+        figure > img{
+            /*width:100%;*/
+            max-width:inherit;
+        }
+    </style>
+</head>
+<body>
+<p>hi,this is e……</p>
+<figure>
+    <img src="http://csssecrets.io/images/adamcatlace.jpg" alt="">
+    <figcaption>
+        CSS内部与外部尺寸模型(https://www.w3.org/TR/css-sizing-3/)规范，为width和height属性定义了新的关键字，其中min-content将解析为这个容器内部最小的不可断行元素的宽度（即最小的单词、图片或具有固定宽度的盒元素）
+    </figcaption>
+</figure>
+<p><a href="http://dabblet.com/gist/82eb1575806f6eff9c37">实例地址：http://dabblet.com/gist/82eb1575806f6eff9c37</a></p>
+</body>
+</html>
