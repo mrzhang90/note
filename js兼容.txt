@@ -1,4 +1,4 @@
-1.
+--.
    //判断手机设备是不是iphone，获取iphone版本号
   var p = String(navigator.platform);
   if( p === 'iPad' || p === 'iPhone' || p === 'iPod touch' ){
@@ -21,7 +21,7 @@
     }
     return isMobile;
 }
-2.获取浏览器版本，判断是不是IE $.browser
+--.获取浏览器版本，判断是不是IE $.browser
 使用：
     if($.browser.msie && parseInt($.browser.version) <=8){//解决ie8\ie7不支持nth-child的bug
         $('.hot_list li:nth-child(3n+1)').css("margin-left",0)
@@ -36,7 +36,7 @@
         msie: (/msie/.test(userAgent)||/rv:/.test(userAgent)) && !/opera/.test(userAgent),
         mozilla: /mozilla/.test(userAgent) && !/(compatible|webkit)/.test(userAgent)
     }; 
-3.解决IE8 placeholder 不兼容的问题
+--.解决IE8 placeholder 不兼容的问题
 样式：
   input.placeholder{color: #000 !important;}
   ::-webkit-input-placeholder{color:#000!important}
@@ -66,7 +66,7 @@
           })
         });
     }
-4.解决window.open被IE拦截的bug
+--.解决window.open被IE拦截的bug
 auto_submit('/search.jsp',$.param(obj),'get');
 //自动提交表单
 function auto_submit(address,obj,method){
@@ -82,7 +82,7 @@ function auto_submit(address,obj,method){
         $('#frmSubmit').submit();
     }
 }
-5.window.screenX判断浏览器的,678是undefined，91011是number,chrome浏览器也是true 
+--.window.screenX判断浏览器的,678是undefined，91011是number,chrome浏览器也是true 
 if (typeof window.screenX === "number") {
 		
 } else {

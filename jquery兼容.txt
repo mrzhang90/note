@@ -1,0 +1,5 @@
+--.
+  问题：
+    $(document.body).scrollTop不支持IE
+  解决：
+    $("body,html").scrollTop();
