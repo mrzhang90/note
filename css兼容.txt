@@ -9,6 +9,14 @@
 			:root input{filter:progid:none;}
 		2.条件注释法：
 			<!--[if IE 9 ]><![endif]-->
+	ie6-8黑色,ie9 yellow,ie10以上浏览器blue,其他浏览器红色
+		.aa{background:red;+background:#000;background:#000 \9;}//+识别IE5/6/7 \9识别6-8
+		@media screen and (min-width:0\0){
+			background:yellow;
+		}
+		@media all and (-ms-high-contrast:none) {
+			background:blue;
+		}
 	问题：子元素的margin-top溢出
 		在给没有margin-top-border父元素中的子元素添加margin-top时，发现没有直接表现出来，而是作用到父元素身上，就会导致子元素的margin-top溢出
 	条件：1、父元素没有上边框；2、为第一个子元素设置上外边距时
