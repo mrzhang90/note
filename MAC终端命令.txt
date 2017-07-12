@@ -30,3 +30,7 @@ rm命令：
 
 退出输入状态：
 command+d 或 command+c+c
+
+进程命令：
+	lsof -i:80 -查看80端口是否占用
+	kill 488   -杀掉PID为488的进程
