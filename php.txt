@@ -1,0 +1,10 @@
+方法：
+	include_once和require_once的区别，前者包含或执行中遇错依然可以执行；后者则不执行
+	isset($b) -判断变量$b是否存在
+	json_encode($array) -数组编码
+	
+全局：
+	global $c -声明变量c为全局可用
+	session:
+		session_start();//session开关，每个页面使用session前要加这么一句，也可以在全局设置
+		$_SESSION['view']='你访问session了';

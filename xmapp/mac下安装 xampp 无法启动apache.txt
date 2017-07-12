@@ -1,0 +1,19 @@
+mac下安装 xampp 无法启动apache
+
+1.查看端口是否被占用 
+sudo lsof -i -n
+
+2.用终端运行xampp，查看具体的错误 
+sudo su 
+/Applications/XAMPP/xamppfiles/xampp start
+
+多半是这个问题： 
+XAMPP: Starting Apache…fail. 
+XAMPP: Another web server is already running.
+
+解决办法： 
+sudo apachectl stop 
+// This command killed Apache server that was pre-installed on MAC OS X.
+
+参考：
+	http://blog.csdn.net/w124374860/article/details/52742632

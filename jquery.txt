@@ -40,6 +40,7 @@
     传递数据: trigger(type[,data]) :参数1.事件的类型;参数2.事件处理函数的附加数据,以数组形式.
     默认操作:elem.trigger('focus') :不仅会触发elem的focus事件,也会是elem本身得到焦点(这是浏览器的默认操作)
             elem.triggerHandler('focus') :触发focus,同时取消浏览器的默认操作;也就是说只触发focus,不会得到焦点
+
 其他用法:
     绑定多个事件:elem.bind("mouseover mouseout",fn); 等价于bind()链式绑定两个事件
     添加事件命名空间:1.elem.bind("click.div1",fn1).bind("mouseover.div1",fn2); 2.btn.click(elem.unbind('.div1')); //删除div1命名空间的事件,也就是删除了div1的click和mouseover
@@ -127,6 +128,7 @@
     $('tbody>tr:has(:checked)');//通过has选择器,找到含有选中的单选按钮
     $('li:first')
     $('.div1 > li > span')
+
 方法:
     $.fx.off如果设置为true，则关闭所有网页特效
     $('ul li:gt(2):not(:last)')
@@ -265,7 +267,6 @@ ajax
             10.SetRequestHeader(header,value):设置请求头部信息,当readyState属性为1,可以在调用open()后调用这个方法,否则得到一个异常;参数1.header键,参数2.键值
             11.getResponseHeader():用于检索响应的头部值,仅当readyState属性值是3或4,才可以调用这个方法,否则返回一个空字符串;此外还可以通过getAllResponseHeaders()获取所有的HttpResponse的头部信息
 
-
     load\$.get\$.post :属于第2层
         load(url,[data],[callback])
             1.$('#demo1').load('demo.html .div1'); //通过URL参数指定选择符,可以很方便从加载过来的HTML文档里刷选出所需要的内容
@@ -283,11 +284,13 @@ ajax
                        2.$(data).find("comment content").text()
                     PS:由于服务器返回XML,那么服务端需要设置:header("Content-Type:text/xml;charset=utf-8");//php
                 3.json文件,$.get中,第四个参数设置为"json",表示服务器返回的数据格式
+
     $.getScript\$.getJSON :属于第3层
         $.getScript('demo.js',callback); //动态加载js文件
         $.getJSON('test.json',callback)  //动态加载json文件
         //这里用JSONP跨域访问数据
         $.getJSON('http://www.xxxx.com/index.php?u=a',callback)
+
 ajax的全局事件:
     当ajax请求开始时,会触发ajaxStart()的回调函数;当ajax请求结束是,会触发ajaxStop()的回调函数,这些方法都是全局方法,只要触发ajax请求,就会触发
     ajaxStart()
@@ -330,39 +333,40 @@ CSS-DOM操作:
     scrollTop()和scrollLeft():分别是获取元素的滚动条距顶端和距左侧的距离
 
 PS:
-1.为了能有更快的选择器解析速度,从1.12.1版以后,jquery废弃了不常使用的xPath选择器,但在引用插件后,依然可以支持xPATH选择器
-2.$('#tt'):它获取的永远是对象,即使没有此元素,因为当检查是否存在,可以用两种方式: 第一种.if($('#tt').length>0); 第二种.if($('#tt')[0])//转化成DOM对象
-3.选择其中还有特殊字符,需要使用转义符转义,例如:$('#id#b')是不对的,正确写法是:$('#id\\#b');在例如:$('#id[1]'),正确:$('#id\\[1\\]');由于jquery1.3.1改变了选择器的引擎,某些情况下,导致转义失效,预计下一个版本得到修复
-4.1.3.1版本彻底放弃了1.1.0遗留的@符号,例如:$('div[@title="test"]')已经弃用的写法,1.3.1应该这样写:$('div[title="test"]');
-5.链式操作.
-    $('.div').addClass('s1')
-    .childred('a').show().end() //将子节点a元素显示出来,并重新定位到上次操作的元素
-    .sinlings().removeClass('s2')
-    .children('a').hide();
-6.Jquery和DOM对象转换:平时用到的jquery对象是通过$函数制造出来的,所以说$就是一个jquery对象的制造工厂
-    jquery转DOM
-        1.jquery 对象是一个数组对象,可以通过[index]的方法得到相应的DOM对象,如:$('div')[0]//得到DOM对象
-        2.jquery 本身提供的一种方法,通过get(index)方法得到相应的DOM对象,如:$('div').get(0)//得到DOM对象
-    DOM转jquery
-        对于一个DOM对象,只需要用$()把DOM对象包装起来,就可以获得一个jquery对象,如:var a=document.getElementById('ceshi');$(a)//得到jquery对象
-7.解决Jquery库冲突:默认情况下jquery用$作为自身的快捷方式;如果jquery库在其他库之前导入,那么其他库直接使用$不会冲突;如果jquery库在其他库之后导入,可以调用Jquery.noConflict()来将变量$控制权交给其他js库
-8.利用Options对象,可以将值传给jquery的$.ajax(),假如用户熟悉$.ajax()提供的options对象,那么可以利用它们来将Options对象传递给ajaxForm()和ajaxSubmit()
+    1.为了能有更快的选择器解析速度,从1.12.1版以后,jquery废弃了不常使用的xPath选择器,但在引用插件后,依然可以支持xPATH选择器
+    2.$('#tt'):它获取的永远是对象,即使没有此元素,因为当检查是否存在,可以用两种方式: 第一种.if($('#tt').length>0); 第二种.if($('#tt')[0])//转化成DOM对象
+    3.选择其中还有特殊字符,需要使用转义符转义,例如:$('#id#b')是不对的,正确写法是:$('#id\\#b');在例如:$('#id[1]'),正确:$('#id\\[1\\]');由于jquery1.3.1改变了选择器的引擎,某些情况下,导致转义失效,预计下一个版本得到修复
+    4.1.3.1版本彻底放弃了1.1.0遗留的@符号,例如:$('div[@title="test"]')已经弃用的写法,1.3.1应该这样写:$('div[title="test"]');
+    5.链式操作.
+        $('.div').addClass('s1')
+        .childred('a').show().end() //将子节点a元素显示出来,并重新定位到上次操作的元素
+        .sinlings().removeClass('s2')
+        .children('a').hide();
+    6.Jquery和DOM对象转换:平时用到的jquery对象是通过$函数制造出来的,所以说$就是一个jquery对象的制造工厂
+        jquery转DOM
+            1.jquery 对象是一个数组对象,可以通过[index]的方法得到相应的DOM对象,如:$('div')[0]//得到DOM对象
+            2.jquery 本身提供的一种方法,通过get(index)方法得到相应的DOM对象,如:$('div').get(0)//得到DOM对象
+        DOM转jquery
+            对于一个DOM对象,只需要用$()把DOM对象包装起来,就可以获得一个jquery对象,如:var a=document.getElementById('ceshi');$(a)//得到jquery对象
+    7.解决Jquery库冲突:默认情况下jquery用$作为自身的快捷方式;如果jquery库在其他库之前导入,那么其他库直接使用$不会冲突;如果jquery库在其他库之后导入,可以调用Jquery.noConflict()来将变量$控制权交给其他js库
+    8.利用Options对象,可以将值传给jquery的$.ajax(),假如用户熟悉$.ajax()提供的options对象,那么可以利用它们来将Options对象传递给ajaxForm()和ajaxSubmit()
+    9. $.ajax中的dataType='JSON',就可以省掉data=JSON.parse(data)，这样接口返回的data数据可以直接用
 
 技巧:
-1.当用户提交表单是,可以用 $("form .require:input").trigger("blur"),用trigger()触发blur事件,不过也会触发浏览器的默认blur事件,即光标不能定位文本框上.而triggerHandler('blur')只会触发元素绑定的blur事件,而不触发默认blur事件
-2.var has=elem.hasClass('selected') //判断是否含有selected样式
-3.$(this)[has?"removeClass":"addClass"]('selected') //通过上一步判断是否含有样式,如果有则移除selected类,没有则添加selected类
-4.$(this).toggleClass('selected').siblings('.child_'+this.id).toggle() //当点击当前行,移除selected类,子级收缩
-5.$('elem').keyup(fn).keyup() :这里在最后加了一个.keyup,是为了页面刷新就可以执行函数
-6.demo1.mouseover(function(){}).mouseover();       //这种方式是模拟鼠标事件,加载后就会触发
-  demo1.hover(function(){}).trigger('mouseleave');
-7.$('option:selected',this)//第二个参数还需要研究
-8.jquery获取元素索引值index()
-    //四个经典的用法
-    var index1 = $("#nav a").index(this);
-    var index2 = $("#nav a").index($(this));
-    var index3 = $(this).index()
-    var index3 = $(this).index("a")
+    1.当用户提交表单是,可以用 $("form .require:input").trigger("blur"),用trigger()触发blur事件,不过也会触发浏览器的默认blur事件,即光标不能定位文本框上.而triggerHandler('blur')只会触发元素绑定的blur事件,而不触发默认blur事件
+    2.var has=elem.hasClass('selected') //判断是否含有selected样式
+    3.$(this)[has?"removeClass":"addClass"]('selected') //通过上一步判断是否含有样式,如果有则移除selected类,没有则添加selected类
+    4.$(this).toggleClass('selected').siblings('.child_'+this.id).toggle() //当点击当前行,移除selected类,子级收缩
+    5.$('elem').keyup(fn).keyup() :这里在最后加了一个.keyup,是为了页面刷新就可以执行函数
+    6.demo1.mouseover(function(){}).mouseover();       //这种方式是模拟鼠标事件,加载后就会触发
+      demo1.hover(function(){}).trigger('mouseleave');
+    7.$('option:selected',this)//第二个参数还需要研究
+    8.jquery获取元素索引值index()
+        //四个经典的用法
+        var index1 = $("#nav a").index(this);
+        var index2 = $("#nav a").index($(this));
+        var index3 = $(this).index()
+        var index3 = $(this).index("a")
 
 插件
     应用迁移辅助插件:jquery-migrate.min.js
