@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>弹窗-图左右轮播</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		#bgClass{z-index: 9;display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;background: rgba(0,0,0,0.3);
+		    filter:progid:DXImageTransform.Microsoft.Gradient(startColorStr=#ee666666,endColorStr=#ee666666);
+		}
+		.row_service{padding-top:58px;}
+		.row_service .index-box{position:relative;width:1200px;}
+		.lunboWidth{margin:0 auto;position:relative;width:863px;overflow:hidden}
+		.fourthLB .lunboWidth{height:265px;}
+		.thirdLB .lunboWidth{height:178px;}
+		.row_service h2{ width:863px;line-height:48px;font-size:18px;}
+		.row_service ul{position:absolute;top:0;left:0;height:100%;}
+		.row_service ul > li{float:left;width:222px;height:331px;overflow:hidden;background-position:center center;background-repeat:no-repeat;background-size:cover;cursor:pointer;}
+		.fourthLB ul{margin-left: -50px;}
+		.thirdLB ul{margin-left: -36px;}
+		.thirdLB ul{margin-left: -36px;}
+		.fourthLB ul > li{margin-left:50px;width:178px;height:265px;background-size: contain;}
+		.thirdLB ul > li{margin-left:36px;width:264px;height:178px;}
+		/*.row_service li:first-child{margin-left:0;}*/
+		.row_service ul > li > img{max-width:666px;max-height:372px;}
+		.leftPos,.rightPos{position:absolute;top:50%;margin-top:-20px;padding:8px 13px;background:#000;background:rgba(0,0,0,.5);z-index:9;}
+		.leftPos{left:0px;}
+		.rightPos{right:0}
+		.closePos{position:absolute;top:10px;right:10px;width:24px;height:24px;background:url('../img/qie/close.png');}
+		.child_lunbo{display:none;position:fixed;top:50%;left:50%;width:666px;height:372px;margin:-163.5px 0 0 -333px;
+		    background: rgba(0,0,0,.1);box-shadow: 0 0 3em rgba(0,0,0,.4);
+		}
+		.child_lunbo ul > li{position:absolute;top:50%;left:50%;transform: translate(-50%,-50%);}
+		.child_lunbo .ol{position:relative;height:100%;}
+		.child_lunbo .ol .li{position: absolute; left: 0; top: 0;z-index:1;opacity:0;filter:Alpha(opacity = 0);height:100%;text-align:center;background-repeat:no-repeat;background-position:center center;background-size:contain;}
+		.child_lunbo .ol .li:first-child{z-index:3;opacity:1;filter:Alpha(opacity = 100);}
+		.child_lunbo .ol .li img{max-width:666px;max-height:372px;}
+		/*@media screen and (min-width: 1400px){*/
+		.lunboWidth{width:1078px;}
+		.thirdLB .lunboWidth{height:222px;}
+		.fourthLB .lunboWidth{height:331px;}
+		.fourthLB ul{margin-left: -63px;}
+		.fourthLB ul > li{margin-left:63px;width:222px;height:331px;}
+		.thirdLB ul{margin-left: -45px;}
+		.thirdLB ul > li{margin-left:45px;width:331px;height:222px;}
+		/*}*/
+	</style>
+	<style>
+        .row_service ul > li{-ms-behavior: url(backgroundsize.min.htc);behavior: url(backgroundsize.min.htc);}
+    </style>
+</head>
+<body>
+<h1>左右轮播，垂直居中，兼容IE7及以上，关闭按钮</h1>
+<p>同时，background-size也做了兼容IE低版本</p>
+<div id="doc1">
+	<div class="row_service j_lunboP fourthLB">
+		<div class="lunboWidth">
+		    <ul class="j_lunbo clear" style="width:200%;">
+				<li type="img" style="background-image:url(http://shared.ydstatic.com/at/2.0.6cu/styles/intelligent/banner.png)">
+			        <div class="j_childLB child_lunbo">
+			            <div class="ol">
+			                <div class="li">
+			                    <img src="http://shared.ydstatic.com/at/2.0.6cu/styles/intelligent/banner.png" alt="">
+			                    <a href="" class="closePos j_close_childLB">X</a>
+			                </div>
+			                <div class="li">
+			                    <img src="http://shared.ydstatic.com/at/2.0.6cu/styles/indexb/amazon.png" alt="">
+			                    <a href="" class="closePos j_close_childLB">X</a>
+			                </div>
+			                <div class="li">
+			                    <img src="http://shared.ydstatic.com/at/2.0.6cu/styles/images/interpret.png" alt="">
+			                    <a href="" class="closePos j_close_childLB">X</a>
+			                </div>
+			                <a href="" class="leftPos j_left_childLB" style="left:0"><img src="http://shared.ydstatic.com/at/2.0.6cu/styles/indexb/turn-left.png"/> </a>
+			                <a href="" class="rightPos j_right_childLB"><img src="http://shared.ydstatic.com/at/2.0.6cu/styles/indexb/turn-right.png"/> </a>
+			            </div>
+			        </div>
+			    </li>
+			</ul>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+    var userAgent = navigator.userAgent.toLowerCase();
+    var obj = {
+        version: (userAgent.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [])[1],
+        msie: (/msie/.test(userAgent)||/rv:/.test(userAgent)) && !/opera/.test(userAgent)
+    };
+    if(!obj.msie || (obj.msie && parseInt(obj.version)>8)){
+        document.write('<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"><\/script>');
+    }
+    if(obj.msie && parseInt(obj.version)<=8){
+        document.write('<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"><\/script>');
+    }
+</script>
+<script type="text/javascript">
+	$('.j_lunbo').each(function(){
+        var config1={
+            'element':$(this)
+        }
+        flaotLunbo(config1);
+    })
+    $(document.body).on('click','.j_right_childLB',function(){
+        var ol=$(this).parent();
+        var li=ol.children('.li')
+        var len=li.length;
+        var old_index=right_childLB_index;
+        right_childLB_index=(right_childLB_index+1)%len;
+        li.eq(old_index).animate({'opacity':0},function(){
+            $(this).css('z-index',-1);
+        });
+        li.eq(right_childLB_index).animate({'opacity':1},function(){
+            $(this).css('z-index',2)
+        })
+        return false;
+    })
+    $(document.body).on('click','.j_left_childLB',function(){
+        var ol=$(this).parent();
+        var li=ol.children('.li')
+        var len=li.length;
+        var old_index=right_childLB_index;
+        right_childLB_index=(right_childLB_index-1)%len;
+        li.eq(old_index).animate({'opacity':0},function(){
+            $(this).css('z-index',-1);
+        });
+        li.eq(right_childLB_index).animate({'opacity':1},function(){
+            $(this).css('z-index',2)
+        })
+        return false;
+    })
+    $(document.body).on('click','.j_childLB',function(ev){
+        return false;
+    })
+    $(document.body).on('click','.j_close_childLB',function(ev){
+        bgShow().html('').hide();
+        ev.preventDefault();
+    })
+    $(document.body).on('click',function(ev){
+        bgShow().html('').hide();
+        ev.preventDefault();
+    })
+	function flaotLunbo(config1){
+        this.AElement=config1['element'].children('li');
+        this.AElement.on('click',function(ev){
+            if($(this).attr('type')=='img'){
+                right_childLB_index=0;
+                var child=$(this).children('.j_childLB');
+                if(child.length<=0){
+                    return false;
+                }
+                this.floatBG=bgShow();
+                var ul=this.floatBG.html(child.clone(true)).show().children().show();
+                var li=ul.find('.li');
+                li.each(function(){
+                    var index=$(this).index();
+                    var imgElement=$(this).children('img');
+                    var img=new Image();
+                    img.onload=function(){
+                        console.log('onload')
+                        img.onload=null;//解决gif图多次出发onload的问题
+                        var index=this.getAttribute('data-index');
+                        console.log(index)
+                        var currentLi=li.eq(index);
+                        var currentImg=currentLi.children('img');
+                        currentLi.css({'left':'50%','margin-left':-(currentImg.width()/2),'top':'50%','margin-top':-(currentImg.height()/2)})
+                    };
+                    img.setAttribute('data-index',index);//放到img.src是为了兼容IE低版本
+                    img.src=imgElement.attr('src');//放到这里是为了兼容ie低版本
+                })
+            }else{
+                var address=$(this).attr('address');
+                if(!address){
+                    return false;
+                }
+                var ifr=$('<div style="width: 600px; height: 600px; top: 50%; left: 50%; margin-left: -300px; margin-top: -300px; z-index: -1; position: absolute; box-shadow: 0 0 3em rgba(0,0,0,.4);"><a href="" class="closePos j_close_childLB"></a><iframe src="'+address+'" style="border: 0px;height: 100%;width: 100%;"></iframe></div>');
+                this.floatBG=bgShow();
+                this.floatBG.html(ifr).show();
+            }
+            return false;
+        });
+    }
+    function bgShow(){
+        if(!document.getElementById('bgClass')){
+            var element='<div id="bgClass"></div>';
+            $('#doc1').append(element);
+        }
+        return $('#bgClass');
+    }
+</script>
+</body>
+</html>
