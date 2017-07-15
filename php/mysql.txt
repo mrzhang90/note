@@ -23,3 +23,17 @@ SQL:
 数据库结构：
 	性别设定：
 		char(1)-男：M，女：F //国际通用性别表示
+
+事务处理：
+	set autocommit=0;//开启事物，开启以后所有的sql语句都会当成事物来处理，直到commit或rollback结束事物，同时当结束事物时又会开启下一个新事物，所以实验最后还要set autocommit=1;来结束事物
+
+	//以下为demo所用
+	set autocommit=0;//开启事物
+	start transaction
+
+	update news set title='title' where id=40;
+	update news set content='content' where id=41;
+	select * from news where id=40 or id=41
+
+	ROLLBACK //回滚事物
+	COMMIT //提交事物
