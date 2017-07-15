@@ -1,0 +1,25 @@
+SQL:
+	min():   select min(dirthdate) form 表名 //查找最大年龄的人，因为年龄越大，出生越早，所以年龄越小
+	rand():  select rand() * 100 //获取一个任意随机数，验证码
+    row():   select now() //获取当前时间
+    concat():select concat('AAA','BBB') //AAABBB-字符串连接
+    	使用方法：select concat(id,'-',name) from 表明
+	between://求两个值之间的值
+		方法1：select * from aa where bir>=1 and bir<=3
+		方法2(between用法)：select * from aa where bir between 1 and 3
+	like://模糊查询
+		select * from aa where name like '%赵%'
+	联表查询： //mysql一般用join on,orcal一般用下面这种方法，都通用
+		select * from aa,bb where aa.id=bb.id
+
+查看当前服务器下有哪些数据库：
+	show databases; //分号不能往
+
+登录mysql:
+	mysql -uroot -p //u是user登录然后用root用户登录,p是密码
+设置默认数据库
+	use ceshi； //把ceshi数据库设为默认数据库
+
+数据库结构：
+	性别设定：
+		char(1)-男：M，女：F //国际通用性别表示

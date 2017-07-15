@@ -8,3 +8,7 @@
 	session:
 		session_start();//session开关，每个页面使用session前要加这么一句，也可以在全局设置
 		$_SESSION['view']='你访问session了';
+
+乱码解决：
+	header('Content-Type: json; charset=utf-8'); //添加报头
+	mysql_query("set names 'utf8'"); //添加到数据库内容乱码时

@@ -1,5 +1,7 @@
 查看IP：ifconfig
 
+打开文件夹命令：
+	open /usr
 文件管理：
 touch 1.txt     
 	-创建一个文件
