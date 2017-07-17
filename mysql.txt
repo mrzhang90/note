@@ -1,4 +1,0 @@
-limit:
-	select * from tablename limit m,n 
-	其中m是记录开始的index,从0开始，表示第一条记录n是指从第m+1条开始，取n条
-	例：select * from tablename limint 2,4即取出第3到6条，共4条

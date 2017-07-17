@@ -1,0 +1,245 @@
+应用迁移辅助插件:jquery-migrate.min.js
+    就是一个过渡插件 让你在原来代码上升级jquery 不用修改代码用的
+
+表单验证-validation :http://doc.jquery.com/Plugins/Validation
+    Validation插件有两个经常被用到的选项,分别是方法(method)和规则(rule)
+        方法(method):通过执行验证逻辑判断一个元素是否合法,例如email()就是检查当前文本格式是否是正确的email格式
+        规则(rule):email:{
+                required:true,
+                email:true
+            }
+    插件方法表:
+        validate(options) :return Validator,验证被选择的form
+        valid() :bool,检查被选择的form或者被选择的所有元素是否有效
+        rules() :return Options,为第1个被选择的元素返回验证规则
+        rules("add",rules) :return Options,增加指定的验证规则并为第1个匹配元素返回所有的规则
+        rules("remove",rules) :return Options,移除指定的验证规则并为第1个匹配元素返回所有的规则
+        removeAttrs(attributes) :return Options,从第1个匹配元素中移除指定的属性并返回
+    内置验证规则:
+        (1)required:true               必输字段
+        (2)remote:"check.php"          使用ajax方法调用check.php验证输入值
+        (3)email:true                  必须输入正确格式的电子邮件
+        (4)url:true                    必须输入正确格式的网址
+        (5)date:true                   必须输入正确格式的日期
+        (6)dateISO:true                必须输入正确格式的日期(ISO)，例如：2009-06-23，1998/01/22 只验证格式，不验证有效性
+        (7)number:true                 必须输入合法的数字(负数，小数)
+        (8)digits:true                 必须输入整数
+        (9)creditcard:                 必须输入合法的信用卡号
+        (10)equalTo:"#field"           输入值必须和#field相同
+        (11)accept:                    输入拥有合法后缀名的字符串（上传文件的后缀）
+        (12)maxlength:5                输入长度最多是5的字符串(汉字算一个字符)
+        (13)minlength:10               输入长度最小是10的字符串(汉字算一个字符)
+        (14)rangelength:[5,10]         输入长度必须介于 5 和 10 之间的字符串")(汉字算一个字符)
+        (15)range:[5,10]               输入值必须介于 5 和 10 之间
+        (16)max:5                      输入值不能大于5
+        (17)min:10                     输入值不能小于10
+    Validator验证会返回一个Validator对象,Validator对象可以帮助用户触发Validator程序或者改变form的内容.Validator对象的更多方法:
+        form() :bool,验证form的合法性,如果为true,否则为false
+        element(element) :bool,验证一个元素的合法性,如果为ture,否则为false
+        resetForm() :undefined,复位验证的form
+        showErrors(errors) :undefined,显示指定的提示信息
+        numberOflnvalids() :Integer,返回无效字段的个数
+    Validator的静态方法:
+        setDefault(default) :undefined,修改Validator初始的设置
+        addMethod(name,method,message) :undefined,增加一个新的Validator方法,该方法由name(必须是一个合法的javascript标识符),一个基于函数javascript和一个默认的字符串提示组成
+        addClassRules(name,rules) :undefined,增加一个验证规则,代替"rules"中的验证
+        addClassRules(rules) :undefined,增加多个验证规则
+    实用项:
+        jQuery.format(template,arguments,argumentsN…) :String,使用参数来替换{n}占位符
+    普通选择器
+        :blank :Array,匹配值为空的元素
+        :filed :Array,匹配值不为空的元素
+        :unchecked :Array,匹配所有没被选择的元素
+    如需需改message的默认提示,可在js代码中加入：
+        jQuery.extend(jQuery.validator.messages, {
+            required: "必选字段",
+            remote: "请修正该字段",
+            email: "请输入正确格式的电子邮件",
+            url: "请输入合法的网址",
+            date: "请输入合法的日期",
+            dateISO: "请输入合法的日期 (ISO).",
+            number: "请输入合法的数字",
+            digits: "只能输入整数",
+            creditcard: "请输入合法的信用卡号",
+            equalTo: "请再次输入相同的值",
+            accept: "请输入拥有合法后缀名的字符串",
+            maxlength: jQuery.validator.format("请输入一个长度最多是 {0} 的字符串"),
+            minlength: jQuery.validator.format("请输入一个长度最少是 {0} 的字符串"),
+            rangelength: jQuery.validator.format("请输入一个长度介于 {0} 和 {1} 之间的字符串"),
+            range: jQuery.validator.format("请输入一个介于 {0} 和 {1} 之间的值"),
+            max: jQuery.validator.format("请输入一个最大为 {0} 的值"),
+            min: jQuery.validator.format("请输入一个最小为 {0} 的值")
+        });
+        推荐做法，将此文件放入messages_cn.js中，在页面中引入
+        <script src="../js/messages_cn.js" type="text/javascript"></script>
+    使用1:
+    1.引入jquery库,validation插件,以及自定义库
+        <script src="../js/jquery.js" type="text/javascript"></script>
+        <script src="../js/jquery.validate.js" type="text/javascript"></script>
+        <script src="./js/jquery.metadata.js" type="text/javascript"></script>
+    2.$().ready(function() {
+        $("#form").validate();
+      });
+    3.针对不同的字段,进行验证规则编码,设置字段相应的属性
+        class="required"为必填,minlength="2"最小长度为2
+        class="required email",为必填和内容符合emial格式
+        class="url",格式符合url格式
+        
+    使用2.
+    1.使用class="{}"的方式，必须引入新的jquery插件-jquery.metadata.js ,是一个支持固定格式解析的jquery插件
+    2.class="required"
+      class="{required:true,minlength:5,messages:{required:'请输入内容'}}"
+      class="{required:true,minlength:5,equalTo:'#password'}"  //在使用equalTo关键字时，后面的内容必须加上引号，如下代码：
+      class="{validate:{required:true,minlength:2}}"
+      class="{validate:{required:true,email:true}}"
+      class="{validate:{url:true}}"
+    3.$("form").validate({
+        //meta:"validate",
+        rules:{
+            firstname: "required",
+            username:{
+                required:true,
+                minlength:2
+            },
+            email:{
+                require:true,
+                email:true
+            },
+            password: {
+                required: true,
+                minlength: 5
+            },
+            confirm_password: {
+                required: true,
+                minlength: 5,
+                equalTo: "#password"
+            },
+            url:"url",
+            comment:"required"
+        }
+    })
+    实现步骤:
+        1.在$("form").validate()中增加rules属性
+        2.通过每个字段的name属性来匹配规则
+        3.定义验证规则:例如required:true,email:true,minlength:2等等
+
+验证信息:
+    jquery.validate.message_cn.js validate验证信息默认语言是英文,引入该插件是中文验证信息库
+        <input class="{validate:{required:true,minlength:2,message:{required:'请输入姓名',minlength:'请至少输入两个字符'}}}"/>
+    自定义信息美化:
+        ("form").validate({
+           errorElement:"em", //用来创建错误提示信息标签
+           success:function(data){  //验证成功后执行的回调
+                label.text(" ")     //清空错误提示消息
+                .addClass("success") //加上自定义的success类
+           }
+        })
+        在css中增加如下代码:
+            em.error{}
+            em.success{}
+    自定义验证规则:
+        1.自定义规则
+        $.validator.addMethod(
+            "formula",                      //验证方法名称
+            function(value,element,param){  //验证规则
+                return value==eval(param);
+            },
+            '请正确输入数学公式计算后的结果'   //验证提示信息
+        )
+        2.调用规则:
+        ("form").validate({
+           rules:{
+            username:{required:true,milength:2},
+            email:{required:true,email:true},
+            url:"url",
+            comment:"required",
+            valcode:{formula:"7+9"} //"7+9"这个字符串可以通过其他手段获得,例如页面元素的txet()或者ajax来取得,这里实例简单的写成"7+9"
+           }
+        })
+
+From插件:是ajax表单插件,
+        ajaxForm() :增加所需要的事件监听器,为ajax提交表单做好准备.该方法并且提交表单,而是为ajax提交表单做好准备,可以接受0个或者1个参数,这个参数可以是回调函数,也可以是一个options对象,支持链式操作
+        ajaxSubmit() :立即提交表单,多数情况下,用来响应客户的提交表单操作,可以接受0个或者1个参数,这个参数可以是回调函数,也可以是一个options对象,支持链式操作
+        formToArray() :序列化当前表单元素到一个数组中，每个数组元素都是包含name和value属性的对象。返回值是内部构件的一个数组元素，而elements参数将包含除<input type=”image”>以外的所有表单元素。
+        formSerialize() :该方法将表单所有的元素序列化为一个字符串,因为返回的是字符串,所以该方法不可以进行链式操作
+            例子:var qstring=$('#form').formSerialize();
+                //然后就可以$.get,$.post,$.ajax等ajax方法来提交数据
+                $.post('aa.php',qstring,function(data){});
+        fieldValue() :把匹配元素的值插入到数组中,然后返回这个数组,如果元素值判定无效,则数组为空,不能链式操作
+        clearForm() :用来清空表单中的元素,支持链式
+        clearFields() :用来清空字段元素,当用户需要清空一部分表单元素时就会用到该方法,支持链式
+        resetForm() :该方法通过调用表单元素原有的DOM方法重置表单到初始化状态,支持链式操作
+    1.引入插件:jquery.js和jquery.form.js
+    //PS:ajaxForm()和ajaxSubmit()有0个或者1个参数,这个参数可以是回调函数,也可以是一个options对象
+    2.ajaxForm()和ajaxSubmit()的回调函数
+      ajaxForm():
+          $(#form).ajaxForm(function(){
+            $('#output1').html('提交成功!').show();
+          })
+      ajaxSubmit():
+         $('#myForm').submit(function(){
+             $('#myForm').ajaxSubmit(function(){
+                 $('#output1').html('提交成功!').show();
+             })
+             return false;//阻止表单默认提交
+         })
+    3.ajaxForm()和ajaxSubmit()的options对象
+      ajaxForm():
+          $(#form).ajaxForm(options)
+      ajaxSubmit():
+          $('#myForm').submit(function(){
+            $(#form).ajaxSubmit(options);
+            return false;//阻止表单默认提交
+          })
+      var options={
+        target:"#div1",           //把服务器返回的内容放入id元素中,默认值为null
+        beforeSubmit:showRequest, //提交前的回调函数,默认为null
+        success:showResponse,     //提交后的回调函数,默认为Null
+        //url:null,               //默认是form的action,如果申明,则会覆盖
+        //type:type,              //默认是form的method('get'或'post'),如果没有,则为GET
+        //dataType:null,          //接受服务器返回的类型:xml,script,json;如果dataType为script,服务器返回的内容将被放到全局环境中执行
+        //clearForm:ture,         //成功提交后,清楚所有表单元素的值
+        //resetForm:true,         //成功提交后,重置所有元素
+        //timeout:3000            //延时3秒后,跳出请求,
+        semantic:false            //是否需要定义严格的语义格式,注意,普通的表单序列要遵循的语义不能包括type属性为image的input元素,加入服务器有严格的语义要求,而表单至少包括一个type="image"元素的时候,
+                                    那么必须设置为true,
+        iframe:false              //表单是否总是将服务器响应指向到一个iframe,iframe在文件上传时会很有用
+      }
+      option对象里,指定了两个回调函数,即:beforeSubmit:showRequest和success:showResponse
+        function showRequest(formData,jqForm,option){//beforeSubmit提交前的回调函数
+            //参数1.formData :数组对象,在下面使用$.param()转化成字符串,例如:$.param(formData);//组装数据,结果:name=1&address=2
+                //第一种方式,利用参数formData验证表单
+                        //formData循环获取每个元素的值,判断元素的值是否符合验证规则,如果有一项不符合,则返回false
+                        //formData是一个数组对象,因此可以根据循环获取每个值
+                //        for(var i=0;i<formData.length;i++) {
+                //            if (!formData['value']) {
+                //                alert("用户名,地址和密码都不能为空!");
+                //                return false;
+                //            }
+                //        }
+            //参数2.jqForm :是一个jquery对象,它封装了表单元素,如果需要访问jqDorm的DOM元素,可以转成DOM对象,即:jqForm[0].address.value
+                //        第二种方式.利用参数jqForm对象验证表单
+                        //jqForm是一个jquery对象,它封装了表单元素,jqForm[0]用来转成DOM对象
+                //        var formElement=jqForm[0];
+                //        if(!formElement.username.value || !formElement.password.value){
+                //            if(!formData['value']){
+                //                alert("用户名,地址和密码都不能为空!");
+                //                return false;
+                //            }
+                //        }
+                //        第三种方式.利用filedValue()验证表单
+                        //filedValue()匹配元素的值插入到数组中,然后返回这个数组,如果表单元素的值被判定无效,则数组为空,否则数组将包含一个或多个元素的值,由于返回的是一个数组,而不是jquery对象,所以不能链式操作
+                //        var usernameValue=$('input[name=username]').fieldValue();
+                //        var passwordValue=$('input[name=password]').fieldValue();
+                //        if(!usernameValue[0] || !passwordValue[0]){
+                //            alert("用户名,地址和密码都不能为空!");
+                //            return false;
+                //        }
+            //参数3.option :是options对象,
+            var querystring=$.param(formData);//组装数据
+            return true;//表单允许被提交,如果return false;则表单不允许提交
+        }
+        function showResponse(responseText,statusText){//success提交后的回调函数
+            //statusText   :返回状态,例如status,error等
+            //responseText :返回的内容,根据dataType属性返回相应格式的内容,如果dataType为xml,则回调返回responseXML,需要解析xml: http://blog.csdn.net/fgdfgasd/article/details/51752452
+        }

@@ -129,8 +129,24 @@
     $('li:first')
     $('.div1 > li > span')
 
+CSS-DOM操作:
+    css(name,value): 读取和设置style对象的各种属性,也可以用json,例如:css({'color':'red','backgroundColor':'blue'});
+        PS:1.如果值是数字,将会自动转化成像素值
+           2.在css()中,如果属性中带有'-'符号,例如background-color属性,如果属性不带引号,那么就用驼峰,就像上面这样;如果带上了引号,既可以background-color,也可以backgroundColor
+           3.css('height') 与 height()
+                1.区别是:前者获取高度值与样式的设置有关,可能会得到auto,也可以得到10px之类的字符串;而height()方法获取的高度值则是元素在页面中的实际高度,与样式设置无关,并且不带单位
+                2.height(50),设置样式的高度
+            4.css("font-size")//获取字体大小
+    height() 方法设置或返回元素的高度（不包括内边距、边框或外边距）
+    innerHeight():返回元素的高度（包括内边距）
+    outerHeight() 方法返回元素的高度（包括内边距和边框）
+    offset():获取元素在当前视窗的相对偏移,可以获取两个属性,left和top,只对块级元素有效,例如:$('p').offset().left;
+    position():获取元素相对于最近一个position样式属性设置为relative或者absolute的祖父节点的相对偏移,同样有left和top
+    scrollTop()和scrollLeft():分别是获取元素的滚动条距顶端和距左侧的距离
+
 方法:
     $.fx.off如果设置为true，则关闭所有网页特效
+    $.cookie("name","value",{path:'/',expires:10});
     $('ul li:gt(2):not(:last)')
     is()
         $category.is(".on"),判断元素是否存在on的className
@@ -210,7 +226,21 @@
             $.extend({'ceshi':fun1})//将ceshi合并到jquery全局对象中;可以理解为静态方法;
             $.fn.extend({'ceshi':fun1})//该方法将ceshi合并到jquery的实例对象中去;//$("#input1").ceshi();其中$("#input1")为一个jQuery实例
 
-$.cookie("name","value",{path:'/',expires:10});
+序列化:
+    serialize() :将DOM元素内容序列化为字符串,用户ajax请求;同时它会自动编码
+        $.get('aa.php',$('#form1').serialize(),callback); //可以获取到表单中所有字段的值,只会讲选中的值序列化
+        $('#message_ul input[type="checkbox"]:checkbox').serialize()；使用serialize()方法传递多个checkbox选中值
+        也可以obj['info'].push(item);这种写法相当于请求url为&=info[]=1&info[]=3这种形式
+    serializeArray() :该方法不是返回字符串,而是将DOM元素序列化,返回JSON格式的数据
+        $(":checkbox,:radio").serializeArray()
+    $.param() :它是serialize()的核心,用来对一个数组或对象key/value进行序列化
+        $.param({a:1,b:2});//a=1&a=2&a=3
+    传递多组参数,详情参考《js心得》:
+        var data=new FormData();//传递多组数组给后端，后端要支持接受字符串数组
+        $('input['type=checkbox']').each(function(){
+            data.append('campusId',$(this).attr('data-campusId'))
+            data.append('detailId',$(this).attr('data-detailId'))
+        })
 ajax
     $.ajax(options)
         该方法是jquery最底层的方法,只有一个参数,以key/value的形式存在,所有参数都是可选的
@@ -301,312 +331,4 @@ ajax的全局事件:
     ajaxSuccess() :ajax请求成功时执行的函数
     PS:如果想使某个ajax请求不受全局方法的影响,那么可以在使用$.ajax(option)时,将参数中的global设置为false
 
-序列化:
-    serialize() :将DOM元素内容序列化为字符串,用户ajax请求;同时它会自动编码
-        $.get('aa.php',$('#form1').serialize(),callback); //可以获取到表单中所有字段的值,只会讲选中的值序列化
-        $('#message_ul input[type="checkbox"]:checkbox').serialize()；使用serialize()方法传递多个checkbox选中值
-        也可以obj['info'].push(item);这种写法相当于请求url为&=info[]=1&info[]=3这种形式
-    serializeArray() :该方法不是返回字符串,而是将DOM元素序列化,返回JSON格式的数据
-        $(":checkbox,:radio").serializeArray()
-    $.param() :它是serialize()的核心,用来对一个数组或对象key/value进行序列化
-        $.param({a:1,b:2});//a=1&a=2&a=3
-    传递多组参数,详情参考《js心得》:
-        var data=new FormData();//传递多组数组给后端，后端要支持接受字符串数组
-        $('input['type=checkbox']').each(function(){
-            data.append('campusId',$(this).attr('data-campusId'))
-            data.append('detailId',$(this).attr('data-detailId'))
-        })
 
-CSS-DOM操作:
-    css(name,value): 读取和设置style对象的各种属性,也可以用json,例如:css({'color':'red','backgroundColor':'blue'});
-        PS:1.如果值是数字,将会自动转化成像素值
-           2.在css()中,如果属性中带有'-'符号,例如background-color属性,如果属性不带引号,那么就用驼峰,就像上面这样;如果带上了引号,既可以background-color,也可以backgroundColor
-           3.css('height') 与 height()
-                1.区别是:前者获取高度值与样式的设置有关,可能会得到auto,也可以得到10px之类的字符串;而height()方法获取的高度值则是元素在页面中的实际高度,与样式设置无关,并且不带单位
-                2.height(50),设置样式的高度
-            4.css("font-size")//获取字体大小
-    height() 方法设置或返回元素的高度（不包括内边距、边框或外边距）
-    innerHeight():返回元素的高度（包括内边距）
-    outerHeight() 方法返回元素的高度（包括内边距和边框）
-    offset():获取元素在当前视窗的相对偏移,可以获取两个属性,left和top,只对块级元素有效,例如:$('p').offset().left;
-    position():获取元素相对于最近一个position样式属性设置为relative或者absolute的祖父节点的相对偏移,同样有left和top
-    scrollTop()和scrollLeft():分别是获取元素的滚动条距顶端和距左侧的距离
-
-PS:
-    1.为了能有更快的选择器解析速度,从1.12.1版以后,jquery废弃了不常使用的xPath选择器,但在引用插件后,依然可以支持xPATH选择器
-    2.$('#tt'):它获取的永远是对象,即使没有此元素,因为当检查是否存在,可以用两种方式: 第一种.if($('#tt').length>0); 第二种.if($('#tt')[0])//转化成DOM对象
-    3.选择其中还有特殊字符,需要使用转义符转义,例如:$('#id#b')是不对的,正确写法是:$('#id\\#b');在例如:$('#id[1]'),正确:$('#id\\[1\\]');由于jquery1.3.1改变了选择器的引擎,某些情况下,导致转义失效,预计下一个版本得到修复
-    4.1.3.1版本彻底放弃了1.1.0遗留的@符号,例如:$('div[@title="test"]')已经弃用的写法,1.3.1应该这样写:$('div[title="test"]');
-    5.链式操作.
-        $('.div').addClass('s1')
-        .childred('a').show().end() //将子节点a元素显示出来,并重新定位到上次操作的元素
-        .sinlings().removeClass('s2')
-        .children('a').hide();
-    6.Jquery和DOM对象转换:平时用到的jquery对象是通过$函数制造出来的,所以说$就是一个jquery对象的制造工厂
-        jquery转DOM
-            1.jquery 对象是一个数组对象,可以通过[index]的方法得到相应的DOM对象,如:$('div')[0]//得到DOM对象
-            2.jquery 本身提供的一种方法,通过get(index)方法得到相应的DOM对象,如:$('div').get(0)//得到DOM对象
-        DOM转jquery
-            对于一个DOM对象,只需要用$()把DOM对象包装起来,就可以获得一个jquery对象,如:var a=document.getElementById('ceshi');$(a)//得到jquery对象
-    7.解决Jquery库冲突:默认情况下jquery用$作为自身的快捷方式;如果jquery库在其他库之前导入,那么其他库直接使用$不会冲突;如果jquery库在其他库之后导入,可以调用Jquery.noConflict()来将变量$控制权交给其他js库
-    8.利用Options对象,可以将值传给jquery的$.ajax(),假如用户熟悉$.ajax()提供的options对象,那么可以利用它们来将Options对象传递给ajaxForm()和ajaxSubmit()
-    9. $.ajax中的dataType='JSON',就可以省掉data=JSON.parse(data)，这样接口返回的data数据可以直接用
-
-技巧:
-    1.当用户提交表单是,可以用 $("form .require:input").trigger("blur"),用trigger()触发blur事件,不过也会触发浏览器的默认blur事件,即光标不能定位文本框上.而triggerHandler('blur')只会触发元素绑定的blur事件,而不触发默认blur事件
-    2.var has=elem.hasClass('selected') //判断是否含有selected样式
-    3.$(this)[has?"removeClass":"addClass"]('selected') //通过上一步判断是否含有样式,如果有则移除selected类,没有则添加selected类
-    4.$(this).toggleClass('selected').siblings('.child_'+this.id).toggle() //当点击当前行,移除selected类,子级收缩
-    5.$('elem').keyup(fn).keyup() :这里在最后加了一个.keyup,是为了页面刷新就可以执行函数
-    6.demo1.mouseover(function(){}).mouseover();       //这种方式是模拟鼠标事件,加载后就会触发
-      demo1.hover(function(){}).trigger('mouseleave');
-    7.$('option:selected',this)//第二个参数还需要研究
-    8.jquery获取元素索引值index()
-        //四个经典的用法
-        var index1 = $("#nav a").index(this);
-        var index2 = $("#nav a").index($(this));
-        var index3 = $(this).index()
-        var index3 = $(this).index("a")
-
-插件
-    应用迁移辅助插件:jquery-migrate.min.js
-        就是一个过渡插件 让你在原来代码上升级jquery 不用修改代码用的
-    表单验证-validation :http://doc.jquery.com/Plugins/Validation
-        Validation插件有两个经常被用到的选项,分别是方法(method)和规则(rule)
-            方法(method):通过执行验证逻辑判断一个元素是否合法,例如email()就是检查当前文本格式是否是正确的email格式
-            规则(rule):email:{
-                    required:true,
-                    email:true
-                }
-        插件方法表:
-            validate(options) :return Validator,验证被选择的form
-            valid() :bool,检查被选择的form或者被选择的所有元素是否有效
-            rules() :return Options,为第1个被选择的元素返回验证规则
-            rules("add",rules) :return Options,增加指定的验证规则并为第1个匹配元素返回所有的规则
-            rules("remove",rules) :return Options,移除指定的验证规则并为第1个匹配元素返回所有的规则
-            removeAttrs(attributes) :return Options,从第1个匹配元素中移除指定的属性并返回
-        内置验证规则:
-            (1)required:true               必输字段
-            (2)remote:"check.php"          使用ajax方法调用check.php验证输入值
-            (3)email:true                  必须输入正确格式的电子邮件
-            (4)url:true                    必须输入正确格式的网址
-            (5)date:true                   必须输入正确格式的日期
-            (6)dateISO:true                必须输入正确格式的日期(ISO)，例如：2009-06-23，1998/01/22 只验证格式，不验证有效性
-            (7)number:true                 必须输入合法的数字(负数，小数)
-            (8)digits:true                 必须输入整数
-            (9)creditcard:                 必须输入合法的信用卡号
-            (10)equalTo:"#field"           输入值必须和#field相同
-            (11)accept:                    输入拥有合法后缀名的字符串（上传文件的后缀）
-            (12)maxlength:5                输入长度最多是5的字符串(汉字算一个字符)
-            (13)minlength:10               输入长度最小是10的字符串(汉字算一个字符)
-            (14)rangelength:[5,10]         输入长度必须介于 5 和 10 之间的字符串")(汉字算一个字符)
-            (15)range:[5,10]               输入值必须介于 5 和 10 之间
-            (16)max:5                      输入值不能大于5
-            (17)min:10                     输入值不能小于10
-        Validator验证会返回一个Validator对象,Validator对象可以帮助用户触发Validator程序或者改变form的内容.Validator对象的更多方法:
-            form() :bool,验证form的合法性,如果为true,否则为false
-            element(element) :bool,验证一个元素的合法性,如果为ture,否则为false
-            resetForm() :undefined,复位验证的form
-            showErrors(errors) :undefined,显示指定的提示信息
-            numberOflnvalids() :Integer,返回无效字段的个数
-        Validator的静态方法:
-            setDefault(default) :undefined,修改Validator初始的设置
-            addMethod(name,method,message) :undefined,增加一个新的Validator方法,该方法由name(必须是一个合法的javascript标识符),一个基于函数javascript和一个默认的字符串提示组成
-            addClassRules(name,rules) :undefined,增加一个验证规则,代替"rules"中的验证
-            addClassRules(rules) :undefined,增加多个验证规则
-        实用项:
-            jQuery.format(template,arguments,argumentsN…) :String,使用参数来替换{n}占位符
-        普通选择器
-            :blank :Array,匹配值为空的元素
-            :filed :Array,匹配值不为空的元素
-            :unchecked :Array,匹配所有没被选择的元素
-        如需需改message的默认提示,可在js代码中加入：
-            jQuery.extend(jQuery.validator.messages, {
-                required: "必选字段",
-                remote: "请修正该字段",
-                email: "请输入正确格式的电子邮件",
-                url: "请输入合法的网址",
-                date: "请输入合法的日期",
-                dateISO: "请输入合法的日期 (ISO).",
-                number: "请输入合法的数字",
-                digits: "只能输入整数",
-                creditcard: "请输入合法的信用卡号",
-                equalTo: "请再次输入相同的值",
-                accept: "请输入拥有合法后缀名的字符串",
-                maxlength: jQuery.validator.format("请输入一个长度最多是 {0} 的字符串"),
-                minlength: jQuery.validator.format("请输入一个长度最少是 {0} 的字符串"),
-                rangelength: jQuery.validator.format("请输入一个长度介于 {0} 和 {1} 之间的字符串"),
-                range: jQuery.validator.format("请输入一个介于 {0} 和 {1} 之间的值"),
-                max: jQuery.validator.format("请输入一个最大为 {0} 的值"),
-                min: jQuery.validator.format("请输入一个最小为 {0} 的值")
-            });
-            推荐做法，将此文件放入messages_cn.js中，在页面中引入
-            <script src="../js/messages_cn.js" type="text/javascript"></script>
-        使用1:
-        1.引入jquery库,validation插件,以及自定义库
-            <script src="../js/jquery.js" type="text/javascript"></script>
-            <script src="../js/jquery.validate.js" type="text/javascript"></script>
-            <script src="./js/jquery.metadata.js" type="text/javascript"></script>
-        2.$().ready(function() {
-            $("#form").validate();
-          });
-        3.针对不同的字段,进行验证规则编码,设置字段相应的属性
-            class="required"为必填,minlength="2"最小长度为2
-            class="required email",为必填和内容符合emial格式
-            class="url",格式符合url格式
-        使用2.
-        1.使用class="{}"的方式，必须引入新的jquery插件-jquery.metadata.js ,是一个支持固定格式解析的jquery插件
-        2.class="required"
-          class="{required:true,minlength:5,messages:{required:'请输入内容'}}"
-          class="{required:true,minlength:5,equalTo:'#password'}"  //在使用equalTo关键字时，后面的内容必须加上引号，如下代码：
-          class="{validate:{required:true,minlength:2}}"
-          class="{validate:{required:true,email:true}}"
-          class="{validate:{url:true}}"
-        3.$("form").validate({
-            //meta:"validate",
-            rules:{
-                firstname: "required",
-                username:{
-                    required:true,
-                    minlength:2
-                },
-                email:{
-                    require:true,
-                    email:true
-                },
-                password: {
-                    required: true,
-                    minlength: 5
-                },
-                confirm_password: {
-                    required: true,
-                    minlength: 5,
-                    equalTo: "#password"
-                },
-                url:"url",
-                comment:"required"
-            }
-        })
-        实现步骤:
-            1.在$("form").validate()中增加rules属性
-            2.通过每个字段的name属性来匹配规则
-            3.定义验证规则:例如required:true,email:true,minlength:2等等
-    验证信息:
-        jquery.validate.message_cn.js validate验证信息默认语言是英文,引入该插件是中文验证信息库
-            <input class="{validate:{required:true,minlength:2,message:{required:'请输入姓名',minlength:'请至少输入两个字符'}}}"/>
-        自定义信息美化:
-            ("form").validate({
-               errorElement:"em", //用来创建错误提示信息标签
-               success:function(data){  //验证成功后执行的回调
-                    label.text(" ")     //清空错误提示消息
-                    .addClass("success") //加上自定义的success类
-               }
-            })
-            在css中增加如下代码:
-                em.error{}
-                em.success{}
-        自定义验证规则:
-            1.自定义规则
-            $.validator.addMethod(
-                "formula",                      //验证方法名称
-                function(value,element,param){  //验证规则
-                    return value==eval(param);
-                },
-                '请正确输入数学公式计算后的结果'   //验证提示信息
-            )
-            2.调用规则:
-            ("form").validate({
-               rules:{
-                username:{required:true,milength:2},
-                email:{required:true,email:true},
-                url:"url",
-                comment:"required",
-                valcode:{formula:"7+9"} //"7+9"这个字符串可以通过其他手段获得,例如页面元素的txet()或者ajax来取得,这里实例简单的写成"7+9"
-               }
-            })
-    From插件:是ajax表单插件,
-            ajaxForm() :增加所需要的事件监听器,为ajax提交表单做好准备.该方法并且提交表单,而是为ajax提交表单做好准备,可以接受0个或者1个参数,这个参数可以是回调函数,也可以是一个options对象,支持链式操作
-            ajaxSubmit() :立即提交表单,多数情况下,用来响应客户的提交表单操作,可以接受0个或者1个参数,这个参数可以是回调函数,也可以是一个options对象,支持链式操作
-            formToArray() :序列化当前表单元素到一个数组中，每个数组元素都是包含name和value属性的对象。返回值是内部构件的一个数组元素，而elements参数将包含除<input type=”image”>以外的所有表单元素。
-            formSerialize() :该方法将表单所有的元素序列化为一个字符串,因为返回的是字符串,所以该方法不可以进行链式操作
-                例子:var qstring=$('#form').formSerialize();
-                    //然后就可以$.get,$.post,$.ajax等ajax方法来提交数据
-                    $.post('aa.php',qstring,function(data){});
-            fieldValue() :把匹配元素的值插入到数组中,然后返回这个数组,如果元素值判定无效,则数组为空,不能链式操作
-            clearForm() :用来清空表单中的元素,支持链式
-            clearFields() :用来清空字段元素,当用户需要清空一部分表单元素时就会用到该方法,支持链式
-            resetForm() :该方法通过调用表单元素原有的DOM方法重置表单到初始化状态,支持链式操作
-        1.引入插件:jquery.js和jquery.form.js
-        //PS:ajaxForm()和ajaxSubmit()有0个或者1个参数,这个参数可以是回调函数,也可以是一个options对象
-        2.ajaxForm()和ajaxSubmit()的回调函数
-          ajaxForm():
-              $(#form).ajaxForm(function(){
-                $('#output1').html('提交成功!').show();
-              })
-          ajaxSubmit():
-             $('#myForm').submit(function(){
-                 $('#myForm').ajaxSubmit(function(){
-                     $('#output1').html('提交成功!').show();
-                 })
-                 return false;//阻止表单默认提交
-             })
-        3.ajaxForm()和ajaxSubmit()的options对象
-          ajaxForm():
-              $(#form).ajaxForm(options)
-          ajaxSubmit():
-              $('#myForm').submit(function(){
-                $(#form).ajaxSubmit(options);
-                return false;//阻止表单默认提交
-              })
-          var options={
-            target:"#div1",           //把服务器返回的内容放入id元素中,默认值为null
-            beforeSubmit:showRequest, //提交前的回调函数,默认为null
-            success:showResponse,     //提交后的回调函数,默认为Null
-            //url:null,               //默认是form的action,如果申明,则会覆盖
-            //type:type,              //默认是form的method('get'或'post'),如果没有,则为GET
-            //dataType:null,          //接受服务器返回的类型:xml,script,json;如果dataType为script,服务器返回的内容将被放到全局环境中执行
-            //clearForm:ture,         //成功提交后,清楚所有表单元素的值
-            //resetForm:true,         //成功提交后,重置所有元素
-            //timeout:3000            //延时3秒后,跳出请求,
-            semantic:false            //是否需要定义严格的语义格式,注意,普通的表单序列要遵循的语义不能包括type属性为image的input元素,加入服务器有严格的语义要求,而表单至少包括一个type="image"元素的时候,
-                                        那么必须设置为true,
-            iframe:false              //表单是否总是将服务器响应指向到一个iframe,iframe在文件上传时会很有用
-          }
-          option对象里,指定了两个回调函数,即:beforeSubmit:showRequest和success:showResponse
-            function showRequest(formData,jqForm,option){//beforeSubmit提交前的回调函数
-                //参数1.formData :数组对象,在下面使用$.param()转化成字符串,例如:$.param(formData);//组装数据,结果:name=1&address=2
-                    //第一种方式,利用参数formData验证表单
-                            //formData循环获取每个元素的值,判断元素的值是否符合验证规则,如果有一项不符合,则返回false
-                            //formData是一个数组对象,因此可以根据循环获取每个值
-                    //        for(var i=0;i<formData.length;i++) {
-                    //            if (!formData['value']) {
-                    //                alert("用户名,地址和密码都不能为空!");
-                    //                return false;
-                    //            }
-                    //        }
-                //参数2.jqForm :是一个jquery对象,它封装了表单元素,如果需要访问jqDorm的DOM元素,可以转成DOM对象,即:jqForm[0].address.value
-                    //        第二种方式.利用参数jqForm对象验证表单
-                            //jqForm是一个jquery对象,它封装了表单元素,jqForm[0]用来转成DOM对象
-                    //        var formElement=jqForm[0];
-                    //        if(!formElement.username.value || !formElement.password.value){
-                    //            if(!formData['value']){
-                    //                alert("用户名,地址和密码都不能为空!");
-                    //                return false;
-                    //            }
-                    //        }
-                    //        第三种方式.利用filedValue()验证表单
-                            //filedValue()匹配元素的值插入到数组中,然后返回这个数组,如果表单元素的值被判定无效,则数组为空,否则数组将包含一个或多个元素的值,由于返回的是一个数组,而不是jquery对象,所以不能链式操作
-                    //        var usernameValue=$('input[name=username]').fieldValue();
-                    //        var passwordValue=$('input[name=password]').fieldValue();
-                    //        if(!usernameValue[0] || !passwordValue[0]){
-                    //            alert("用户名,地址和密码都不能为空!");
-                    //            return false;
-                    //        }
-                //参数3.option :是options对象,
-                var querystring=$.param(formData);//组装数据
-                return true;//表单允许被提交,如果return false;则表单不允许提交
-            }
-            function showResponse(responseText,statusText){//success提交后的回调函数
-                //statusText   :返回状态,例如status,error等
-                //responseText :返回的内容,根据dataType属性返回相应格式的内容,如果dataType为xml,则回调返回responseXML,需要解析xml: http://blog.csdn.net/fgdfgasd/article/details/51752452
-            }

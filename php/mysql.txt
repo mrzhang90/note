@@ -1,4 +1,4 @@
-SQL:
+SQL方法:
 	min():   select min(dirthdate) form 表名 //查找最大年龄的人，因为年龄越大，出生越早，所以年龄越小
 	rand():  select rand() * 100 //获取一个任意随机数，验证码
     row():   select now() //获取当前时间
@@ -11,6 +11,10 @@ SQL:
 		select * from aa where name like '%赵%'
 	联表查询： //mysql一般用join on,orcal一般用下面这种方法，都通用
 		select * from aa,bb where aa.id=bb.id
+	limit:
+		select * from tablename limit m,n 
+		其中m是记录开始的index,从0开始，表示第一条记录n是指从第m+1条开始，取n条
+		例：select * from tablename limint 2,4即取出第3到6条，共4条
 
 查看当前服务器下有哪些数据库：
 	show databases; //分号不能往
