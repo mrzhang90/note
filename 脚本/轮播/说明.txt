@@ -1,0 +1,10 @@
+使用方法：
+	实例化：
+		new Lunbo(config={
+                    'element':$('.subject_list'),
+                    'pageSize':6
+                });
+
+遇到问题：
+	1.确保ul是否已加载，如果是ajax请求，则在ajax渲染数据列表之后，在调用lunbo类
+	2.获取第一个Li的宽度是根据宽度+居左的距离得出的

@@ -1,0 +1,26 @@
+ el表达式保留两位小数
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+	<fmt:formatNumber type="number" value="${688.87 * 0.8 }" pattern="0.00" maxFractionDigits="2"/>
+-循环遍历：
+	<c:forEach items="${homeCarouseList}" varStatus="i" var="item" >
+	    ${i.index } //取索引
+	</c:forEach>
+-判断为空
+	<c:if test="${empty item.campsId}">
+		//执行为空的情况
+    </c:if>
+    <c:if test="${not empty item.campsId}">
+    	//非为空执行这里
+    </c:if>
+-判断遍历第一条时
+	<c:forEach items="${homeCarouseList}" varStatus="i" var="item" >
+        <c:choose>
+            <c:when test="${i.index == 0}">
+                //第一条执行这里
+            </c:when>
+            <c:otherwise>
+            	//不是第一条执行这里
+            </c:otherwise>
+        </c:choose>
+
+    </c:forEach>

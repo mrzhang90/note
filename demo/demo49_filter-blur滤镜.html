@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+<style type="text/css">
+	svg {
+	  position:absolute;
+	  left:-999px;
+	}
+
+	.ie-only-blur {
+	filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+	}
+
+	.css-blur {
+	  -webkit-filter: blur(3px); 
+	  -moz-filter: blur(3px);
+	  -ms-filter: blur(3px);
+	  -o-filter: blur(3px);
+	  filter: blur(3px);
+	}
+
+	.svg-only-blur {
+	  filter: url(#blur); 
+	}
+
+	.all-blur {
+	 -webkit-filter: blur(3px); 
+	 -moz-filter: blur(3px);
+	 -ms-filter: blur(3px);
+	 -o-filter: blur(3px);
+	 filter: blur(3px);
+	 filter: url(#blur);   
+	 filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+	}
+</style>
+</head>
+<body>
+<a href="http://jsbin.com/fomeruwuqa/1/edit?html,css,output">参考：http://jsbin.com/fomeruwuqa/1/edit?html,css,output-支持ie10及IE10以上</a><br/>
+<a href="https://segmentfault.com/q/1010000006006247">参考：https://segmentfault.com/q/1010000006006247-支持IE10以上</a>
+
+	<!-- IE低版本 -->
+	<br/> <br/> <br/>
+	<img class="all-blur" src="https://www.baidu.com/img/bd_logo1.png" />
+	<!-- IE低版本 -->
+
+	<!-- IE标准浏览器 -->
+	<br/> <br/> <br/>
+	<svg width="100%" height="570" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	  <filter id="blurMe">
+	    <feGaussianBlur in="SourceGraphic" stdDeviation="10" /><!--stdDeviation接受0-100之间的值，代表模糊度  -->
+	  </filter>
+	  <image filter="url(#blurMe)" x="100" y="100" width="100%" height="570" xlink:href="https://www.baidu.com/img/bd_logo1.png" alt="">
+	</svg> 
+	<!-- IE标准浏览器 -->
+
+  <br/> <br/> <br/>
+  <img class=".ie-only-blur" src="https://www.baidu.com/img/bd_logo1.png" />
+  
+  <br/> <br/> <br/>
+  <img class="css-blur" src="https://www.baidu.com/img/bd_logo1.png" alt=""/>
+  
+  <br/> <br/> <br/>
+  <img class="svg-only-blur" src="https://www.baidu.com/img/bd_logo1.png" />
+</body>
+</html>
+  

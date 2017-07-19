@@ -1,0 +1,32 @@
+安装字蛛：
+	打开Node.js command prompt如下图所示，并输入命令：npm install font-spider -g 回车执行
+
+css声明：
+	@font-face {
+        font-family: 'pinghei';
+        src: url('../font/pinghei.eot');
+        src:
+        url('../font/pinghei.eot?#font-spider') format('embedded-opentype'),
+        url('../font/pinghei.woff') format('woff'),
+        url('../font/pinghei.ttf') format('truetype'),
+        url('../font/pinghei.svg') format('svg');
+        font-weight: normal;
+        font-style: normal;
+	}
+	/*使用选择器指定字体*/
+	.pinghei{
+      font-family: 'pinghei';
+	}
+
+运行：
+	font-spider D:/aa/*.html
+
+我遇到的问题：
+	1.执行字蛛时报错
+		-因为css代码中使用@media screen and (min-width:0\0)//识别ie9及以上浏览器，删除类似这种写法的css代码，使用js判断IE版本或者使用其他css代码
+
+字蛛坑点：
+	这里建议对需要替换大段文字的文本少使用字蛛，因为使用后这样你会发现在有标点和空格的地方会出现“!”。
+	解决方案：
+		1.可以利用标签嵌套标点的方法进行微调。
+		2.有网友说 写成 font-family:Arial +自己的字体，感叹号就会消失 （本人未亲自测试）
