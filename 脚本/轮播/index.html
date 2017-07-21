@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		ul{list-style:none;}
+		.subjects_div{position:relative;height:191px;}
+		.subjects_div .subject_left,.subjects_div .subject_right{position:absolute;left:0;top:59px;padding: 6px 5px;width:16px;line-height:30px;background-color:#464020;background-color:rgba(0,0,0,.4);z-index:2;color: #fff;text-decoration: none;font-size: 31px;}
+		.subjects_div .subject_right{left:auto;right:0;}
+		.subjects_div .subject_left i,.subjects_div .subject_right i{display:block;width:100%;height:100%;background-image:url(../img/index.png);background-repeat:no-repeat;}
+		.subjects_div .subject_left i{background-position:-109px -70px;}
+		.subjects_div .subject_right i{background-position:-126px -70px;}
+		.subject_list{position:absolute;top:0;left:0;margin-left:-8px;width:400%;z-index:1;}
+		.subject_list li{float:left;margin-left:8px;}
+		.subject_list li a{display:block;width:188px;height:189px;border: solid 1px #888;color:#000;}
+		.subject_list li a:hover{width:184px;height:185px;border: solid 3px #29abe2;}
+		/*.subject_list .li3,.subject_list .li6{margin-right:0;}*/
+		.subject_list li div{width:100%;height:158px;overflow:hidden;background-position:center center;background-size:cover;background-repeat:no-repeat;
+			/*-ms-behavior: url(css/backgroundsize.min.htc);*/
+			/*behavior: url(css/backgroundsize.min.htc);*/
+		}
+		.subject_list li span{float: left;padding-left: 10px; width: 130px; height: 31px; line-height: 31px; font-size: 14px; overflow: hidden;color: #777;}
+		.subject_list li i{float:right;margin-top:6px;margin-right:7px;width:18px;height:20px;background:url("../img/index.png") -240px -213px;}
+		.subject_list .li6 img{height:198px;}
+		.subject_list .li6 a:hover{border-bottom:none;height:auto;}
+		.subject_list .div6_li{height:71px;line-height:71px;text-align:center;background:#33afe3;font-size:18px; font-family: "微软雅黑";}
+		.subject_list .div6_li a{color:#fff;}
+		.subject_list .div6_li a:hover{border:none;}
+	</style>
+</head>
+<body>
+<div style="width: 1180px; height: 100%; margin: 0 auto;overflow: hidden;">
+	<div class="subjects_div">
+	    <ul class="subject_list">
+	        <li>
+	            
+	            <a href="/search.jsp?subjectCategoryId=20170627115702CA770932a5"><div style="background-image:url( /img/home_21.jpg)"></div><span> 名校探索</span><i></i></a>
+	        </li>
+	    
+	        <li>
+	            
+	            <a href="/search.jsp?subjectCategoryId=20170306101232CAefc0a183"><div style="background-image:url( /img/home_21.jpg)"></div><span> 日营</span><i></i></a>
+	        </li>
+	    
+	        <li>
+	            
+	            <a href="/search.jsp?subjectCategoryId=20170306101213CAe70c792b"><div style="background-image:url( /img/home_21.jpg)"></div><span> 英国学年项目</span><i></i></a>
+	        </li>
+	    
+	        <li>
+	            
+	            <a href="/search.jsp?subjectCategoryId=20170306101148CAf5c5cb19"><div style="background-image:url( /img/home_21.jpg)"></div><span> 志愿者项目</span><i></i></a>
+	        </li>
+	    
+	        <li>
+	            
+	            <a href="/search.jsp?subjectCategoryId=20170306095608CA2fbcebf2"><div style="background-image:url( /img/home_21.jpg)"></div><span> 科技探索</span><i></i></a>
+	        </li>
+	    
+	        <li>
+	            
+	            <a href="/search.jsp?subjectCategoryId=20170306095629CA081a46ea"><div style="background-image:url( /img/home_21.jpg)"></div><span> 野生保护</span><i></i></a>
+	        </li>
+	    
+	        <li>
+	            
+	            <a href="/search.jsp?subjectCategoryId=20170306095544CAcb3d42cf"><div style="background-image:url( /img/home_21.jpg)"></div><span> 艺术形式</span><i></i></a>
+	        </li>
+	    
+	        <li>
+	            
+	            <a href="/search.jsp?subjectCategoryId=20170107222733CAb14690a4"><div style="background-image:url( /img/home_21.jpg)"></div><span> 语言学习</span><i></i></a>
+	        </li>
+	    
+	        <li>
+	            
+	            <a href="/search.jsp?subjectCategoryId=20170108112846CA03fb5ecd"><div style="background-image:url( /img/home_21.jpg)"></div><span> 全真插班</span><i></i></a>
+	        </li>
+	    
+	        <li>
+	            
+	            <a href="/search.jsp?subjectCategoryId=20170108112827CA0a9c5f9f"><div style="background-image:url( /img/home_21.jpg)"></div><span> 传统营地</span><i></i></a>
+	        </li>
+	    
+	        <li>
+	            
+	            <a href="/search.jsp?subjectCategoryId=20170112102252CAc19bea4e"><div style="background-image:url( /img/home_21.jpg)"></div><span> 体育项目</span><i></i></a>
+	        </li>
+	        
+	    </ul>
+	    <a href="" class="subject_left j_leftLunbo" style=""><</a>
+	    <a href="" class="subject_right j_rightLunbo" style="">></a>
+	</div>
+</div>
+<script type="text/javascript">
+    var userAgent = navigator.userAgent.toLowerCase();
+    var obj = {
+        version: (userAgent.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [])[1],
+        msie: (/msie/.test(userAgent)||/rv:/.test(userAgent)) && !/opera/.test(userAgent)
+    };
+    if(!obj.msie || (obj.msie && parseInt(obj.version)>8)){
+        document.write('<script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"><\/script>');
+    }
+</script>
+<!--[if lte IE 8]>
+<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+<![endif]-->
+<script type="text/javascript">
+	$(function(){
+		new Lunbo({
+            'element':$('.subjects_div'),
+            'pageSize':6
+        });
+	})
+	function Lunbo(config){
+        var This=this;
+        this.disk=1;
+        this.leftBtn=config['element'].children('.j_leftLunbo');
+        this.rightBtn=config['element'].children('.j_rightLunbo');
+        this.lunboElement=config['element'].children('.subject_list');
+        this.Aelement=this.lunboElement.children(':first-child');
+        this.Awidth=this.Aelement.width()+parseInt(this.Aelement.css('margin-left'));
+        this.pageNo=0;
+        this.pgeCount=0;
+        this.totalCount=this.lunboElement.children().length;
+        this.pageSize=config['pageSize'] || 5;
+        this.pgeCount=this.totalCount-this.pageSize+1;
+        this.lunboElement.width(this.totalCount*this.Awidth);
+        //合作伙伴 左右按钮是否显示
+        this.setLunbo=function(){
+            if(this.totalCount<=this.pageSize){
+                this.leftBtn.hide();
+                this.rightBtn.hide();
+            }else{
+                if(this.pageNo==0){
+                    This.disk=1;
+                    this.leftBtn.hide();
+                    this.rightBtn.show();
+                }else if(this.pageNo==this.pgeCount-1){
+                    This.disk=-1;
+                    this.leftBtn.show();
+                    this.rightBtn.hide();
+                }else{
+                    this.leftBtn.show();
+                    this.rightBtn.show();
+                }
+            }
+        }
+        this.setLunbo();
+        this.time1=setInterval(function(){
+            next(This.disk);
+        },2000);
+        config['element'].on('mouseover',function(){
+            clearInterval(This.time1);
+        })
+        config['element'].on('mouseout',function(){
+            This.time1=setInterval(function(){
+                next(This.disk);
+            },2000);
+        })
+        this.leftBtn.on('click',function(){
+            next(-1);
+            return false;
+        })
+        this.rightBtn.on('click',function(){
+            next(1);
+            return false;
+        })
+        function next(num){
+            This.pageNo=(This.pageNo+num) % This.pgeCount;
+            This.lunboElement.animate({'left':This.pageNo*-This.Awidth},600);
+            This.setLunbo();
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+/* DIVCSS5 www.divcss5.com ХыАн */
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,li,form,img,dl,dt,dd,table,th,td,blockquote,fieldset,div,strong,label,em{margin:0;padding:0;border:0;}
+ul,ol,li{list-style:none;}
+input,button{margin:0;font-size:12px;vertical-align:middle;}
+body{font-size:12px;font-family:Arial, Helvetica, sans-serif;  text-align:center; margin:0 auto; background:url(images/BG.jpg) repeat-y;}
+table{border-collapse:collapse;border-spacing:0;}
+
+#n{margin:10px auto; width:960px; border:1px solid #CCC;font-size:12px; line-height:30px;}#n a{ padding:0 4px; color:#333}
+
+.clearfloat{height:0;font-size:1px;clear:both;line-height:0;}
+#container{ width:100%;  text-align:left; margin:0 auto; }
+a{color:#333;text-decoration:none;}
+a:hover{color:#ef9b11; text-decoration:underline;}
+
+.cent{ margin:0 auto; width:280px; padding-top:130px; overflow:hidden}
+.searchBar{width:345px; margin:40px auto; background:url(images/qall.gif) no-repeat; height:28px; position:relative }
+.searchBar .select{ float:left;display:inline; font-size:14px;text-align:left; overflow:hidden}
+
+DIV.selectbox-wrapper {	BORDER: #b7d1eb 1px solid;MARGIN-TOP: -3px;WIDTH: 63px;POSITION: absolute; BACKGROUND: #fff; TEXT-ALIGN:left}
+DIV.selectbox-wrapper UL LI.selected {BACKGROUND-COLOR: #e0ecf7;}
+DIV.selectbox-wrapper UL LI.current { color: #fff; BACKGROUND-COLOR: #36c}
+DIV.selectbox-wrapper UL LI {PADDING: 3px; WIDTH: 57px; CURSOR: pointer; LINE-HEIGHT: 20px;}
+.selectbox{ border:none;  DISPLAY: block; padding-left:4px; width: 82px; CURSOR: pointer;font-size:14px; HEIGHT:24px; line-height:24px; background:none;}
+
+
+.w88 .selectbox ,.w88{ width:88px;}.w88 .selectbox{width:66px; padding-right:22px; overflow:hidden}
+.w85 .selectbox ,.w85{ width:85px;}.w85 .selectbox{width:63px; padding-right:22px; overflow:hidden}
+.w86 .selectbox ,.w86{ width:86px;}.w86 .selectbox{ width:64px; padding-right:22px; overflow:hidden}
+.w86 DIV.selectbox-wrapper ,.w85 DIV.selectbox-wrapper ,.w88 DIV.selectbox-wrapper{width:85px; float:left; font-size:14px;line-height:24px;POSITION: absolute; margin-left:-2px; background:#F3F0EB; border:2px solid #CBCBCB ; border-top:0;}
+.w85 DIV.selectbox-wrapper{ width:83px;float:left;}
+.w88 DIV.selectbox-wrapper{ width:84px; margin-left:0;float:left;}
+.w86 DIV.selectbox-wrapper UL LI.selected ,.w85 DIV.selectbox-wrapper UL LI.selected ,.w88 DIV.selectbox-wrapper UL LI.selected{ background:#FFF; font-weight:bold;width:79px;float:left;}
+
+.w86 DIV.selectbox-wrapper UL LI.current ,.w85 DIV.selectbox-wrapper UL LI.current ,.w88 DIV.selectbox-wrapper UL LI.current{COLOR: #fff; BACKGROUND-COLOR: #36c;width:79px;float:left;}
+.w85 DIV.selectbox-wrapper UL LI.selected ,.w85 DIV.selectbox-wrapper UL LI.current{ width:77px;}
+.w88 DIV.selectbox-wrapper UL LI.selected ,.w88 DIV.selectbox-wrapper UL LI.current{ width:78px}
+
+.w86 DIV.selectbox-wrapper UL LI ,.w85 DIV.selectbox-wrapper UL LI ,.w88 DIV.selectbox-wrapper UL LI {PADDING: 3px ; WIDTH:73px; height:24px; overflow:hidden; CURSOR: pointer; LINE-HEIGHT: 24px;float:left;}
+.w85 DIV.selectbox-wrapper UL LI{ width:71px;}
+.w88 DIV.selectbox-wrapper UL LI{ width:72px;}
+
+
+.s125x25{ float:left; width:123px; height:23px; padding:1px; background:url(images/jia-input.gif) no-repeat 0 0;}
+.s125x25 .dol{ float:left; width:23px; height:23px;}
+.s125x25 .select{ float:left; width:100px; overflow:hidden}
+.s125x25 .w100{ width:100px}
+.w100 DIV.selectbox-wrapper{width:98px; float:left; font-size:14px;line-height:24px;POSITION: absolute; margin-left:-2px; background:#F3F0EB; border:2px solid #CBCBCB ; border-top:0;}
+.w100 DIV.selectbox-wrapper UL LI.selected{ background:#FFF; font-weight:bold;width:92px;float:left;}
+.w100 DIV.selectbox-wrapper UL LI.current{COLOR: #fff; BACKGROUND-COLOR: #36c;width:92px;float:left;}
+.w100 DIV.selectbox-wrapper UL LI {PADDING:3px ; WIDTH:86px; height:24px; overflow:hidden; CURSOR: pointer; LINE-HEIGHT: 24px;float:left;}
+

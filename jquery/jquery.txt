@@ -108,7 +108,7 @@
     :enabled:选取所有可用元素
     :disabled:选取所有不可用元素
     :checked:所有被选中元素,包括单选框,复选框 例如:$('input:checked')
-    :selected:所有选中元素,下拉框 例如:$('select:selected')
+    :selected:所有选中元素,下拉框 例如:$('select option:selected')
     表单选择器:
     :input :选取所有的input,textera,select和button元素,PS:1.求元素个数:$(:input).length; 2.注意$(':input')与$('input')的区别,$('input')只选择input标签
     :text
