@@ -182,6 +182,9 @@ CSS-DOM操作:
             1.支持用json设置多个值 例如:$('h3').attr({'title':'hi','id':'a','class':'b'});
             2.还可以使select,checkbox,radio相应的选项被选中,例如:.attr('selected',true);此方法也可以用val()实现
         removeAttr(): 例如:$('h3').removeAttr('title').removeAttr('id');
+    prop和attr的区别：
+        对于HTML元素本身就带有的固有属性，在处理时，使用prop方法。
+        对于HTML元素我们自己自定义的DOM属性，在处理时，使用attr方法
     追加样式:
         addClass(class) :与attr()不同的是,前者只是追加,后者设置class只能替换原先的
     移除样式:

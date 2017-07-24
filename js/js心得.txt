@@ -1,5 +1,32 @@
-代码段：
-1.ajax提交图片
+--.window.screenX判断浏览器的,678是undefined，91011是number,chrome浏览器也是true 
+  if (typeof window.screenX === "number") {
+        
+  } else {
+    alert("您现在使用的浏览器内力不足，为防止走火入魔，建议使用IE9+或Chrome 20+浏览器~~");    
+  }
+--.判断手机设备是不是iphone，获取iphone版本号
+  var p = String(navigator.platform);
+  if( p === 'iPad' || p === 'iPhone' || p === 'iPod touch' ){
+    var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+    if (parseInt(v[1], 10)>=7) {// iOS >=7
+    }
+  }
+  //验证是不是手机
+  function isPhone(){
+    var mobileAgent = new Array("iphone", "ipod", "ipad", "android", "mobile", "blackberry", "webos", "incognito", "webmate", "bada", "nokia", "lg", "ucweb", "skyfire");
+    var browser = navigator.userAgent.toLowerCase(); 
+    var isMobile = false; 
+    for (var i=0; i<mobileAgent.length; i++){
+        if(browser.indexOf(mobileAgent[i])!=-1){
+            isMobile = true; 
+            alert(mobileAgent[i]);
+            // location.href = '手机网址';
+            break;
+        }
+    }
+    return isMobile;
+  }
+--.ajax提交图片
     //封装函数-实现功能：当按钮点击后，调用file控件，弹出图片上传。上传图片后，ajax提交图片，然后通过回调,处理数据
     function add_photo(address,successFn){
         $('#btn_upload').click(function(){
@@ -29,7 +56,7 @@
             })
         }
     }
-1-0.Ajax请求默认的都是异步的，如果想同步 async设置为false,然后
+--.Ajax请求默认的都是异步的，如果想同步 async设置为false,然后
     var html = $.ajax({
       url: "some.php",
       async: false
@@ -40,18 +67,18 @@
       async: false
       });
     再用post，get就是同步的了
-1-1.传递多组参数(data传递利用上面的file_post方法):
+--.传递多组参数(data传递利用上面的file_post方法):
     var data=new FormData();//传递多组数组给后端，后端要支持接受字符串数组
     $('input['type=checkbox']').each(function(){
         data.append('campusId',$(this).attr('data-campusId'))
         data.append('detailId',$(this).attr('data-detailId'))
     })
-2.调用cookie:来源-https://my.oschina.net/crazymus/blog/425650
+--.调用cookie:来源-https://my.oschina.net/crazymus/blog/425650
     //设置cookie，有效期为365天
     setCookie('username','123',365);
     //取回，若cookie失效，将返回空
     getCookie('username');
-设置cookie
+    //设置cookie
     function setCookie(c_name,value,expiredays)
     {
         var exdate=new Date()
@@ -76,7 +103,7 @@
         }
         return ""
     }    
-4.加载XML
+--.加载XML
     loadXML = function(xmlString){
             var xmlDoc=null;
             //判断浏览器的类型
@@ -112,7 +139,7 @@
 
             return xmlDoc;
     }
-5.判断数组中是否存在值
+--.判断数组中是否存在值
     intNum.contains(arr)
     Array.prototype.contains = function ( needle ) {
       for (i in this) {
@@ -120,13 +147,13 @@
       }
       return false;
     }
-6.PC页面自适应手机-思路是给body加一个固定的可以把内容完全展示的宽度，这样利用浏览器有等比例缩放页面的特性
+--.PC页面自适应手机-思路是给body加一个固定的可以把内容完全展示的宽度，这样利用浏览器有等比例缩放页面的特性
     var width='1300';
     if($(document.body).width()<1180){
         $('body').css("width",width);
         // $(".phoneWidth").css("width",width);
     }
-7.HTML5 实现手机拍照上传
+--.HTML5 实现手机拍照上传
     //引用：https://my.oschina.net/zyxchuxin/blog/700381
     //上传图片有原生的方法<input type="file" accept="image/*">，如果只想要拍照上传，不希望用户选择图片上传，可以通过添加capture属性，该属性值有camcorder/microphone/camera...，此处选择camera。PS：该属性存在浏览器兼容性问题，不是所有的浏览器都支持。
     HTML:<input type="file" accept="image/*" capture="camera" >
@@ -209,7 +236,7 @@
           alert(fileSize/allowMaxSize,compressRate)
           return compressRate;
     }
-8.预加载
+--.预加载
     //img.onload=img.onerror：是为了解决图片加载失败时，可以继续执行脚本
     function progressBar(){
         var element='<div id="overlay-bar"><div id="progress"></div><div class="loadLogo"><img src="img/logo.png"/></div><div id="progressNum">0%</div></div>';
@@ -237,93 +264,3 @@
             img.src='http://shenbo.igalaxy.com.cn/'+$(this).attr('src');
         })
     }
-动态元素:
-appendChild是动态控制元素,把ul的节点追加到ul内,相当于替换,那么因为每次改变指针,所以位置发生改变如下:
-for(var i= 0,len=li.length;i<len;i++){
-    ul.appendChild(li[i]);
-}
-运算前:
-<ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-</ul>
-运算后:
-<ul>
-    <li>2</li>
-    <li>4</li>
-    <li>3</li>
-    <li>1</li>
-</ul>
-
-
-1.数组
-    parseInt:如果数组只有一个值,那么从左往右看,如果是一个数字,就转成数字
-    Number:如果只要一个数字,那么会转成数字,如果两个数字以上,那么就是NaN
-
-2.隐士类型转换
-    1.调取的是Number类型转换
-    2.x=+x //这是另一种隐士的将x转为数字的方式
-200200200
-3.多条件比较
-    &&:true-会一直执行,直到最后;false-停到flase,输出当前条件的结果;
-    ||:true-停到flase,并输出到当前结果;false-会一直执行,直到为true的结果;
-
-4.nodeType属性值分别为1,2,3
-    1:元素节点 2:属性节点 3:文本节点
-
-5.折纸3D的Z点角度计算方式 = (width/2) / tan(360/length/2)
-
-6.这是js运动脚本
-http://www.cnblogs.com/bluedream2009/archive/2010/06/19/1760909.html
-
-7.日期
-    new Date().getTime()-返回是一个从现在时间-1970年,得到的结果的毫秒数,也可以理解为返回一个当前时间的毫秒数
-
-8.get和post的区别:
-    1.GET请求是url带参数的方式传递,post请求是作为HTTP消息的实体内容传递给服务器;
-    2.GET对数据大小有限制,通常2k左右;post理论上不受限制
-    3.GET请求会被浏览器缓存,可以用历史记录找到,所以可能存在严重安全问题;post可以避免这个问题
-    4.GET和POST传递到服务器端的获取方式也不相同
-
-概念:
-javascript的组成：
-ECMAScript(标准) : javascript组成语言的语法和基本对象
-DOM : 文档对象模型  描述处理网页内容的方法和接口
-BOM : 浏览器对象模型 描述与浏览器进行交互的方法和接口
-事件(Event)的特点是，如果你错过了它，再去监听，是得不到结果的
-
-js的组成：
-    ECMAScript(5.1)：javaScript组成言的语法和基本对象; DOM：文档对象模型，描述处理网页内容的方法和接口; BOM：浏览器对象模型，描述与浏览器进行交互的方法和接口
-js主要是用来操作样式的。作用：响应用户操作的。
-onclick:点击事件;alert:调用浏览器的默认弹窗;script标签：解析js代码的。内嵌：放在body标签的结尾前面。
-函数的作用：
-function:函数（里面计算要执行的操作）
-复用: 函数没取名字叫匿名函数：比如：事件调用时; 函数有名字叫有名函数：function fn1(){}; 调用的方式：1.函数名+（）;2.事件调用
-window.onload:当页面加载完成的时候执行里面的代码。
-鼠标移入事件：onmouseover; 鼠标移出事件:onmouseout
-当操作复合样式的时候，去掉-第二个首字母大写。例如:z-index==>zIndex
-数据类型:
-    1.字符串(string):由零个或多个字符组成的串。必须使用单引号对或双引号对引起来
-    2.数字(Number)  :  为整数或浮点数（小数）;取值范围 +Infinity ~ -Infinity 之间
-    3.布尔值(Boolean) : true或false
-    4.未定义(Undefined) : undefined,在有变量没赋值的情况下为undefined等等
-    5.空(null) : null 在没有元素或者元素获取错误的时候会出现null等等,以上的5种数据类型统称为基本数据类型（也可以叫简单数据类型）
-    6.复合（复杂）数据类型：对象
-typeof:计算右边的数据为什么数据类型。typeof 检测后的值都为字符串，并且首字母为小写
-ECMA中的数据类型和typeof的数据类型有点差别
-typeof中的6种数据类型:字符串、数字、布尔值、undefined、object、function
-ECMA中的6种数据类型: 字符串、数字、布尔值、未定义、null、对象。
-Boolean:
-true: true、非0数字为true、非空字符串、对象
-false: undefined、null、false、0、空字符串
-
-强制类型转换（显示类型转换）主动去转的。通过函数或方法调用，明确的将某种类型转换成另一种类型称为显示转换相反则称为隐式类型转换 。
-    parseInt、parseFloat、Number、Boolean...
-隐式类型转换：悄悄地转换。如果一个字符串前面只有一个加号，那么这个字符串会被系统偷偷的转成数字。如果前面为字符串后面为数字，会被系统偷偷的转成字符串。
-字符串 + 数字 = 字符串。+、-、* 、%（取余）
-
-比较:
-console.log(1 == '1');//在比较的时候，先将两边的值转成同一种数据类型，然后再比较。
-console.log(1 === '1');//不但会比较值还会比较数据类型。性能更高。
