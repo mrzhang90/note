@@ -12,3 +12,37 @@
 乱码解决：
 	header('Content-Type: json; charset=utf-8'); //添加报头
 	mysql_query("set names 'utf8'"); //添加到数据库内容乱码时
+
+面向对象：
+	__get(),__set() ：获取赋值属性。这两个方法不是默认存在的，是我们手工添加到类里的
+	__isset(),__unset() ：检查和删除属性
+		一般来说，类的属性通常是private,PHP5中预定义了__get(),__set()，__isset(),__unset()
+		PS:set和get是专门为类的私有属性（private和protected）设立的，对于public是可以直接访问，即不走set和get函数！！！
+	parent::
+		使用：parent::__construct($cl);
+			在子类中使用parent::的方式调用父类中被覆盖的方法
+		还有一种方法Car::run()
+			使用父类的“类名::“来调用父类中被覆盖的方法
+	self::
+	final关键字
+		使用final关键标记的类不能被继承
+		使用findl关键标记的方法不能被子类覆盖，是最终版本，比如连接数据库方法，不需要重写，那么就会用到final
+	静态成员-static
+		使用方法-类名::静态属性
+	静态方法-static
+		使用方法-类名::静态方法
+	self::
+		在方法中访问静态成员
+	const关键字
+	abstract关键字-定义抽象类
+		抽象类里的方法都要在子类实现，不然子类还是抽象类
+	interface接口
+		接口是一种特殊的抽象类，里面所有方法都是抽象方法，所以接口不能产生实例对象；它也可以作为一种规范，所有抽象方法需要子类实现
+	implements-
+		我们定义接口的子类去实现全部抽象方法使用的关键字是implements,而不用extends
+	PS:
+		PHP是单继承的，一个类智能有一个父类，但是一个类可以实现多个接口
+			class four implemtns 接口1，接口2，……
+		PHP中不仅一个类可以实现多个接口，也可以在继承一个类的同时实现多个接口，一定要继承类再去实现接口
+			class four extends 类名1 implemtns 接口1，接口2……
+
