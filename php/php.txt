@@ -2,6 +2,10 @@
 	include_once和require_once的区别，前者包含或执行中遇错依然可以执行；后者则不执行
 	isset($b) -判断变量$b是否存在
 	json_encode($array) -数组编码
+	serialize() --序列化
+	unserialize() --反序列化
+	__autoload() --自动加载类
+		__autoload() 是专门为 类的不存在 而设计的！！！很多框架利用这个函数，实现 类文件的自动加载 ！！！
 	
 全局：
 	global $c -声明变量c为全局可用
@@ -18,6 +22,9 @@
 	__isset(),__unset() ：检查和删除属性
 		一般来说，类的属性通常是private,PHP5中预定义了__get(),__set()，__isset(),__unset()
 		PS:set和get是专门为类的私有属性（private和protected）设立的，对于public是可以直接访问，即不走set和get函数！！！
+	__toString()
+		在类里面定义了“__toString()”方法，在直接输出对象引用的时候，自动调用 了”__toString()”方法， 输出“__toString()”方法中返回的字符，所以
+		“__toString()”方法一定要有个返回值（return 语句）
 	parent::
 		使用：parent::__construct($cl);
 			在子类中使用parent::的方式调用父类中被覆盖的方法
