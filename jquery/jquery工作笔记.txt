@@ -2,6 +2,10 @@
 -.当用户提交表单是,可以用 $("form .require:input").trigger("blur"),
 	用trigger()触发blur事件,不过也会触发浏览器的默认blur事件,即光标不能定位文本框上.
 	而triggerHandler('blur')只会触发元素绑定的blur事件,而不触发默认blur事件
+--.兼容-文本框输入监听事件
+  $('#name').on('keyup',function(){//keyup代替input事件
+    console.log($(this).val());
+  })
 
 -.$('elem').keyup(fn).keyup() :这里在最后加了一个.keyup,是为了页面刷新就可以执行函数
 

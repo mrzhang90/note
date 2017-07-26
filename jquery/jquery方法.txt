@@ -1,34 +1,48 @@
-//定位扎点-小图标依次展示(公元创译-发展历程)
-function recursionAnimate(element){
-    setStyle(0);
-    function setStyle(index){
-        var position=element.eq(index).position();
-        if(index==element.length-1){
+--图片加载失败，显示默认图片
+    js:
+        $('img').each(function(){
+            this.onerror=function(){
+                console.log(this)
+                $(this).hide().after('<div class="imgDiv"></div>');
+                this.onerror=null;
+            }
+        })
+    css:
+        .right_car li .imgDiv{
+            width: 120px; height: 93px;background: url(../img/logo.jpg) center center no-repeat; background-size: 50% auto;
+            display:inline-block; *zoom:1; *display: inline;vertical-align: middle;
+            -ms-behavior: url(css/backgroundsize.min.htc);behavior: url(css/backgroundsize.min.htc);
+        }
+--定位扎点-小图标依次展示(公元创译-发展历程)
+    function recursionAnimate(element){
+        setStyle(0);
+        function setStyle(index){
+            var position=element.eq(index).position();
+            if(index==element.length-1){
+                return;
+            }
+            element.eq(index).css({top:position.top-80}).animate({opacity:1,top:position.top},{ duration: 200, complete: function() {
+                setStyle(++index);
+            }});
+        }
+    }
+--cookie记录滚动位置，解决回退或链接返回页面时，到达指定位置(申博列表页)
+    条件：ajax渲染列表时需要此方法
+    思路：
+        1.ajax渲染之后再根据cookie跳转页面
+        2.isScroll是为了首次执行render不执行scroll
+        3.滚动页面记录cookie
+    render(function(){
+        var cookie=getCookie('scrollTop');
+        if(cookie){
+            $('body,html').scrollTop(cookie);
+        }
+    });
+    var isScroll=false;
+    $(window).on('scroll', function () {
+        if(!isScroll){
+            isScroll=true;
             return;
         }
-        element.eq(index).css({top:position.top-80}).animate({opacity:1,top:position.top},{ duration: 200, complete: function() {
-            setStyle(++index);
-        }});
-    }
-}
-
-//cookie记录滚动位置，解决回退或链接返回页面时，到达指定位置(申博列表页)
-条件：ajax渲染列表时需要此方法
-思路：
-    1.ajax渲染之后再根据cookie跳转页面
-    2.isScroll是为了首次执行render不执行scroll
-    3.滚动页面记录cookie
-render(function(){
-    var cookie=getCookie('scrollTop');
-    if(cookie){
-        $('body,html').scrollTop(cookie);
-    }
-});
-var isScroll=false;
-$(window).on('scroll', function () {
-    if(!isScroll){
-        isScroll=true;
-        return;
-    }
-    setCookie('scrollTop',top,1)
-})
+        setCookie('scrollTop',top,1)
+    })

@@ -24,6 +24,9 @@
 		1、为父元素增加上边框，但父元素会变高；2.通过为父元素设置上内边距来取代子元素的上外边距，但也会增加父元素的高度；3.在父元素中，增加一个空 <table>元素，但会在页面中增加一个空元素	
 	完美方案：
 		使用内容生成before。代码：#container:before{content:""; display:table;font-size:0;}
+	IE7/8使用特殊字体造成文字出现锯齿等问题
+		h2, p {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=hIEfix.png,sizingMethod=crop);zoom:1;}
+		参考：http://www.zhangxinxu.com/wordpress/2009/12/%E7%BF%BB%E8%AF%91-ie78font-face%E5%B5%8C%E5%85%A5%E5%AD%97%E4%BD%93%E4%B8%8E%E6%96%87%E5%AD%97%E5%B9%B3%E6%BB%91/
 	1.怪异盒模型(在IE下，没有文档声明，元素会陷入怪异盒模型解析),可视宽=width,content=width-padding-border
 	2.在IE6下不支持1px的点线,解决办法:用背景平铺
 	3.在IE6下元素的高度小于19px，会被当做19px来处理,解决办法:1.设置font-size;2.加overflow
