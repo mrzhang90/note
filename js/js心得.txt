@@ -264,3 +264,18 @@
             img.src='http://shenbo.igalaxy.com.cn/'+$(this).attr('src');
         })
     }
+    //img对象小例子-设置索引属性、读取属性
+    li.each(function(){
+        var index=$(this).index();//遍历li索引并赋给img对象上
+        var imgElement=$(this).children('img');
+        var img=new Image();
+        img.onload=function(){
+            img.onload=null;//解决gif图多次出发onload的问题
+            var index=this.getAttribute('data-index');
+            var currentLi=li.eq(index);
+            var currentImg=currentLi.children('img');
+            currentLi.css({'left':'50%','margin-left':-(currentImg.width()/2),'top':'50%','margin-top':-(currentImg.height()/2)})
+        };
+        img.setAttribute('data-index',index);//放到img.src是为了兼容IE低版本
+        img.src=imgElement.attr('src');//放到这里是为了兼容ie低版本
+    })

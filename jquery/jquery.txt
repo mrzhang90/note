@@ -32,6 +32,9 @@
         PS: $('button').unbind() :删除所有绑定的事件
             $('button').unbind('click') :删除所有click类型的绑定事件
             1.$('button').bind('click',myfn=function(){}); 2.$('button').unbind('click',myfb) :只有特定的事件处理函数被删除
+        实例：
+            $(document).unbind('click');//先移除
+            $(document).on('click');//再绑定
     one(type,[data],fn) :每个对象上,事件处理函数只会被执行一次;使用方法与bind()相同
 
 模拟操作:
