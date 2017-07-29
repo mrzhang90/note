@@ -57,6 +57,12 @@
         设置参数：var obj={'title',encodeURI(parent.find('.title').text())}
         获取参数：decodeURI(obj.title)
 
+笔记：
+    this特性-谁调它就指谁，闭包略微有些差异，就是指向window
+    闭包就是拿到属于本不该属于他的东西
+    闭包容易造成内存泄露，因为执行闭包的函数后，浏览器不知道什么时候要用到闭包内部的函数，所以函数会保留在内存
+    js是函数级多用域，在内部的变量内部都能访问，外部不能访问内部的，内部能访问外部的
+
 localStorage
     //发送localStorage
     localStorage.setItem(key, val);
