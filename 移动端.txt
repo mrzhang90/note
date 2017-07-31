@@ -1,0 +1,88 @@
+--.IOS上new Date获取时间的bug，兼容IOS5以上版本：
+    new Date('2013/10/21');
+    或者
+    var d = new Date(date);
+    d = d.getFullYear() > 0 ? d : new Date(Date.parse(date.replace(/-/g, "/")));
+
+--.IOS和Android系统都会默认某长度内的数字为电话号码，即使不加也是会默认显示为电话的
+	<meta content="telephone=no" name="format-detection">
+	
+--.ios以及微信页面中title动态修改失效问题
+	var $body = $('body')
+	document.title ="动态titile标题"
+	// hack在微信等webview中无法修改document.title的情况
+	var $iframe = $('<iframe src="/favicon.ico"></iframe>').on('load', function() {
+	  setTimeout(function() {
+	    $iframe.off('load').remove()
+	  }, 0)
+	}).appendTo($body)
+--.PC网站兼容手机设备
+	方法一.
+		PC网站自适应移动端。-青古项目
+		解决两个问题：1.浏览器窗口缩小,div宽度100%时，拖动横向滚动条不错乱;2.手机浏览器查看时，不错乱
+		CSS:body{min-width:1180px;}
+		HTML:<meta name="viewport" content="width=1180,inital-scale=1">
+	方法二.
+		参考：
+			http://www.cnblogs.com/YYvam1288/p/5409129.html
+			http://www.cnblogs.com/2050/p/3877280.html
+		HTML:--在head引入这一句，可以获取真实的ideal viewport宽度，不加这句，移动端都返回980
+			<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		JS:
+			$(function(){
+			    verif_screen(function(){
+			        $('meta[name=viewport]').attr('content','width=device-width, initial-scale=1');//每次横竖屏切换重置viewport，以获取真实的像素宽度-ideal viewport
+			        if(isPhone()){
+				        var width=$(document.body).width();
+				        var scale=width/1200;
+				        console.log(width,scale)
+				        $('meta[name=viewport]').attr('content','width=device-width, initial-scale='+scale+', maximum-scale='+scale+', user-scalable=0');
+				    }
+			    })
+			})
+			//封装函数-手机横竖屏切换触发
+			function verif_screen(callback){
+			    var supportOrientation = (typeof window.orientation === 'number' && typeof window.onorientationchange === 'object');
+			    var init = function(){
+			        var orientation='';
+			        var updateOrientation = function(){
+			            if(supportOrientation){
+			                orientation = window.orientation;
+			                switch(orientation){
+			                    case 90:
+			                    case -90:
+			                        orientation = false;
+			                        break;
+			                    default:
+			                        orientation = true;
+			                        break;
+			                }
+			            }else{
+			                orientation = (window.innerWidth > window.innerHeight) ? true : false;
+			            }
+			            callback(orientation);
+			        };
+			        if(supportOrientation){
+			            window.addEventListener('orientationchange',updateOrientation,false);
+			        }else{
+			            //监听resize事件
+			            window.addEventListener('resize',updateOrientation,false);
+			        }
+			        updateOrientation();
+			    };
+			    init();
+			}
+			function isPhone(){
+			    var mobileAgent = new Array("iphone", "ipod", "ipad", "android", "mobile", "blackberry", "webos", "incognito", "webmate", "bada", "nokia", "lg", "ucweb", "skyfire");
+			    var browser = navigator.userAgent.toLowerCase(); 
+			    var isMobile = false; 
+			    for (var i=0; i<mobileAgent.length; i++){
+			        if(browser.indexOf(mobileAgent[i])!=-1){
+			            isMobile = true; 
+			            // alert(mobileAgent[i]);
+			            // location.href = '手机网址';
+			            break;
+			        }
+			    }
+			    return isMobile;
+			}

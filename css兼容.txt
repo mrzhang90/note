@@ -1,8 +1,4 @@
 兼容:
-	PC网站自适应移动端。-青古项目
-		解决两个问题：1.浏览器窗口缩小,div宽度100%时，拖动横向滚动条不错乱;2.手机浏览器查看时，不错乱
-		CSS:body{min-width:1180px;}
-		HTML:<meta name="viewport" content="width=1180,inital-scale=1">
 	IE9 Filter bug:由于IE9识别filter和css3，解决方法：(参考：https://www.bokeyy.com/post/tag/ie9-filter)
 		1.利用ie9识别root和filter，而ie6/7/8都不识别root
 			input{background:rgba(38,141,183,.8);filter:progid:DXImageTransform.Microsoft.Gradient(startColorStr=#dd298fb8,endColorStr=#dd298fb8);}
