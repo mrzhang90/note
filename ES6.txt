@@ -1,3 +1,12 @@
+Traceur:  
+  //Google 公司的Traceur转码器，也可以将 ES6 代码转为 ES5 代码:
+  <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+  <script src="https://google.github.io/traceur-compiler/bin/BrowserSystem.js"></script>
+  <script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script>
+  <script type="module">
+    import './Greeter.js';
+  </script>
+
 声明变量的6种方式：
   var、function、let、const、import、class
 方法：
@@ -40,9 +49,10 @@
   }
 let:
   let 块级作用域
+  var 函数级作用于
   ES6允许块级任意嵌套：{{{{{let insane = 'Hello World'}}}}};
   笔记：
-    1.不存在变量提升;2.暂时性死区(如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域);3.不允许重复生命
+    1.不存在变量提升;2.暂时性死区(如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域);3.不允许重复声明
   作用：
     1.外层作用域无法读取内层作用域的变量;
     2.内层作用域可以定义外层作用域的同名变量;
