@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<title>无标题</title>
+</head>
+<body>
+<script type="text/javascript">
+	this.data=10;
+	const self=this;
+	function method(){
+		console.log(this.data)
+	}
+	function test(...params){
+		return method.apply(self,params);
+	}
+	test(1,2,3);
+
+	this.a=1;
+	const f={
+		a:2,
+		h2:function(){
+			console.log(this.a);
+		}
+	}
+	let fn=f.h2.bind(this);//bind改变指向到window
+	fn();//1
+
+	function fn2(a,b,{option=false}={}){
+		console.log(option)
+	}
+	fn2(1,2,{option:1})
+
+	function fn3(opt={}){
+		console.log(opt)
+	}
+	fn3('12')
+</script>
+</body>
+</html>

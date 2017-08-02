@@ -1,0 +1,55 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<title>无标题</title>
+</head>
+<body>
+<script type="text/javascript">
+"use strict"
+	if(1==1){
+		var a=1;
+		let b=2;
+	}
+	console.log(a)
+	// console.log(b);
+
+	const A=20;
+	// A=10;
+	// f=10;
+	console.log(A)
+
+	const c=`foo${A}`;
+	console.log(c)
+
+	const [firster,second]=['校长',123];
+	console.log(firster);
+	console.log(second);
+
+	function getFullName({first,second}){
+		console.log(first)
+		console.log(second)
+	}
+	getFullName({
+		'first':'zhang',
+		'second':'hi'
+	})
+
+	const obj={
+		['name'+1]:'hi',
+		[getName()]:'hello'
+	}
+	function getName(){
+		return 'name2';	
+	}
+	console.log(obj['name1'])
+	console.log(obj['name2'])
+
+	//简介表达式
+	const obj2={
+		obj,
+
+	}
+	console.log(obj2)
+</script>
+</body>
+</html>
