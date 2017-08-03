@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>yield 异步解决方案</title>
+</head>
+<body>
+<script type="text/javascript">
+	function* hello(){
+		yield 'a';
+		yield 'b';
+		return 'end';
+	}
+	var h=hello();
+	let first=h.next().value;
+	let second=h.next().value;
+	let end=h.next().value;
+	let ceshi=h.next();
+	console.log(first);
+	console.log(second);
+	console.log(end);
+	console.log(ceshi);
+</script>
+</body>
+</html>

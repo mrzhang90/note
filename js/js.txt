@@ -93,23 +93,26 @@ localStorage
 面向对象:
 包装对象：当使用原始类型的值（string、number、boolean），在调用对应属性和方法的时候，内部会自动转成对应的对象。隐式创建的这个对象，就成为包装对象
 包装对象的特点:隐式创建对象后，可以调用对应的属性和方法，使用后，立马销毁，所以不能给原始类型的值添加属性和方法
-Boolean object.hasOwnProperty()：检测一个属性是存在实例中还是原型中。PS:只有给定属性存在对象实例中和构造函数内部,才会返回true
-Boolean object.isPrototypeOf():是用来判断要检查其原型链的对象是否存在于指定对象实例中，是则返回true，否则返回false。
+
 'name' in p1 : in操作符,会在通过对象能够访问给定属性时返回true,无论该属性存在于实例中还是原型中
     key in obj:判断对象obj中是否存在key键值，存在返回true
-Object.create(proto [, propertiesObject ]) 是E5中提出的一种新的对象创建方式,该方法创建一个拥有指定原型和若干个指定属性的对象。
-object.constructor:找出实例的构造函数是谁,属性返回对创建此对象的数组函数的引用,返回的是实例的构造函数。PS:当prototype = {}的时候会将prototype的值修改，那么要手动将constructor:Person,指向函数
 Array instanceof Function : instanceof运算符,二元运算符,检测Array的老爹是不是Function,1.用于判断一个变量是否某个对象的实例,2.运算检测一个函数的原型是否在要检测的对象的原型链上。
-Object.defineProperty：都是通过它实现双向绑定的
-Object.getPrototypeOf(p1).job : 返回对象的原型
-Object.keys(Person.prototype): 接受一个对象作为参数,返回一个包含所有可枚举属性的字符串数组
-Object.getOwnPropertyNames(Person.prototype);接受一个对象作为参数,返回一个包含所有可枚举属性的字符串数组,包含constructor
-Object.getOwnPropertyDescriptor({foo:123},'foo'):方法可以获取该属性的描述对象
-    描述对象的enumerable属性，称为”可枚举性“，如果该属性为false，就表示某些操作会忽略当前属性。
 对象身上有__proto__,构造函数身上有prototype也有__proto__
 prototype:原型,当函数声明出来的时候，自带的属性，而这个属性是对象类型
 __proto__属性原型链
 new:一个运算符(一元运算符)：专门运算函数的。
+
+Object:
+    Boolean object.hasOwnProperty()：检测一个属性是存在实例中还是原型中。PS:只有给定属性存在对象实例中和构造函数内部,才会返回true
+    Boolean object.isPrototypeOf():是用来判断要检查其原型链的对象是否存在于指定对象实例中，是则返回true，否则返回false。
+    Object.create(proto [, propertiesObject ]) 是E5中提出的一种新的对象创建方式,该方法创建一个拥有指定原型和若干个指定属性的对象。
+    object.constructor:找出实例的构造函数是谁,属性返回对创建此对象的数组函数的引用,返回的是实例的构造函数。PS:当prototype = {}的时候会将prototype的值修改，那么要手动将constructor:Person,指向函数
+    Object.defineProperty：都是通过它实现双向绑定的
+    Object.getPrototypeOf(p1).job : 返回对象的原型
+    Object.keys(Person.prototype): 接受一个对象作为参数,返回一个包含所有可枚举属性的字符串数组
+    Object.getOwnPropertyNames(Person.prototype);接受一个对象作为参数,返回一个包含所有可枚举属性的字符串数组,包含constructor
+    Object.getOwnPropertyDescriptor({foo:123},'foo'):方法可以获取该属性的描述对象
+        描述对象的enumerable属性，称为”可枚举性“，如果该属性为false，就表示某些操作会忽略当前属性。
 
 正则:一种规则主要是用来操作字符串的（查找或者匹配某个字符串的模糊范围的） 正则特性一：懒惰特性;正则特性二：贪婪特性
 正则的书写语法：正则是由对象构造出来的。第一种写法：简洁版：/a/2个正斜线组成，里面放需要匹配的字符,类似于：[],{}; 第二种写法:标准写法,new RegExp('');转义字符：\+n|m|t.. 一般来说为转义字符

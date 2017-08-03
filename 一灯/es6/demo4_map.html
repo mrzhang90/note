@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	"use strict";
+	const arr=[["name","zhangsan"],["title","一本书"]]
+	let map=new Map(arr);
+	map.set("fv","篮球");
+	console.log(map);//Map {"name" => "zhangsan", "title" => "一本书", "fv" => "篮球"}
+	for(let key of map.keys()){
+		console.log(key)
+	}
+	console.log(map.values())
+	console.log(map.entries())//键值对
+
+	const obj={
+		"name":1,
+		"sex":2
+	}
+	console.log(Object.keys(obj))
+</script>
+</body>
+</html>

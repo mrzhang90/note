@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	"use strict";
+	class Queue{
+		constructor(content=[]){
+			this._queue=[...content];
+		}
+		pop(){
+			const value=this._queue[0];
+			this._queue.splice(0,1);
+			return value;
+		}
+	}
+	let f=new Queue([123,456,789]);
+	console.log(f.pop());
+
+	//继承
+	class Peek extends Queue{
+		peek(){
+			return this._queue[1];
+		}
+	}
+	let p=new Peek([123,456,789]);
+	console.log(p.peek())
+</script>
+</body>
+</html>
