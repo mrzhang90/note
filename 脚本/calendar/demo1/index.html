@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>一个输入框两个日历</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		.calendar-input-wrap span {display: none;}
+	</style>
+</head>
+<body>
+<div class="div_input">
+	<!-- <input type="text" class="startTime" placeholder="出发时间" autocomplete="off" id="J_DepDate"> -->
+	<!-- <input type="text" class="startTime" placeholder="出发时间" autocomplete="off" id="J_EndDate"> -->
+	<div class="dataDiv depDiv"><input placeholder="出发时间" class="startTime" id="J_DepDate" type="text" class="f-text" value="" /></div>
+	<div class="dataDiv endDiv" style="display:none;"><input placeholder="出发时间" class="startTime" id="J_EndDate" type="text" class="f-text" value="" /></div>
+</div>
+<input type="button" id="ceshi" value="点击">
+<!-- <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script> -->
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/public.js"></script>
+<script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>
+<script type="text/javascript">
+    $('#ceshi').on('click',function(){
+        var date=[];
+        var depDate=$('#J_DepDate').val();
+        if(depDate.indexOf('至')!=-1){
+            date=depDate.split('至');
+        }
+        console.log(date);
+        alert(date[0])
+        alert(date[1])
+    })
+	YUI({
+        modules: {
+            'trip-calendar': {
+                fullpath: 'trip-calendar.js',
+                type    : 'js',
+                requires: ['trip-calendar-css']
+            },
+            'trip-calendar-css': {
+                fullpath: 'trip-calendar.css',
+                type    : 'css'
+            }
+        }
+    }).use('trip-calendar', function(Y) {
+        
+        var oCal = new Y.TripCalendar({
+            minDate         : new Date,     //最小时间限制
+            triggerNode     : '#J_DepDate', //第一个触节点
+            finalTriggerNode: '#J_EndDate'  //最后一个触发节点
+        });
+        var sVal='';
+        Y.one('#J_DepDate').on('blur',function(e){
+            var timer=setInterval(function(){
+                var val=$('#J_DepDate').val();
+                sVal=val;
+                if(val && val.indexOf('至')==-1){
+                    $('.depDiv').hide()
+                    $('.endDiv').show()
+                    Y.one('#J_EndDate').focus();
+                    $('#J_EndDate').val(sVal+'至')
+                    clearInterval(timer);
+                }
+            },20)
+        })
+        Y.one('#J_EndDate').on('blur',function(e){
+            var timer=setInterval(function(){
+                var val=$('#J_EndDate').val();
+                if(val && val.indexOf('至')==-1){
+                    $('#J_DepDate').val(sVal+'至'+val)
+                    $('.endDiv').hide()
+                    $('.depDiv').show()
+                    clearInterval(timer);
+                }
+            },20)
+        })
+    });
+</script>
+</body>
+</html>

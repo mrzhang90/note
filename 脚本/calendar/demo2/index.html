@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>日历</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+        .clear{zoom:1;}
+        .clear:after{content:"";display:block;clear:both;visibility:hidden;font-size:0;height:0;line-height:0;}
+	</style>
+    <link rel="stylesheet" href="css/calendar_1.0.css"/>
+</head>
+<body>
+<a href="?departureTime=" data-param="departureTime" data-value="" id="custom_time">自定义出发时间</a>
+<!-- <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script> -->
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+<script src="calendar_1.0.js"></script>
+<script type="text/javascript">
+changeEvent($('#custom_time'),function(data1,data2){
+    console.log(data1,data2)
+});
+function changeEvent(startTime,callback) {
+    startTime.click(function(ev){
+        calendar($(this),callback);
+        ev.stopPropagation();
+        return false;
+    })
+    $(document).click(function(ev){//当点击文档其他地方，插件消失
+        $('#calendar').hide(300);
+        ev.stopPropagation();
+    })
+    $('#calendar').click(function(ev){
+        ev.stopPropagation();
+    })
+    // startTime.blur(function(){//当时间输入框失去焦点后，
+    //     var calendar=$('#calendar');
+    //     calendar.click(function(ev){//如果点击的是日历插件，那么就不能隐藏日历插件，所以阻止document.click
+    //         ev.stopPropagation();
+    //     })
+    //     $(document).click(function(){//当点击文档其他地方，插件消失
+    //         calendar.hide(300);
+    //         $(document).unbind('click');
+    //     })
+    // })
+}
+</script>
+</body>
+</html>

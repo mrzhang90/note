@@ -1,0 +1,25 @@
+--.引用库
+	jquery.js    --底层jquery
+	public.js 	 --公用库
+	swfupload.js --工具库
+--.兼容库
+	使用json2.js，为了解决ie低版本不兼容JSON.parse方法
+	swfupload.js和handlers.js，解决低版本file控件用flash替代
+--.id可更改，不过要在fileUpload函数中也更改
+	data-name可更改，这个名字是提交表单的字段名
+	<a href="javascript:void(0)" id="fileUpload" class="inputUpload" data-name="photo">上传图片1</a>
+--.不需要图片预览，img标签可去掉
+	class可更改，不过要在fileUpload函数中也更改
+	<img src="" style="display:none;" class="imgUpload">
+--.调用函数
+	element-上传按钮的ID
+	address-异步提交地址
+	callback-回调函数，可定义自己的方法
+	fileUpload({
+		'element':$('#fileUpload'),
+		'address':'/img/userphoto/uploadImg.do',
+		'callback':function(data){
+            $('.imgUpload').attr('src',data.url).show();
+            console.log(data);
+        }
+	});
