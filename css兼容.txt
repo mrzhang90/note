@@ -1,3 +1,6 @@
+iphone兼容：
+	--input输入框placeholder垂直不居中-参考：http://www.cnblogs.com/xiaoxiao2014/p/5009599.html
+		不要input的line-height，即：line-height:nomrmal
 兼容:
 	IE9 Filter bug:由于IE9识别filter和css3，解决方法：(参考：https://www.bokeyy.com/post/tag/ie9-filter)
 		1.利用ie9识别root和filter，而ie6/7/8都不识别root
