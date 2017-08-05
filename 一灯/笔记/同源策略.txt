@@ -1,0 +1,52 @@
+同源策略 参考：http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html
+	同协议、同域名、同端口
+
+同源策略限制的对象
+	1.Cookie、LocalStorage 和 IndexDB 无法读取。
+	2.DOM 无法获得。
+	3.AJAX 请求不能发送。
+	
+如何设置同源策略(hosts)
+--.Cookie
+	两个网页一级域名相同，只是二级域名不同，浏览器允许通过设置document.domain共享 Cookie。例如：www.baidu.com 和 hi.baidu.com
+	test.xxx.com a.html
+	<script>
+		document.domain="baidu.com";//设置同源策略
+		document.cookie="test1=hello";
+	</script>
+
+	test.xxx.com b.html
+	<script>
+		document.cookie
+	</script>
+
+	domain='baidu.com';//最实用的同源策略
+
+--.iframe、img、script(jsonp)、link(background)
+ 	img
+ 	var s=new Image();
+ 	vat start=Date.now();
+ 	s.src="http://www.baidu.com/s.gif";
+ 	s.onload=function(){
+ 		var end=Date.now();
+ 		var t=end-start;
+ 		v=s.size / t +'kb/s';
+ 	}
+
+ 	script--jsonp
+	<script type="text/javascript" src="http://aa.com/index.php?callback=test"></script>
+	<script type="text/javascript">
+		function test(data){
+			console.log(data);
+		}
+	</script>
+
+	<?php
+		if(callback){
+			test({'aa':123})
+		}
+	?>
+
+--.高阶WebSocket、posMessage(iframe、image)
+--.代码写到image里面 http://www.jb51.net/article/102767.htm
+

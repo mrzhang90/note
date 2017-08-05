@@ -1,0 +1,9 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#main {
+    width: 500px;
+    height: 500px;
+}

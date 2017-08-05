@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>淘宝购物节</title>
+    <script type="text/javascript" src="js/css3d.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+
+<body>
+    <div id="main"></div>
+    <script>
+    //创建场景
+    var s = new C3D.Stage();
+    s.size(window.innerWidth, window.innerHeight).material({
+        color: "red"
+    }).update();
+    document.getElementById("main").appendChild(s.el);
+    //创建一个立方体放入场景中；(天空盒子，适合用来制作全景背景，指定材质时可以添加6面的图片定义。)
+    var c = new C3D.Skybox();
+    c.size(1024).position(0, 0, 0).material({
+        front: {
+            image: "images/scene/0.jpg"
+        },
+        back: {
+            image: "images/scene/2.jpg"
+        },
+        left: {
+            image: "images/scene/3.jpg"
+        },
+        right: {
+            image: "images/scene/1.jpg"
+        },
+        up: {
+            image: "images/scene/4.jpg"
+        },
+        down: {
+            image: "images/scene/5.jpg"
+        },
+    }).update();
+
+    s.addChild(c);
+
+    //响应屏幕调整尺寸
+    function resize() {
+        s.size(window.innerWidth, window.innerHeight).update();
+    }
+    window.onresize = function() {
+        resize()
+    };
+    //刷新场景
+    var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame ||
+        function(callback) {
+            setTimeout(callback, 1000 / 60);
+        };
+
+    document.onmousedown = mouseDown_handler;
+    document.onmouseup = mouseEnd_handler;
+
+    //设置初始化值
+    var LastMouseX = 0;
+    var LastMouseY = 0;
+    var LastAngelX = 0;
+    var LastAngelY = 0;
+    var anglerX = 0;
+    var anglerY = 0;
+    var CurMouseX = 0;
+    var CurMouseY = 0;
+
+
+    //鼠标按下的封装函数
+    function mouseDown_handler(ev) {
+        LastMouseX = ev.pageX;
+        LastMouseY = ev.pageY;
+        CurMouseX = ev.pageX;
+        CurMouseY = ev.pageY;
+        LastAngelX = anglerX;
+        LastAngelY = anglerY;
+        document.addEventListener("mousemove", mouseMove_handler);
+    }
+    //鼠标移动的封装函数
+    function mouseMove_handler(ev) {
+        CurMouseX = ev.pageX;
+        CurMouseY = ev.pageY;
+    }
+    //鼠标抬起的封装函数
+    function mouseEnd_handler(ev) {
+        CurMouseX = ev.pageX;
+        CurMouseY = ev.pageY;
+        document.removeEventListener("mousemove", mouseMove_handler);
+    }
+
+    function go() {
+
+        //计算x轴的旋转角度
+        //anglerX = (CurMouseY - LastMouseY) / 1000 + (LastAngelX - anglerX);
+
+        //计算y轴的旋转角度
+        anglerY = (CurMouseX - LastMouseX) / 1000 + (LastAngelY - anglerY);
+
+        s.camera.rotate(0, anglerY, 0).updateT();
+
+        requestAnimationFrame(go);
+    }
+    requestAnimationFrame(go);
+    </script>
+</body>
