@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ES6 继承</title>
+</head>
+<body>
+<script type="text/javascript">
+	class People{
+		constructor(name,age){
+			this.name=name;
+			this.age=age;
+		}
+		getName(){
+			return this.name;
+		}
+	}
+	class English extends People{
+		constructor(name,age,language){//此处可不写，默认借用父类的constructor
+			super(name,age);//借用父类的属性,这里必须写，因为子类的的constructor会覆盖父类的
+			this.language=language;
+		}
+		introduce(){
+			console.log('hi,I am '+this.getName());
+			console.log('I speak '+this.language);
+		}
+	}
+	var en=new English('john',28,'english');
+	en.introduce();
+	console.log(en)
+</script>
+</body>
+</html>

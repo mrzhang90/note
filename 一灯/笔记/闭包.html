@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<script type="text/javascript">
+function a(){
+	var i=i || 0;
+	return function(){
+		console.log(i)
+		return i++;
+	}
+}
+var b=a();
+b();
+b();
+b();
+b();
+
+var dom=document.getElementsByTagName('div');
+for(var i=0;i<dom.length;i++){
+	(function(i){
+		dom[i].onclick=function(){
+			console.log(i);
+		}
+	})(i)//这个i是值类型，使用完可以销毁
+}
+
+//惰性函数
+</script>
+</body>
+</html>

@@ -1,3 +1,6 @@
+js中语句优先，可以解释成语句的东西，是不会解释成表达式
+逗号表达式是连续的表达式，他的结果是最后一个表达式的值
+
 js是弱语言类型，有7中基本数据类型
 	前6种属于值类型
 	1.Boolean
@@ -152,3 +155,51 @@ PS:
 		1.对象的属性
 		2.对象的方法
 	
+语法
+label statement
+
+语句表达式-语句优先
+	var x={a:1};
+	{a:1}
+	{a:1,b:2}
+
+立即执行函数
+	首先知道(、~都是表达式，
+	小括号的特性要求，里面的东西必须是表达式，这样括号内的函数就是声名，然后()就可以直接调用了
+	都是利用表达式强制要求后面的语句必须是表达式，改变语法解析顺序
+(function(){console.log(1)}())
+[function(){console.log(1)}()]
+~function(){console.log(1)}()
+!function(){console.log(1)}()
++function(){console.log(1)}()
+-function(){console.log(1)}()
+delete function(){console.log(1)}()
+typeof function(){console.log(1)}()
+void function(){console.log(1)}()
+var f=function(){console.log(1)}()
+1, function(){console.log(1)}();
+1^ function(){console.log(2)}();
+1 > function(){console.log(3)}();
+
+高阶函数
+就是把函数当做参数或者返回值是函数的函数
+
+回调函数
+
+闭包
+	含义：函数的嵌套并且对外访问，就会产生闭包
+	闭包有两部分组成
+	1.函数
+	2.环境：函数创建时作用域内的局部变量
+
+惰性函数
+
+柯理化
+
+反柯理化
+
+
+
+
+
+

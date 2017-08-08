@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	loop:
+		for(var i=0;i<10;i++){
+			for(var j=0;j<5;j++){
+				console.log(j)
+				if(j==1){
+					break loop;
+				}
+			}
+		}
+	console.log(i)
+
+	for(var m=0,n=0;m<10;m++,n++){
+		console.log(m,n)
+	}
+
+</script>
+</body>
+</html>

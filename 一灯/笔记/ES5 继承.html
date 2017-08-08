@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ES5 继承</title>
+</head>
+<body>
+<script type="text/javascript">
+	//e.prototype=p.prototype;//把父类的prototype赋给子类的prototype，就相当于子类和父类同时指向父类的prototype，不符合继承的理念
+
+	function People(name,age){
+		this.name=name;
+		this.age=age;
+	}
+	People.prototype.getName=function(){
+		return this.name;
+	}
+	
+	function English(name,age,language){
+		People.call(this,name,age);
+		this.language=language
+	}
+	inherits(English,People);
+	English.prototype.introduce=function(){
+		console.log('hi,i am '+this.getName());
+		console.log('I speak '+this.language);
+	}
+
+	function Chinese(name,age,language,like){
+		People.call(this,name,age);
+		this.language=language;
+		this.like=like;
+	}
+	inherits(Chinese,People);
+	Chinese.prototype.introduce=function(){
+		console.log('hi,i am'+this.getName());
+		console.log('I speak '+this.language);
+		console.log('I like '+this.like);
+	}
+
+	var aa=new People('一个人',10);
+	console.log(aa.getName());
+	var john=new English('john',26,'english');
+	john.introduce();
+	var ch=new Chinese('树林',88,'chinese','功夫');
+	ch.introduce();
+	console.log(aa);
+	console.log(john);
+	console.log(ch);
+
+	function inherits(child,parent){
+		var _proto=Object.create(parent.prototype);//浅赋值，拷贝一个版本
+		_proto.constructor=child.prototype.constructor;
+		child.prototype=_proto;
+	}
+</script>
+</body>
+</html>
