@@ -1,0 +1,9 @@
+*{margin:0;padding:0;}
+div{height:150px;}
+/*.left{width:300px;background:orange;float:left;}
+.right{margin-top:-150px;width:300px;float:right;background:blue;}
+.middle{background:yellow;}*/
+.middle{float:left;width:100%;background:yellow;}
+.left{margin-left:-100%;width:300px;background:orange;float:left;}
+.right{margin-left:-200px;width:200px;float:left;background:blue;}
+.inner{margin-left:300px;}
