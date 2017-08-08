@@ -1,0 +1,36 @@
+弧度和角度
+	一弧度 ≈ 57.2958°
+	360° ≈ 2π = 6.2832弧度
+	弧度转换公式：(弧度radians,度degress)
+		radians = degress * Math.PI /180
+		degress = radians * 180 / Math.PI
+
+canvas坐标系
+	canvas坐标系xy轴坐标值居于空间左上角,x轴的坐标值从左往右增大，y轴坐标值向下以正数形式增大，向上以负数变小
+	角度的测量以顺时针的角度为正值，逆时针的角度为负值
+
+三角函数
+	正弦、余弦、正切、反正弦、反余弦、反正切
+	正弦
+		Math.sin(angle)
+		一个角的正弦表示与该角相对的直角边与斜边的比例(当我们谈及正弦时，总是相对一个角而言的)
+		求30°的正弦值：
+			Math.sin(-30 * Math.PI / 180)//-30是因为在canvas坐标系中，垂直往下以及逆时针的角度才是正值
+	余弦
+		Math.cos(angle)
+		余弦表示角的邻边与斜边的比率
+		求30°的余弦值：
+			Math.cos(-30 * Math.PI / 180)
+	正切
+		Math.tan(angle),它表现了对边与邻边的关系，很少用
+	反正弦与反余弦
+		简单说，他们是正弦与余弦的逆运算。
+			Math.asin(radio)
+				Math.asin(-0.5) * 180 / Math.PI//求出正弦值0.5的弧度，并换算成度
+			Math.acos(radio)
+	反正切
+		Math.atan(radio)
+		是正切的逆运算
+		Math.atan2(y,x)
+
+
