@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>flex布局</title>
+	<style type="text/css">
+		*{
+			margin:0;padding:0;
+			box-sizing:border-box;
+			-webkit-box-sizing:border-box;
+		}
+		.container{
+			display:-webkit-box;
+			display:-moz-box;
+			display:-ms-box;
+			display:-webkit-flex;
+			background:#000;
+			width:100%;
+			margin:0;padding:10px;list-style:none;vertical-align:top;}
+		.left{
+			-webkit-box-ordinal-group:1;
+			-webkit-order:1;
+			-webkit-flex:1;
+			background:#666;
+		}
+		.middle{
+			-webkit-box-ordinal-group:2;
+			-webkit-order:2;
+			-webkit-flex:2;
+			background:#999;
+		}
+		.right{
+			-webkit-box-ordinal-group:3;
+			-webkit-order:3;
+			-webkit-flex:3;
+			background:#ccc;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="left">左<p>1</p></div>	
+	<div class="middle">
+		<div class="inner">
+			中1212121212
+		</div>
+	</div>	
+	<div class="right">右</div>
+</div>
+</body>
+</html>

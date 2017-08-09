@@ -86,7 +86,9 @@
 			    }
 			    return isMobile;
 			}
-笔记：			
+笔记：		
+	box-sizing:border-box;-webkit-box-sizing:border-box;
+		移动端要设置盒模型，这样就不会被撑开	
 	em=1个当前元素文字大小; rem=1个html的文字大小
 	window.devicePixelRatio:像素比是设备物理像素和设备独立像素(dips)的比例,像素比为2，原先一个像素东西会用2像素的区域来显示;
 	物理像素:设备屏幕的本身像素值;独立像素:设备屏幕的本身像素值/像素比;实际像素:文档的实际像素

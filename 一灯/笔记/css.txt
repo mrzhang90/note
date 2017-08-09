@@ -1,0 +1,14 @@
+reset.css 重置
+normalize.css 修复
+neat.css 融合
+移动端：
+	html{box-sizing:border-box;}
+	*,*:befor,*.after{box-sizing:inhert;}//继承html
+css hint
+BFC
+
+IFC
+
+GFC
+
+FFC
