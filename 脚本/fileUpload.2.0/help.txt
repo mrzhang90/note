@@ -1,0 +1,26 @@
+--.引用库
+	jquery.js    --底层jquery
+	public.js 	 --公用库
+	swfupload.js --工具库
+--.兼容库
+	使用json2.js，为了解决ie低版本不兼容JSON.parse方法
+	swfupload.js和handlers.js，解决低版本file控件用flash替代
+--.data-name="file"   注册上传控件
+   data-value="photo" 这里的photo是提交表单的字段名
+   data-required="1"  写这句表示控件为必填，不写则可为空
+	<a href="javascript:void(0)" class="inputUpload" data-name="file" data-value="photo1" data-required="1">上传图片1</a>
+--.不需要图片预览，img标签可去掉
+	data-name="imgView" 表示为图片预览控件
+	<img src="" style="display:none;" data-name="imgView">
+--.调用函数
+	element-上传按钮的ID
+	address-异步提交地址
+	callback-回调函数，可定义自己的方法
+	fileUpload({
+		'element':$('#fileUpload'),
+		'address':'/img/userphoto/uploadImg.do',
+		'callback':function(data){
+            $('.imgUpload').attr('src',data.url).show();
+            console.log(data);
+        }
+	});

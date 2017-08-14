@@ -23,13 +23,18 @@
 	</style>
 </head>
 <body>
-<form class="photo1" method="post" enctype="multipart/form-data" style="display:inline;">
-	<a href="javascript:void(0)" id="fileUpload" class="inputUpload" data-name="photo">上传图片1</a>
-	<img src="" style="display:none;" class="imgUpload">
+<form class="photo1" method="post" enctype="multipart/form-data">
+	<a href="javascript:void(0)" class="inputUpload" data-name="file" data-value="photo1" data-required="1">上传图片1</a>
+	<img src="" style="display:none;" data-name="imgView">
 </form>
+<div class="photo1">
+	<a href="javascript:void(0)" class="inputUpload" data-name="file" data-value="photo2" data-required="1">上传图片1</a>
+	<!-- <img src="" style="display:none;" data-name="imgView"> -->
+</div>
+<input type="button" id="aa" name="" value="aaa">
 <!-- <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script> -->
 <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="../../js/public.js"></script>
+<script type="text/javascript" src="../../js/jquery.utils.js"></script>
 <script type="text/javascript" src="swfupload/tool.js"></script>
 <!--[if lte IE 10]>
 <script type="text/javascript" src="json2.js"></script>
@@ -37,14 +42,21 @@
 <script type="text/javascript" src="swfupload/handlers.js"></script>
 <![endif]-->
 <script type="text/javascript">
-    fileUpload({
-		'element':$('#fileUpload'),
-		'address':'/img/userphoto/uploadImg.do',
-		'callback':function(data){
-            $('.imgUpload').attr('src',data.url).show();
-            console.log(data);
-        }
-	});
+	$('#aa').on('click',function(){
+		var bool=true;
+		$('input[data-required=1]').each(function(){
+			console.log($(this).val())
+			if(!$(this).val()){
+				bool=false;
+				return false;
+			}
+		})
+		if(bool){
+			alert('可提交')
+		}else{
+			alert('不能提交')
+		}
+	})
 </script>
 </body>
 </html>
