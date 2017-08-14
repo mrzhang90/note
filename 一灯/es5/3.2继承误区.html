@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>误区2.父类的构造函数执行了两遍</title>
+</head>
+<body>
+<script type="text/javascript">
+var Car=function(color){
+	this.color=color;
+	console.log('父类的属性会执行两次');
+	this.sail=function(argument){
+		console.log(this.color+'色的车卖13万')
+	}
+}
+Car.prototype.hi=function(argument){
+	console.log(this.color+' hi')
+}
+var BMW=function (color){
+	Car.call(this,color);//通过call继承父类属性
+}
+//实例化父类，继承父类原型链
+BMW.prototype=new Car();//这里会首先执行一遍父类的构造函数
+BMW.prototype.test=function(){
+}
+//实例化子类，还会执行一遍父类的构造函数
+//执行两遍父类的构造函数，影响性能
+var b=new BMW('black');
+b.sail()
+console.log(b);
+</script>
+</body>
+</html>

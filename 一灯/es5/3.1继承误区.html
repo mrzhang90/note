@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>误区1.按引用传递</title>
+</head>
+<body>
+<script type="text/javascript">
+var Car=function(color){
+	this.color=color;
+	this.sail=function(argument){
+		console.log(this.color+'色的车卖13万')
+	}
+}
+Car.prototype.hi=function(argument){
+	console.log(this.color+' hi')
+}
+var BMW=function (){
+}
+//误区1.把父类的原型链，赋值给子类的原型链上，因为按引用传递的原因，子类和父类的原型链指向了同一个地方
+BMW.prototype=Car.prototype;//按引用传递
+BMW.prototype.test=function(){
+}
+var b=new Car('red');
+b.sail()
+//因为按引用传递，BMW原型链的test污染了Car类，
+//所以Car的原型链上有test方法
+console.log(b);
+</script>
+</body>
+</html>

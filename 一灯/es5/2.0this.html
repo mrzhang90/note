@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	//js 谁调用this,就指谁
+	this.a=20;
+	var p={
+		a:30,
+		test:function(){
+			alert(this.a)
+		}
+	}
+	p.test();//30
+
+	var w=p.test;
+	w();//20
+</script>
+</body>
+</html>

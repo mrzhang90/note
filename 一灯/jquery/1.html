@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	(function(window,undefined){
+		console.log(window)
+		//闭包可以保护变量
+		console.log(undefined)//这里的关键词undefined可以被修改，因为被当做了参数
+	})(window,42)
+	undefined=42;
+	console.log(undefined)//这里不可以修改，因为是关键字
+</script>
+</body>
+</html>

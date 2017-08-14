@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>函数式编程</title>
+</head>
+<body>
+<script type="text/javascript">
+//函数式编程-模块化，利用自执行
+//jq内部的经典写法
+var module=(function(){
+	var N=5;
+	function print(){
+		console.log(N);
+	}
+	function add(x){
+		var q=x+N;
+		console.log(q);
+	}
+	return{
+		des:"这里是一个模块",
+		add:add
+	}
+})();
+module.des;
+module.add(1);
+</script>
+</body>
+</html>

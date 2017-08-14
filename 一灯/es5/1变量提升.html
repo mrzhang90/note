@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>变量替身-函数级作用域</title>
+</head>
+<body>
+<script type="text/javascript">
+var a=25;	
+(function(){
+	alert(a);
+	var a=30;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+var Car=function(color){
+	//原型链的constructor 默认就等于 Car
+	//构造函数 和 初始化这个Car类 是一个东西。 当这个类执行时，自动执行的函数就是构造函数
+	this.color=color;
+	//方法放在Car里，那么每new一次，都要被实例化一次
+	this.sail=function(argument){
+		console.log(this.color+'色的车卖13万')
+	}
+}
+Car.prototype.hi=function(argument){
+	console.log(this.color+' hi')
+}
+var b=new Car('red');
+b.sail()
+</script>
+</body>
+</html>

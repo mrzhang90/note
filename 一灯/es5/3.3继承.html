@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+var Car=function(color){
+	this.color=color;
+	console.log('父类的属性会执行两次');
+	this.sail=function(argument){
+		console.log(this.color+'色的车卖13万')
+	}
+}
+Car.prototype.hi=function(argument){
+	console.log(this.color+' hi')
+}
+var BMW=function (color){
+	Car.call(this,color);//通过call继承父类属性
+}
+//继承
+//按引用传递
+//1.拿到父类原型链上的方法
+//2.不能让构造函数执行2次
+//3.引用的原型链不是是按址引用
+//4.修正子类的constructor
+var __pro=Object.create(Car.prototype);
+__pro.constructor=BMW;
+BMW.prototype=__pro;
+
+BMW.prototype.test=function(){
+}
+
+var b=new BMW('black');
+b.sail()
+console.log(b);
+</script>
+</body>
+</html>

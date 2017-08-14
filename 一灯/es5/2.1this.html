@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>函数s属于window</title>
+</head>
+<body>
+<script type="text/javascript">
+	//js 谁调用this,就指谁
+	this.a=20;
+	var p={
+		a:30,
+		test:function(){
+			//s是个闭包
+			function s(){//函数s属于window
+				alert(this.a)
+			}
+			s();
+		}
+	}
+	p.test();//20
+
+	var w=p.test;
+	w();//20
+</script>
+</body>
+</html>
