@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	var arr=[1,2,3,4,5];
+	//纯函数是这样一种函数，即相同的输入，永远会得到相同的输出，而且没有任何可观察的副作用。如果函数需要跟外部事物打交道，那么就无法保证这一点了。
+	//使用纯函数的形式，函数就能做到自给自足
+	//函数是不同数值之间的特殊关系：每一个输入值返回且只返回一个输出值
+	//尽管每个输入都只会有一个输出，但不同的输入却可以有相同的输出;反之相同的输入有不同的输入，就是不合法
+	// 戏剧性的是：纯函数就是数学上的函数，而且是函数式编程的全部。
+	console.log(arr.slice(0,1));//[1]
+	console.log(arr.slice(0,1));//[1]
+	console.log(arr)
+
+	console.log(arr.splice(0,1));//[1]
+	console.log(arr.splice(0,1));//[2]
+	console.log(arr)
+	//追求纯函数的理由1：可缓存性,纯函数总能够根据输入来做缓存
+	function memoize(f){
+		var cache={};
+		return function(){
+			var arg_Str=JSON.stringify(arguments);
+			cache[arg_Str]=cache[arg_Str] || f.apply(f,arguments);
+			return cache[arg_Str];
+		}
+	}
+	var squareNumber=memoize(function(x){return x*x});
+	console.log(squareNumber(3));
+	console.log(squareNumber(4));
+	console.log(squareNumber(3));// 从缓存中读取输入值为 3 的结果
+	//2.可移植性／自文档化.纯函数是完全自给自足的，它需要的所有东西都能轻易获得。
+	//3.纯函数让测试更加容易。我们不需要伪造一个“真实的”支付网关，或者每一次测试之前都要配置、之后都要断言状态
+		//Quickcheck——一个为函数式环境量身定制的测试工具
+	
+</script>
+</body>
+</html>

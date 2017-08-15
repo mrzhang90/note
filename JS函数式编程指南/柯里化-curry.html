@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	//curry 的概念很简单：只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数。
+	///即策略性地把要操作的数据（String， Array）放到最后一个参数里
+	function add(x){
+		return function(y){
+			return x+y;
+		}
+	}
+	console.log(add(1)(2))
+</script>
+</body>
+</html>
