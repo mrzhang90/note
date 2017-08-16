@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	var Left=function(x){
+		this._value=x;
+	}
+	Left.of=function(x){
+		return new Left(x);
+	}
+	Left.prototype.map=function(){
+		return this;
+	}
+	var Right=function(x){
+		this._value=x;
+	}
+	Right.of=function(x){
+		return new Right(x);
+	}
+	Right.prototype.map=function(f){
+		return Right.of(f(this._value));
+	}
+	var callback=function(v){
+		return 'b'+v;
+	}
+	var callback=function(v){
+		return 'b'+v;
+	}
+	var callback1=function(){
+		console.log(arguments)
+	}
+	function prop(v){
+		return function(obj){
+			return obj[v];
+		}
+	}
+	var l=Left.of('john').map(callback);
+	var r=Right.of('john').map(callback)
+	var r2=Right.of({'a':'hey1','b':2}).map(prop('a'))
+	console.log(l)
+	console.log(r)
+	console.log(r2)
+</script>
+</body>
+</html>

@@ -27,7 +27,10 @@
 			return cache[arg_Str];
 		}
 	}
-	var squareNumber=memoize(function(x){return x*x});
+	var callback=function(x){
+		return x*x
+	}
+	var squareNumber=memoize(callback);
 	console.log(squareNumber(3));
 	console.log(squareNumber(4));
 	console.log(squareNumber(3));// 从缓存中读取输入值为 3 的结果

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>容器-functor</title>
+</head>
+<body>
+<p>把值装进一个容器，而且只能使用 map 来处理它，这么做的理由到底是什么呢？如果我们换种方式来问，答案就很明显了：让容器自己去运用函数能给我们带来什么好处？</p>
+<h4>答案是抽象，对于函数运用的抽象。当 map 一个函数的时候，我们请求容器来运行这个函数。不夸张地讲，这是一种十分强大的理念</h4>
+<script type="text/javascript">
+	//为什么要使用这样一种方法？因为我们能够在不离开 Container 的情况下操作容器里面的值。这是非常了不起的一件事情。Container 里的值传递给 map 函数之后，就可以任我们操作；
+	var Container=function(x){
+		this._value=x;
+	}
+	Container.prototype.aa=function(){
+		return 'hi';
+	}
+	Container.prototype.map=function(f){
+		//操作结束后，为了防止意外再把它放回它所属的 Container。这样做的结果是，我们能连续地调用 map，运行任何我们想运行的函数
+		return Container.of(f(this._value));
+	}
+	Container.of=function(x){
+		return new Container(x);
+	}
+	Container.of(3).
+		//我们能一直调用 map，那它不就是个组合（composition）么！这里边是有什么数学魔法在起作用？是 functor。各位，这个数学魔法就是 functor
+		map(function(v){console.log(v);return v;}).
+		map(function(v){console.log(v+1);return v+1;}).
+		map(function(v){console.log(v+2);return v+2;}).
+		//甚至还可以改变值的类型，就像这个例子
+		map(concat('conv'))
+
+	function concat(s){
+		return function(v){
+			console.log(s)
+			console.log(v)
+		}
+	}
+	// functor 是实现了 map 函数并遵守一些特定规则的容器类型
+
+	//Maybe 会先检查自己的值是否为空，然后才调用传进来的函数。这样我们在使用 map 的时候就能避免恼人的空值
+	var Maybe=function(x){
+		this._value=x;
+	}
+	Maybe.of=function(x){
+		return new Maybe(x);
+	}
+	Maybe.prototype.isNothing=function(){
+		return (this._value===null || this._value===undefined);
+	}
+	Maybe.prototype.map=function(f){
+		return this.isNothing() ? Maybe.of(null) : Maybe.of(f(this._value));
+	}
+	function callback(v){
+		return v;
+	}
+	function match(reg){
+		return function(str){
+			return str.match(reg);
+		}
+	}
+	var a=Maybe.of(123).map(callback);
+	var b=Maybe.of(null).map(callback);
+	var c=Maybe.of("Malkovich Malkovich").map(match(/a/ig));//Maybe {_value: [a,a]}
+	console.log(a);
+	console.log(b);
+	console.log(c);
+
+	var safeHead=function(xs){
+		return Maybe.of(xs[0]);
+	}
+	console.log(safeHead(['a','b']).map(callback))
+	console.log(safeHead({addresses: [{street: "Shady Ln.", number: 4201}]}))
+</script>
+</body>
+</html>

@@ -6,13 +6,17 @@
 <body>
 <script type="text/javascript">
 	//curry 的概念很简单：只传递给函数一部分参数来调用它，让它返回一个函数去处理剩下的参数。
-	///即策略性地把要操作的数据（String， Array）放到最后一个参数里
+	//一种简单且非常重要的模式，即策略性地把要操作的数据（String， Array）放到最后一个参数里。例：match(/\s+/g, "hello world");
 	function add(x){
 		return function(y){
 			return x+y;
 		}
 	}
-	console.log(add(1)(2))
+	var a1=add(1);
+	console.log(a1(2));
+	console.log(a1(8));
+	//当我们谈论纯函数的时候，我们说它们接受一个输入返回一个输出。
+	//curry 函数所做的正是这样：每传递一个参数调用函数，就返回一个新函数处理剩余的参数。这就是一个输入对应一个输出啊
 </script>
 </body>
 </html>
