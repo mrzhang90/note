@@ -1,0 +1,14 @@
+karma
+	npm install -g karma-cli
+	npm install
+冒烟测试
+	自由测试的一种，找到一个bug修复
+回归测试
+	修改一处代码，测试全部代码
+黑盒 实测，点点点
+白盒 代码测试
+Nightwatch.JS
+	e2e测试
+	vue用的这个
+WebriverIO
+selenium-webdrive 推荐

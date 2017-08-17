@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	var IO=function(x){
+		this._value=x;
+	}
+	IO.prototype.map=function(f){
+		return new IO(compose(this._value,f));
+	}
+	var compose=function(a,b){
+		return function(x){
+			return a(b(x));
+		}
+	}
+	function callback(){
+		return 'title';
+	}
+	var i=new IO(document);
+	i.map(callback)
+</script>
+</body>
+</html>
