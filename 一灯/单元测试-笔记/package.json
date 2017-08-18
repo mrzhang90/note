@@ -1,0 +1,21 @@
+{
+  "name": "karma_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "e2e.js",
+  "dependencies": {
+    "jasmine-core": "^2.7.0",
+    "karma": "^1.7.0",
+    "karma-jasmine": "^1.1.0",
+    "phantom": "^4.0.5",
+    "selenium-webdriver": "^3.5.0"
+  },
+  "devDependencies": {
+    "karma": "^1.7.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

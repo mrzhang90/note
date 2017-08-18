@@ -1,0 +1,54 @@
+单元测试
+	e2e 测试页面
+	断言库
+		TDD
+			关注所有功能是否实现
+		BDD
+			关注整体行为是否符合预期
+		chai.js(TDD BDD双模)
+		jasmine.js(BDD)
+	单元测试流程
+		before -单个测试用例it开始前
+		beforeEach-每一个测试用例开始前
+		it-定义测试用例，并利用断言库进行
+		after
+		afterEach
+		例：
+			describe('测试用例',function(argument){
+				it('输入的数组正常么?',function(argument){
+					expect(fn(["a","b"])).to.equal("b");
+				})
+				it('输入的对象报错了么？',function(){
+					expect(fn({a:'a',b:'b'})).to.equal("b");
+				})
+			})
+		以上要在karma环境中测试
+		karma是自动化runner集成了一个浏览器环境，PhantomJS无UI界面
+karma
+	npm init -初始化node
+	npm install -g karma-cli
+	npm install karma --save-dev
+	karma init
+
+	karma start
+PhantomJS
+	无UI界面
+
+冒烟测试
+	自由测试的一种，找到一个bug修复
+回归测试
+	修改一处对整体代码测试
+黑盒 实测，点点点
+白盒 代码测试
+Nightwatch.JS
+	e2e测试
+	vue用的这个
+WebriverIO
+selenium-webdrive 推荐，趋近原生
+	安装
+	node e2e.js
+cnpm-淘宝代理
+	
+命令工具
+	cmder -windows推荐
+	iterm2 -MAC推荐
