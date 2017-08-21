@@ -13,6 +13,8 @@
     "babel-preset-latest": "^6.24.1",
     "jasmine-core": "^2.7.0",
     "karma": "^1.7.0",
-    "karma-jasmine": "^1.1.0"
+    "karma-jasmine": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "phantomjs": "^2.1.7"
   }
 }
