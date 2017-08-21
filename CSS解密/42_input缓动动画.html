@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input:not(:focus) +.callout{
+            transform:scale(0);
+        }
+        .callout{
+            transition:.5s transform;
+            transform-origin:1.4em -.4em;
+        }
+    </style>
+</head>
+<body>
+<label>
+    your name:<input type="text"/>
+    <span class="callout">only number</span>
+</label>
+</body>
+</html>
