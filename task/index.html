@@ -3,7 +3,43 @@
 <head>
 	<meta charset="utf-8">
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="index.css">
+	<script src="lib/system.js"></script>
+	<!-- <script src="./systemjs/dist/system-production.js"></script> -->
+	<!-- <script src="js/index.js"></script> -->
+	<!-- <script src="node_modules/system/boot.js" data-import="./entry"></script> -->
+	<script type="text/javascript">
+		// var SystemJS = require('systemjs');
+
+		// loads './app.js' from the current directory
+//        var $=SystemJS.import('https://code.jquery.com/jquery.js');
+        SystemJS.import('app/app.js');
+        SystemJS.import('app/index_new.js').then(function(m){
+            console.log(new m.Thumb());
+		})
+//        var $ = require('jquery');
+//        console.log($(document))
+		// SystemJS.import('./js/index.js').then(function (m) {
+		//   console.log(m);
+		// });
+		// var System = require("system");
+		// System.loadSystem(location)
+		// .then(function (system) {
+		//     return system.import("./entry");
+		// });
+		// SystemJS.import('css/index.css');
+		// SystemJS.import('http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js');
+		// SystemJS.import('js/index.js');
+
+
+	// $(function(){
+	// 	var finger=$('#j_finger');
+	// 	var t=$.Thumb(finger)
+	// 	t.clFinger();
+	// })
+// 	$.extend({
+// 	'Thumb':new Thumb
+// })
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -18,14 +54,8 @@
 <span class="add1">+1</span>
 	</div>
 </div>
-<script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="System.js"></script>
-<script type="text/javascript">
-	$(function(){
-		var finger=$('#j_finger');
-		var t=new $.Thumb(finger)
-		t.clFinger();
-	})
-</script>
+<!-- <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="index.js"></script> -->
+
 </body>
 </html>

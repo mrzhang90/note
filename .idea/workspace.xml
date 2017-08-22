@@ -4,7 +4,97 @@
     <bookmark url="file://$PROJECT_DIR$/ES6/demo10_Symbol2_内置的方法.html" line="51" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="443f53b8-2cc7-492b-af80-08271f106d01" name="Default" comment="" />
+    <list default="true" id="443f53b8-2cc7-492b-af80-08271f106d01" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/task/e2e.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/task/index.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/task/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/task/karma.conf.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/bin/phantomjs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/phantomjs/phantomjs-2.1.1-macosx.zip" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/System.js" afterPath="$PROJECT_DIR$/task/System.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/index.html" afterPath="$PROJECT_DIR$/task/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/.bin/phantomjs" afterPath="$PROJECT_DIR$/task/node_modules/.bin/phantomjs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/.eslintrc" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/.eslintrc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/.npmignore" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/.npmignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/.travis.yml" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/CHANGELOG.md" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/CHANGELOG.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/LICENSE" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/README.md" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/capture.template.js" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/capture.template.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/gruntfile.js" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/gruntfile.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/index.js" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/karma.conf.js" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/karma.conf.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/package.json" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/test/add.spec.js" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/test/add.spec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/yarn.lock" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/yarn.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/.eslintrc" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/.eslintrc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/.jshintrc" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/.jshintrc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/.npmignore" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/.npmignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/.travis.yml" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/LICENSE.txt" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/LICENSE.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/README.md" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/bin/phantomjs" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/bin/phantomjs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/install.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/install.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/location.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/location.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/ChangeLog" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/ChangeLog" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/LICENSE.BSD" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/LICENSE.BSD" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/README.md" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/arguments.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/arguments.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/child_process-examples.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/child_process-examples.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/colorwheel.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/colorwheel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/countdown.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/countdown.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/detectsniff.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/detectsniff.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/echoToFile.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/echoToFile.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/features.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/features.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/fibo.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/fibo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/hello.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/hello.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/injectme.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/injectme.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/loadspeed.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/loadspeed.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/loadurlwithoutcss.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/loadurlwithoutcss.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/modernizr.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/modernizr.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/module.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/module.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/netlog.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/netlog.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/netsniff.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/netsniff.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/openurlwithproxy.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/openurlwithproxy.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/outputEncoding.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/outputEncoding.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/page_events.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/page_events.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/pagecallback.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/pagecallback.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/phantomwebintro.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/phantomwebintro.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/post.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/post.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/postjson.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/postjson.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/postserver.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/postserver.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/printenv.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/printenv.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/printheaderfooter.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/printheaderfooter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/printmargins.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/printmargins.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/rasterize.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/rasterize.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/render_multi_url.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/render_multi_url.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/responsive-screenshot.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/responsive-screenshot.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/run-jasmine.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/run-jasmine.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/run-jasmine2.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/run-jasmine2.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/run-qunit.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/run-qunit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/scandir.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/scandir.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/server.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/serverkeepalive.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/serverkeepalive.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/simpleserver.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/simpleserver.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/sleepsort.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/sleepsort.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/stdin-stdout-stderr.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/stdin-stdout-stderr.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/universe.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/universe.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/unrandomize.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/unrandomize.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/useragent.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/useragent.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/version.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/version.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/waitfor.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/waitfor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/walk_through_frames.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/walk_through_frames.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/third-party.txt" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/third-party.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantomjs.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantomjs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/package.json" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/test/exit.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/test/exit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/test/loadspeed.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/test/loadspeed.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/test/tests.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/test/tests.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/package.json" afterPath="$PROJECT_DIR$/task/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/一灯/jquery/1.html" afterPath="$PROJECT_DIR$/一灯/jquery/1.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/一灯/单元测试-笔记/第二课笔记.txt" afterPath="$PROJECT_DIR$/一灯/单元测试-笔记/第二课笔记.txt" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -20,7 +110,48 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/task/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index_new.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/task/app/index_new.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-417">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/task/app/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="12" column="42" lean-forward="true" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/task/app/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -73,9 +204,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ES6/demo9_对象的扩展10_对象的扩展运算符.html" />
-        <option value="$PROJECT_DIR$/demo/demo34_Respond.js让IE6-8支持CSS3 Media Query.html" />
-        <option value="$PROJECT_DIR$/ES6/demo10_Symbol.html" />
         <option value="$PROJECT_DIR$/ES6/demo10_Symbol1_属性名的遍历.html" />
         <option value="$PROJECT_DIR$/ES6/demo10_Symbol5_for和keyFor方法.html" />
         <option value="$PROJECT_DIR$/ES6/demo10_Symbol2_内置的方法.html" />
@@ -124,6 +252,9 @@
         <option value="$PROJECT_DIR$/CSS解密/35_交互式的图片对比控件.html" />
         <option value="$PROJECT_DIR$/CSS解密/35_交互式的图片对比控件2.html" />
         <option value="$PROJECT_DIR$/CSS解密/34_滚动提示.html" />
+        <option value="$PROJECT_DIR$/task/app/app.js" />
+        <option value="$PROJECT_DIR$/task/app/index.js" />
+        <option value="$PROJECT_DIR$/task/index.html" />
       </list>
     </option>
   </component>
@@ -132,6 +263,9 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/task/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
@@ -154,6 +288,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -177,13 +312,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="CSS解密" />
+              <option name="myItemId" value="task" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -319,32 +453,35 @@
       <workItem from="1499218510621" duration="20211000" />
       <workItem from="1499305193743" duration="8391000" />
       <workItem from="1499317543994" duration="46000" />
+      <workItem from="1503371287111" duration="3000" />
+      <workItem from="1503371337170" duration="249000" />
+      <workItem from="1503408177730" duration="2529000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="301798000" />
+    <option name="totallyTimeSpent" value="304579000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1691254" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1691254" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -358,48 +495,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ES6/demo10_Symbol2_内置的方法.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="641">
-          <caret line="228" column="87" lean-forward="false" selection-start-line="228" selection-start-column="87" selection-end-line="228" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="58" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ES6/demo11_2_WeakSet结构.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1178">
-          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ES6/demo11_1_Set数据结构.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1650">
-          <caret line="138" column="51" lean-forward="false" selection-start-line="138" selection-start-column="51" selection-end-line="138" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ES6/demo9_对象的扩展8__proto_属性.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="26" column="47" lean-forward="false" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ES6/demo11_30_Map基本用法.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1474">
-          <caret line="79" column="12" lean-forward="true" selection-start-line="79" selection-start-column="11" selection-end-line="79" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/demo/demo35_识别手机.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
@@ -499,13 +594,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="333" column="23" lean-forward="true" selection-start-line="333" selection-start-column="23" selection-end-line="333" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/js.txt" />
     <entry file="file://$PROJECT_DIR$/ES6/demo12_Proxy2_get.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
@@ -541,13 +630,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/移动端问题解决方案.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8518">
-          <caret line="21" column="6" lean-forward="true" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/移动端问题解决方案.txt" />
     <entry file="file://$PROJECT_DIR$/ES6/demo13_Reflect1_概述.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3724">
@@ -555,13 +638,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data.json" />
     <entry file="file://$PROJECT_DIR$/ES6/demo13_Reflect2_实现观察者模式.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -700,6 +777,49 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="11" column="71" lean-forward="true" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/task/karma.js" />
+    <entry file="file://$PROJECT_DIR$/task/lib/system.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/task/app/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/task/app/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="42" lean-forward="true" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/task/app/index_new.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-417">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/task/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>

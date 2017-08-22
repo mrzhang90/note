@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>无刷新上传图片-预览图片</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		input{outline:none;border:0;}
+		a{text-decoration:none;}
+		:root a.inputUpload,a.inputUpload:hover{filter:progid:none;}
+		a.inputUpload{display:inline-block;margin-left:33px;border:solid 1px #a5a5a5;width:88px;height: 23px;text-align:center;color:#333;
+			background: #d8d8d8;
+			background: -webkit-gradient(linear, left top, left bottom, from(#fcfcfc), to(#d8d8d8));
+			background: -moz-linear-gradient(top,  #fcfcfc,  #d8d8d8);
+			filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#d8d8d8');
+		}
+		a.inputUpload:hover{
+			background: #fcfcfc;
+			background: -webkit-gradient(linear, left top, left bottom, from(#d8d8d8), to(#fcfcfc));
+			background: -moz-linear-gradient(top,  #d8d8d8,  #fcfcfc);
+			filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#d8d8d8', endColorstr='#fcfcfc');
+		}
+	</style>
+</head>
+<body>
+<form class="form1" method="post" enctype="multipart/form-data">
+	<div>
+		<a href="javascript:void(0)" class="inputUpload" data-name="file" data-value="photo1" data-key="aaa">上传图片1</a>
+		<img src="" style="display:none;" data-value="photo1">
+	</div>
+	<div>
+		<a href="javascript:void(0)" class="inputUpload" data-name="file" data-value="photo2">上传图片1</a>
+		<img src="" style="display:none;" data-value="photo2">
+	</div>
+	<input type="submit" id="aa" name="" value="aaa">
+</form>
+<div class="form2">
+	<a href="javascript:void(0)" class="inputUpload" data-name="file" data-value="photo2" data-required="1">上传图片1</a>
+	<!-- <img src="" style="display:none;" data-name="imgView"> -->
+	<input type="button" id="bb" name="" value="bbb">
+</div>
+<!-- <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script> -->
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.utils.js"></script>
+<script type="text/javascript" src="swfupload/tool.js"></script>
+<!--[if lte IE 10]>
+<script type="text/javascript" src="json2.js"></script>
+<script type="text/javascript" src="swfupload/swfupload.js"></script>
+<script type="text/javascript" src="swfupload/handlers.js"></script>
+<![endif]-->
+<script type="text/javascript">
+	$('#aa').on('click',function(){
+		var bool=isRequired($('.form1'));
+		if(bool){
+			alert('可提交')
+		}else{
+			alert('不能提交')
+		}
+	})
+	$('#bb').on('click',function(){
+		var bool=isRequired($('.form2'));
+		if(bool){
+			alert('可提交')
+		}else{
+			alert('不能提交')
+		}
+	})
+</script>
+</body>
+</html>

@@ -6,6 +6,7 @@
 <body>
 <script type="text/javascript">
 	(function(window,undefined){
+		//这里的window是局部变量，减少查找时间
 		console.log(window)
 		//闭包可以保护变量
 		console.log(undefined)//这里的关键词undefined可以被修改，因为被当做了参数

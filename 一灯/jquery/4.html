@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery；链式调用</title>
+</head>
+<body>
+<script type="text/javascript">
+	var a={
+		b:function(){
+			console.log('b')
+			return this;
+		},
+		c:function(){
+			console.log('c')
+			return this;
+		},
+		d:function(){
+			console.log('d')
+		}
+	}
+	a.b().c().d()
+</script>
+</body>
+</html>

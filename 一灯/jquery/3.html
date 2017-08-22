@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>理解jquery</title>
+</head>
+<body>
+<script type="text/javascript">
+	(function(window,undefined){
+		//为了得到原型链上的方法
+		//new 第一步，返回一个init函数，原型链上挂载了一个init函数
+		//init函数没调用，被搁置了
+		//构造函数内部的return new
+
+		var jQuery=function(){
+			return new jQuery.fn.init();
+		}
+		jQuery.fn=jQuery.prototype={
+			init:function(){
+				return 1;
+			}
+		}
+		//因为 jQuery.fn.init.prototype = jQuery.fn = jQuery.prototype;
+		//	jQuery.fn.init.prototype = jQuery.prototype;
+		//所以 jQuery.fn.init = jQuery;
+		console.log(jQuery())
+		console.log(new jQuery())
+	})(window)
+</script>
+</body>
+</html>
