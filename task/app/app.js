@@ -1,8 +1,7 @@
 System.config({
-    // set all requires to "lib" for library code
-    // set "app" as an exception for our application code
-    map: {
-        jquery: 'https://code.jquery.com/jquery.js',
-        app: '/app/'
+    baseURL: 'app/',
+    map:{
+        'jquery':'http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js',
+        'index':'index_new.js'
     }
-});
+})

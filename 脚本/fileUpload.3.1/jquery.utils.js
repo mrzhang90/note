@@ -12,25 +12,42 @@ function browser(){
 function validateImage(obj) {
     var file = obj;
     var tmpFileValue = file.value;
+    var element=$(obj);
+    var tips=tipsFn(element.parent());
     //校验图片格式
     if(/^.*?\.(gif|png|jpg|jpeg|bmp)$/.test(tmpFileValue.toLowerCase())){
         //校验图片大小,这段代码需调整浏览器安全级别(调到底级)和添加可信站点(将服务器站点添加到可信站点中)
-        var maxSize = 1024 * 1024 * 2; //最大2MB
+        var maxSize = 1024 * 1024 * 0.1; //最大2MB
         if(file.value != "" ){
             var size=obj.files[0].size;
             if(size<0 || size>maxSize){
-                alertMesageAndHide("超出最大限制",4);
+                tips("超出最大限制")
                 return false;
             }else{
                 return true;
             }
         }else{
-            alertMesageAndHide("请选择文件!",4);
+            tips("超出最大限制")
             return false;
         }
     } else {
-        alertMesageAndHide("图片格式有误!",4);
+        tips("超出最大限制")
         return false;
+    }
+}
+function tipsFn(element){
+    var obj={
+        side:1,  //1,2,3,4 分别代表 上右下左
+        msg:'',//tips的文本内容
+        color:'#FFF',//文字颜色，默认为白色
+        bg:'#FD9720',//背景色，默认为红色
+        time:3,//默认为2 自动关闭时间 单位为秒 0为不关闭 （点击提示也可以关闭）
+        x:0,// 默认为0 横向偏移 正数向右偏移 负数向左偏移
+        y:0 // 默认为0 纵向偏移 正数向下偏移 负数向上偏移
+    }
+    return function(msg){
+        obj.msg=msg;
+        element.tips(obj)
     }
 }
 function ajax(config){

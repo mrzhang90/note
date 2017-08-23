@@ -32,11 +32,11 @@ function fileUpload(config){
     var element=config['element'];
     element.attr({'id':'file'+config.index,'name':'file'+config.index});//swfUp下需要id和name，用来点击和提交
     var type=config['element'].attr('data-type') || '';
-    var uploadFile=$('<input type="file" class="uploadFile" style="display:none;" accept="'+type+'">');
+    // var uploadFile=$('<input type="file" class="uploadFile" style="display:none;" accept="'+type+'">');
     var require=element.attr('data-required')?'data-required="'+element.attr('data-required')+'"':"";
     var dataVal=element.attr('data-name') || 'file';
     var hide=$('<input type="hidden" name="'+dataVal+'" value="" '+require+'/>');
-    element.after(uploadFile);
+    // element.after(uploadFile);
     element.after(hide);
     var imgView=$('[data-name='+dataVal+']');
     var browsers=browser();
@@ -44,17 +44,17 @@ function fileUpload(config){
         swfUp({
             'name':dataVal,
             'index':'file'+config.index,
-            'text':element.text(),
+            'text':'上传文件',
             'address':config['address'],
             'handler':function(obj, data, response){
                 fn(data);
             }
         });
     }else{
-        element.click(function(){
-            uploadFile.click();
-        })
-        uploadFile.on('change',function(){
+        // element.click(function(){
+        //     uploadFile.click();
+        // })
+        element.on('change',function(){
             uploadImage($(this)[0])
         })
         function uploadImage(obj) {
@@ -63,16 +63,16 @@ function fileUpload(config){
                 data.append('file', obj.files[0]);
                 data.append('field', element.attr('data-filed'));
                 hide.attr('data-sign','uploading');//图片上传标记，有此标记表示图片上传中
-                ajax({
-                    url:config['address'],
-                    data:data,
-                    contentType: false,    //不可缺
-                    processData: false,    //不可缺
-                    success:function(data){
-                        hide.attr('data-sign','');
-                        fn(data);
-                    }
-                })
+                // ajax({
+                //     url:config['address'],
+                //     data:data,
+                //     contentType: false,    //不可缺
+                //     processData: false,    //不可缺
+                //     success:function(data){
+                //         hide.attr('data-sign','');
+                //         fn(data);
+                //     }
+                // })
             }
         }
     }

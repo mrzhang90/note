@@ -5,95 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="443f53b8-2cc7-492b-af80-08271f106d01" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/task/e2e.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/task/index.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/task/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/task/karma.conf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/bin/phantomjs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/phantomjs/phantomjs-2.1.1-macosx.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/task/app/aa.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/task/app/karma.conf.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/System.js" afterPath="$PROJECT_DIR$/task/System.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/jquery.utils.js" afterPath="$PROJECT_DIR$/js/jquery.utils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/app/app.js" afterPath="$PROJECT_DIR$/task/app/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/app/index.js" afterPath="$PROJECT_DIR$/task/app/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/app/index_new.js" afterPath="$PROJECT_DIR$/task/app/index_new.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/index.html" afterPath="$PROJECT_DIR$/task/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/.bin/phantomjs" afterPath="$PROJECT_DIR$/task/node_modules/.bin/phantomjs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/.eslintrc" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/.eslintrc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/.npmignore" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/.npmignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/.travis.yml" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/.travis.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/CHANGELOG.md" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/CHANGELOG.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/LICENSE" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/README.md" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/capture.template.js" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/capture.template.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/gruntfile.js" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/gruntfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/index.js" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/karma.conf.js" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/karma.conf.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/package.json" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/test/add.spec.js" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/test/add.spec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/yarn.lock" afterPath="$PROJECT_DIR$/task/node_modules/karma-phantomjs-launcher/yarn.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/.eslintrc" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/.eslintrc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/.jshintrc" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/.jshintrc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/.npmignore" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/.npmignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/.travis.yml" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/.travis.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/LICENSE.txt" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/LICENSE.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/README.md" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/bin/phantomjs" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/bin/phantomjs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/install.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/install.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/location.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/location.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/ChangeLog" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/ChangeLog" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/LICENSE.BSD" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/LICENSE.BSD" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/README.md" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/arguments.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/arguments.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/child_process-examples.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/child_process-examples.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/colorwheel.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/colorwheel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/countdown.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/countdown.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/detectsniff.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/detectsniff.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/echoToFile.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/echoToFile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/features.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/features.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/fibo.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/fibo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/hello.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/hello.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/injectme.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/injectme.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/loadspeed.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/loadspeed.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/loadurlwithoutcss.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/loadurlwithoutcss.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/modernizr.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/modernizr.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/module.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/netlog.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/netlog.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/netsniff.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/netsniff.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/openurlwithproxy.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/openurlwithproxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/outputEncoding.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/outputEncoding.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/page_events.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/page_events.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/pagecallback.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/pagecallback.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/phantomwebintro.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/phantomwebintro.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/post.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/post.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/postjson.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/postjson.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/postserver.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/postserver.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/printenv.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/printenv.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/printheaderfooter.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/printheaderfooter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/printmargins.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/printmargins.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/rasterize.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/rasterize.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/render_multi_url.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/render_multi_url.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/responsive-screenshot.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/responsive-screenshot.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/run-jasmine.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/run-jasmine.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/run-jasmine2.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/run-jasmine2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/run-qunit.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/run-qunit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/scandir.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/scandir.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/server.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/serverkeepalive.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/serverkeepalive.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/simpleserver.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/simpleserver.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/sleepsort.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/sleepsort.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/stdin-stdout-stderr.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/stdin-stdout-stderr.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/universe.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/universe.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/unrandomize.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/unrandomize.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/useragent.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/useragent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/version.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/version.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/waitfor.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/waitfor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/walk_through_frames.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/examples/walk_through_frames.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/third-party.txt" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantom/third-party.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantomjs.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/lib/phantomjs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/package.json" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/test/exit.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/test/exit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/test/loadspeed.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/test/loadspeed.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/node_modules/phantomjs/test/tests.js" afterPath="$PROJECT_DIR$/task/node_modules/phantomjs/test/tests.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/task/package.json" afterPath="$PROJECT_DIR$/task/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/一灯/jquery/1.html" afterPath="$PROJECT_DIR$/一灯/jquery/1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/一灯/单元测试-笔记/第二课笔记.txt" afterPath="$PROJECT_DIR$/一灯/单元测试-笔记/第二课笔记.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/脚本/fileUpload.3.0/help.txt" afterPath="$PROJECT_DIR$/脚本/fileUpload.3.0/help.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/脚本/fileUpload.3.0/index.html" afterPath="$PROJECT_DIR$/脚本/fileUpload.3.0/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/脚本/fileUpload.3.0/jquery.utils.js" afterPath="$PROJECT_DIR$/脚本/fileUpload.3.0/jquery.utils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/脚本/fileUpload.3.0/swfupload/tool.js" afterPath="$PROJECT_DIR$/脚本/fileUpload.3.0/swfupload/tool.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -110,42 +33,12 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/task/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index_new.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/task/app/index_new.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-417">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/task/app/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="12" column="42" lean-forward="true" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/task/app/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="513">
+              <caret line="27" column="22" lean-forward="true" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -163,39 +56,44 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>src</find>
-      <find>script</find>
-      <find>append</find>
-      <find>Object</find>
-      <find>i--</find>
-      <find>section&gt;ul&gt;li</find>
-      <find>state</find>
-      <find>reduce</find>
-      <find>defineProperties</find>
-      <find>'a',</find>
-      <find>myObject</find>
-      <find>Reflect</find>
-      <find>console.log(the);//Object {value: true, writable: false, enumerable: false, configurable: false}</find>
-      <find>obj</find>
-      <find>queuedObservers</find>
-      <find>getJ</find>
-      <find>promise</find>
-      <find>console</find>
-      <find>two</find>
-      <find>nextnext</find>
-      <find>addDomListener</find>
-      <find>Autocomplete</find>
-      <find>mapDraw</find>
-      <find>pageNow</find>
       <find>wbSite</find>
       <find>markers</find>
       <find>Wei Ruan Ya Hei</find>
       <find>wryh</find>
       <find>1000</find>
       <find>document.getElementsByClassName('image-slider')</find>
+      <find>Thumb</find>
+      <find>.css</find>
+      <find>animate</find>
+      <find>var</find>
+      <find>super</find>
+      <find>setCount</find>
+      <find>count</find>
+      <find>element</find>
+      <find>console.log</find>
+      <find>t</find>
+      <find>y</find>
+      <find>scale</find>
+      <find>this.scalethis.scale</find>
+      <find>this.scale</find>
+      <find>animationanimation</find>
+      <find>animation</find>
+      <find>this.y</find>
+      <find>this.add1</find>
+      <find>this.count</find>
+      <find>this.s</find>
+      <find>this.</find>
+      <find>this</find>
+      <find>con</find>
+      <find>console</find>
     </findStrings>
     <replaceStrings>
       <replace>i</replace>
+      <replace>element</replace>
+      <replace>count</replace>
+      <replace>t</replace>
+      <replace>s</replace>
+      <replace>this.y</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -204,7 +102,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ES6/demo10_Symbol1_属性名的遍历.html" />
         <option value="$PROJECT_DIR$/ES6/demo10_Symbol5_for和keyFor方法.html" />
         <option value="$PROJECT_DIR$/ES6/demo10_Symbol2_内置的方法.html" />
         <option value="$PROJECT_DIR$/ES6/demo11_Set 和 Map 数据结构.html" />
@@ -253,6 +150,7 @@
         <option value="$PROJECT_DIR$/CSS解密/35_交互式的图片对比控件2.html" />
         <option value="$PROJECT_DIR$/CSS解密/34_滚动提示.html" />
         <option value="$PROJECT_DIR$/task/app/app.js" />
+        <option value="$PROJECT_DIR$/task/app/index_new.js" />
         <option value="$PROJECT_DIR$/task/app/index.js" />
         <option value="$PROJECT_DIR$/task/index.html" />
       </list>
@@ -289,7 +187,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -302,22 +199,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="note" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="note" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="task" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -456,17 +340,18 @@
       <workItem from="1503371287111" duration="3000" />
       <workItem from="1503371337170" duration="249000" />
       <workItem from="1503408177730" duration="2529000" />
+      <workItem from="1503457011378" duration="18719000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="304579000" />
+    <option name="totallyTimeSpent" value="323298000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1691254" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1691254" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -495,13 +380,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/demo/demo35_识别手机.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="13" lean-forward="true" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/demo/images/thumb_out.xml" />
     <entry file="file://$PROJECT_DIR$/demo/thumb_out.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -786,39 +664,47 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/脚本/fileUpload.3.1/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/task/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/task/app/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="42" lean-forward="true" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/task/app/index_new.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-417">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="76">
+          <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/task/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+        <state relative-caret-position="456">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/task/app/index_new.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="727">
+          <caret line="71" column="15" lean-forward="false" selection-start-line="71" selection-start-column="15" selection-end-line="71" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/task/app/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="27" column="22" lean-forward="true" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
           <folding />
         </state>
       </provider>

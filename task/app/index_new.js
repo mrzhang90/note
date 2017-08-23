@@ -1,8 +1,6 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -12,52 +10,64 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var PraiseButton = exports.PraiseButton = function PraiseButton() {
-	_classCallCheck(this, PraiseButton);
+var PraiseButton = function () {
+    function PraiseButton() {
+        _classCallCheck(this, PraiseButton);
 
-	this.es6 = 'yay';
-};
+        this.count = 0;
+        this.y = -100;
+        this.scale = 3;
+    }
+
+    _createClass(PraiseButton, [{
+        key: 'fabulous',
+        value: function fabulous(element) {
+            var add1 = $('<span class="add1">+1</span>');
+            element.append(add1);
+            return this.animation(add1, this.count, this.y, this.scale);
+        }
+    }, {
+        key: 'animation',
+        value: function animation(element, count, y, scale) {
+            element.text('+' + count);
+            var t = 0,
+                s = 0;
+            var timer = setInterval(function () {
+                // console.log(t,y , s,scale)
+                if (t > y && s < scale) {
+                    t -= 2;
+                    s += 0.06;
+                    element.css({ 'transform': 'scale(' + s + ') translateY(' + t + 'px)' });
+                } else {
+                    clearInterval(timer);
+                }
+            }, 20);
+        }
+    }]);
+
+    return PraiseButton;
+}();
 
 var Thumb = function (_PraiseButton) {
-	_inherits(Thumb, _PraiseButton);
+    _inherits(Thumb, _PraiseButton);
 
-	// class Thumb extends PraiseButton{
-	function Thumb(finger) {
-		_classCallCheck(this, Thumb);
+    function Thumb() {
+        _classCallCheck(this, Thumb);
 
-		var _this = _possibleConstructorReturn(this, (Thumb.__proto__ || Object.getPrototypeOf(Thumb)).call(this));
+        return _possibleConstructorReturn(this, (Thumb.__proto__ || Object.getPrototypeOf(Thumb)).call(this));
+    }
 
-		_this.finger = finger;
-		return _this;
-	}
+    _createClass(Thumb, [{
+        key: 'plus1',
+        value: function plus1(element) {
+            ++this.count;
+            _get(Thumb.prototype.__proto__ || Object.getPrototypeOf(Thumb.prototype), 'fabulous', this).call(this, element);
+        }
+    }]);
 
-	_createClass(Thumb, [{
-		key: 'clFinger',
-		value: function clFinger() {
-			this.finger.on('click', function () {
-				var add1 = $('<span class="add1">+1</span>');
-				$(this).append(add1);
-				animate(add1)(-100, 3);
-			});
-		}
-	}]);
-
-	return Thumb;
+    return Thumb;
 }(PraiseButton);
 
-exports.default = Thumb;
-
-function animate(element) {
-	return function (y, scale) {
-		var t = 0,
-		    s = 0;
-		var timer = setInterval(function () {
-			if (t > y && s < scale) {
-				t -= 2, s += 0.06;
-				element.css({ 'transform': 'scale(' + s + ') translateY(' + t + 'px)' });
-			} else {
-				clearInterval(timer);
-			}
-		}, 20);
-	};
-}
+$.extend({
+    thumb: new Thumb()
+});
