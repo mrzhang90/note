@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>取值-赋值</title>
+</head>
+<body>
+<script type="text/javascript">
+	//$('.test').val('test');//取值 赋值
+	
+	//函数的重载
+	// $(['.aa','#bb'])
+	// $('.cc')
+
+	function addMethod(obj,name,f){
+		var old=obj[name];
+		obj[name]=function(){
+			console.log(f.length)
+			console.log(arguments)
+			if(f.length === arguments.length){
+				//this是obj
+				return f.apply(this,arguments);
+			}else{
+				return old.apply(this,arguments);
+			}
+		}
+	}
+	var people={
+		name:["张三","李四","王二麻"]
+	}
+	var findO=function(){
+		return this.name;
+	}
+	var find1=function(name){
+		var arr=this.name;
+		for(var i=0;i<arr.length;i++){
+			if(arr[i]==name){
+				return arr[i]+'在'+i+"位";
+			}
+		}
+	}
+	var find2=function(){
+		return "哈哈";
+	}
+	addMethod(people,'find',findO);
+	addMethod(people,'find',find1);
+	addMethod(people,'find',find2);
+	console.log(people.find());
+</script>
+</body>
+</html>

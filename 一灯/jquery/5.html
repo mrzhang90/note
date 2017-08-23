@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>live</title>
+</head>
+<body>
+<div>1</div>
+<p>2</p>
+<h2>3</h2>
+<script type="text/javascript">
+	function live(targetObject,type,fn){//元素类型，事件类型，执行函数
+		document.onclick=function(event){
+			var e=event?event:window.event;
+			//解决浏览器兼容的问题，e.secElement IE,e.target FF
+			var target=e.srcElement || e.target;
+			if(e.type == type && target.tagName.toLocaleLowerCase() == targetObject){
+				console.log(e.type,type ,target.tagName.toLocaleLowerCase(), targetObject)//click p
+				//执行方法
+			}
+		}
+	}
+	live('p','click',function(){
+		alert('live');
+	})
+</script>
+</body>
+</html>
