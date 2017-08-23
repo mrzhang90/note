@@ -15,7 +15,7 @@ module.exports = function(config) {
 
 
     //测试具体的文件是哪些
-    files: ['./aa.js'],
+    files: ['./*.js'],
 
 
     //哪些文件不能被测试

@@ -1,0 +1,85 @@
+body{margin:0;padding:0;}
+.wrap{
+	margin:0 auto;padding:87px 155px 174px 267px;
+	width:378px;height:357px;
+	background:linear-gradient(135deg,#96d28c 0%,#d0d8cd 60%);
+}
+.box_position{
+	position:relative;height:100%;
+}
+.box_position::before{
+	content:"";
+	position:absolute;left:0;top:141px;z-index:9;
+	width:171px;height:169px;
+	border-top:solid 2px #b49c82;background:#f3c5ad;
+}
+.right{
+	position:absolute;right:0;top:0;bottom:0;z-index:8;
+	width:223px;
+}
+.right:before{
+	content:"";
+	position:absolute;left:15px;top:160px;z-index:2;
+	width:140px;height:136px;
+	background:#f3c5ad;
+}
+.first_finger{
+	position:absolute;z-index:5;
+	width:63px;height:125px;
+	border-top:solid 2px #b49c82;border-left:solid 2px #b49c82;
+    border-radius: 36px 33px 0 0;
+    transform: rotateZ(25deg) translate(29px,-16px);
+	background:#f3c5ad;
+}
+.second_finger,.fifth_finger{
+	position:absolute;top:99px;
+	width:219px;height:62px;
+	border:solid 2px #b49c82;
+	border-radius:36px 45px 45px 35px;
+	background:#f3c5ad;
+}
+.third_finger,.fourth_finger{
+	position:absolute;top:163px;right:0;
+	width:219px;height:62px;
+	border:solid 2px #b49c82;border-left:0;
+	background:#f3c5ad;
+	border-radius:0 45px 45px 0;
+	background:#f3c5ad;
+}
+.fourth_finger{
+	top:227px;
+}
+.fifth_finger{
+	top:290px;
+}
+.first_finger:before,.second_finger:before,.fifth_finger:before,.third_finger:before,.fourth_finger:before{
+	content:"";
+	margin-top:3px;margin-right:4px;float:right;
+	width:53px;height:55px;
+	border-radius:0 36px 36px 0;
+	background:linear-gradient(90deg,transparent,#f8e8db);
+}
+.first_finger:before{
+	transform: rotateZ(-89deg) translate(2px,-1px);
+}
+.first_finger:after{
+	content:"";
+	float:left;
+	width:43px;height:55px;
+	border-radius:0 36px 36px 0;
+	background:linear-gradient(90deg,transparent 29%,#eaae96);
+	transform: rotateZ(-89deg) translate(1px,10px);
+}
+.fifth_finger:before{
+	top:-2px;
+}
+.add1{
+	position:absolute;top:0px;right:130px;z-index:9;
+	font-size:14px;color:#000;
+	transform:scale(0) translateY(0);
+}
+
+
+
+
+
