@@ -33,8 +33,8 @@ karma
 	npm install jasmine-core --save-dev
 	npm install karma-jasmine --save-dev
 	npm install phantomjs --save-dev
-	//npm install karma-phantomjs-launcher —save-dev
-	npm install --save-dev karma-phantomjs-launcher
+	npm install karma-phantomjs-launcher --save-dev
+	npm install karma-chrome-launcher --save-dev
 	karma init
 	karma start
 
@@ -43,10 +43,7 @@ PhantomJS
 	无UI界面
 
 selenium-webdrive 推荐，趋近原生
-	安装
-	node e2e.js
-	问题1.
-		下载一个firefoxdriver,版本不能太高
+	node ***.js
 
 冒烟测试
 	自由测试的一种，找到一个bug修复一个bug，然后针对这个bug

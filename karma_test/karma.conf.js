@@ -14,7 +14,7 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: ['aa.js','app/index_new.js'],
+    files: ['http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js','app/index.js','app/index_new.js','test/appSpec.js'],
 
 
     // list of files to exclude
@@ -23,15 +23,13 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-    },
+    preprocessors:  {'app/index.js': 'coverage'},
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
-
+    reporters: ['progress','coverage'],
 
     // web server port
     port: 9876,
@@ -50,9 +48,10 @@ module.exports = function(config) {
     autoWatch: true,
 
 
-    // start these browsers
+    // //browsers 测试浏览器，有IE，Chrome，ChromeCanary，FireFox，Opera，Safari，PhantomJS
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
+    // browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
 
 
     // Continuous Integration mode

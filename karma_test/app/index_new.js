@@ -1,7 +1,5 @@
 'use strict';
-window.aa=function(){
-    console.log(1)
-}
+
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -23,15 +21,16 @@ var PraiseButton = function () {
 
     _createClass(PraiseButton, [{
         key: 'fabulous',
-        value: function fabulous(element) {
+        value: function fabulous() {
             var add1 = $('<span class="add1">+1</span>');
-            element.append(add1);
+            this.element.append(add1);
             return this.animation(add1, this.count, this.y, this.scale);
         }
     }, {
         key: 'animation',
         value: function animation(element, count, y, scale) {
             element.text('+' + count);
+            $('title').text('点赞' + count);
             var t = 0,
                 s = 0;
             var timer = setInterval(function () {
@@ -53,17 +52,21 @@ var PraiseButton = function () {
 var Thumb = function (_PraiseButton) {
     _inherits(Thumb, _PraiseButton);
 
-    function Thumb() {
+    function Thumb(element) {
         _classCallCheck(this, Thumb);
 
-        return _possibleConstructorReturn(this, (Thumb.__proto__ || Object.getPrototypeOf(Thumb)).call(this));
+        var _this = _possibleConstructorReturn(this, (Thumb.__proto__ || Object.getPrototypeOf(Thumb)).call(this));
+
+        _this.element = element;
+        return _this;
     }
 
     _createClass(Thumb, [{
         key: 'plus1',
-        value: function plus1(element) {
+        value: function plus1() {
             ++this.count;
-            _get(Thumb.prototype.__proto__ || Object.getPrototypeOf(Thumb.prototype), 'fabulous', this).call(this, element);
+            _get(Thumb.prototype.__proto__ || Object.getPrototypeOf(Thumb.prototype), 'fabulous', this).call(this);
+            return this.count;
         }
     }]);
 
@@ -71,5 +74,5 @@ var Thumb = function (_PraiseButton) {
 }(PraiseButton);
 
 $.extend({
-    thumb: new Thumb()
+    thumb: Thumb
 });

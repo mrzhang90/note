@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title></title>
+	<title>点赞</title>
 	<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
@@ -23,8 +23,9 @@
 	SystemJS.import('jquery').then(function($){
         SystemJS.import('index').then(function(m){
             $(function(){
+                var h=new $.thumb($('#j_finger'));
                 $('#j_finger').on('click',function(){
-                    $.thumb.plus1($(this));
+                    h.plus1();
                 })
             })
 		})

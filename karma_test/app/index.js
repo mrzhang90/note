@@ -4,13 +4,14 @@ class PraiseButton {
 		this.y=-100;
 		this.scale=3;
     }
-    fabulous(element){
+    fabulous(){
 		let add1=$('<span class="add1">+1</span>');
-		element.append(add1);
+		this.element.append(add1);
 		return this.animation(add1,this.count,this.y,this.scale);
 	}
     animation(element,count,y,scale){
         element.text('+'+count);
+        $('title').text('点赞'+count);
         let t=0,s=0;
         let timer=setInterval(function(){
             // console.log(t,y , s,scale)
@@ -25,15 +26,17 @@ class PraiseButton {
     }
 }
 class Thumb extends PraiseButton{
-		constructor(){
+		constructor(element){
 		  super();
+        this.element=element;
 		}
-		plus1(element){
+		plus1(){
             ++this.count;
-            super.fabulous(element);
+            super.fabulous();
+            return this.count;
 		}
 }
 
 $.extend({
-    thumb:new Thumb()
+    thumb:Thumb
 })

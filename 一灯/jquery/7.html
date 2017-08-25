@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>短路表达式</title>
+</head>
+<body>
+<script type="text/javascript" src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	console.log("test" || false);
+	console.log("test" && false);
+	console.log("test" || true);
+	console.log("test" && true);
+	var a;
+	function test(){
+		return true;
+	}
+	console.log(a && test());
+	console.log(a || test());
+
+	console.log(true && (test() && false));
+
+	 //正常使用trim
+	function trim1(data){
+		// return String.prototype.trim(data);
+	}
+	console.log(trim1("  aa "));
+
+	//利用一个字符串，存储一个trim方法，效率提升很多
+	var core_version="1.19.2";
+	var core_trim=core_version.trim;//存储trim方法
+	var obj2={
+		trim1:function(data){
+			// return core_trim(data);
+		}
+	}
+	console.log(obj2.trim1(" bb   "));
+
+	console.log(Object.prototype.toString.call([]));//[object Array]
+	// $.isArray()
+	console.log(Object.prototype.toString.call({}));//[object Object]
+
+	var class2type={};
+	var arr="Boolean Number String Function Array Date RegExp Object Error".split(" ");
+	for(var i=0,len=arr.length;i<len;i++){
+		// class2type["[object"+arr[i]+"]"] = arr[i].toLowerCse();
+	}
+	// console.log(class2type)
+	//钩子 &&  短路
+	// class2type[s] && function(){}
+</script>
+</body>
+</html>
