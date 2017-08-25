@@ -1,0 +1,14 @@
+{}结构类型要一致
+模块语法
+	import
+		import {$} form 'jquery.js' //$不能使变量
+	export
+		export {$} //不能使变量
+模块-不一样的理念
+	按需引入
+		//模块思想
+		import {each,…} from 'underscore.js' //es6
+		var _=require('underscore.js') //amd
+	多点暴露
+转码
+	
