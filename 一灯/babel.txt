@@ -1,0 +1,32 @@
+原名：6to5
+构建工具：
+	grunt
+	gulp
+	webpack
+	fis-百度，类似webpack
+		https://fis.baidu.com/fis3/docs/beginning/release.html#%E4%BE%8B%E5%AD%90
+fis:
+	fis.set('')
+	fis.match('setver/**.es',{})
+
+兼容老代码
+	不能编译.js
+		老代码里有些.js文件不能编辑，比如jquery文件，编译会出错
+		解决方案(改后缀名)：
+		1. 改后缀.es，这样后缀的文件就不要去编译，但是在百度.es文件会绕过脚本检查
+		2. 改后缀.es.js，这样的话后缀为.es.js的文件就不要去编译，.js的文件去编译
+		3. XXX.js，或者自己想任意一种方法
+
+推荐规范
+	.es 后缀
+
+优点
+	支持es6、es7
+
+缺点
+	编译的代码排查错误问题
+		编译后的ES5代码时生成的，不是自己写的，查到错后还得去ES6代码找问题
+	api相关代码不能编译
+		需要引入相关shim库
+
+fis3 base

@@ -1,0 +1,17 @@
+来源分析，查看pv、uv
+pv
+	page viewer  页面访问次数
+uv
+	user viewer
+
+事件分析，用户行为分析
+_hmt.push(['_trackEvent', 'catort','','label','value']);
+	http://tongji.baidu.com/open/api/more?p=guide_trackEvent
+
+单页面应用spa
+	根据前端路由吧页面分成了个几个页面。但还是一个页面，那么
+		 _hmt.push(['_trackPageview', pageURL]);//webapp单页面应用统计pv、uv
+
+
+百度统计
+	管理/数据统计服务

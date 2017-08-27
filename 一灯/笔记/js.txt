@@ -124,9 +124,9 @@ call && apply
 	使用call和apply的作用：
 		就一个作用，改变this作用域，就是改变context，把要求的作用域传进去
 		console.log(Object.prototype.toString.call(10)==='[object Number]')//借用函数，10借用Object的toString方法
-		//10的toString是字符串的10，我想在数字10上调用Object上的toString，可以利用借用函数，借用父级object的tostring,通过call借用，并改变作用域为10
-Function.prototype.bind
-	bind返回一个新函数，函数的作用域为bind参数
+		//10的toString是字符串的10，我想在数字10上调用Object上的toString，可以利用借用函数，借用父级object的tostring,通过call借用，并改变作用域为10	
+	Function.prototype.bind
+		bind返回一个新函数，函数的作用域为bind参数
 		function fn(){
 			this.i=0;
 			setInterval(function(){
@@ -135,11 +135,13 @@ Function.prototype.bind
 		}
 		fn();
 PS:
-	不同点
+	call(null)指向window
+	call\apply\bind-不同点
 		call和apply是通过别的方式，调用这个函数，生成一个新的作用域，告诉了他一个作用域
 		bind根据你现在的函数，给你生成一个新的函数，这个新的函数的作用域被我改掉了，老的是不变的
-	相同点
+	call\apply\bind-相同点
 		都是作用在function原型链上
+		都可以改变被调用函数中this指向的对象
 
 箭头函数
 	是ES新特性，是简写的函数表达式，拥有词法作用域和this值
