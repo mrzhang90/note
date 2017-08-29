@@ -1,0 +1,5 @@
+Accept-Language
+	zh-CN
+
+mime
+	是基础信息，小到不能再小的信息
