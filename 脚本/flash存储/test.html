@@ -1,0 +1,29 @@
+<html>
+<body>
+<meta charset="utf-8">
+<!-- save2local.setup.begin -->
+<script type="text/javascript" src="swfobject.js"></script>
+<script type="text/javascript" src="save2local.js"></script>
+<!-- save2local.setup.end -->
+
+<script type="text/javascript"><!--
+function test() {
+  save2local.saveData("key","value");
+  alert( save2local.loadData("key") );
+}
+--></script>
+
+
+<form name='frm'>
+  <textarea name='txt' rows=5 cols=80>
+  </textarea>
+  <br>
+  <input type="button" value="save" onClick="save2local.saveData('key', frm.txt.value)">
+  <input type="button" value="load" onClick="frm.txt.value = save2local.loadData('key')">
+  <input type="reset" value="reset">
+</form>
+
+<a href="javascript:test()">test</a><br>
+
+</body>
+</html>

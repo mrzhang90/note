@@ -12,7 +12,8 @@ IE9 Filter bug:由于IE9识别filter和css3，解决方法：(参考：https://w
 		:root input{filter:progid:none;}
 	2.条件注释法：
 		<!--[if IE 9 ]><![endif]-->
-注释条件-ie6-8黑色,ie9 yellow,ie10以上浏览器blue,其他浏览器红色
+*推*荐*识别ie6-8/ie9+
+	注释条件-ie6-8黑色,ie9 yellow,ie10以上浏览器blue,其他浏览器红色
 	.aa{background:red;+background:#000;background:#000 \9;}//+识别IE5/6/7 \9识别6-8
 	@media screen and (min-width:0\0){
 		background:yellow;
