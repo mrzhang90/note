@@ -1,0 +1,23 @@
+q.js
+	q.js在nodejs里是一个非常流行的promise库,支持浏览器端使用
+	https://yq.aliyun.com/articles/53393
+	http://www.xuanfengge.com/web-route-frame.html?utm_source=tuicool&utm_medium=referral
+	
+一个进程有很多线程
+
+压力测试
+	可以测试内存泄露的问题
+
+Nginx
+	pm2->rqequrst
+v8不支持ES6，node支持ES6
+LIBUV
+
+异步IO
+	好处
+	前端通过异步IO可以消除UI堵塞
+
+IO是昂贵的，分布式IO更昂贵
+
+CPU密集型
+	银行存款利息，需要立即计算，属于CPU密集型
