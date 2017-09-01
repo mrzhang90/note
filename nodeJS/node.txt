@@ -1,0 +1,45 @@
+nodejs的命令需要在前面加点，.help查看所有命令，退出命令是.exit
+退出：两次ctrl+C或者一次ctrl+D
+
+MAC全局安装报错
+	报错
+		npm ERR! Darwin 16.7.0
+	解决
+		加上sudo执行
+
+包管理器npm详解
+	npm
+		查看子命令
+	npm -v
+	npm install npm -g
+		全局更新npm版本
+	npm uninstall express
+		删除本地的express包
+	npm search express
+		查询express以及基于express之上开发的扩展包、支持包等
+	npm help
+		查询npm的子命令
+	npm help install
+		查询install的相关说明
+		
+Node.js REPL环境
+	ctrl+c 
+		退出当前终端
+	ctrl+c 
+		按下两次，退出node REPL
+	ctrl+d
+		退出Node REPL
+	向上/向下键
+		查看输入的历史命令
+	tab键
+		列出当前命令，用来提示
+	.help
+		列出使用命令
+	.break
+		退出多行表达式
+	.clear
+		退出多行表达式
+	.save filename
+		保存当前的Node REPL会话指定文件
+	.load filename
+		载入当前Node REPL会话的文件内容
