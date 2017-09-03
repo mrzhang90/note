@@ -1,23 +1,173 @@
-q.js
-	q.js在nodejs里是一个非常流行的promise库,支持浏览器端使用
-	https://yq.aliyun.com/articles/53393
-	http://www.xuanfengge.com/web-route-frame.html?utm_source=tuicool&utm_medium=referral
-	
-一个进程有很多线程
-
 压力测试
 	可以测试内存泄露的问题
 
 Nginx
 	pm2->rqequrst
-v8不支持ES6，node支持ES6
-LIBUV
 
 异步IO
-	好处
 	前端通过异步IO可以消除UI堵塞
 
 IO是昂贵的，分布式IO更昂贵
+	理解分布式IO，比如前后端分离，你从java分布器访问前端脚本服务器，那么用户先通过网络请求java服务器，在通过网络请求前端服务器，还要读取硬盘脚本文件，那么这些所占用的时间相对于本地是非常长的
+node适用于IO密集型，不适用CPU密集型
+	node适合IO密集型，不管来多少请求，都能全部接收，但不是同时返回，它再等，等一个完成就吐出一个，再处理一个再吐出一个
+		一起进，不一起出
+	反之，例如银行存款，你存钱或者取钱都会产生利息手续费，那么需要紧急运算，所以不适合IO密集型，而适合CPU密集型
 
-CPU密集型
-	银行存款利息，需要立即计算，属于CPU密集型
+底层知识
+CPU时钟周期：
+	1/CPU主频 -> 1/2.5GHZ
+	CPU主频越大，得到的值越小，那么CPU处理速度越快
+
+不是说系统去同步或者全异步就好，只有同步和异步达到一定比例，那么系统才是最高效的
+
+v8不支持ES6，node支持ES6
+
+完美的异步IO应该是应用程序发起非阻塞调用，无需通过遍历或者事件循环等方式
+LIBUV ！！！
+	帮助事件轮询-通知机制
+LIBUV在linux下叫做custom threadpool,在window下叫做iocp
+帮助事件轮询的libuv 和 库v8不是一个线程
+
+nodejs代码单线程
+	cluster fork 
+	工具pm2 start app.js
+
+几个特殊的API
+	setTimeout和setInterval线程池不参与
+	process.nextTick() 实现类似
+		setTimeout(function(){},0);每次调用放入队列中，在下一次循环中取出
+	总结：
+		process.nextTick()，效率最高，消费资源小，但会阻塞CPU的后续调用；
+			idle观察者 ，执行优先级最高
+		setTimeout()，精确度不高，可能有延迟执行的情况发生，且因为动用了红黑树，所以消耗资源大；
+			io观察者 ，执行优先级次之
+		setImmediate()，消耗的资源小，也不会造成阻塞，但效率也是最低的
+			check观察者，执行优先级最低
+		http://blog.csdn.net/hkh_1012/article/details/53453138
+		https://www.zhihu.com/question/23028843/answer/34597367
+	node实现sleep
+
+函数式编程在Node中的应用
+	高阶函数：可以将函数作为输入或者返回值，形成一种后续传递风格的结果接受方式，而非单一的返回值形式。后续传递风格的程序将函数业务重点从返回值传递到回调函数中。
+	app.use(function(res,req){//todo});
+		你使用use函数，把函数返回值传到use的fn参数里，这种风格叫做后续传递风格
+	偏函数：指定部分参数产生一个新的定制函数的形式就是偏函数。Node中异步编程非常常见，我们通过哨兵变量会很容易造成业务的混乱。underscore,after变量
+
+常用的Node控制异步技术手段
+1.step,wind(提供等待的异步库)，Bigpipe,Q.js
+	早期的异步处理库
+	Q.JS
+		q.js在nodejs里是一个非常流行的promise库,支持浏览器端使用
+		https://yq.aliyun.com/articles/53393
+		http://www.xuanfengge.com/web-route-frame.html?utm_source=tuicool&utm_medium=referral
+2.Async,Await
+3.Promise/Defferred是一种先执行异步调用，延迟传递的处理方式。
+	Promise是高级接口，事件是低级接口。低级接口可以构建很多复杂场景，高级接口一旦定义，不太容易变化，不再有低级接口的灵活性，但对于解决问题非常有效
+4.由于Node基于v8的原因，目前还不支持协程。协程不是进程或线程，其执行过程类似于例程，或者说不带返回值得函数调用
+	进程
+		任务管理器里的进程中的那些，就是进程，相当于一个应用程序就是一个进程
+	线程
+		一个进程包含多个线程，线程是帮助应用程序做事情的
+	协程
+		一个进程包含多个协程
+	线程和协程的区别：
+		线程相对独立，有自己的上下文，切换受系统控制；
+		协程也相对独立，有自己的上下文，但是其切换由自己控制，由当前协程切换到其他协程由当前协程来控制
+
+V8垃圾回收机制
+	Node使用javascript在服务端操作大内存对象收到了一定的限制，64位系统下大约为1.4GB，32操作系统下是0.7GB
+	V8垃圾回收策略主要基于分代式垃圾回收机制。在自动垃圾回收的演变过程中，人们发现没有一种垃圾回收算法能够胜任所有场景。V8中内存分为新生代和老生代两代。
+	新生代为存活时间较短对象，老生代中为存活时间较长的对象！！！！
+		闭包函数会被存到老生代，赋值为null则存到新生代
+	了解Scavenge算法
+
+内存泄露分析
+	安装 node-inspector，模拟压力测试的
+
+经典MVC框架
+	controller
+	View 
+	Model
+NET多层架构
+	websiteTest
+		单元测试
+	website
+		前端文件css,js,html
+	webService
+		是给外界提供结构层的
+	webControllers
+		路由
+	SQLServerDAL
+		数据库具体操作
+	Model
+		数据库对应的模型
+	IDAL
+		接口,不干活
+	DLLibrary
+		第三方的库
+	DBUtility
+		数据库封装的库
+	DataCache
+		缓存
+	DALFactory
+	BLL
+		真正干活的，业务逻辑层，调用接口和数据库操作
+javaWeb多层架构
+	action
+ 		路由层
+	common
+		公共类
+	dao
+		数据库实现层
+	po
+		数据库的模型
+	service
+		实现数据库操作的
+Node多层架构
+	MysqlServerDAL
+		数据库封装层
+	BLL
+		业务逻辑层
+	DALFactory
+		工厂层
+	DataCache
+		缓存层
+	DBUtility
+		数据库封装单元层
+	Model
+		逻辑层
+	IDAL
+		接口层
+	Contollers
+		路由层
+Node多层架构
+	src
+		开发的原始文件
+		webapp
+			前端文件夹
+		nodeuii
+			后端文件夹
+	build
+		上线的文件
+	test
+	reports
+		存储报告,以及代码的生成工具
+PM2
+	是一个带有负载均衡功能的Node应用的进程管理器。
+	当你要把你的独立代码利用全部的服务器上的所有CPU,并保证进程永远都活着，0秒的重载。
+服务器集群
+
+经典代码
+	router.get(/^\/(\d+)_(\d+)/, cModel.A,cModel.B,cModel.C);
+
+	var shaObj = new jsSHA(string, 'TEXT');  
+	var hash = shaObj.getHash('SHA-1', 'HEX');
+
+	var forPound = req.headers['x-forwarded-for-pound'];
+
+	callback(new Error('Fail to parse http response to json, url:' + reqOptions.url + '), res, body);
+
+	require(‘./middleware')(app);
+
+	async( await ctx.render(‘index.html’));
