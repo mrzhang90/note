@@ -1,3 +1,25 @@
+--.标准浏览器使用jquery高版本，IE低版本浏览器使用jquery低版本
+    方案1.所有IE版本使用jquery低版本
+        <!--[if IE]> 
+        <script src="http://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+        <![endif]-->
+        <!--[if !IE]><!--> 
+        <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+        <!--<![endif]--> 
+    方案2.使用js判断是IE低版本则使用jquery低版本
+        <script type="text/javascript">
+            var userAgent = navigator.userAgent.toLowerCase();
+            var obj = {
+                version: (userAgent.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [])[1],
+                msie: (/msie/.test(userAgent)||/rv:/.test(userAgent)) && !/opera/.test(userAgent)
+            };
+            if(!obj.msie || (obj.msie && parseInt(obj.version)>8)){
+                document.write('<script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"><\/script>');
+            }
+            if(obj.msie && parseInt(obj.version)<=8){
+                document.write('<script src="http://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"><\/script>');
+            }
+        </script>
 --.window.screenX判断浏览器的,678是undefined，91011是number,chrome浏览器也是true 
   if (typeof window.screenX === "number") {
         
@@ -26,36 +48,6 @@
     }
     return isMobile;
   }
---.ajax提交图片
-    //封装函数-实现功能：当按钮点击后，调用file控件，弹出图片上传。上传图片后，ajax提交图片，然后通过回调,处理数据
-    function add_photo(address,successFn){
-        $('#btn_upload').click(function(){
-            uploadFile.click();
-        })
-        $('#uploadFile').on('change',function(){
-            uploadImage($(this)[0])
-        })
-        //利用表单的FormData对象，推入file值
-        var data = new FormData();
-        data.append('uploadFile', $('#uploadFile').files[0]);
-        file_post(url,data,'',function(data){
-            data=JSON.parse(data);
-            successFn(data);
-        });
-        function file_post(address,data,method,successFn,errorFn){
-            $.ajax({
-                url:address,
-                type:method || 'post',
-                data:data,
-                contentType: false,    //不可缺
-                processData: false,    //不可缺
-                success:successFn,
-                error:errorFn ||function(){
-                    alert('系统获取异常');
-                }
-            })
-        }
-    }
 --.Ajax请求默认的都是异步的，如果想同步 async设置为false,然后
     var html = $.ajax({
       url: "some.php",

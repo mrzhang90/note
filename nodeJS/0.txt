@@ -87,6 +87,7 @@ V8垃圾回收机制
 
 经典MVC框架
 	controller
+		路由
 	View 
 	Model
 NET多层架构

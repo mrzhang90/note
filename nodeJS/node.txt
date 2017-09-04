@@ -1,3 +1,13 @@
+方法
+	process()
+		全局变量，即global对象的属性
+	util
+		是Node核心模块，提供常用函数集合
+		util.inherits
+			继承父类，实现对象简原型继承的函数
+库
+	underscore
+		是比util丰富很多的工具库
 nodejs的命令需要在前面加点，.help查看所有命令，退出命令是.exit
 退出：两次ctrl+C或者一次ctrl+D
 
