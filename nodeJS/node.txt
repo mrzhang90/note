@@ -1,3 +1,7 @@
+RESTful
+	一种架构风格
+	同一种路由，既可以设置get,又可以设置post,这种就输入RESTful
+
 方法
 	process()
 		全局变量，即global对象的属性
@@ -8,6 +12,10 @@
 库
 	underscore
 		是比util丰富很多的工具库
+	supervisor
+		热启动
+
+命令
 nodejs的命令需要在前面加点，.help查看所有命令，退出命令是.exit
 退出：两次ctrl+C或者一次ctrl+D
 
