@@ -1,0 +1,13 @@
+函数
+	匿名函数
+	先定义后传递
+路由 -> controller 
+	家里的路由，一个路由器支持很多人同时上网。那么这个路由同样类似，一个域名可以分出好多个地址
+	我们要为路由提供请求的 URL 和其他需要的 GET 及 POST 参数，随后路由需要根据这些数据来执行相应的代码。
+	例：www.xxx.com/web/index
+					/web/test
+					/web/go
+		/web 就是controller
+		/index 就是action
+		一个controller对应多个action
+		如果action为空的话，默认就是index

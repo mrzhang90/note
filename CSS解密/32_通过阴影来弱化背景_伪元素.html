@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		.dimmed{
+			position:fixed;top:0;left:0;bottom:0;right:0;
+			background:rgba(0,0,0,.5);
+		}
+		.lightbox{
+			z-index:1;
+			position:absolute;top:50%;left:50%;
+			padding:10px 20px;
+			transform:translate(-50%,-50%);
+			background:#fff;
+		}
+	</style>
+</head>
+<body class="">
+<h2>利用给body添加伪类的方式，可以减少一个div元素</h2>
+	<div class="lightbox">我是居中啦啦啦啦</div>
+	<script type="text/javascript">
+		setTimeout(function(){
+			alert('来来来，给body添加灰色透明样式')
+			document.body.className='dimmed';
+		},1000)
+	</script>
+</body>
+</html>

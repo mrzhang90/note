@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<title>Native modal dialog (limited support) ✿ Dabblet result</title>
+<style>/**
+ * Native modal dialog (limited support)
+ */
+
+dialog::backdrop {
+	background: rgba(0,0,0,.8)
+}
+</style>
+<script src="render.js"></script>
+
+</head>
+<body>
+
+<h2><a href="http://dabblet.com/gist/bb2121aea259be94c35d" target="_blank">来源</a></h2>
+
+<button onclick="document.querySelector('#modal').showModal()">Click me</button>
+
+<dialog id="modal">
+	O HAI!
+	<button onclick="this.parentNode.close()">Close</button>
+</dialog>
+
+</body>
+</html>
