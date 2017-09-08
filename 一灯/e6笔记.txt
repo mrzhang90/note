@@ -1,3 +1,14 @@
+Generator函数的两种写法
+	1.*和yield
+	2.async和await
+		async函数就是将 Generator 函数的星号（*）替换成async，将yield替换成await，仅此而已
+		functin* aa(){
+			yield '123';
+		}
+		async aa(){
+			await '123';
+		}
+
 总结
 	代码行数减少
 	开发效率变快

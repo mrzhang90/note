@@ -1,3 +1,8 @@
+后端添加头解决跨域
+Access-control-allow-origin
+	通过设置Access-Control-Allow-Origin来实现跨域访问比较简单
+	参考：http://blog.csdn.net/fdipzone/article/details/46390573/
+
 同源策略 参考：http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html
 	同协议、同域名、同端口
 

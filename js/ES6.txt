@@ -1,3 +1,12 @@
+Traceur:  
+  //Google 公司的Traceur转码器，也可以将 ES6 代码转为 ES5 代码:
+  <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+  <script src="https://google.github.io/traceur-compiler/bin/BrowserSystem.js"></script>
+  <script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script>
+  <script type="module">
+    import './Greeter.js';
+  </script>
+
 声明变量的6种方式：
   var、function、let、const、import、class
 方法：
