@@ -1,3 +1,5 @@
+es5-shim
+	解决低版本浏览器不支持ES5，https://github.com/es-shims/es5-shim
 seaJS
 	并行加载js
 FIS3
