@@ -1,0 +1,19 @@
+window下安装
+	1.进入nginx官网下载包
+	2.解压至C盘下，c:/nginx
+	3.双击setp.exe 即可
+	4.访问http://localhost
+	PS:
+		如果失败，输入netstat -ano命令，查看80端口是否占用
+
+	命令
+		启动
+			start nginx
+		停止
+			nginx.exe -s quit
+		重新载入
+			nginx.exe -s reload
+		重新打开日志
+			nginx.exe -s reopen
+		nginx版本
+			nginx -v

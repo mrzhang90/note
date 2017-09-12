@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>hello world</title>
+	<meta charset="utf-8">
+	<title>点赞</title>
+	<link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-<h1>hello world</h1>
-<form method="post" action="/name/1">
-	<input type="submit" name="" value="aaaaa">
-</form>
+<div class="wrap">
+	<div class="box_position" id="j_finger">
+		<div class="right">
+			<div class="first_finger"></div>
+			<div class="second_finger"></div>
+			<div class="third_finger"></div>
+			<div class="fourth_finger"></div>
+			<div class="fifth_finger"></div>
+		</div>
+	</div>
+</div>
+<script src="https://cdn.bootcss.com/systemjs/0.20.18/system.js"></script>
+<script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
+<script src="/app/tool.js"></script>
+<script type="text/javascript">
+	SystemJS.config({
+	    baseURL: '/app/'
+	})
+	SystemJS.import('index_new.js').then(function(m){
+		$.extend({
+		    thumb:m.default
+		})
+		new $.thumb($('#j_finger')).plus1()
+	})
+</script>
 </body>
 </html>

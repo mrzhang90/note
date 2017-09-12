@@ -9,10 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.16.2",
     "co": "^4.6.0",
     "koa": "^2.3.0",
     "koa-simple-router": "^0.2.0",
     "koa-static": "^4.0.1",
     "koa-swig": "^2.2.1"
+  },
+  "devDependencies": {
+    "babel-preset-latest": "^6.24.1"
   }
 }

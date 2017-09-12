@@ -1,0 +1,12 @@
+robots.txt
+	是爬虫要查看的第一个文件，robots.txt文件告诉爬虫在服务器上什么文件是可以被查看的
+	是一个文件，是一个协议
+
+配置爬虫系统和开发环境
+	NODE模块
+		Express
+		Request
+			Node模块-类似前端ajax方法
+		Cheerio
+			Node模块-类似于jquery选择器
+
