@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>任何函数，只要参数有回调函数，就能写成 Thunk 函数的形式</title>
+</head>
+<body>
+<p>任何函数，只要参数有回调函数，就能写成 Thunk 函数的形式</p>
+<p>	参考地址：http://es6.ruanyifeng.com/#docs/generator-async</p>
+<p>	// 正常版本的readFile（多参数版本）</p>
+<p>	fs.readFile(fileName, callback);</p>
+<p></p>
+<p>	// Thunk版本的readFile（单参数版本）</p>
+<p>	var Thunk = function (fileName) {</p>
+<p>	  return function (callback) {</p>
+<p>	    return fs.readFile(fileName, callback);</p>
+<p>	  };</p>
+<p>	};</p>
+<script type="text/javascript">
+	var thunk=function(fn){
+		return function(...arg){
+			return function(callback){
+				return fn.call(this,...arg,callback)
+
+			} 
+
+		}
+	}
+	var f=function(a,callback){
+	   callback(a)
+	}
+	var f1 = thunk(f)
+	f1(2)(console.log)
+</script>
+</body>
+</html>	
