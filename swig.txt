@@ -1,0 +1,21 @@
+swig + express
+	//配置html模板
+	var swig=require("swig");
+	app.engine('html', swig.renderFile);
+	app.set('view engine', 'html');
+
+	//express渲染模板
+	var data={
+		'title':'Welcome',
+		'script':'/script/index.js',
+		'style':'/stylesheets/index.css'
+	}
+	res.render('index',data)
+
+	//模板
+	{% extends 'layout.html'%}
+		引入模板
+	{% block title%}{%endblock%}
+		定义一个title变量占位符
+	{{title}}
+		获取变量title

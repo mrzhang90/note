@@ -1,3 +1,10 @@
+node
+	路由理解
+	www.baidu.com/aa/bb
+	controller
+		www.baidu.com
+	action
+		/aa/bb
 浏览器方面
 	js用来操作DOM，浏览器提供了document内置对象
 Nodejs

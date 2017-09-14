@@ -1,0 +1,15 @@
+正则匹配路由-三个model服务正则路由
+	router.get(/^\/(\d+)_(\d+)/,cModel.A,cModel.B,cModel.C);
+
+加密算法
+	var shaObj = new jsSHA(string,'TEXT');
+	VAR HASH = shaObj.getHash('SHA-1','HEX');
+
+请求headers报头
+var forPound = req.headers['x-forwarded-for-pound'];
+
+回调处理异步
+callback(new ERROR('Fail to parse http response to json,url:'+reqOptions.url+'),red,body);
+
+在所有路由没有触发之前，引入middleware
+require('./middleware')(app);
