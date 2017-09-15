@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+var Fn=function(){
+	this.a=1;
+	this.b=2;
+	this.c=3;
+	this.d=function(){
+		return 'd';
+	}
+}
+Fn.prototype.hi=function(){
+	return 'hi';
+}
+var obj=new Fn();
+for(var a in obj){
+	if(obj.hasOwnProperty(a)){
+		console.log('成员属性：'+a);
+	}else{
+		console.log('原型链是：'+a)
+	}
+}
+</script>
+</body>
+</html>

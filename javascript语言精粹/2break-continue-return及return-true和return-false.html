@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<p>break-退出当前循环体，执行后面的语句</p>
+<p>continue-退出本次循环，执行下一次循环</p>
+<p>return-将函数的值返回主调函数</p>
+<script type="text/javascript">
+	function a(){
+		for(var i=0;i<10;i++){
+			if(i==2){
+				continue;
+			}
+			if(i==6){
+				break;
+			}
+			console.log(i);
+		}
+		for(var i=0;i<10;i++){
+			if(i==2){
+				continue;
+			}
+			if(i==6){
+				// return;
+				throw '如果throw语句在函数中，则该函数调用被放弃，控制流跳转到调用该函数的try语句的catch从句中';
+			}
+			console.log(i);
+		}
+		for(var i=0;i<10;i++){
+			if(i==2){
+				continue;
+			}
+			if(i==6){
+				break;
+			}
+			console.log(i);
+		}
+	}
+	try{
+		a();
+	}catch(e){
+		console.log(e)//控制流跳转到了这里
+	}
+	function b(){
+		try{
+			aa
+		}catch(e){
+			// throw Error('aa未定义')
+			console.error('aa未定义');
+		}
+		try{
+			throw Error('123')
+		}catch(e){
+			console.log(123);
+		}
+	}
+	b();
+</script>
+
+<a href="#123">点我看return、return true、return false的区别</a>
+<p>相同点都是返回主调函数，并返回结果</p>
+<p>return-返回值是undefined</p>
+<p>return true-相当于执行符</p>
+<p>return false-相当于终止符，一般用户阻止默认事件(跳转链接或者表单提交)</p>
+<script type="text/javascript">
+	document.querySelector('a').onclick=function(){
+		console.log('点击了');
+		return false;
+	}
+</script>
+</body>
+</html>
