@@ -90,6 +90,11 @@ MAC 安装git
     git branch -D up  (强行删除--还没合并的分支就要强行删除)
     git branch -d move (合并过的分支，-d就可以删除了)
 
+给Node提交分支-遵循以下规范
+    branch name:fix/gh-{num}
+    commit message:"module name:description"
+    test/parallel/test-*.js
+
 解决问题:
     如果说在push的时候，发现了冲突:
         git fetch :(将远程的代码拉取下来) fetch是单纯将代码从远程仓库同步至本地仓库，并不作merge。
