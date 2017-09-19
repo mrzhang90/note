@@ -277,7 +277,6 @@ DOM属性:
     onchange:当input的value发生变化的时候触发
     oninput:当向输入性控件输入内容时触发(oninput 是 Chrome 支持的，onpropertychange 是 IE 支持的。)
 
-string (number).toFixed(n); 保留n位小数
 in用法:console.log("name2" in obj): 判断obj对象中是否有name2这个字符串
 eval(string):只接受原始字符串作为参数，如果string参数不是原始字符串，那么该方法将不作任何改变地返回。
     var str = "{'name':'leo'}";console.log(eval('('+str+')'));//容易注入病毒
@@ -319,11 +318,6 @@ String
     13.array str.split([value],[length]) 把字符串截取成数组,参数value-分隔符,length-截取数组保留的长度
     14.sre.concar(string);//返回字符串,接受多字符串参数
 
-Number:
-    Number():将纯数字的字符串转化为数字。
-    parseInt:将字符串转化为整数。如果转化不出来就为NaN。在转化的时候，从左往右起直到非数字止的数字会被转化。如果整个字符串都不是数字，那么会转成NaN。
-    parseFloat:将字符串转化为数字，可以为（小数）浮点数。如果转化不出来就为NaN。在转化的时候，从左往右起直到非数字止的数字会被转化。如果整个字符串都不是数字，那么会转成NaN。
-
 数组
     1.array arr.splice(Number index,Number [deleteCount],[items]) 数组截取,改变原数组.返回截取后的新数组 index-截取的位数,deleteCount-截取的长度,items替换掉截取的内容
     2.string arr.join([separator = ',']) 将数组中的所有元素连接成一个字符串
@@ -354,10 +348,21 @@ Date:
         toTimeString
         toLocalDateString
 
+Number:
+    Number():将纯数字的字符串转化为数字。
+    parseInt:将字符串转化为整数。如果转化不出来就为NaN。在转化的时候，从左往右起直到非数字止的数字会被转化。如果整个字符串都不是数字，那么会转成NaN。
+    parseFloat:将字符串转化为数字，可以为（小数）浮点数。如果转化不出来就为NaN。在转化的时候，从左往右起直到非数字止的数字会被转化。如果整个字符串都不是数字，那么会转成NaN。
+    string (number).toFixed(n); 保留n位小数
+    
 Math
     1.number Math.ceil(x) 对数进行向上取整
     2.number Math.floor(x) 对数进行向下取整
     3.number Math.round(x) 对数进行四舍五入
+        常用的取整公式：
+        x ~ y : Math.round(Math.random()*(y-x) + x)
+        0 ~ x : Math.round(Math.random()*x)
+        1 ~ x : Math.ceil(Math.random()*x)||1
+        0 ~ x-1 : Math.floor(Math.random()*x)
     4.number Math.abs(x) 取数的绝对值
     5.number Math.random(x) 返回0-1之间的随机数，不包含1
     6.Math.pow(2,8) 返回 x 的 y 次幂的值

@@ -1,3 +1,11 @@
+node
+	路由理解
+	www.baidu.com/aa/bb
+	controller
+		www.baidu.com
+	action
+		/aa/bb
+		
 浏览器方面
 	js用来操作DOM，浏览器提供了document内置对象
 Nodejs
@@ -51,3 +59,36 @@ Node优势在哪里
 1.引入events对象，创建eventEmitter对象
 2.绑定事件处理程序
 3.触发事件
+
+模块化
+	为了让Node.js的文件可以相互调用，Node.js提供了一个简单的模块系统
+	模块是Node.js应用程序的基本组成部分
+	文件和模块是一一对应的。一个Node.js就是一个模块
+	这个文件可能是Javascript代码，JSON或者编译过的C/C++扩展
+	Node.js中存在4类模块（原生模块和3种文件模块）
+
+	Node.js的模块加载方式
+	从文件模块缓存中加载
+	从原生模块加载
+		有缓存区和文件加载两种方式，优先加载缓存区
+	从文件加载
+
+	require方法加载模块
+	require方法接受以下几种参数传递：
+	htts、fs、path等，原声模块
+	相对路径的文件模块
+	绝对路径的文件模块
+	mod  非原生模块的文件模块
+函数
+	匿名函数
+	先定义后传递
+路由 -> controller 
+	家里的路由，一个路由器支持很多人同时上网。那么这个路由同样类似，一个域名可以分出好多个地址
+	我们要为路由提供请求的 URL 和其他需要的 GET 及 POST 参数，随后路由需要根据这些数据来执行相应的代码。
+	例：www.xxx.com/web/index
+					/web/test
+					/web/go
+		/web 就是controller
+		/index 就是action
+		一个controller对应多个action
+		如果action为空的话，默认就是index
