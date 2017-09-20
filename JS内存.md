@@ -8,8 +8,8 @@
 
 > 如果内存占用基本平稳，接近水平，就说明不存在内存泄漏。反之，就是内存泄漏了。
 
-### 命令行可以使用 Node 提供的`process.memoryUsage`方法。
-`process.memoryUsage`返回一个对象，包含了 Node 进程的内存占用信息。该对象包含四个字段，单位是字节，含义如下：
+### 命令行可以使用 Node 提供的 **process.memoryUsage** 方法。
+**process.memoryUsage** 返回一个对象，包含了 Node 进程的内存占用信息。该对象包含四个字段，单位是字节，含义如下：
 * rss（resident set size）：所有内存占用，包括指令区和堆栈。
 * heapTotal："堆"占用的内存，包括用到的和没用到的。
 * heapUsed：用到的堆的部分。
