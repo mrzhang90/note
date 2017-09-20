@@ -1,0 +1,16 @@
+{
+  "name": "7_webpack2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "css-loader": "^0.28.7",
+    "html-webpack-plugin": "^2.30.1",
+    "less-loader": "^4.0.5",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.6.0"
+  },
+  "devDependencies": {
+    "extract-text-webpack-plugin": "^2.1.2"
+  }
+}

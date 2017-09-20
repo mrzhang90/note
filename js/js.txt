@@ -316,7 +316,7 @@ String
     11.string string.toUpperCase() 把字符串全部转成大写
     12.string string.trim() 去掉字符串首尾的全部空格
     13.array str.split([value],[length]) 把字符串截取成数组,参数value-分隔符,length-截取数组保留的长度
-    14.sre.concar(string);//返回字符串,接受多字符串参数
+    14.string.concar(string);//返回字符串,接受多字符串参数
 
 数组
     1.array arr.splice(Number index,Number [deleteCount],[items]) 数组截取,改变原数组.返回截取后的新数组 index-截取的位数,deleteCount-截取的长度,items替换掉截取的内容
