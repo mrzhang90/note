@@ -1,0 +1,14 @@
+# npm start命令
+	在package.json中对scripts对象进行相关设置即可
+	例如配置webpack:
+		"scripts": {
+			"start": "webpack", // 修改的是这里，JSON文件不支持注释，引用时请清除
+		    "server": "webpack-dev-server --open" //终端中输入npm run server即可运行
+	  	}
+  	> package.json中的script会安装一定顺序寻找命令对应位置，本地的node_modules/.bin路径就在这个寻找清单中，
+  	所以无论是全局还是局部安装的Webpack，你都不需要写前面那指明详细的路径了。
+
+  	dependencies
+  		开发环境-上线一定要用的
+  	devDependencies
+  		生产环境

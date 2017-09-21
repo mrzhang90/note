@@ -1,16 +1,26 @@
 {
   "name": "7_webpack2",
   "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "css-loader": "^0.28.7",
+    "babel-core": "^6.26.0",
+    "extract-text-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^2.30.1",
-    "less-loader": "^4.0.5",
-    "style-loader": "^0.18.2",
     "webpack": "^3.6.0"
   },
   "devDependencies": {
-    "extract-text-webpack-plugin": "^2.1.2"
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
+    "style-loader": "^0.18.2"
   }
 }

@@ -1,4 +1,6 @@
 require('../styles/index.less');
-
-const data=123;
+import {data} from './data.es';
+import('./async.es').then(function(res){
+	res.defaule();
+})
 console.log(data);
