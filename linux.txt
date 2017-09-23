@@ -2,7 +2,8 @@ ps aux
 	查看进程
 	ubuntu只能查看自己账户的进程
 		那么 sudo ps aux，暂时提升为超级管理员，就可以查看其他管理员的进程了
-
+yum update
+	升级所有需要升级的软件
 工具
 	xhell
 		乱码解决

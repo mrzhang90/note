@@ -12,7 +12,7 @@ MAC全局安装报错
 	npm
 		查看子命令
 	npm -v
-	npm install npm -g
+	npm install express --global  简写 npm i express -g
 		全局更新npm版本
 	npm uninstall express
 		删除本地的express包

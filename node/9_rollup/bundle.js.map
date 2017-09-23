@@ -1,0 +1,1 @@
+{"version":3,"file":"bundle.js","sources":["src/foo.js","src/main.js"],"sourcesContent":["export default 'hello world!';","import foo from './foo.js';\r\nexport default function () {\r\n  console.log(foo);\r\n}"],"names":[],"mappings":";;AAAA,UAAe,cAAc;;yBAAC,zBCC9B,WAAe,YAAY;EACzB,OAAO,CAAC,GAAG,CAAC,GAAG,CAAC,CAAC;;;;;;;;;"}

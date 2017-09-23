@@ -1,3 +1,14 @@
+webpack
+	scope hosting
+	tree shaking
+	code spliting
+工程化选择
+	gulp webpack nightwatch karma
+自动化部署框架 及 流程
+	jenkins
+	1.机器-》远程机器 免秘登录
+	2.配置完整的测试流程，指定copy build 到远程的主机去
+	3.配置远程的主机 利用p2
 多层架构
 	表现层-Web Components
 		UI表现层
