@@ -6,7 +6,8 @@
 	unserialize() --反序列化
 	__autoload() --自动加载类
 		__autoload() 是专门为 类的不存在 而设计的！！！很多框架利用这个函数，实现 类文件的自动加载 ！！！
-	
+	date('m-d',$date);
+		将时间戳转化格式
 全局：
 	global $c -声明变量c为全局可用
 	session:
