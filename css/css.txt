@@ -32,7 +32,21 @@
         div img{width:100%;vertical-align:middle;}
     定位居中：(css3技巧)
         position: fixed; top: 50%; left: 0; width: 80px; height: auto; transform: translate3d(0,-50%,0);
-
+    img自适应 - 充满父元素
+        第一种办法使用背景图，soeasy
+        第二种办法-
+            .parent{
+                position:relative;width:100px;height:100px;overflow:hidden;
+            }
+            .parent img{
+                display: block;position: absolute;
+                top: 50%;left: 50%;
+                min-width: 100%;min-height: 100%;
+                transform: translate(-50%,-50%);
+            }
+            @media \0screen\,screen\9 {
+                .parent img{top: 0;left: 0;}
+            }
 font
     排版
         typo.css 、 Entry.css 、Type.css

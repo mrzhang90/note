@@ -1,3 +1,8 @@
+PDO写法：
+	链接数据库
+		$pdo = new PDO("mysql:host=localhost;dbname=software_sharing","root",""); 
+	插入数据
+		$pdo -> exec("insert into db_demo(name,content) values('title','content')");
 SQL方法:
 	min():   select min(dirthdate) form 表名 //查找最大年龄的人，因为年龄越大，出生越早，所以年龄越小
 	rand():  select rand() * 100 //获取一个任意随机数，验证码

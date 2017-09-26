@@ -24,13 +24,15 @@ mysql
 		}
 		
 		include template('niu_new:edit');
+	会员log记录
+		C::t('common_member_log')->insert(array('uid' => 2, 'action' => '充值成功，金额100元', 'dateline' => TIMESTAMP), false, true);
 
 控制积分增减
-	updatemembercount($_G['uid'], array($extcredits => +5);
+	updatemembercount($_G['uid'], array($extcredits => +5);//当前uid对应的积分项
 显示消息
 	showmessage('发布成功','plugin.php?id=qypay:index',array(),array('showdialog'=>true,'locationtime'=>true));
 模板引用
-	include template('niu_new:list');
+	include template('qypay:index');
 模板表单
 	很重要的一句
 	<input type="hidden" name="formhash" value="{FORMHASH}">
