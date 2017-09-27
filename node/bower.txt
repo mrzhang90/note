@@ -1,0 +1,49 @@
+bower install jquery
+    安装jquery
+bower install jquery#1.7.2
+    安装低版本jquery
+bower uninstall jquery
+    删除jquery，破坏依赖关系
+bower list
+    查看安装的包，及包依赖关系
+bower update jquery
+bower cache list
+bower info jquery
+bower lookup dojo
+    打开官网
+bower search dojo
+
+cache
+    bower缓存管理
+help
+    显示bower命令的帮助信息
+home
+    通过浏览器打开一个包的github发布页
+info
+    查看包的信息
+init
+    创建bower.json文件
+install
+    安装包到项目
+link
+    在本地bower库建立一个项目链接
+list
+    列出项目已安装的包
+login - Authenticate with GitHub and store credentials
+    验证的GitHub和存储凭据
+lookup
+    根据包名查询包的url
+prune
+    删除项目无关的包
+register
+    注册一个包
+search
+    搜索包
+update
+    更新项目的包
+uninstall
+    删除项目的包
+unregister - Remove a package from the registry
+    从注册表中删除一个包
+version - Bump a package version
+    碰撞包版本
