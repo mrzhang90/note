@@ -21,7 +21,7 @@
 		PC网站自适应移动端。-青古项目
 		解决两个问题：1.浏览器窗口缩小,div宽度100%时，拖动横向滚动条不错乱;2.手机浏览器查看时，不错乱
 		CSS:body{min-width:1180px;}
-		HTML:<meta name="viewport" content="width=1180,inital-scale=1">
+		HTML:<meta name="viewport" content="width=1180">
 	方法二.
 		参考：
 			http://www.cnblogs.com/YYvam1288/p/5409129.html
