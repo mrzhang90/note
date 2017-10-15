@@ -1,3 +1,34 @@
+--.查找addEventListener绑定事件队列
+    /**
+     * @fileoverview 查找addEventListener绑定事件队列
+     * @author yuanzhijia@yidengxuetang.com
+     * @date 2017/10/15
+     */
+    ((w)=>{
+        w.listenerList = new Set();
+        const _cache = w.addEventListener;
+        const handler = {
+            apply: (target, thisBinding, args) =>{
+                //target();
+                listenerList.add(args[0]);
+                Reflect.apply(_cache,w,args);
+                //需要返回参数可打开
+                //return args[0];
+            }
+        };
+        w.addEventListener = new Proxy((event,fn)=>{
+            console.log(222);
+            // Reflect.apply(_cache,w,arguments);
+        }, handler);
+    })(window);
+
+    //📒具体业务无需Care
+    window.addEventListener('resize',function(){console.log(1111);});
+    window.addEventListener('a',function(){});
+    for(const val of listenerList){
+    //✏️打印所有addEventListener事件队列
+        console.log(val);
+    }
 --.标准浏览器使用jquery高版本，IE低版本浏览器使用jquery低版本
     方案1.所有IE版本使用jquery低版本
         <!--[if IE]> 
