@@ -1,0 +1,10 @@
+密码忘记-解决：
+	修改文件：
+		\shuipf\Application\Admin\Model\UserModel.class.php
+			1.查找代码：
+				if (!empty($password) && $this->hashPassword($password, $userInfo['verify']) != $userInfo['password']) {
+					return false;
+				}
+			2.注释掉代码，然后就可以后台随便输入一个密码就可以登录了
+			3.登录后台修改密码，提示你需要输入就密码怎么办？没关系，旧密码随便输入，然后输入一个新密码，记住哦！！！
+			4.取消注释代码，大功告成。。。
