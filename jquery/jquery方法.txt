@@ -1,3 +1,21 @@
+--ajax中断请求 - jquery中断ajax（取消/abort）
+    //如果一个ajax请求过长，你可能会有取消之前发起的一次请求的需要
+    var r=true,nextClick=false;
+    if(nextClick){
+        nextClick=false
+        if(r&&r.readystate!=4){
+            r.abort();
+        }
+    }
+    r=ajax({
+        url: 'update.json',
+        complete:function(){r=null;},//请求成功后，把ajax返回值设为Null
+        data: $("#form").serializeObject(),
+        callback: function (result) {
+
+        }
+    });
+    nextClick=true;
 --图片加载失败，显示默认图片
     js:
         $('img').each(function(){
