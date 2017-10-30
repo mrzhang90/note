@@ -1,0 +1,16 @@
+断点
+	Chrom浏览器，找到Sources，找到对应的资源文件，找到需要监听的位置，然后就可以一行一行的找，也可以下一个方法
+寻找事件监听
+	右击需要监听事件元素，找到Event Listeners,即可看到对应的绑定事件
+DOM元素断点
+	右击元素，找到Break on
+		1.Subtree Modifications，当添加，改变，删除子元素时触发
+		2.Attributes Modifications，当元素属性被改变时触发
+		3.Node Removal，当移除元素时触发
+audits
+Performance
+	记录用户访问页面的整个过程,测试性能时用
+Page Speed
+	更专业测试性能的chrom插件
+performance.timing
+	性能优化更专业的API
