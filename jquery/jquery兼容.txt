@@ -34,7 +34,7 @@
     :-moz-placeholder{color:#000!important;}
     :-ms-input-placeholder{color:#000!important}
   方法：
-    if($.browser.msie){
+    if($.browser.msie){//普通文本输入框-兼容
         jQuery('[placeholder]').focus(function() {
           var input = jQuery(this);
           if (input.val() == input.attr('placeholder')) {
@@ -56,6 +56,29 @@
           })
         });
     }
+    YUI({//淘宝旅行输入框-解决文本框placeholder IE8的问题
+        ...
+    }).use('trip-calendar', function(Y) {
+        var oCal = new Y.TripCalendar({
+            minDate         : new Date,     //最小时间限制
+            triggerNode     : '#STARTCREATE_TIME', //第一个触节点
+            finalTriggerNode: '#ENDCREATE_TIME'  //最后一个触发节点
+        });
+        oCal.on('dateclick', function(e) {//日期点击事件
+            //重点在这里-点击日期还有，获取其父级ID元素
+            if($.browser.msie && parseInt($.browser.version) <=9){
+              var input=e.currentTarget.currentNode._node.id;
+              input=$('#'+input);
+              if (input.val() == '' || input.val() == input.attr('placeholder')) {
+                  input.addClass('placeholder').val(input.attr('placeholder'));
+              }else{
+                  input.removeClass('placeholder');
+              }
+            }
+        });
+
+
+    });
 --.解决window.open被IE拦截的bug
   auto_submit('/search.jsp',$.param(obj),'get');
   //自动提交表单
