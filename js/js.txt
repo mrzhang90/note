@@ -74,6 +74,22 @@ localStorage
     tools.setLocalStorage('info',infoItem);
 
 定时器：
+    window.requestAnimationFrame()
+        下一次
+        例如:鼠标滚动-推迟到下一次重新渲染
+            $(window).on('scroll',function(){
+                window.requestAnimationFrame(scrollHandler);
+            })
+    window.requestldleCallback()
+        下几次重新渲染时
+        requestldleCallback(function someHeavyComputation(deadline){
+            while(deadline.timeRemaining() > 0){
+                doWorkIfNeeded();
+            }
+            if(thereIsMoreWorkToDo){
+                requestldleCallback(someHeavyComputation);
+            }
+        })
     定义：
         var RAF =  (function(){
             return requestAnimationFrame || webkitRequestAnimationFrame || mozRequestAnimationFrame || oRequestAnimationFrame || msRequestAnimationFrame || function (callback) {setTimeout(callback, 1000 / 60); };
