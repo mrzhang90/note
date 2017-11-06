@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		*{margin:0;padding:0;}
+		ul,li{list-style:none;}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2<b>hi</b></li>
+		<li>3</li>
+	</ul>
+	<script>
+		~(function(){
+            var ul=document.getElementsByTagName('ul');
+            ul[0].onclick=function(e){
+            	console.log(e.target)//通过target可以知道点击的li
+            	if(e.target.nodeName!='li'){//通过nodeName知道点击元素的节点名称
+            		console.log(e.target.parentNode)//获取点击元素的父节点
+            	}
+            }
+		})()
+	</script>
+</body>
+</html>
