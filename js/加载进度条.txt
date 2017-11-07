@@ -1,0 +1,7 @@
+一.js控制
+	var list=["a.js",'b.png'];
+	然后根据image.onload读取到文件就减掉推进进度（根据readyState减掉推进进度）
+二.通过ajax
+	后台chunked输出，每次拿到文件的总大小，用chunked/总大小/全部文件，需要后台配合
+三.完全使用库封装
+	http://github.hubspot.com/pace/
