@@ -1,0 +1,42 @@
+CSS预处理器
+	就是把浏览器不认识的文件(.sass，.less等)转换成.css文件
+Sass
+	比较重-团队可以做一个自己的类似bootstrap
+less
+	较轻-团队用的较多
+stylus
+预处理常用规范
+	变量
+	混合(Mixin) Extend
+		支持把一段css混合到另一端css里
+	嵌套规则
+	运算
+	函数
+	Namespaces & Accessors
+	Scope
+	注释
+CSS后处理器
+	CSS压缩 CLEAN-CSS
+	自动添加浏览器前缀 Autoprefixer
+	CSS更加美观 CSScomb
+	Rework取代Stylus 后处理器发热
+	前后通吃 PostCSS
+		非常轻量，通过插件来完成。
+		把文件通过常见转成抽象语法树，然后吐出去
+PostCSS
+	cssnext语法
+		CSS变量
+			.mouse-x:0.1
+		使用css变量
+			var(--mouse-x)
+		css变量结合calc计算公式
+			left:cala(1000px * var(--mouse-x))
+		使用css变量，默认值
+			var(--mouse-x,0.1)
+	javascript给CSS变量赋值
+		var root = documentg.documentElement;
+		document.addEventListener("mousemove",evt=>{
+			let x=evt.clientX/innerWidth;
+
+			root.style.setProperty("--mouse-x",x);//这里的--mouse-x使用css变量
+		})
