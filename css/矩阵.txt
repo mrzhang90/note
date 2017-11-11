@@ -1,0 +1,25 @@
+	在数学中，矩阵（Matrix）是一个按照长方阵列排列的复数或实数集合，最早来自于方程组的系数及常数所构成的方阵。
+	矩阵是高等代数学中的常见工具，也常见于统计分析等应用数学学科中。在物理学中，矩阵于电路学、力学、光学和量子物理中都有应用；计算机科学中，三维动画制作也需要用到矩阵。 矩阵的运算是数值分析领域的重要问题。
+	由m * n个数排成的m行n列的数表称为m行n列的矩阵，简称m*n矩阵。这m*n个数称为矩阵的元素，简称元
+
+	计算规则
+	矩阵第m行与第n列交叉位置的那个值，等于第一个矩阵第m行与第二个矩阵第n列，对应位置的每个值的乘积之和。线性代数是向量计算的基础，很多重要的数学模型都要用到向量计算。矩阵的本质就是线性方程式，两者是一一对应关系。如果从线性方程式的角度，理解矩阵乘法就毫无难度。
+
+	对于CSS属性来讲，默认的XY值为transform的中心点
+
+	matrix()和matrix3d()
+	前者是元素2D平面的移动变换(transform)，后者则是3D变换。2D变换为3*3的矩阵；3D变换则是4*4的矩阵
+
+	transform:matrix(a,b,c,d,e,f);
+		无论是旋转拉伸缩放位移，本质上都是应用matrix()实现，只是类似transform:rotate这种便于理解,记忆与上手
+
+	transform:origin
+		通过transform:origin属性进行设置的时候，矩阵相关计算也随之发生改变。实际图形效果上就是，旋转拉伸的中心点变了。
+
+	matrix3d-可视化生成器
+		http://ds-overdesign.com/transform/matrix3d.html
+	matrix-可视化生成器
+		http://meyerweb.com/eric/tools/matrix/
+		www.f2e.name/case/css3/tools.html
+	matrix3d工程化-自动把transform动画转成matrix
+	https://github.com/Zhangdroid/CSS-Matrix3d
