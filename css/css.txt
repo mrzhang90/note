@@ -47,6 +47,8 @@
             @media \0screen\,screen\9 {
                 .parent img{top: 0;left: 0;}
             }
+    文字间距调整-居中有问题解决：
+        text-indent: 10px; letter-spacing: 10px;
 font
     排版
         typo.css 、 Entry.css 、Type.css

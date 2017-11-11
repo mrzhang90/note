@@ -1,0 +1,17 @@
+1.创建页面容器 id 引入一个初始化文件
+2.初始化的文件把store和左侧的容器分开 利用provider把store灌入到组件里去
+3.通过引入创建store文件 需要reducer 负责修改store
+4.需要插件 middleware 同步的 方便内部的代码不用异步脚步写
+5.store 包含了reducer middleware state
+6.state ->reducer -> store.dispatch(action)
+7.链接起来 Redux.createStore(reducer,state,middleware);
+8.APP合成组件 view action -> reducer ReactRedux.Provider链接一下我们App和store
+9.view 真实的组件 组件一定要注意的  去除state Redux props来
+10.生成常量的配置文件 给全局使用 action reducer
+11.action具体的操作  同步的action 异步的action action=>state 异步action+api=>state
+12.具体的开发action view真实的动作 return {type:xxx} dispatch({type:lights.CHANGE_YELLOW,text:123});
+13.action reducer? state->props->view? action->dispatch?
+14.导出真实的组件之前 通过@ Redux.bindActionCreators(actions名字 ， dispatch);
+15.ReactRedux.connect(state->props->view,action->dispatch); 修改state
+16.reducer Redux.combineReducers 合并很多个reducer
+17.!!!!!reducer action!!!! 初始化的时候 action reducer

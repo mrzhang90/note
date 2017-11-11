@@ -96,9 +96,10 @@
     属性过滤选择器:
     div[title]:拥有此属性的元素
     div[title=test]:属性值等于test的元素
-    div[titile!=test]
-    div[titile^=test]
-    div[titile$=test]
+    div[titile!=test]: title不为test
+    div[titile^=test]：以 "test" 开头
+    div[titile$=test]：以 "test" 结束
+        可以用来测试后缀，例如"img[href$='.jpg']"
     div[titile*=test]:属性值含有test的元素
     div[id][titile*=test]:拥有属性值ID,并且titile属性包含test的元素
     子元素过滤器: PS:nth-child不同于eq,前者匹配每一个符合条件的父元素匹配子元素,并且从1开始

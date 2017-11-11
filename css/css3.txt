@@ -1,3 +1,8 @@
+image-set根据屏幕分辨率和网速决定使用1倍图还是2倍图
+    background-image:url(/1x.png);
+    background-image:-webkit-image-set(url(/1x.png) 1x,url(/2x.png) 2x);
+a:any-link{color:red}
+    上边的那些a没有写到的选择器，都适用于这一条规则
 文本默认提示文字样式：
     /*:-moz-placeholder{color:#21a8e2}*/
     /*:-ms-input-placeholder{color:#21a8e2}*/

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+<script>
+cookie('a',1)
+console.log(cookie('a'))
+cookie('a',2)
+console.log(cookie('a'))
+console.log(cookie('c'))
+
+	function cookie(key, value, options) {
+        if(key && value){
+            localStorage.setItem(key, value);
+        }else{
+            return localStorage.getItem(key);
+        }
+
+//        $.cookie(key, value, options == null ? {expires: 30} : options);
+    }
+</script>
+</body>
+</html>

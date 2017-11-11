@@ -1,34 +1,35 @@
 --.查找addEventListener绑定事件队列
+    解决团队内，多个人往一个元素上绑一样的事件，互相影响
+    利用proxy代理的方式，给绑定事件基础上做一些额外的事情，还有一种思路是aop切面编程(after、befor)
     /**
      * @fileoverview 查找addEventListener绑定事件队列
      * @author yuanzhijia@yidengxuetang.com
      * @date 2017/10/15
      */
     ((w)=>{
-        w.listenerList = new Set();
-        const _cache = w.addEventListener;
-        const handler = {
-            apply: (target, thisBinding, args) =>{
-                //target();
-                listenerList.add(args[0]);
-                Reflect.apply(_cache,w,args);
+        w.listenerList = new Set();//set有一个作用是去重
+        const handler = {//获执行的addEventListener
+            apply: (target, thisBinding, args) =>{//target是代理的谁;this;参数
+                listenerList.add(args[0]);//因为Set有去重的特点，所以这里直接add添加，有重复的就去了
+                //Reflect.apply(_cache,w,args);//反射-w是this
                 //需要返回参数可打开
                 //return args[0];
             }
         };
+        const _cache = w.addEventListener;
+        //代理，走的addEventListener是代理的方法，因为addEventListener是引用类型，如果直接在addEventListener上写方法，那就循环引用了
         w.addEventListener = new Proxy((event,fn)=>{
-            console.log(222);
-            // Reflect.apply(_cache,w,arguments);
-        }, handler);
+            Reflect.apply(_cache,w,arguments);
+        }, handler);//参数1.回调;参数2.要截获执行的addEventListener的事件
     })(window);
 
     //📒具体业务无需Care
-    window.addEventListener('resize',function(){console.log(1111);});
-    window.addEventListener('a',function(){});
-    for(const val of listenerList){
+    //window.addEventListener('resize',function(){console.log(1111);});
+    //window.addEventListener('a',function(){});
+    //for(const val of listenerList){
     //✏️打印所有addEventListener事件队列
-        console.log(val);
-    }
+    //    console.log(val);
+    //}
 --.标准浏览器使用jquery高版本，IE低版本浏览器使用jquery低版本
     方案1.所有IE版本使用jquery低版本
         <!--[if IE]> 
@@ -61,28 +62,62 @@
   } else {
     alert("您现在使用的浏览器内力不足，为防止走火入魔，建议使用IE9+或Chrome 20+浏览器~~");    
   }
---.判断手机设备是不是iphone，获取iphone版本号
-  var p = String(navigator.platform);
-  if( p === 'iPad' || p === 'iPhone' || p === 'iPod touch' ){
-    var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
-    if (parseInt(v[1], 10)>=7) {// iOS >=7
-    }
-  }
-  //验证是不是手机
-  function isPhone(){
-    var mobileAgent = new Array("iphone", "ipod", "ipad", "android", "mobile", "blackberry", "webos", "incognito", "webmate", "bada", "nokia", "lg", "ucweb", "skyfire");
-    var browser = navigator.userAgent.toLowerCase(); 
-    var isMobile = false; 
-    for (var i=0; i<mobileAgent.length; i++){
-        if(browser.indexOf(mobileAgent[i])!=-1){
-            isMobile = true; 
-            alert(mobileAgent[i]);
-            // location.href = '手机网址';
-            break;
+--.获取手机设备
+    //判断是不是iphone，获取iphone版本号
+    var p = String(navigator.platform);
+    if( p === 'iPad' || p === 'iPhone' || p === 'iPod touch' ){
+        var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+        if (parseInt(v[1], 10)>=7) {
+            // iOS >=7
         }
     }
-    return isMobile;
-  }
+    //验证是不是手机设备
+    function isPhone(){
+        var mobileAgent = new Array("iphone", "ipod", "ipad", "android", "mobile", "blackberry", "webos", "incognito", "webmate", "bada", "nokia", "lg", "ucweb", "skyfire");
+        var browser = navigator.userAgent.toLowerCase(); 
+        var isMobile = false; 
+        for (var i=0; i<mobileAgent.length; i++){
+            if(browser.indexOf(mobileAgent[i])!=-1){
+                isMobile = true; 
+                alert(mobileAgent[i]);
+                // location.href = '手机网址';
+                break;
+            }
+        }
+        return isMobile;
+    }
+    //智能机浏览器版本信息:
+    var browser = {
+        versions: function() {
+            var u = navigator.userAgent, app = navigator.appVersion;
+            return {//移动终端浏览器版本信息
+                trident: u.indexOf('Trident') > -1, //IE内核
+                presto: u.indexOf('Presto') > -1, //opera内核
+                webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/), //是否为移动终端
+                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器
+                iPad: u.indexOf('iPad') > -1, //是否iPad
+                webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+            };
+        }(),
+        language: (navigator.browserLanguage || navigator.language).toLowerCase()
+    }
+    if (browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {
+        window.location="https://itunes.apple.com/cn/app/xxx";
+    }
+    else if (browser.versions.android) {
+        window.location="http://zhj8.aliapp.com/xxx.apk";
+    }
+    document.writeln("语言版本: " + browser.language);
+    document.writeln(" 是否为移动终端: " + browser.versions.mobile);
+    document.writeln(" ios终端: " + browser.versions.ios);
+    document.writeln(" android终端: " + browser.versions.android);
+    document.writeln(" 是否为iPhone: " + browser.versions.iPhone);
+    document.writeln(" 是否iPad: " + browser.versions.iPad);
+    document.writeln(navigator.userAgent);
 --.Ajax请求默认的都是异步的，如果想同步 async设置为false,然后
     var html = $.ajax({
       url: "some.php",
