@@ -29,29 +29,42 @@ Access-control-allow-origin
 
 --.iframe、img、script(jsonp)、link(background)
  	img
- 	var s=new Image();
- 	vat start=Date.now();
- 	s.src="http://www.baidu.com/s.gif";
- 	s.onload=function(){
- 		var end=Date.now();
- 		var t=end-start;
- 		v=s.size / t +'kb/s';
- 	}
+	 	var s=new Image();
+	 	vat start=Date.now();
+	 	s.src="http://www.baidu.com/s.gif";
+	 	s.onload=function(){
+	 		var end=Date.now();
+	 		var t=end-start;
+	 		v=s.size / t +'kb/s';
+	 	}
 
  	script--jsonp
-	<script type="text/javascript" src="http://aa.com/index.php?callback=test"></script>
-	<script type="text/javascript">
-		function test(data){
-			console.log(data);
-		}
-	</script>
+		<script type="text/javascript" src="http://aa.com/index.php?callback=test"></script>
+		<script type="text/javascript">
+			function test(data){
+				console.log(data);
+			}
+		</script>
 
-	<?php
-		if(callback){
-			test({'aa':123})
-		}
-	?>
+		<?php
+			if(callback){
+				test({'aa':123})
+			}
+		?>
 
+	iframe
+		前提，www.a.com下a.html，a.html内iframe调用了www.b.com下的b.html，b.html下iframe调用了www.a.com下的c.html
+　　	b.html是不无法直接访问a.html的对象，因为涉及到跨域，但可以访问parent，同样c.html的parent可以访问b.html。c.html和a.html同域，是可以访问a下的对象的。parent.parent.js对象!
+		a.html
+			<iframe src="http://www.b.com/b.html" ></iframe>
+	    b.html
+	    	<iframe id="myfarme" src="http://www.a.com/c.html"></iframe>
+	    c.html
+	    	window.onload = function(){
+			    var text = window.location.href.split('=')[1]
+			    console.log(parent.parent)
+			    parent.parent.dosome(text);
+			}
 --.高阶WebSocket、posMessage(iframe、image)
 --.代码写到image里面 http://www.jb51.net/article/102767.htm
 
