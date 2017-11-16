@@ -179,8 +179,17 @@ BOM:
     window.location=window.location,可以来无限刷新页面,然后在加入到点击事件中,那么就只刷新一次
     方法:
     window.scrollTo(x,y);参数:X\Y,设置滚条的距离
-    window.open();打开一个新窗口,参数:1.url,2.打开的方式,默认值为，_blank,如果在iframe中打开，那么在window.open的第二个参数中填写name值,3.设置窗口大小,width,height,IE下设置是否可以缩放，yes可以缩放，no不可以缩放,注意：如果要设置第三个参数，那么第二个必须为_blank
-    返回值为，新打开窗口的window,需要人为事件触发,否则除了IE,其他会拦截.--如果用了document.write,往页面写数据,那么需要配合document.close();关闭写入数据
+    window.open();打开一个新窗口
+        参数:
+            1.url,
+            2.打开的方式,默认值为，_blank,如果在iframe中打开，那么在window.open的第二个参数中填写name值,
+            3.设置窗口大小,width,height,IE下设置是否可以缩放，yes可以缩放，no不可以缩放,
+            注意：如果要设置第三个参数，那么第二个必须为_blank，返回值为，新打开窗口的window,需要人为事件触发,否则除了IE,其他会拦截.
+            --如果用了document.write,往页面写数据,那么需要配合document.close();关闭写入数据
+        //打开一个新的浏览器窗口：
+            var _width=window.screen.width;
+            var _height=window.screen.height;
+            window.open ('index.html', '_blank', 'height='+_height+'; width='+_width+'; toolbar= no; menubar=no; scrollbars=no; fullscreen=yes;resizable=no; location=no; status=no;top=0;left=0;')
     window.close();关闭当前窗口,所有浏览器都能兼容的方法是：通过window.open去打开，然后就可以关闭打开的窗口。
     addEventListener:事件绑定,适合于标准浏览器.三个参数：第一个参数：去掉on事件名,第二个参数：事件绑定函数,第三个参数：默认为false冒泡,true捕获
     removeEventListener:解除绑定,针对指定的事件函数来解绑。第一个参数：要解绑的事件名（不带on）,第二个参数：要解绑的事件函数,第三个参数：是否捕获（默认false）

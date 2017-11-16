@@ -4,9 +4,9 @@ image-set根据屏幕分辨率和网速决定使用1倍图还是2倍图
 a:any-link{color:red}
     上边的那些a没有写到的选择器，都适用于这一条规则
 文本默认提示文字样式：
-    /*:-moz-placeholder{color:#21a8e2}*/
-    /*:-ms-input-placeholder{color:#21a8e2}*/
-    /*::-webkit-input-placeholder{color:#21a8e2}*/
+    :-moz-placeholder{color:#21a8e2}
+    :-ms-input-placeholder{color:#21a8e2}
+    ::-webkit-input-placeholder{color:#21a8e2}
 pointer-events:none
     特性是让元素不可点击，具有穿透性。顾名思意，就是鼠标事件拜拜的意思。元素应用了该CSS属性，链接啊，点击啊什么的都变成了“浮云牌酱油”。
 touch-acion: 规定用户能否以及如何操作页面上的指定区域; 当手指在屏幕上滑动时(MSPointerMove)连续触发。通常我们再滑屏页面，会调用css的html{-ms-touch-action: none;}可以触发默认的手势操作：阻止页面滚动
