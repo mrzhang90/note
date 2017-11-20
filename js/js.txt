@@ -179,6 +179,8 @@ BOM:
     window.location=window.location,可以来无限刷新页面,然后在加入到点击事件中,那么就只刷新一次
     方法:
     window.scrollTo(x,y);参数:X\Y,设置滚条的距离
+    window.onbeforeunload()
+        在当前窗口关闭前,检测当前窗口是否关闭
     window.open();打开一个新窗口
         参数:
             1.url,
@@ -191,7 +193,11 @@ BOM:
             var _height=window.screen.height;
             window.open ('index.html', '_blank', 'height='+_height+'; width='+_width+'; toolbar= no; menubar=no; scrollbars=no; fullscreen=yes;resizable=no; location=no; status=no;top=0;left=0;')
     window.close();关闭当前窗口,所有浏览器都能兼容的方法是：通过window.open去打开，然后就可以关闭打开的窗口。
-    addEventListener:事件绑定,适合于标准浏览器.三个参数：第一个参数：去掉on事件名,第二个参数：事件绑定函数,第三个参数：默认为false冒泡,true捕获
+    addEventListener:事件绑定,适合于标准浏览器.
+        三个参数：
+            第一个参数：去掉on事件名,
+            第二个参数：事件绑定函数,
+            第三个参数：默认为false冒泡,true捕获
     removeEventListener:解除绑定,针对指定的事件函数来解绑。第一个参数：要解绑的事件名（不带on）,第二个参数：要解绑的事件函数,第三个参数：是否捕获（默认false）
     attachEvent:事件绑定,适合于IE低版本浏览器.两个参数：第一个参数：带on事件名,第二个参数：事件绑定函数
     detachEvent:解除绑定,低版本IE,参数：第一个参数：带on的事件名。第二个参数：要解除的事件绑定函数。

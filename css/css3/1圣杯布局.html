@@ -3,23 +3,54 @@
 <head>
 	<title>圣杯布局</title>
 	<style type="text/css">
-		*{margin:0;padding:0;}
-		.container{padding-left:300px;padding-right:200px;}
+		body{margin:0;padding:0;}
+		.container{
+			padding-left:300px;padding-right:200px;
+		}
+		.clearFix{
+			zoom:1;
+		}
+		.clearFix:after{
+			content:"";
+			display:block;clear: both;
+		}
 		.left{
-			position:relative;left:-300px;
-			margin-left:-100%;float:left;width:300px;background:yellow;}
+			float:left;position:relative;left:-300px;
+			margin-left:-100%;width:300px;
+			background:yellow;}
 		.right{
-			margin-right:-200px;float:right;width:200px;background:red;}
-		.middle{float:left;width:100%;background:green;}
+			float:right;margin-right:-200px;
+			width:200px;
+			background:red;
+		}
+		.middle{
+			float:left;
+			width:100%;
+			background:green;
+		}
 	</style>
 </head>
 <body>
-<div class="container">
-	<div class="middle">
-		中1212121212
-	</div>	
-	<div class="left">左</div>	
-	<div class="right">右</div>
-</div>
+<header class="clearFix">
+	<div class="container">
+		<div class="middle">
+			中1212121212中1212121212中1212121212中1212121212
+		</div>	
+		<div class="left">左</div>	
+		<div class="right">右</div>
+	</div>
+</header><!-- /header -->
+<footer>
+	<h1>圣杯实现原理</h1>
+	<ul>
+		<li>html代码中，middle部分首先要放在container的最前部分，然后是left,right</li>
+		<li>1.将三者都设置float:left，position:relative(因为相对定位后面会用到)</li>
+		<li>2.middle设置 width:100% 占满一行</li>
+		<li>3.此时middle占满一行，所以要把left拉倒middle所在行的最左边，使用margin-left:-100%</li>
+		<li>4.这是left拉回到middle所在行的最左边，但会覆盖middle内容的左端，要把middle内容拉出来，所以在外围container加上padding:0 200px</li>
+		<li>5.middle内容拉出来了，但left也跟着出来了，所以要还原，就对left使用相对定位left:-200px</li>
+		<li>6.同理，right要拉倒middle所在行的最右边，使用margin0right-200px,right:-200px</li>
+	</ul>
+</footer>
 </body>
 </html>

@@ -3,20 +3,54 @@
 <head>
 	<title>双飞翼布局</title>
 	<style type="text/css">
-		*{margin:0;padding:0;}
-		.left{margin-left:-100%;float:left;width:300px;background:yellow;}
-		.right{margin-left:-200px;float:right;width:200px;background:red;}
-		.middle{float:left;width:100%;background:green;}
-		.inner{margin-left:300px;}
+		body{margin:0;padding:0;}
+		.clearFix{
+			zoom:1;
+		}
+		.clearFix:after{
+			content:"";
+			display:block;clear: both;
+		}
+		.left{
+			float:left;
+			margin-left:-100%;
+			width:300px;background:yellow;
+		}
+		.right{
+			float:right;
+			margin-left:-200px;
+			width:200px;background:red;
+		}
+		.middle{
+			float:left;
+			width:100%;
+			background:green;
+		}
+		.inner{
+			margin-left:300px;
+			margin-right:300px;
+		}
 	</style>
 </head>
 <body>
-<div class="middle">
-	<div class="inner">
-		中1212121212
-	</div>
-</div>	
-<div class="left">左</div>	
-<div class="right">右</div>
+<header class="clearFix">
+	<div class="middle">
+		<div class="inner">
+			中1212121212<br/>
+		</div>
+	</div>	
+	<div class="left">左</div>	
+	<div class="right">右</div>
+</header><!-- /header -->
+<footer>
+	<h1>圣杯实现原理</h1>
+	<ul>
+		<li>html代码中，middle部分首先要放在container的最前部分，然后是left,right</li>
+		<li>1.将三者都设置float:left</li>
+		<li>2.middle设置 width:100% 占满一行</li>
+		<li>3.此时middle占满一行，所以要把left拉倒middle所在行的最左边，使用margin-left:-100%,同理right使用margin-left:-200px</li>
+		<li>4.此时middle的内容被覆盖，要把middle的内容拉出来，除了使用外围container的padding，还可以考虑使用margin，给middle增加一个内层--inner,然后设置margin:0 210px;</li>
+	</ul>
+</footer>
 </body>
 </html>

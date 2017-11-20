@@ -1,3 +1,9 @@
+--.表格头固定-transform
+    //table绑定滚动事件，滚动时thead始终居于顶部
+    $('.table').on('scroll', function () {
+        $(this).children('thead').css('transform','translateY('+this.scrollTop+'px)');
+    })
+    //来源-http://blog.csdn.net/weixiangzhe/article/details/59108514
 --.查找addEventListener绑定事件队列
     解决团队内，多个人往一个元素上绑一样的事件，互相影响
     利用proxy代理的方式，给绑定事件基础上做一些额外的事情，还有一种思路是aop切面编程(after、befor)

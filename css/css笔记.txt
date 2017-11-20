@@ -1,14 +1,42 @@
-reset.css 重置
-normalize.css 修复
-neat.css 融合
+CSS透视
+	开启3D只针对子元素
+		-webkit-transform-style:preserve-3d;
+		-webkit-perspective:300;//视点
+		-webkit-perspective-origin:25% 75%;
+3D变形函数
+	rotateX、rotateY、rotateZ，旋转XYZ轴
+	translateX、translateY、translateZ 在XYZ轴上移动
+	scaleZ(sz) Z轴缩放
+	matrix3d()函数则牵扯到线性代数、立体几何、三角学等的各种知识
+3D加速
+	开启GPU加速，让2D动画在手机上的性能更好
+	.cube{
+		-webkit-transform:translate3d(0,0,0);
+		-moz-transform:translate3d(0,0,0);
+		-ms-transform:translate3d(0,0,0);
+		transform:translate3d(0,0,0);//用了3d,默认就会让盒子有个背面，这个背面也会相应的造成浏览器卡顿
+		//所以如果是为了让2d加速，那么把背面设置hidden即可
+		-webkit-backface-visibility:hidden;
+		-moz-backface-visibility:hidden;
+		-ms-backface-visibility:hidden;
+		backface-visibility:hidden;
+		-webkit-perspective:1000;
+		-moz-perspective:1000;
+		-ms-perspective:1000;
+		perspective:1000;
+	}
+
+css Reset
+	reset.css 重置
+	normalize.css 修复
+	neat.css 融合-基于normalize
 移动端：
 	html{box-sizing:border-box;}
 	*,*:befor,*.after{box-sizing:inhert;}//继承html
+
 css hint
+
 BFC
-
 IFC
-
 GFC
-
 FFC
