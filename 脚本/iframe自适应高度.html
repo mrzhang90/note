@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>iframe自适应高度</title>
+	<style type="text/css" media="screen">
+		.left{float: left;margin-right:10px;width:100px;}
+		.right{float: left;width:800px;overflow:auto;background-color: yellow;}
+	</style>
+</head>
+<body>
+<p>
+	<b style="color:red;">要在同一个域下才能生效</b>
+</p>
+<div class="left">
+	<a href="IE7圆角.html" target="mainFrame">
+		联赛列表
+	</a>
+</div>
+<div class="right">
+	<iframe name="mainFrame" id="mainFrame" frameborder="0" scrolling="no" src="absolute自适应.html" width="100%;"></iframe>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+	function setIframeHeight(iframe) {
+		if (iframe) {
+			var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+			if (iframeWin.document.body) {
+				iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+			}
+		}
+	};
+
+	window.onload = function () {
+		setIframeHeight(document.getElementById('mainFrame'));
+	};
+	$('a').on('click',function(){
+        setTimeout(function(){
+            setIframeHeight(document.getElementById('mainFrame'));
+		},1000)
+	})
+</script>
+</body>
+</html>

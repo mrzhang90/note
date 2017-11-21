@@ -88,11 +88,11 @@ IE6下的双边距BUG
 在IE6下,margin传递有问题,可以用haslayout解决,它是IE渲染引擎的一个内部组成部分,触发haslayout可以使元素根据自身内容的大小，来重新组织和计算自身的width和height
     *display:inline-block;*height:(任何值除了auto);*float:(left 或 right);*position:absolute;*width:(任何值除了auto);*zoom:(除normal外任意值);
 在IE6下两个浮动元素之间有注释或者内嵌元素，并且元素的宽度和父级相差小于3px，元素最后的一些文字会被复制
-13.3px空隙问题:当一个div浮动,另一个div用margin-left的方式,排到一排,会有3px的缝隙,解决方法:_position:relative; _left:-3px;
-20.表格的内容可以撑开设置好的宽高,table-layout:fixed; 不让表格的内容撑开表格设定好宽高
-21.在IE6,7下输入类型的表单控件,上下会有1px的空隙,解决办法:给元素加浮动
-22.在IE6下，给输入类型的表单控件，加border:none无效,解决办法:1.border:0;2.重置控件背景;
-23.在IE6,7下输入类型的表单控件, 输入文字的时候，背景图会跟着一块移动,解决办法,同上
+3px空隙问题:当一个div浮动,另一个div用margin-left的方式,排到一排,会有3px的缝隙,解决方法:_position:relative; _left:-3px;
+表格的内容可以撑开设置好的宽高,table-layout:fixed; 不让表格的内容撑开表格设定好宽高
+在IE6,7下输入类型的表单控件,上下会有1px的空隙,解决办法:给元素加浮动
+在IE6下，给输入类型的表单控件，加border:none无效,解决办法:1.border:0;2.重置控件背景;
+在IE6,7下输入类型的表单控件, 输入文字的时候，背景图会跟着一块移动,解决办法,同上
 左浮元素margin-bottom失效
 	解决方法：显示设置高度 or 父标签设置_padding-bottom代替子标签的margin-bottom or 再放个标签让父标签浮动，子标签 margin- bottom，即(margin-bottom与float不同时作用于一个标签)
 定位：

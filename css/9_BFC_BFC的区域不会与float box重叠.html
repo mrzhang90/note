@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<style type="text/css" media="screen">
+		body{
+			width:300px;
+			position: relative;
+		}
+		.a{
+			float:left;
+			width:100px;height:150px;
+			background:red;
+		}
+		.b{
+			/*
+				解决方案:BFC的区域不会与float box重叠，所以ovflow:hidden即可解决重叠问题
+			*/
+			/*overflow:hidden;*/
+			width:200px;height:150px;
+			background:yellow;
+		}
+	</style>
+</head>
+<body>
+<h1>
+	问题原因：左边的box是float，右边的是一个正常div，会发生重叠
+</h1>
+<div class="a"></div>	
+<div class="b"></div>
+</body>
+</html>
