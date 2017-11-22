@@ -1,0 +1,29 @@
+参考《如何改变表单元素的外观(for Webkit and IE10)》
+
+webkit表单元素的默认外观怎么重置
+  .css{-webkit-appearance:none;}
+webkit表单输入框placeholder的颜色值能改变么
+  input::-webkit-input-placeholder{color:#AAAAAA;}
+  input:focus::-webkit-input-placeholder{color:#EEEEEE;}
+webkit表单输入框placeholder的文字能换行么
+  ios可以，android不行~
+IE10（winphone8）表单元素默认外观如何重置
+  禁用 select 默认下拉箭头
+  ::-ms-expand 适用于表单选择控件下拉箭头的修改，有多个属性值，设置它隐藏 (display:none) 并使用背景图片来修饰可得到我们想要的效果。
+  select::-ms-expand {
+    display: none;
+  }
+禁用 radio 和 checkbox 默认样式
+  ::-ms-check 适用于表单复选框或单选按钮默认图标的修改，同样有多个属性值，设置它隐藏 (display:none) 并使用背景图片来修饰可得到我们想要的效果。
+  input[type=radio]::-ms-check,input[type=checkbox]::-ms-check{
+  display: none;
+  }
+  禁用PC端表单输入框默认清除按钮
+  当表单文本输入框输入内容后会显示文本清除按钮，::-ms-clear 适用于该清除按钮的修改，同样设置使它隐藏 (display:none) 并使用背景图片来修饰可得到我们想要的效果。
+  input[type=text]::-ms-clear,input[type=tel]::-ms-clear,input[type=number]::-ms-clear{
+  display: none;
+  }
+禁止ios 长按时不触发系统的菜单，禁止ios&android长按时下载图片
+  .css{-webkit-touch-callout: none}
+禁止ios和android用户选中文字
+  .css{-webkit-user-select:none}

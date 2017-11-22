@@ -1,71 +1,83 @@
-参考：
-	http://www.haorooms.com/post/ios_fixed_input
-问题分析
-	软键盘唤起后，页面的 fixed 元素将失效（即无法浮动，也可以理解为变成了 absolute 定位），所以当页面超过一屏且滚动时，失效的 fixed 元素就会跟随滚动了。
-	这便是 iOS 上 fixed 元素和输入框的 bug 。其中不仅限于 type=text 的输入框，凡是软键盘（比如时间日期选择、select 选择等等）被唤起，都会遇到同样地问题。
-	虽然 isScroll.js 可以很好的解决 fixed 定位滚动的问题，但是不在万不得已的情况下，我们尽量尝试一下不依赖第三方库的布局方案，以简化实现方式。这里抛砖引玉作为参考。
-解决思路
-	既然在 iOS 下由于软键盘唤出后，页面 fixed 元素会失效，导致跟随页面一起滚动，那么假如——页面不会过长出现滚动，那么即便 fixed 元素失效，也无法跟随页面滚动，也就不会出现上面的问题了。
-	那么按照这个思路，如果使 fixed 元素的父级不出现滚动，而将原 body 滚动的区域域移到 main 内部，而 header 和 footer 的样式不变，代码如下：
-	<style type="text/css">
-	*{margin:0;padding:0;}
-	header, footer, main {
-	    display: block;
-	    width:100%;
-	}
+方案一.
+	fixed bug
+	  ios下fixed元素容易定位出错，软键盘弹出时，影响fixed元素定位
+	  android下fixed表现要比iOS更好，软键盘弹出时，不会影响fixed元素定位
+	  ios4下不支持position:fixed
+	  解决方案
+	  可用isroll.js，暂无完美方案
+	  参考
+	    《移动端web页面使用position:fixed问题总结》
+	    《使用iScroll.js解决ios4下不支持position:fixed的问题》
 
-	header {
-	    position: fixed;
-	    height: 50px;
-	    left: 0;
-	    right: 0;
-	    top: 0;
-	    background-color:red;
-	}
+方案二.
+	参考：
+		http://www.haorooms.com/post/ios_fixed_input
+	问题分析
+		软键盘唤起后，页面的 fixed 元素将失效（即无法浮动，也可以理解为变成了 absolute 定位），所以当页面超过一屏且滚动时，失效的 fixed 元素就会跟随滚动了。
+		这便是 iOS 上 fixed 元素和输入框的 bug 。其中不仅限于 type=text 的输入框，凡是软键盘（比如时间日期选择、select 选择等等）被唤起，都会遇到同样地问题。
+		虽然 isScroll.js 可以很好的解决 fixed 定位滚动的问题，但是不在万不得已的情况下，我们尽量尝试一下不依赖第三方库的布局方案，以简化实现方式。这里抛砖引玉作为参考。
+	解决思路
+		既然在 iOS 下由于软键盘唤出后，页面 fixed 元素会失效，导致跟随页面一起滚动，那么假如——页面不会过长出现滚动，那么即便 fixed 元素失效，也无法跟随页面滚动，也就不会出现上面的问题了。
+		那么按照这个思路，如果使 fixed 元素的父级不出现滚动，而将原 body 滚动的区域域移到 main 内部，而 header 和 footer 的样式不变，代码如下：
+		<style type="text/css">
+		*{margin:0;padding:0;}
+		header, footer, main {
+		    display: block;
+		    width:100%;
+		}
 
-	footer {
-	    position: fixed;
-	    height: 34px;
-	    left: 0;
-	    right: 0;
-	    bottom: 0;
-	}
+		header {
+		    position: fixed;
+		    height: 50px;
+		    left: 0;
+		    right: 0;
+		    top: 0;
+		    background-color:red;
+		}
 
-	main {
-		/* main绝对定位，进行内部滚动 */
-		position: absolute;
-		top: 50px;
-		bottom: 34px;
-		/* 使之可以滚动 */
-		overflow-y: scroll;
-		/* 增加该属性，可以增加弹性，是滑动更加顺畅 */
-		-webkit-overflow-scrolling: touch;
-		background-color:blue;
-	}
+		footer {
+		    position: fixed;
+		    height: 34px;
+		    left: 0;
+		    right: 0;
+		    bottom: 0;
+		}
 
-	main .content {
-	    height: 2000px;
-	}
-	</style>
-	<body class="layout-scroll-fixed">
-	    <!-- fixed定位的头部 (absolute绝对定位也可以)-->
-	    <header>
-	    <input type="" name="">
-	    </header>
+		main {
+			/* main绝对定位，进行内部滚动 */
+			position: absolute;
+			top: 50px;
+			bottom: 34px;
+			/* 使之可以滚动 */
+			overflow-y: scroll;
+			/* 增加该属性，可以增加弹性，是滑动更加顺畅 */
+			-webkit-overflow-scrolling: touch;
+			background-color:blue;
+		}
 
-	    <!-- 可以滚动的区域 -->
-	    <main>
-	        <div class="content">
-	        </div>
-	    </main>
+		main .content {
+		    height: 2000px;
+		}
+		</style>
+		<body class="layout-scroll-fixed">
+		    <!-- fixed定位的头部 (absolute绝对定位也可以)-->
+		    <header>
+		    <input type="" name="">
+		    </header>
 
-	    <!-- fixed定位的底部 （absolute绝对定位也可以）-->
-	    <footer>
-	        <input type="text" placeholder="Footer...">
-	        <button class="submit">提交</button>
-	    </footer>
+		    <!-- 可以滚动的区域 -->
+		    <main>
+		        <div class="content">
+		        </div>
+		    </main>
 
-	</body>
-PS:
-	解决思路关键点在于-position: absolute;top: 50px;bottom: 34px;overflow-y: scroll;
-		这里利用absolute的特性，使元素高度自适应页面
+		    <!-- fixed定位的底部 （absolute绝对定位也可以）-->
+		    <footer>
+		        <input type="text" placeholder="Footer...">
+		        <button class="submit">提交</button>
+		    </footer>
+
+		</body>
+	PS:
+		解决思路关键点在于-position: absolute;top: 50px;bottom: 34px;overflow-y: scroll;
+			这里利用absolute的特性，使元素高度自适应页面

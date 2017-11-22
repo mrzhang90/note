@@ -1,14 +1,12 @@
 --.判断是移动端
 	if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+
 --.IOS上new Date获取时间的bug，兼容IOS5以上版本：
     new Date('2013/10/21');
     或者
     var d = new Date(date);
     d = d.getFullYear() > 0 ? d : new Date(Date.parse(date.replace(/-/g, "/")));
 
---.IOS和Android系统都会默认某长度内的数字为电话号码，即使不加也是会默认显示为电话的
-	<meta content="telephone=no" name="format-detection">
-	
 --.ios以及微信页面中title动态修改失效问题
 	var $body = $('body')
 	document.title ="动态titile标题"
@@ -18,6 +16,7 @@
 	    $iframe.off('load').remove()
 	  }, 0)
 	}).appendTo($body)
+
 --.PC网站兼容手机设备
 	方法一.
 		PC网站自适应移动端。-青古项目
@@ -88,74 +87,71 @@
 			    }
 			    return isMobile;
 			}
-笔记：		
-	box-sizing:border-box;-webkit-box-sizing:border-box;
-		移动端要设置盒模型，这样就不会被撑开	
-	em=1个当前元素文字大小; rem=1个html的文字大小
-	window.devicePixelRatio:像素比是设备物理像素和设备独立像素(dips)的比例,像素比为2，原先一个像素东西会用2像素的区域来显示;
-	物理像素:设备屏幕的本身像素值;独立像素:设备屏幕的本身像素值/像素比;实际像素:文档的实际像素
-	<meta name="viewport" content="width=device-width,height=device-height,user-scalable=no,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1,target-densitydpi=device-dpi" />
-	<meta name="viewport" content="" />:视口设置;
-	    width:视口宽度(数值||device-width) 直接数值安卓部分手机不支持,IOS支持; user-scalable:是否允许用户缩放( yes||no); initial-scale:初始比例; minimum-scale:最小缩放比例; maximum-scale:最大缩放比例;
-	    target-densitydpi://每英寸像素点的个数
-	        dpi_value 70-400(取值范围)
-	        device-dpi 设备默认像素密度
-	        high-dpi 高像素密度
-	        meidum-dpi 中等像素密度
-	        low-dpi 低像素密度
-	        webkit 内核已准备再支持
-	适配：
-		<script>//移动端适配等比例
-		    var i=0;
-		    i=window.devicePixelRatio>1?1/window.devicePixelRatio:1;
-		    document.write('<meta name="viewport" content="width=device-width,initial-scale='+i+',minimum-scale='+i+',maximum-scale='+i+',user-scalable=no" />');
-		</script>
-		<script>//移动端ren字体适配
-		    //getBoundingClientRect() 元素的尺寸和位置
-		    var oHtml=document.getElementsByTagName("html")[0];//在js里找到html这个元素
-		    var iWidth=oHtml.getBoundingClientRect().width;//获取到html的宽度;
-		    oHtml.style.fontSize=iWidth/16+"px";//给html设置字体大小，字体的大小刚好是html宽度的16分之一;
-		</script>
 
-	适配方案一: 1.viewport 宽度设置320;2.页面的宽度按照320来写,内容设置居中
-	适配方案二:(x) 百分比布局
-	适配方案二: (rem)
+--.打电话发短信的怎么实现
+  打电话
+    <a href="tel:0755-10086">打电话给:0755-10086</a>
+  发短信，winphone系统无效
+    <a href="sms:10086">发短信给: 10086</a>
 
-	这个适配更适合手机
-	    @media all and (max-device-width:640px)
-	@media all and (min-width:320px) and (max-width:767px)
-	超小屏幕:手机 (<768px); 小屏幕:平板 (≥768px);中等屏幕:桌面 (≥992px);大屏幕:桌面 (≥1200px);超大屏幕:桌面 (≥1400px)
-	媒体关键字:and/not/only
-	媒体类型:
-	    all 所有的类型
-	    handheld 手持设备
-	    screen 彩屏设备
-	    print 打印预览
-	    braille 盲文触觉设备
-	    embossed 盲文打印机
-	    projection 投影
-	    speech 听觉设备
-	    TTY  电传打字机终端，或显示能力有限的移动设备
-	    tv 电视
-	媒体特征
-	    width  等于
-	    min-width 大于等于
-	    max-width 小于等于
-	    orientation : landscape 横屏
-	    orientation : portrait 竖屏
-	    height
-	    min-height
-	    max-height
-	    device-width
-	    min-device-width
-	    max-device-width
-	    device-height
-	    min-device-height
-	    max-device-height
-	    *aspect-ratio  宽高比 (分数)
-	    min-aspect-ratio
-	    max-aspect-ratio
-	    device-aspect-ratio  设备宽高比
-	    min-device-aspect-ratio
-	    max-device-aspect-ratio
-	    device-pixel-ratio
+--.消除transition闪屏
+  网络都是这么写的，但我并没有测试出来
+
+  .css{
+  /*设置内嵌的元素在 3D 空间如何呈现：保留 3D*/
+  -webkit-transform-style: preserve-3d;
+  /*（设置进行转换的元素的背面在面对用户时是否可见：隐藏）*/
+  -webkit-backface-visibility: hidden;
+  }
+
+  开启硬件加速
+  解决页面闪白
+  保证动画流畅
+  .css {
+     -webkit-transform: translate3d(0, 0, 0);
+     -moz-transform: translate3d(0, 0, 0);
+     -ms-transform: translate3d(0, 0, 0);
+     transform: translate3d(0, 0, 0);
+  }
+  参考《用CSS开启硬件加速来提高网站性能》
+
+--.取消input在ios下，输入的时候英文首字母的默认大写
+  <input autocapitalize="off" autocorrect="off" />
+
+  android 上去掉语音输入按钮
+  input::-webkit-input-speech-button {display: none}
+
+  android 2.3 bug
+  @-webkit-keyframes 需要以0%开始100%结束，0%的百分号不能去掉
+  after和before伪类无法使用动画
+  border-radius不支持%单位
+  translate百分比的写法和scale在一起会导致失效，例如-webkit-transform: translate(-50%,-50%) scale(-0.5, 1)
+
+  android 4.x bug
+  三星 Galaxy S4中自带浏览器不支持border-radius缩写
+  同时设置border-radius和背景色的时候，背景色会溢出到圆角以外部分
+  部分手机(如三星)，a链接支持鼠标:visited事件，也就是说链接访问后文字变为紫色
+  参考《border-radius 移动之伤》
+
+  设计高性能CSS3动画的几个要素
+  尽可能地使用合成属性transform和opacity来设计CSS3动画，不使用position的left和top来定位
+  利用translate3D开启GPU加速
+  参考《High Performance Animations》
+
+--.微信浏览器用户调整字体大小后页面矬了，怎么阻止用户调整
+  原因
+  anroid侧是复写了layoutinflater 对textview做了统一处理
+  ios侧是修改了body.style.webkitTextSizeAdjust值
+  普通解决方案：
+  android暂无方案
+  ios使用-webkit-text-size-adjust禁止调整字体大小
+  body{-webkit-text-size-adjust: 100%!important;}
+  最好的解决方案：
+    整个页面用rem或者百分比布局
+
+--.如何阻止windows Phone的默认触摸事件
+  winphone下默认触摸事件事件使用e.preventDefault是无效的
+  目前解决方法是使用样式来禁用
+  html{-ms-touch-action: none;}/* 禁止winphone默认触摸事件 */
+  参考
+  《Windows phone 8 touch support》

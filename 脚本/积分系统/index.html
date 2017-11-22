@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title>计时计分器</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/scoring.css">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+</head>
+
+<body class="no-skin" style="position:relative;overflow: hidden;">
+<div style="transform: scale(1.3) translateY(80px);">
+    <header class="header">
+        <div>
+            <img src="" alt="" id="activityLogo">
+        </div>
+        <span id="activityName"></span>
+    </header><!-- /header -->
+    <section class="content clearFix">
+        <div class="team left">
+            <div class="teamName clearFix">
+                <span>HOME</span>
+                <b id="firstTeamName"></b>
+                <div class="radiusImg">
+                    <img src="" alt="" id="firstTeamLogo" width="127" height="127">
+                </div>
+            </div>
+            <div class="teamScore" id="firstTeamScore"></div>
+            <div class="foulTotal">
+                <p>犯规次数</p>
+                <div class="foulNumber" id="firstTeamFoul"></div>
+            </div>
+        </div>
+        <div class="team right">
+            <div class="teamName clearFix">
+                <span>GUEST</span>
+                <b id="secondTeamName"></b>
+                <div class="radiusImg">
+                    <img src="" alt="" id="secondTeamLogo" width="127" height="127">
+                </div>
+            </div>
+            <div class="teamScore" id="secondTeamScore" style="float:right;"></div>
+            <div class="foulTotal">
+                <p>犯规次数</p>
+                <div class="foulNumber" id="secondTeamFoul"></div>
+            </div>
+        </div>
+        <div class="center">
+            <div class="time" id="j_times">
+            </div>
+            <div class="theFirst" id="ballRight"></div>
+            <div class="sectionNumber" id="gamePhase"></div>
+            <div class="second24" id="time24"></div>
+        </div>
+        <div class="YDHlogo">
+            <div class="left" id="home_pause">
+                <i></i>
+                <i></i>
+                <i></i>
+            </div>
+            <div class="right" id="guest_pause">
+                <i></i>
+                <i></i>
+                <i></i>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="codePos">
+    <img src="images/code.png" alt="">
+</div>
+<audio id="suspend" controls="controls" src="suspend.wav" hidden></audio>
+<!--[if !IE]> -->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
+<![endif]-->
+<script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var audio = document.getElementById('suspend');
+        var cookies = getlocalStorage;
+        $('#activityLogo').attr('src', cookies("activityLogo"));
+        $('#activityName').text(cookies("activityName"));
+        $('#firstTeamName').text(cookies("firstTeamName"));
+        $('#secondTeamName').text(cookies("secondTeamName"));
+        var teamName = $('.teamName');
+        $('#firstTeamLogo').attr('src', cookies("firstTeamLogo"));
+        $('#secondTeamLogo').attr('src', cookies("secondTeamLogo"));
+
+        var firstTeamScore = $('#firstTeamScore'), secondTeamScore = $('#secondTeamScore'), ballRight = $('#ballRight'),
+            gamePhase = $('#gamePhase'), time24 = $('#time24'), j_times = $('#j_times'), timeMin = $('#timeMin'),
+            timeSec = $('#timeSec'),
+            firstTeamFoul = $('#firstTeamFoul'), secondTeamFoul = $('#secondTeamFoul'), home_pause = $('#home_pause'),
+            guest_pause = $('#guest_pause');
+        var audioTime0 = true, audioTimes = true;
+        var cache={};
+        var startSystemTime=0;
+        var timerSS=0;
+        +(function(){
+            startSystemTime=new Date().getTime();
+            timeChange(cookies("time"));
+            time24Change();
+        })();
+        //为防止总时间定时执行中，用户误关闭页面，所以页面初始化就先读取时间开关的记录值
+//        if(cookies('timeSS')==1){
+//            storageTime(1)
+//        }
+        window.requestAnimationFrame(execute);
+
+//        setInterval(function () {
+//            execute();
+//        }, 1000);
+
+        window.addEventListener("storage", function (e) {
+            if(e.key == "timeSS"){
+                storageTime(e.newValue)
+            }
+        });
+        function storageTime(newValue){
+            var ck_timer=cookies("time");
+            if(newValue == '1'){
+                startSystemTime=new Date().getTime();
+                timerSS=setInterval(function(){
+                    if(ck_timer==0){
+                        clearInterval(timerSS);
+                    }
+                    ck_timer = timeChange(ck_timer)
+                },100)
+            }else if(newValue == '0'){
+                clearInterval(timerSS);
+            }else{
+                startSystemTime=new Date().getTime();
+                timeChange(ck_timer)
+            }
+        }
+        function time24Change(){
+            setTimeout(function(){
+                var time24Num = Number(cookies("time24"));
+                if(cache['time24'] != time24Num){
+                    time24Num = '' + Math.ceil(time24Num / 1000);
+                    time24.html(time24Num <= 9 ? '<span>' + time24Num + '</span>' : '<span>' + time24Num[0] + '</span><span>' + time24Num[1] + '</span>');
+                    if (time24Num == 0) {
+                        time24.css('border-color', '#e94b51');
+                        audioTime0 && audio.play();
+                        audioTime0 = false;
+                    } else {
+                        time24.css('border-color', '#fff');
+                        audioTime0 = true;
+                    }
+                    cache['time24']=cookies("time24");
+                }
+                window.requestAnimationFrame(time24Change);
+            },300)
+        }
+        function timeChange(times){
+            var _tmp = times = timeTimer(times);
+            if (times >= 60000) {
+                var _time = timeFormat(times,'ceil');
+                j_times.html('<span>' + _time[0][0] + '</span><span>' + _time[0][1] + '</span><span class="delimiter"></span><span>' + _time[1][0] + '</span><span>' + _time[1][1] + '</span>').removeClass('yellow');
+            } else {
+                var _time = timeFormat(times,'floor');
+                j_times.html('<span>' + _time[1][0] + '</span><span>' + _time[1][1] + '</span><span class="timeHil"></span><span>' + _time[2] + '</span>').addClass('yellow');
+            }
+            if (times == 0) {
+                audioTimes && audio.play();
+                audioTimes = false;
+            } else {
+                audioTimes = true;
+            }
+            return _tmp;
+        }
+        function execute() {
+            setTimeout(function(){
+                var cook_gamePhase = cookies("gamePhase");
+                if(cache['gamePhase'] != cook_gamePhase){
+                    gamePhase.text(cook_gamePhase);
+                    cache['gamePhase']=cook_gamePhase;
+                }
+
+                var firstTeamPause = cookies("firstTeamPause");
+                if(cache['firstTeamPause'] != firstTeamPause){
+                    if (firstTeamPause > 0) {
+                        var pause_arr = [];
+                        for (var i = 1; i <= 3; i++) {
+                            if (i <= firstTeamPause) {
+                                pause_arr.push('<i class="active"></i>');
+                            } else {
+                                pause_arr.push('<i></i>');
+                            }
+                        }
+                        home_pause.html(pause_arr.join(''));
+                    } else {
+                        home_pause.html('<i></i><i></i><i></i>');
+                    }
+                    cache['firstTeamPause']=firstTeamPause;
+                }
+
+                var secondTeamPause = cookies("secondTeamPause");
+                if(cache['secondTeamPause'] != secondTeamPause){
+                    if (secondTeamPause > 0) {
+                        var pause_arr = [];
+                        for (var i = 1; i <= 3; i++) {
+                            if (i <= secondTeamPause) {
+                                pause_arr.push('<i class="active"></i>');
+                            } else {
+                                pause_arr.push('<i></i>');
+                            }
+                        }
+                        guest_pause.html(pause_arr.reverse().join(''));
+                    } else {
+                        guest_pause.html('<i></i><i></i><i></i>');
+                    }
+                    cache['secondTeamPause']=secondTeamPause;
+                }
+
+                var firstTeamNum = '' + cookies("firstTeamScore")
+                if(cache['firstTeamScore'] != firstTeamNum){
+                    firstTeamScore.html(firstTeamNum <= 9 ? firstTeamNum : '<span>' + firstTeamNum[0] + '</span><span>' + firstTeamNum[1] + '</span>');
+                    cache['firstTeamScore']=firstTeamNum;
+                }
+
+                var secondTeamNum = '' + cookies("secondTeamScore");
+                if(cache['secondTeamScore'] != secondTeamNum){
+                    secondTeamScore.html(secondTeamNum <= 9 ? secondTeamNum : '<span>' + secondTeamNum[0] + '</span><span>' + secondTeamNum[1] + '</span>');
+                    cache['secondTeamScore']=secondTeamNum;
+                }
+
+                var cook_firstTeamFoul = cookies("firstTeamFoul");
+                if(cache['firstTeamFoul'] != cook_firstTeamFoul){
+                    firstTeamFoul.text(cook_firstTeamFoul).css('color', cook_firstTeamFoul >= 5 ? '#e94b51' : '#1cb4d5');
+                    cache['firstTeamFoul']=cook_firstTeamFoul;
+                }
+
+                var cook_secondTeamFoul = cookies("secondTeamFoul");
+                if(cache['secondTeamFoul'] != cook_secondTeamFoul){
+                    secondTeamFoul.text(cook_secondTeamFoul).css('color', cook_secondTeamFoul >= 5 ? '#e94b51' : '#1cb4d5');
+                    cache['secondTeamFoul']=cook_secondTeamFoul;
+                }
+
+                var cook_ball = cookies('ballRight');
+                if(cache['ballRight'] != cook_ball){
+                    console.log(cook_ball)
+                    switch (cook_ball) {
+                        case "1":
+                            ballRight.removeClass('home guest');
+                            break;
+                        case "2":
+                            ballRight.removeClass('home').addClass('guest');
+                            break;
+                        default:
+                            ballRight.removeClass('guest').addClass('home');
+                            break;
+                    }
+                    cache['ballRight']=cook_ball;
+                }
+                window.requestAnimationFrame(execute);
+            },1000);
+        }
+        function timeTimer(timerTime) {
+            var curTime = new Date().getTime();
+            timerTime = timerTime - (curTime - startSystemTime);
+            startSystemTime = curTime;
+            if (timerTime < 0)
+                timerTime = 0;
+            return timerTime;
+        }
+    });
+    function dobule(val) {
+        return val < 10 ? "0" + val : val;
+    }
+    function timeFormat(time,math) {
+        var arr=[];
+        time = Math.ceil(time / 100);
+        var min = Math.floor(time / 600);
+//        if(math=='ceil'){
+//            console.log(time / 10 % 60,Math.ceil(time / 10 % 60));
+//        }
+        var second = math=='ceil'?Math.ceil(time / 10 % 60):Math.floor(time / 10 % 60);
+        if(second == 60){
+            second=0;
+            min+=1;
+        }
+        arr.push(min > 0 ? dobule('' + min) : 0);
+        arr.push(''+dobule(second));
+        arr.push(time % 10);
+        return arr;
+    }
+    function getlocalStorage(key) {
+        if(key){
+            return localStorage.getItem(key);
+        }
+        return "";
+    }
+    function getCookie(c_name) {
+        if (document.cookie.length > 0) {
+            c_start = document.cookie.indexOf(c_name + "=")
+            if (c_start != -1) {
+                c_start = c_start + c_name.length + 1
+                c_end = document.cookie.indexOf(";", c_start)
+                if (c_end == -1) c_end = document.cookie.length
+                return decodeURIComponent(document.cookie.substring(c_start, c_end))
+            }
+        }
+        return ""
+    }
+</script>
+</body>
+
+</html>

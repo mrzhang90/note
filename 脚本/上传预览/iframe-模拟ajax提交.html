@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+<h1>注意:form的target属性。设置为iframe的name属性值。这样的话后台返回的view会显示在iframe中</h1>
+<p>参考：https://www.cnblogs.com/gaocong/p/4766132.html</p>
+<iframe name="ajaxFrame" style="display:none;"></iframe>
+<form action="iframe-模拟ajax提交-children.html" method="get" accept-charset="utf-8" id="form">
+	<input type="text" id="username" name="">
+	<input type="button" id="button" name="" value="提交">
+</form>
+<img id="aaa" src="" alt="" style="display:none;">
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+	window.onload=function(){
+		var button=$('#button');
+		button.click(function(){
+			$('#form').attr({"target":"ajaxFrame"}).submit();
+			// console.log($('iframe[name="ajaxFrame"]')[0].contentDocument.body.innerHTML)
+		})
+	}
+	//这个方法-会被iframe自框架调用
+	function imgUploadSuccess(picName,type) {
+		$('#'+type).attr('src',picName).fadeIn();
+	}
+</script>
+</body>
+</html>

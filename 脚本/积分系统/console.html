@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>计时计分器</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/console.css">
+</head>
+<body>
+<form id="form" style="height:100%;">
+<input id="id" type="hidden" name="id">
+<div id="container">
+    <div id="header">
+        <div class="nav">
+            <div style="height: 15%;"></div>
+            <div class="ydhFT">
+                <div class="btButton"><div class="fa"><a href="javascript:void(0)" id="viewIndex" target="_blank">展示页面</a></div></div>
+                <div style="float: left;">-</div>
+                <div class="btButton"><div class="fa"><a href="info.html?gameId=${gameId}" target="_blank">设置比赛信息</a></div></div>
+                <div style="float: left;">-</div>
+                <div class="btButton"><div class="fa"> <a href="javascript:void(0)" id="reload">刷新本页面</a></div></div>
+            </div>
+            <div style="height: 8%; clear: both;"></div>
+            <div class="ydhTitle">
+                <div class="fa">运动汇 计时计分系统</div>
+            </div>
+        </div>
+        <div class="logo">
+            <div style="height: 20%;"></div>
+            <img src="images/ydhlogo.png" style="height: 80%;">
+        </div>
+    </div>
+    <div style="height: 1%;"></div>
+    <div id="countingStation">
+        <div id="scoreContainer">
+            <div style="height: 2%;"></div>
+            <div id="team">
+                <div id="homeTeam">
+                    <div class="fa">
+                        主队 <span id="firstTeamName"></span>
+                    </div>
+                </div>
+                <div id="guestTeam">
+                    <div class="fa">客队 <span id="secondTeamName"></span></div>
+                </div>
+            </div>
+            <div id="score">
+                <div id="homeScore">
+                    <div id="homeScoreBox" class="scoreBox">
+                        <div class="fa">
+                            99
+                        </div>
+                        <input id="firstTeamScore" type="number" maxlength="3" name="firstTeamScore" placeholder="主队成绩">
+                    </div>
+                    <div class="scoreTitle">
+                        <div class="fa">得分</div>
+                    </div>
+                </div>
+                <div id="str">
+                    <div id="strContent">
+                        <div id="strInfo">
+                            <div class="fa">发球权</div>
+                        </div>
+                        <div style="height: 7%;"></div>
+                        <div id="strLogoContent" class="exchange">
+                            <input type="hidden" id="ballRight" name="ballRight">
+                            <div id="disabledStr" class="ballRight second_ball">
+                                <i></i>
+                            </div>
+                            <div id="homeStr" class="ballRight first_ball">
+                                <i></i>
+                            </div>
+                            <div id="guestStr" class="ballRight three_ball">
+                                <i></i>
+                            </div>
+                        </div>
+                        <div style="height: 5%;"></div>
+                        <div id="barContent" >
+                            <div class="fa">
+                                <input id="gamePhase" type="text" name="gamePhase" placeholder="输入小节名称">
+                            </div>
+                            <ul id="selectPhase" style="display:none;">
+                                <li title="上半场">上半场</li>
+                                <li title="下半场">下半场</li>
+                                <li title="第一节">第一节</li>
+                                <li title="第二节">第二节</li>
+                                <li title="第三节">第三节</li>
+                                <li title="第四节">第四节</li>
+                                <li title="加时Ⅰ">加时Ⅰ</li>
+                                <li title="加时Ⅱ">加时Ⅱ</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="guestScore">
+                    <div id="guestScoreBox" class="scoreBox">
+                        <input id="secondTeamScore" type="number" maxlength="3" name="secondTeamScore"
+                               placeholder="客队成绩">
+                    </div>
+                    <div class="scoreTitle">
+                        <div class="fa">得分</div>
+                    </div>
+                </div>
+            </div>
+            <div style="height: 1%;"></div>
+            <div id="fs">
+                <div style="width: 7%; height: 100%;float: left"></div>
+                <div class="fsContent foul" >
+                    <div class="fsVal">
+                        <div class="fa size0 height100">
+                            <input id="firstTeamFoul" type="number" maxlength="1" name="firstTeamFoul" class="left input1 foul"
+                                   placeholder="主队犯规">
+                        </div>
+                    </div>
+                    <div class="fsHr"></div>
+                    <div class="fsTitle">
+                        <div class="fa">
+                            犯规
+                        </div>
+                    </div>
+                </div>
+                <div class="fsContent suspension">
+                    <div class="fsVal">
+                        <input id="firstTeamPause" type="number" maxlength="1" name="firstTeamPause" class="left input1 suspension"
+                               placeholder="主队暂停">
+                    </div>
+                    <div class="fsHr"></div>
+                    <div class="fsTitle">
+                        暂停
+                    </div>
+                </div>
+
+                <div style="width: 19%; height: 100%;float: left"></div>
+                <div class="fsContent foul">
+                    <div class="fsVal">
+                        <input id="secondTeamFoul" type="number" maxlength="1" name="secondTeamFoul" class="left input1 foul"
+                               placeholder="客队犯规">
+                    </div>
+                    <div class="fsHr"></div>
+                    <div class="fsTitle">
+                        犯规
+                    </div>
+                </div>
+                <div class="fsContent suspension">
+                    <div class="fsVal">
+                        <input id="secondTeamPause" type="number" maxlength="1" name="secondTeamPause" class="left input1 suspension"
+                               placeholder="客队暂停">
+                    </div>
+                    <div class="fsHr"></div>
+                    <div class="fsTitle">
+                        暂停
+                    </div>
+                </div>
+            </div>
+            <div style="height: 1%;"></div>
+            <div id="scTitle" class="scsTitle">
+                <div class="fa">得分统计</div>
+            </div>
+
+
+            <div style="height: 1%;" class="line1">
+                <div></div>
+            </div>
+            <div id="sc">
+                <div class="scContent">
+                    <div class="scRow">
+                        <div style="width: 7%; height: 100%; float: left;">&nbsp;</div>
+                        <div class="scButton" onclick="firstScore(1)">
+                            <div style="height: 18%;"></div>
+                            <div class="scButtonValue">
+                                <div  class="scButtonValueOuter">
+                                    <div class="fa" id="sbv">+1</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 7%; height: 100%; float: left;">&nbsp;</div>
+                        <div class="scButton" onclick="firstScore(2)">
+                            <div style="height: 18%;"></div>
+                            <div class="scButtonValue">
+                                <div  class="scButtonValueOuter">
+                                    <div class="fa" id="sbv">+2</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 7%; height: 100%; float: left;">&nbsp;</div>
+                        <div class="scButton" onclick="firstScore(3)">
+                            <div style="height: 18%;"></div>
+                            <div class="scButtonValue">
+                                <div  class="scButtonValueOuter">
+                                    <div class="fa" id="sbv">+3</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scRow">
+                        <div style="width: 7%; height: 100%; float: left;">&nbsp;</div>
+                        <div class="scButton" onclick="firstScore(-1)">
+                            <div style="height: 18%;"></div>
+                            <div class="scButtonValue">
+                                <div  class="scButtonValueOuter">
+                                    <div class="fa" id="sbv">-1</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 7%; height: 100%; float: left;">&nbsp;</div>
+                        <div class="scButton" onclick="firstScore(-2)">
+                            <div style="height: 18%;"></div>
+                            <div class="scButtonValue">
+                                <div  class="scButtonValueOuter">
+                                    <div class="fa" id="sbv">-2</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 7%; height: 100%; float: left;">&nbsp;</div>
+                        <div class="scButton" onclick="firstScore(-3)">
+                            <div style="height: 18%;"></div>
+                            <div class="scButtonValue">
+                                <div  class="scButtonValueOuter">
+                                    <div class="fa" id="sbv">-3</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scContent">
+                    <div class="scRow">
+                        <div style="width: 7%; height: 100%; float: left;">&nbsp;</div>
+                        <div class="scButton" onclick="secondScore(1)">
+                            <div style="height: 18%;"></div>
+                            <div class="scButtonValue">
+                                <div  class="scButtonValueOuter">
+                                    <div class="fa" id="sbv">+1</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 7%; height: 100%; float: left;">&nbsp;</div>
+                        <div class="scButton" onclick="secondScore(2)">
+                            <div style="height: 18%;"></div>
+                            <div class="scButtonValue">
+                                <div  class="scButtonValueOuter">
+                                    <div class="fa" id="sbv">+2</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 7%; height: 100%; float: left;">&nbsp;</div>
+                        <div class="scButton" onclick="secondScore(3)">
+                            <div style="height: 18%;"></div>
+                            <div class="scButtonValue">
+                                <div  class="scButtonValueOuter">
+                                    <div class="fa" id="sbv">+3</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scRow">
+                        <div style="width: 7%; height: 100%; float: left;">&nbsp;</div>
+                        <div class="scButton" onclick="secondScore(-1)">
+                            <div style="height: 18%;"></div>
+                            <div class="scButtonValue">
+                                <div  class="scButtonValueOuter">
+                                    <div class="fa" id="sbv">-1</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 7%; height: 100%; float: left;">&nbsp;</div>
+                        <div class="scButton" onclick="secondScore(-2)">
+                            <div style="height: 18%;"></div>
+                            <div class="scButtonValue">
+                                <div  class="scButtonValueOuter">
+                                    <div class="fa" id="sbv">-2</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 7%; height: 100%; float: left;">&nbsp;</div>
+                        <div class="scButton" onclick="secondScore(-3)">
+                            <div style="height: 18%;"></div>
+                            <div class="scButtonValue">
+                                <div  class="scButtonValueOuter">
+                                    <div class="fa" id="sbv">-3</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="height: 1%;"></div>
+            <div id="foulStatisticsTitle" class="scsTitle">
+                <div class="fa">犯规统计</div>
+            </div>
+            <div style="height: 1%;"></div>
+            <div id="foulStatisticsContent">
+                <div class="fsRow">
+                    <div style="width: 7%; height: 100%; float: left;">&nbsp;</div>
+                    <div class="fsButton" onclick="firstFoul(1)">
+                        <div class="fsButtonInner">
+                            <div class="fa">+1</div>
+                        </div>
+                    </div>
+                    <div style="width: 7%; height: 100%; float: left;">&nbsp;</div>
+                    <div class="fsButton" onclick="firstFoul(-1)">
+                        <div class="fsButtonInner">
+                            <div class="fa">-1</div>
+                        </div>
+                    </div>
+                    <div style="width: 7%; height: 100%; float: left;">&nbsp;</div>
+                    <div class="fsButton" onclick="firstFoul(0)">
+                        <div class="fsButtonInner">
+                            <div class="fa" id="fsbf">清零</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fsRow">
+                    <div style="width: 7%; height: 100%; float: left;">&nbsp;</div>
+                    <div class="fsButton" onclick="secondFoul(1)">
+                        <div class="fsButtonInner">
+                            <div class="fa">+1</div>
+                        </div>
+                    </div>
+                    <div style="width: 7%; height: 100%; float: left;">&nbsp;</div>
+                    <div class="fsButton" onclick="secondFoul(-1)">
+                        <div class="fsButtonInner">
+                            <div class="fa">-1</div>
+                        </div>
+                    </div>
+                    <div style="width: 7%; height: 100%; float: left;">&nbsp;</div>
+                    <div class="fsButton" onclick="secondFoul(0)">
+                        <div class="fsButtonInner">
+                            <div class="fa" id="fsbf">清零</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="height: 1%;"></div>
+            <div id="timeOutStatisticsTitle" class="scsTitle">
+                <div class="fa">暂停统计</div>
+            </div>
+            <div style="height: 1%;"></div>
+            <div id="timeOutStatisticsContent">
+                <div class="fsRow">
+                    <div style="width: 7%; height: 100%; float: left;"></div>
+                    <div class="fsButton" onclick="firstPause(1)">
+                        <div class="fsButtonInner">
+                            <div class="fa">+1</div>
+                        </div>
+                    </div>
+                    <div style="width: 7%; height: 100%; float: left;"></div>
+                    <div class="fsButton" onclick="firstPause(-1)">
+                        <div class="fsButtonInner">
+                            <div class="fa">-1</div>
+                        </div>
+                    </div>
+                    <div style="width: 7%; height: 100%; float: left;"></div>
+                    <div class="fsButton" onclick="firstPause(0)">
+                        <div class="fsButtonInner">
+                            <div class="fa" >清零</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fsRow">
+                    <div style="width: 7%; height: 100%; float: left;"></div>
+                    <div class="fsButton" onclick="secondPause(1)">
+                        <div class="fsButtonInner">
+                            <div class="fa">+1</div>
+                        </div>
+                    </div>
+                    <div style="width: 7%; height: 100%; float: left;"></div>
+                    <div class="fsButton" onclick="secondPause(-1)">
+                        <div class="fsButtonInner">
+                            <div class="fa">-1</div>
+                        </div>
+                    </div>
+                    <div style="width: 7%; height: 100%; float: left;"></div>
+                    <div class="fsButton" onclick="secondPause(0)">
+                        <div class="fsButtonInner">
+                            <div class="fa" id="fsbf">清零</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="timeContainer">
+            <div  class="timer">
+                <div id="timerTitle">
+                    <div style="height: 10%;width:100%;"></div>
+                    <div id="timerTitleInner">
+                        <div class="fa">计时器</div>
+                    </div>
+                </div>
+                <div id="timerValue">
+                    <div id="timerValueInner">
+                        <div class="fa" id="timePView">
+                            00:00
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="height: 2.1%;"></div>
+            <div class="timerButtonContent">
+                <div class="btn-green timerButton kz"  onclick="timeStartStop()">
+                    <div style="height: 30%; width: 100%;"></div>
+                    <div class="timerButtonInner">
+                        <div class="fa" id="timerButton">开始/暂停(+)</div>
+                    </div>
+                </div>
+                <div style="float: left; width: 5%; height: 100%;"></div>
+                <div class="timerButton" onclick="setTime(10*60*1000)">
+                    <div style="height: 30%; width: 100%;"></div>
+                    <div class="timerButtonInner">
+                        <div class="fa">10分钟</div>
+                    </div>
+                </div>
+                <div style="float: left; width: 5%;height: 100%;"></div>
+                <div class="timerButton" onclick="setTime(12*60*1000)">
+                    <div style="height: 30%; width: 100%;"></div>
+                    <div class="timerButtonInner">
+                        <div class="fa">12分钟</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="height: 2.1%;"></div>
+            <div class="timerButtonContent">
+                <div style="float: left; width: 35%; height: 100%;"></div>
+                <div class="timerButton" onclick="setTime(20*60*1000)">
+                    <div style="height: 30%; width: 100%;"></div>
+                    <div class="timerButtonInner">
+                        <div class="fa">20分钟</div>
+                    </div>
+                </div>
+                <div style="float: left; width: 5%;height: 100%;"></div>
+                <div class="timerButton" onclick="timeReturn()">
+                    <div style="height: 30%; width: 100%;"></div>
+                    <div class="timerButtonInner">
+                        <div class="fa" id="timeReturn">回到(.)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sd" >
+                <div class="fa" id="sd">手动设置：</div>
+            </div>
+
+            <div style="height: 0.5%; width: 100%;"></div>
+            <div class="timerButtonContent">
+                <div class="timerInput">
+                    <div style="height: 2%; width: 100%;"></div>
+                    <input type="number" maxlength="2" id="timeMin" class="timerInput sbButtonValue" placeholder="分">
+                </div>
+
+                <div style="float: left; width: 5%; height: 100%;"></div>
+                <div class="timerInput">
+                    <div style="height: 2%; width: 100%;"></div>
+                    <input type="number" max="59" maxlength="2" id="timeSec" placeholder="秒" class="timerInput sbButtonValue">
+                </div>
+
+                <div style="float: left; width: 5%;height: 100%;"></div>
+                <div class="submitButton" onclick="setTime()">
+                    <div style="height: 19%; width: 100%;"></div>
+                    <div class="submitButtonInner">
+                        <div class="fa" id="submitButton">提交</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="height: 3%;"></div>
+            <div  class="timer">
+                <div id="timerTitle">
+                    <div style="height: 10%;width:100%;"></div>
+                    <div id="tmTitle">
+                        <div class="fa">24秒计时器</div>
+                    </div>
+                </div>
+                <div style="float: right; width: 40%; height: 100%;"></div>
+                <div id="tmValue">
+                    <div id="tmValueInner">
+                        <div class="fa" id="time24PView">
+                            1
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="height: 2.1%;"></div>
+            <div class="timerButtonContent">
+                <div class="btn-green timerButton kz" onclick="time24StartStop()">
+                    <div style="height: 30%; width: 100%;"></div>
+                    <div class="timerButtonInner">
+                        <div class="fa" id="timerButton">开始/暂停(-)</div>
+                    </div>
+                </div>
+                <div style="float: left; width: 5%; height: 100%;"></div>
+                <div class="timerButton" onclick="setTime24(24*1000)">
+                    <div style="height: 30%; width: 100%;"></div>
+                    <div class="timerButtonInner">
+                        <div class="fa">24秒(*)</div>
+                    </div>
+                </div>
+                <div style="float: left; width: 5%;height: 100%;"></div>
+                <div class="timerButton" onclick="setTime24(14*1000)">
+                    <div style="height: 30%; width: 100%;"></div>
+                    <div class="timerButtonInner">
+                        <div class="fa">14秒(/)</div>
+                    </div>
+                </div>
+            </div>
+            <div style="height: 0.5%"></div>
+            <div class="sd" >
+                <div class="fa" id="sd">手动设置：</div>
+            </div>
+            <div style="height: 0.5%; width: 100%;"></div>
+            <div class="timerButtonContent">
+                <div class="timerInput">
+                    <div style="height: 2%; width: 100%;"></div>
+                    <input type="number" max="24" maxlength="2" id="time24" class="timerInput sbButtonValue" placeholder="秒">
+                </div>
+
+                <div style="float: left; width: 35%; height: 100%;"></div>
+
+
+                <div style="float: left; width: 5%;height: 100%;"></div>
+                <div class="submitButton" onclick="setTime24()">
+                    <div style="height: 19%; width: 100%;"></div>
+                    <div class="submitButtonInner">
+                        <div class="fa sbButtonValue" >提交</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</form>
+
+<!--[if !IE]> -->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="js/controlCenter.js"></script>
+<script type="text/javascript">
+    var firstTeamScore = $("#firstTeamScore");
+    var secondTeamScore = $("#secondTeamScore");
+    var firstTeamFoul = $("#firstTeamFoul");
+    var secondTeamFoul = $("#secondTeamFoul");
+    var firstTeamPause = $("#firstTeamPause");
+    var secondTeamPause = $("#secondTeamPause");
+    var gamePhase = $("#gamePhase");
+    var ballRight = $("#ballRight"),obj_ballRight={'1':1,'2':0,'3':2},obj_ballRight2={'0':1,'1':0,'2':2};
+    var r = true, nextClick = false;
+    $(function () {
+        var focusEvent;
+        $('input[type=text],input[type=number]').on('focus', function (ev) {
+            ev.stopPropagation();
+            focusEvent = $(this);
+        });
+        var selectPhase = $('#selectPhase');
+        gamePhase.on('focus', function (ev) {
+            ev.stopPropagation();
+            selectPhase.show();
+            return false;
+        })
+        gamePhase.on('blur', function (ev) {
+            ev.stopPropagation();
+            selectPhase.fadeOut();
+            return false;
+        })
+        selectPhase.children('li').on('click', function () {
+            var _val = $(this).text();
+            cookie('gamePhase', _val);
+            gamePhase.val(_val);
+            selectPhase.hide();
+            updateData();
+        });
+        var newWindow;
+        $('#viewIndex').on('click',function(){
+            var _width=window.screen.width;
+            var _height=window.screen.height;
+            newWindow=window.open ('index.html', '_blank');
+        })
+        $(window).on('keydown', function (ev) {
+            switch (ev.keyCode) {
+                case 112:
+                case 107:
+//                    case 61:
+                    timeStartStop();
+                    ev.preventDefault();
+                    break;
+                case 113:
+                case 109:
+//                    case 173:
+                    time24StartStop();
+                    ev.preventDefault();
+                    break;
+                case 114:
+                case 106:
+//                    case 56:
+                    setTime24(24 * 1000);
+                    ev.preventDefault();
+                    break;
+                case 115:
+                case 111:
+//                    case 191:
+                    setTime24(14 * 1000);
+                    ev.preventDefault();
+                    break;
+                case 116:
+                case 110:
+//                    case 190:
+                    timeReturn();
+                    ev.preventDefault();
+                    break;
+                case 13:
+                    firstTeamScore.val() < 0 && firstTeamScore.val(0);
+                    secondTeamScore.val() < 0 && secondTeamScore.val(0);
+                    firstTeamFoul.val() < 0 && firstTeamFoul.val(0);
+                    secondTeamFoul.val() < 0 && secondTeamFoul.val(0);
+                    firstTeamPause.val() < 0 && firstTeamPause.val(0);
+                    secondTeamPause.val() < 0 && secondTeamPause.val(0);
+                    if(focusEvent.length>0){
+                        focusEvent.blur();
+                        if (focusEvent.attr('id') == 'gamePhase') {
+                            selectPhase.hide();
+                        }
+                    }
+                    focusEvent = false;
+                    cookieRefresh();
+                    updateData();
+                    break;
+            }
+        });
+        $('.ballRight').click(function (ev) {
+            ev.preventDefault();
+            ballRight.val(obj_ballRight[$(this).index()]);
+            cookie('ballRight', obj_ballRight[$(this).index()]);
+            $(this).addClass('active').siblings('div').removeClass('active');
+            updateData();
+        });
+        $('.inputHidden').click(function () {
+            var index = $(this).index();
+            $(this).hide();
+            if (index == 0) {
+                $('.inputHidden').eq(1).show();
+                $('.inputInfo').slideUp();
+            } else {
+                $('.inputHidden').eq(0).show();
+                $('.inputInfo').slideDown();
+            }
+        });
+        // ajax({
+        //     url: 'data.json',
+        //     data: {gameId: '${gameId}'},
+        //     callback: function (result) {
+        //         ajaxSuccess(result)
+        //     }
+        // });
+        var result={"status":1,"code":1,"msg":"成功","data":{"gameId":"ABq2CE2DDKD2","gamePhase":null,"firstTeamName":"外经贸","firstTeamLogo":"http://file.ydh123.com/team/logo/159f1496240347bbbd3ff9bdf887edf1","firstTeamScore":0,"firstTeamFoul":0,"firstTeamPause":0,"secondTeamName":"北邮","secondTeamLogo":"http://file.ydh123.com/team/logo/22c46984518a470599a87c6ca65e6da8","secondTeamScore":0,"secondTeamFoul":0,"secondTeamPause":0,"activityName":"第五届北京市商学院篮球联赛","activityLogo":"http://file.ydh123.com/gm/logo/0cc99b946d1247fd9c08805732bd3ca7","ballRight":{"value":0,"desc":"无球权"},"id":"zdkd"}};
+        ajaxSuccess(result);
+        function ajaxSuccess(result){
+            var statistics = result.data;
+                if (!statistics.firstTeamName) {
+                    alert("请设置比赛信息");
+                    return;
+                }
+                $("#id").val(statistics.id);
+                firstTeamScore.val(statistics.firstTeamScore);
+                secondTeamScore.val(statistics.secondTeamScore);
+                firstTeamFoul.val(statistics.firstTeamFoul);
+                secondTeamFoul.val(statistics.secondTeamFoul);
+                firstTeamPause.val(statistics.firstTeamPause);
+                secondTeamPause.val(statistics.secondTeamPause);
+                gamePhase.val(statistics.gamePhase);
+                $("#firstTeamName").text(statistics.firstTeamName);
+                $("#secondTeamName").text(statistics.secondTeamName);
+                var ballRight = statistics.ballRight;
+                ballRight && $('#ballRight').val(obj_ballRight2[ballRight.value]);
+                ballRight && $('.ballRight').eq(obj_ballRight2[ballRight.value]).addClass('active').siblings('button').removeClass('active');
+                cookie('firstTeamLogo', statistics.firstTeamLogo);
+                cookie('firstTeamName', statistics.firstTeamName);
+                cookie('secondTeamLogo', statistics.secondTeamLogo);
+                cookie('secondTeamName', statistics.secondTeamName);
+                cookie('activityName', statistics.activityName);
+                cookie('activityLogo', statistics.activityLogo);
+                cookieRefresh();
+        }
+        timeInit();
+
+        $('#inputSubmit').click(function (ev) {
+            ev.preventDefault();
+            if (firstTeamScore.val() < 0)
+                firstTeamScore.val(0);
+            if (secondTeamScore.val() < 0)
+                secondTeamScore.val(0);
+            if (firstTeamFoul.val() < 0)
+                firstTeamFoul.val(0);
+            if (secondTeamFoul.val() < 0)
+                secondTeamFoul.val(0);
+            if (firstTeamPause.val() < 0)
+                firstTeamPause.val(0);
+            if (secondTeamPause.val() < 0)
+                secondTeamPause.val(0);
+            cookieRefresh();
+            updateData();
+        })
+        $('#reload').click(function(){
+            if (timeInterval != null) {
+                stopInterval();
+            }
+            window.location.reload();
+        })
+    });
+
+    function ajax(userConfig) {
+        var config = {
+            type: "POST",
+            cache: false,
+            dataType: "json",
+            success: function (result) {
+                if (result.status == 1) {
+                    config.callback(result);
+                } else {
+                    alert(result.msg);
+                }
+            },
+            error: function (msg) {
+            }
+        }
+        $.extend(config, userConfig);
+        return $.ajax(config);
+    }
+
+    function updateData() {
+        if (nextClick) {
+            nextClick = false
+            if (r && r.readystate != 4) {
+                r.abort();
+            }
+        }
+        r = ajax({
+            url: 'updateStatistics.json',
+            complete: function () {
+                r = null;
+            },
+            data: $("#form").serializeObject(),
+            callback: function (result) {
+
+            }
+        });
+        nextClick = true;
+    }
+
+    function firstScore(score) {
+        var s = Number(firstTeamScore.val());
+        s = s + score;
+        if (s < 0)
+            s = 0
+        firstTeamScore.val(s);
+        cookie('firstTeamScore', s);
+        updateData()
+    }
+
+    function secondScore(score) {
+        var s = Number(secondTeamScore.val());
+        s = s + score;
+        if (s < 0)
+            s = 0
+        secondTeamScore.val(s);
+        cookie('secondTeamScore', s);
+        updateData()
+    }
+
+    function firstFoul(foul) {
+        var f;
+        if (foul == 0) {
+            f = 0;
+        } else {
+            f = Number(firstTeamFoul.val());
+            f = f + foul;
+            if (f < 0)
+                f = 0
+        }
+        firstTeamFoul.val(f);
+        cookie('firstTeamFoul', f);
+        updateData()
+    }
+
+    function secondFoul(foul) {
+        var f;
+        if (foul == 0) {
+            f = 0;
+        } else {
+            f = Number(secondTeamFoul.val());
+            f = f + foul;
+            if (f < 0)
+                f = 0
+        }
+        secondTeamFoul.val(f);
+        cookie('secondTeamFoul', f);
+        updateData()
+    }
+
+    function firstPause(pause) {
+        var f;
+        if (pause == 0) {
+            f = 0;
+        } else {
+            f = Number(firstTeamPause.val());
+            f = f + pause;
+            if (f < 0)
+                f = 0
+        }
+        firstTeamPause.val(f);
+        cookie('firstTeamPause', f);
+        updateData()
+    }
+
+    function secondPause(pause) {
+        var f;
+        if (pause == 0) {
+            f = 0;
+        } else {
+            f = Number(secondTeamPause.val());
+            f = f + pause;
+            if (f < 0)
+                f = 0
+        }
+        secondTeamPause.val(f);
+        cookie('secondTeamPause', f);
+        updateData()
+    }
+
+    function cookie(key, value, options) {
+        if(key!=undefined && value!=undefined){
+            localStorage.setItem(key, value);
+        }else{
+            return localStorage.getItem(key);
+        }
+
+//        $.cookie(key, value, options == null ? {expires: 30} : options);
+    }
+
+    function cookieRefresh() {
+        cookie('firstTeamScore', firstTeamScore.val());
+        cookie('secondTeamScore', secondTeamScore.val());
+        cookie('firstTeamFoul', firstTeamFoul.val());
+        cookie('secondTeamFoul', secondTeamFoul.val());
+        cookie('firstTeamPause', firstTeamPause.val());
+        cookie('secondTeamPause', secondTeamPause.val());
+        cookie('gamePhase', gamePhase.val());
+    }
+
+    //获取cookie时间进行总时间及24秒的初始赋值
+    function timeInit() {
+        var time = cookie("time");
+        if (!time) {
+            time = "600000";
+            cookie("time", time);
+        }
+        var time24 = cookie("time24");
+        if (!time24) {
+            time24 = "24";
+            cookie("time24", time24);
+        }
+        timeViewSet(time);
+        time24PView.text(Math.ceil(time24 / 1000));
+    }
+
+    var timePView = $("#timePView");
+    var timeMinView = $("#timeMin");
+    var timeSecView = $("#timeSec");
+
+    function timeViewSet(time) {
+        timePView.text(timeFormat(time));
+    }
+
+    function timeFormat(time) {
+        time = Math.ceil(time / 100)
+        var min = dobule(Math.floor(time / 600));
+        var timeStr = '';
+        if (min > 0)
+            timeStr = min + ':';
+        var minute = dobule(Math.floor(time / 10 % 60));
+        timeStr += minute;
+        var second = time % 10;
+        timeStr += '.' + second;
+        return timeStr;
+    }
+
+    var timeInterval = null;
+    var startTime = 0;
+    var startSystemTime = 0;
+    var timeReturnButton = $("#timeReturn");
+    function setTime(time) {
+        if (timeInterval != null) {
+            stopInterval();
+            timeStartStop();
+        }
+        if (time == undefined) {
+            if ('' == timeMinView.val() && '' == timeSecView.val())
+                return false;
+            time = (Number(timeMinView.val()) * 60 + Number(timeSecView.val())) * 1000;
+            timeMinView.val('');
+            timeSecView.val('');
+            if (time < 0)
+                time = 0;
+        }
+        timeViewSet(time);
+        cookie("time", time);
+        cookie("timeSS", time);
+    }
+    function stopInterval(){
+        cookie('timeSS','0');
+        clearInterval(timeInterval);
+        timeInterval = null;
+        clearInterval(time24Interval);
+        time24Interval = null;
+    }
+    function timeStartStop() {
+        if (timeInterval != null) {
+            stopInterval();
+        } else {
+            cookie('timeSS','1');
+            startTime = Number(cookie("time"));
+            timeReturnButton.text(timeFormat(startTime));//回到xx时间，记录开始的时间
+            if (startTime <= 0) {
+                return false;
+            }
+            startSystemTime = new Date().getTime();
+            timeInterval = setInterval(timeTimer, 100);
+            ;
+            //总时间跑动时，先停止24秒时间，后续判断是否需要跑动
+            if (time24Interval != null)
+                clearInterval(time24Interval);
+            //总时间开始时，如果总时间大于24秒钟，24秒计时器同步启动；
+            if (startTime > 24 * 1000) {
+                time24Start();
+            } else {
+                var time24 = Number(cookie("time24"));
+                //如果总时间大于等于24秒时间，24秒计时器同步启动，否则将24秒复位
+                if (startTime > time24) {
+                    time24Start();
+                } else {
+                    setTime24(24 * 1000);
+                }
+            }
+        }
+    }
+
+    function timeReturn() {
+        setTime(startTime);
+    }
+
+    var time24PView = $("#time24PView");
+    var time24View = $("#time24");
+    var time24Interval = null;
+    var startSystemTime24 = 0;
+
+    function time24StartStop() {
+        if (time24Interval != null) {//如果24s定时器开启
+            clearInterval(time24Interval)
+            time24Interval = null;
+        } else {
+            time24Start();
+        }
+    }
+
+    function time24Start() {
+        startSystemTime24 = new Date().getTime();
+        var time = Number(cookie("time24"));
+        if (time <= 0) {
+            time = 24 * 1000;
+            time24PView.text(Math.ceil(time / 1000));
+            cookie("time24", time);
+        }
+        time24Interval = setInterval(time24Timer, 100);
+    }
+
+    function setTime24(time) {
+        if (!time) {//参数空，
+            if ('' == time24View.val())
+                return false;
+            time = Number(time24View.val()) * 1000;
+            time24View.val('');
+            if (time > 24 * 1000)
+                time = 24 * 1000;
+            else if (time < 0)
+                time = 0;
+        }
+        var second=Math.ceil(time / 1000);
+        time24PView.text(second);
+        cookie("time24", time);
+        if (timeInterval != null) {//如果总时间在跑
+            var startTime = Number(cookie("time"));
+            if (time < startTime){//如果总时间大于回秒数(24s或14s)
+                // setTimeout(function(){
+                if(time24Interval!=null){//如果24秒定时器暂停
+                    clearInterval(time24Interval);
+                    time24Interval = setInterval(time24Timer, 100);//那么24秒自动跑
+                }
+                // },1000)
+            }
+        }
+    }
+
+    function timeTimer() {
+        var timerTime = Number(cookie("time"));
+        var curTime = new Date().getTime();
+        timerTime = timerTime - (curTime - startSystemTime);
+        startSystemTime = curTime;
+        if (timerTime < 0)
+            timerTime = 0;
+        timeViewSet(timerTime);
+        cookie("time", timerTime);
+        if (timerTime <= 0) {
+            clearInterval(timeInterval);
+            timeInterval = null;
+        }
+    }
+
+    function time24Timer() {
+        var time24 = Number(cookie("time24"));
+        time24 = time24 - 100;
+        if (time24 < 0)
+            time24 = 0;
+        time24PView.text(Math.ceil(time24 / 1000));
+        cookie("time24", time24);
+        if (time24 <= 0) {
+            clearInterval(time24Interval)
+            time24Interval = null;
+        }
+    }
+    function dobule(val) {
+        return val < 10 ? "0" + val : val;
+    }
+</script>
+</body>
+</html>

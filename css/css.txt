@@ -1,6 +1,4 @@
 实用技巧:
-    translateZ
-        解决闪屏-开启3D,解决移动端硬件加速
     width:100%;display:table;height:1px;
         解决在scale为0.5的情况下，p的字体被浏览器自动放大
     top:-webkit-calc(100vh * 0.3873);top:calc(100vh * 0.3873);

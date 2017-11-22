@@ -73,6 +73,9 @@ localStorage
     var infoItem=JSON.stringify(info);
     tools.setLocalStorage('info',infoItem);
 
+    监听
+        当localStorage发生变化，即可监听到
+        window.addEventListener("storage", function (e) {});
 定时器：
     window.requestAnimationFrame()
         下一次

@@ -1,0 +1,583 @@
+html,
+body {
+    height: 100%;
+    /*display:none;*/
+}
+
+body,
+div,
+ul,
+input,
+img {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: #e5e5e5;
+    overflow:hidden;
+}
+input[type=text],
+input[type=number]{
+    border:solid 1px #fff;
+}
+input[type=text]:hover,
+input[type=number]:hover{
+    border-color: #b5b5b5;
+}
+input[type=text]:-moz-placeholder{font-size:0.1em}
+input[type=text]:-ms-input-placeholder{font-size:0.1em}
+input[type=text]::-webkit-input-placeholder{font-size:0.1em}
+ul,li{
+    list-style:none;
+}
+.line1{
+    position:relative;
+    border-top:dashed 1px #858585;
+}
+.line1 div{
+    position:absolute;top:0;bottom:0;left:50%;
+    height:1000px;
+    border-left:dashed 1px #858585;
+}
+.btn-green:hover {
+    background-color: #629B58!important;
+}
+.height100{
+    height:100%;
+}
+.size0{
+    font-size:0;
+}
+.input1{
+    width:96%;height:96%;
+    font-size:1em;
+    text-align:center;
+    vertical-align:top;
+}
+#container {
+    height: 100%;
+}
+
+#header {
+    height: 7%;
+    width: 96.7%;
+    margin: 0 auto;
+    border-bottom: 1px dashed #bbbbbb;
+}
+
+#countingStation {
+    height: 92%;
+    width: 96.7%;
+    margin: 0 auto;
+}
+
+#scoreContainer {
+    float: left;
+    background: white;
+    width: 59%;
+    height: 97%;
+    border-radius: 10px;
+    overflow:hidden;
+}
+
+#timeContainer {
+    float: right;
+    width: 37%;
+    height: 97%;
+}
+
+.nav {
+    float: left;
+    height: 100%;
+    width: 50%;
+}
+
+.logo {
+    float: right;
+    height: 100%;
+}
+
+.ydhTitle {
+    height: 33%;
+}
+
+.ydhFT {
+    height: 18%;
+}
+
+.btButton {
+    float: left;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.nav .fa {
+    text-align: left;
+    color: #4283b7;
+}
+
+.fa {
+    white-space: nowrap;
+    text-align: center;
+    border: 0px;
+}
+
+#team {
+    height: 6%;
+    width: 100%;
+    color: #000;
+    font-weight: bold;
+}
+
+#homeTeam {
+    float: left;
+    margin: 0 5%;
+    width: 40%;
+    height: 100%;
+}
+
+#guestTeam {
+    float: right;
+    margin: 0 5%;
+    width: 40%;
+    height: 100%;
+}
+
+#score {
+    position:relative;z-index:9;
+    height: 17.6%;
+    width: 71%;
+    margin: 0 auto;
+}
+
+#homeScore {
+    float: left;
+    width: 29%;
+    height: 100%;
+}
+
+#str {
+    float: left;
+    width: 42%;
+    height: 100%;
+}
+
+#guestScore {
+    float: left;
+    width: 29%;
+    height: 100%;
+}
+
+.scoreBox {
+    height: 80%;
+    width: 100%;
+    background: yellow;
+    position: relative;
+}
+
+.scoreBox input {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    color: #88b781;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size:1em;
+}
+
+.scoreTitle div {
+    color: #88b781;
+}
+
+
+
+#strContent {
+    width: 65.6%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+#strInfo {
+    font-weight: bold;
+    color: #000;
+    height: 20%;
+    width: 100%;
+}
+
+#strLogoContent {
+    height: 100%;
+    width: 100%;
+    text-align:center;
+    font-size:0;
+}
+#strLogoContent img {
+    width: 100%;
+    height: 100%;
+}
+.ballRight{
+    box-sizing:border-box;
+    display:inline-block;position:relative;
+    margin-left:3%;margin-top:4%;
+    height: 48%;font-size:0;
+    border-radius:4px;border:solid 1px #BBBBBB;
+    background-color:#fff;text-align: center;
+    cursor: pointer;
+}
+.ballRight.active{
+    border-color:#f1424f;
+}
+.ballRight i{
+    /*box-sizing:content-box;*/
+    position:absolute;top:50%;left:50%;
+    margin:-18px -36px;
+    width:72px;height:36px;
+    background:url("../images/bg1.png") no-repeat;
+}
+.first_ball i{
+    background-position:0 -51px;
+}
+.first_ball.active i{
+    background-position:0 -87px;
+}
+.second_ball i{
+    margin:-24px;
+    width:48px;height:48px;
+    background-position:0 -1px;
+}
+.second_ball.active i{
+    background-position:-50px -1px;
+}
+.three_ball i{
+    background-position:-74px -51px;
+}
+.three_ball.active i{
+    background-position:-74px -87px;
+}
+
+
+#homeStr {
+    width: 47%;margin-left:0;
+}
+#guestStr {
+    width: 47%;
+}
+#disabledStr {
+    display:block;
+    margin: 0 auto;padding: 0 5%;
+    width: 38%;
+}
+
+#barContent {
+    margin:0 auto;
+    position:relative;
+    width: 50%;height: 23%;
+    text-align: center;
+}
+#barContent input{
+    width:100%;height:100%;padding:5px 0;
+    border-radius: 4px;border:solid 1px #BBBBBB;
+    text-align:center;font-size:0.5em;
+    background:url("../images/down.png") 90% center no-repeat;
+}
+#selectPhase{
+    display:none;
+    position: absolute;left:0;
+    margin:0;width:100%;
+    line-height:22px;
+    font-size:12px;
+    background:#fff;
+}
+#selectPhase li{
+    border-bottom:dashed 1px #dcdcdc;cursor:pointer;
+    font-size: 0.46em;
+}
+#selectPhase li:hover{
+    background:#428BCA;color:#fff;
+}
+
+#fs {
+    width: 100%;
+    height: 10%;
+}
+
+.fsContent {
+    width: 16.8%;
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+
+.fsVal {
+    height: 75%;
+    font-weight: bold;
+}
+
+.fsHr {
+    height: 3%;
+}
+
+.fsTitle {
+    width:96%;
+    height: 22%;
+}
+
+.foul {
+    color: #f1424f;
+}
+
+.suspension {
+    color: #1697e9;
+}
+
+#scTitle {
+    color: #88b781;
+}
+
+.scsTitle {
+    height: 4%;
+    width: 99%;
+    padding-left: 1%;
+}
+
+.scsTitle .fa {
+    text-align: left;
+}
+
+#sc {
+    /*height: 27%;*/
+    width: 100%;
+    overflow: hidden;
+}
+
+.scContent {
+    width: 50%;
+    /*height: 100%;*/
+    float: left;
+}
+
+.scRow {
+    height: 48.5%;
+    width: 100%;
+    overflow: hidden;
+}
+.scRow:first-child{
+    padding-bottom: 1.9%;
+}
+.scButton {
+    width: 24%;
+    height: 100%;
+    background: #88b781;
+    float: left;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.scButton:hover{
+    background-color: #629B58!important;
+}
+.scButtonValue {
+    width: 60%;
+    height: 60%;
+    padding: 0 20%;
+    color: white;
+    font-weight: bold;
+}
+
+.scButtonValueOuter {
+    width: 100%;
+    height: 100%;
+}
+.scButtonValueOuter .fa{
+    font-size:0.6em;
+}
+#foulStatisticsContent {
+    width: 100%;
+    height: 6.6%;
+}
+
+#foulStatisticsTitle {
+    color: #f1424f;
+}
+
+.fsButton {
+    background: #f1424f;
+    float: left;
+    opacity: 0.8;
+}
+.fsButton:hover{
+    opacity: 1;
+}
+
+#timeOutStatisticsTitle {
+    color: #1697e9;
+}
+
+#timeOutStatisticsContent {
+    width: 100%;
+    height: 6.6%;
+}
+
+.fsRow {
+    width: 50%;
+    /*padding-left: 5%;*/
+    float: left;
+    height: 100%;
+}
+
+.fsButton {
+    width: 24%;
+    height: 100%;
+
+    float: left;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.fsButtonInner {
+    width: 80%;
+    /*height: 100%;*/
+    margin-left: 10%;
+    color: white;
+}
+.fsButtonInner .fa{
+    font-size: 0.68em;
+}
+#timeOutStatisticsContent .fsButton {
+    background: #1697e9;
+}
+
+.timer {
+    background: white;
+    height: 18%;
+    width: 100%;
+    border-radius: 10px;
+}
+
+#timerTitle {
+    /*width: 20%;*/
+    padding-left: 3%;
+    padding-right: 1%;
+    height: 100%;
+    float: left;
+}
+
+#timerTitle .fa {
+    text-align: left;
+    color: #747474;
+}
+
+#timerTitleInner {
+    height: 20%;
+    width: 100%;
+}
+
+#timerValue {
+    width: 80%;
+    height: 100%;
+    float: left;
+}
+
+#timerValueInner {
+    height: 100%;
+    width: 100%;
+}
+
+#timerValueInner .fa {
+    text-align: center;
+}
+
+.timerButtonContent {
+    width: 100%;
+    height: 9%;
+}
+
+.timerButton{
+    float: left;
+    width: 30%;
+    height: 100%;
+    background: #468cc8;
+    border-radius: 8px;
+    color: white;
+    cursor:pointer;
+    opacity:0.8;
+}
+.timerButton:hover{
+    opacity:1;
+}
+
+.timerButtonInner {
+    width: 82%;
+    height: 40%;
+    margin: 0 9%;
+}
+
+.sd {
+    height: 2.5%;
+    width: 100%;
+    color: #747474;
+}
+
+.sd .fa {
+    text-align: left;
+}
+
+.kz {
+    background: #88b781;
+}
+
+.timerInput {
+    float: left;
+    width: 30%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border-radius: 8px;
+    background: #747474;
+}
+
+.timerInput input {
+    width: 98%;
+    height: 96%;
+    margin-left: 1%;
+    background: white;
+    border:none;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.submitButton {
+    float: left;
+    width: 30%;
+    height: 100%;
+    background: #f1424f;
+    border-radius: 8px;
+    color: white;
+    opacity:0.8;
+    cursor:pointer;
+}
+.submitButton:hover{
+    opacity:1;
+}
+.submitButtonInner {
+    width: 82%;
+    height: 62%;
+    margin: 0 9%;
+}
+
+#tmValue {
+
+    height: 100%;
+    float: right;
+}
+
+#tmValueInner {
+    height: 100%;
+    width: 100%;
+}
