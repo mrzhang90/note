@@ -1,0 +1,16 @@
+flux架构介绍
+	Flux是一种结构思想，专门解决软件的结构问题。它跟MVC是同一类东西，但更加简单和清晰。
+	View
+		视图层
+	Action
+		动作-视图层发出的消息(比如mouseClick)
+	Dispatcher
+		派发器-用来接收Actions、执行回调函数
+	Store
+		数据层-用来存放应用的状态，一旦发生变动，就提醒Views要更新页面
+	Flux执行流程
+		1.用户访问View
+		2.View发出用户的Action
+		3.Dispatcher收到Action，要求Store进行相应的更新
+		4.Store更新后，发出一个"change"事件
+		5.View收到"change"事件后，更新页面

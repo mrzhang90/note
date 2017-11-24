@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>tab-size 调整tab的宽度</title>
+	<style type="text/css" media="screen">
+		body{
+			margin:0;
+			padding: 0;
+		}
+		pre{
+			tab-size:2;
+		}
+	</style>
+</head>
+<body>
+<h1>
+	per多行代码显示；code单行代码显示。
+	tab-size属性接受一个数字（表示字符数）或者一个长度值(这个不实用),通常设置为4(表示4个字符的宽度)或者2，后者是最近流行的缩进尺寸
+</h1>
+<pre>
+	<code>
+		while(true){
+			var d=new Date();
+			if(d.getDate() == 1){
+				if(d.getMouth() == 3){
+					alert('hello')
+				}
+			}
+		}
+	</code>		
+</pre>	
+</body>
+</html>

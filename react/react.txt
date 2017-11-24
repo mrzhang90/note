@@ -1,9 +1,17 @@
 http://www.css88.com/doc/underscore/#filter :推荐阅读
 http://www.myexception.cn/web/2016594.html :createClass方法中的 prpTypes回调说明
-JSX:
+React
+    是Facebook开发的一款用来构建用户界面的JS库
+Virtual DOM
+    是一个模拟DOM树的Javascript对象。React使用Virtual DOM来渲染UI，同时监听Virtual DOM上数据的变化并自动迁移这些变化到UI上。
+JSX
+    JSX是React定义的一种Javascript语法扩展，类似于XML。JSX是可选的，我们完全可以是用javascript来编写React应用，不过JSX提供了一套更简便的方式来写React
     JSX 的基本语法规则：遇到 HTML 标签（以 < 开头），就用 HTML 规则解析；遇到代码块（以 { 开头），就用 JavaScript 规则解析。
     JSX 允许直接在模板插入 JavaScript 变量。如果这个变量是一个数组，则会展开这个数组的所有成员
+Component
+    Component创建可以复用的UI模块
     React 允许将代码封装成组件（component），然后像插入普通 HTML 标签一样，在网页中插入这个组件。React.createClass 方法就用于生成一个组件类
+
 AJAX:
     组件的数据来源，通常是通过 Ajax 请求从服务器获取，可以使用 componentDidMount 方法设置 Ajax 请求，等到请求成功，再用 this.setState 方法重新渲染 UI
 方法
