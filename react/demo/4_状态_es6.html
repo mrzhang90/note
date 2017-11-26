@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<h1></h1>
+<div id="example"></div>
+<script type="text/javascript" src="https://cdn.bootcss.com/react/16.0.0-alpha.4/react.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/react-dom/16.0.0-alpha.6/react-dom.min.js"></script>
+<script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+<script type="text/babel">
+	class Hw extends React.Component{
+		constructor(props){
+			super(props);
+			this.state={
+				name:props.name+200
+			}
+		}
+		handle(){
+			console.log(this)
+		}
+		render(){
+			return (
+				<div onClick={this.handle}>{this.props.name},{this.state.name}</div>
+			)
+		}
+	}
+	ReactDOM.render(
+		<Hw name={123}/>,
+		document.getElementById('example')
+	)
+</script>
+</body>
+</html>

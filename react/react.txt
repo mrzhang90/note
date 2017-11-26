@@ -8,6 +8,12 @@ JSX
     JSX是React定义的一种Javascript语法扩展，类似于XML。JSX是可选的，我们完全可以是用javascript来编写React应用，不过JSX提供了一套更简便的方式来写React
     JSX 的基本语法规则：遇到 HTML 标签（以 < 开头），就用 HTML 规则解析；遇到代码块（以 { 开头），就用 JavaScript 规则解析。
     JSX 允许直接在模板插入 JavaScript 变量。如果这个变量是一个数组，则会展开这个数组的所有成员
+    JSX里约定分别使用首字母大、小写来区分本地组件和HTML标签。并采用驼峰命名法
+    JSX里添加注释，只需要在一个标签的子节点内(非最外层)用{}包围要注释的部分
+        {/*单行注释*/}
+        {/*
+        *多行注释
+        */}
 Component
     Component创建可以复用的UI模块
     React 允许将代码封装成组件（component），然后像插入普通 HTML 标签一样，在网页中插入这个组件。React.createClass 方法就用于生成一个组件类
@@ -64,7 +70,7 @@ AJAX:
 propTypes
     组件的属性可以接受任意值，字符串、对象、函数等等都可以。有时，我们需要一种机制，验证别人使用组件时，提供的参数是否符合要求。
 
-props:
+props(属性):
     传递数据:作为组件的属性进行传递;{} 大括号中的内容会解析为js代码执行
     获取数据:this.props.属性名;this.props.children;forEach、map方法使用
     语法糖:{...args}
@@ -111,10 +117,6 @@ props:
 2,react内注释用/**/
 3.获取虚拟DOM
 4.todoList todomve.com
-5.ref和refs:
-    1.定义ref: <input type="text" ref="ts"/>
-      用refs获取定义的ref: this.refs.ts.value
-    2.this.refs.[refName] 属性获取的是真实DOM，所以必须等到虚拟DOM插入文档以后，才能使用这个属性;通过为组件指定Click事件的回调函数，确保了只有等到真实DOM发生Click事件之后，才会读取this.refs.[refName]属性
 6.获取原生事件: ev.nativeEvent
 7.bind绑定方法
     1.设置:changeHaddle={prop.changeSelected.bind(this,item.id)}
@@ -125,10 +127,9 @@ props:
 注意:
     1.渲染是,参数1的</>里,记得加/,不然出错,都不知道怎么回事
     2.<script type="text/babel">
-    4.class属性需要写成 className ，for 属性需要写成 htmlFor ，这是因为 class 和 for 是 JavaScript 的保留字。
-    5.input的value属性值,要写成defaultValue
     6.Browser.js 的作用是将 JSX 语法转为 JavaScript 语法，这一步很消耗时间，实际上线的时候，应该将它放到服务器完成。
         命令:babel src --out-dir build :可以将 src 子目录的 js 文件进行语法转换，转码后的文件全部放在 build 子目录。
-    7.组件的style属性的设置方式也值得注意,因为 React 组件样式是一个对象，所以第一重大括号表示这是 JavaScript 语法，第二重大括号表示样式对象。
+    7.要使用javascript表达式作为属性值，只需把这个表达式用一对大括号{}包起来，不要用引号""
+        组件的style属性的设置方式也值得注意,因为 React 组件样式是一个对象，所以第一重大括号表示这是 JavaScript 语法，第二重大括号表示样式对象。
         不能写成 : style="opacity:{this.state.opacity};"
         而要写成 : style={{opacity: this.state.opacity}}

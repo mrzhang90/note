@@ -381,7 +381,9 @@ Date:
     toString()和toLocalString,在显示日期和时间时没有什么价值,仅在调试代码时比较有用
     日期格式化.
         toDateString
-        toTimeString
+        toTimeString():
+            把 Date 对象的时间部分转换为字符串
+            new Date().toTimeString()
         toLocalDateString
 
 Number:

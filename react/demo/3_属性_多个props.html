@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<h1>组件name属性可以是数组</h1>
+<div id="example"></div>
+<script type="text/javascript" src="https://cdn.bootcss.com/react/16.0.0-alpha.4/react.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/react-dom/16.0.0-alpha.6/react-dom.min.js"></script>
+<script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+<script type="text/babel">
+	class Hw extends React.Component{
+		render(){
+			return (
+				<div>hello,{this.props.name1} and {this.props.name2}</div>
+			)
+		}
+	}
+	var props={
+		name1:"aa",
+		name2:"bb"
+	}
+	ReactDOM.render(
+		<Hw {...props}/>,
+		document.getElementById('example')
+	)
+</script>
+</body>
+</html>

@@ -1,3 +1,150 @@
+如果将网页变成一个个canvas，这样就绕开了DOM，canvas可以被硬件加速，这样就提高了性能。再造一套HTML+CSS
+
+方法：
+	this.refs.input
+		查找DOM节点，用在真实DOM加载完成后，也可用这个方法
+		ReactDOM.findDOMNode(this.refs.input)
+事件：
+	回调参数e
+		e.target
+			找到对应的DOM元素
+ref
+    设置ref
+    	<input type="text" ref="ts"/>
+  	获取ref: this.refs.ts.value
+    注意：
+	    this.refs.[refName] 属性获取的是真实DOM，所以必须等到虚拟DOM插入文档以后，才能使用这个属性;
+	    通过为组件绑定事件的回调函数，确保了只有等到真实DOM发生Click事件之后，才会读取this.refs.[refName]属性
+input的value属性值,要写成defaultValue
+class属性需要写成 className
+for 属性需要写成 htmlFor
+	这是因为 class 和 for 是 JavaScript 的保留字。
+
+web优缺点
+	1.web基于DOM，而DOM很慢
+	2.DOM拖慢javascript
+	3.网页是单线程的
+	4.网页没有硬件加速
+	5.跨平台：所有系统都能运行
+	6.免安装：浏览器运行
+	7.快速部署：更新服务器代码
+	8.超链接：可以与其他网站互联，可以被搜索引擎检索
+非DOM属性介绍
+	dangerouslySetlnnerHTML警告，应该被用来表明净化后的数据
+		前端要有安全意识，否则可能会被人注入
+	ref React里的引用
+		不要用juqery去查找react里的ID，应该用ref来对react构建
+		例：
+			react DOM:
+				<input res="uname"/>
+			fn(){
+				this.refs.uname => dom
+			}
+	key提高渲染性能
+		react DOM:
+			<ul>
+				<li key="1"></li>
+				<li key="2"></li>
+			</ul>
+		加上key，只更新key对应的组件，使组件更新最小化，提高渲染性能
+	dangerouslySetInnerHTML
+		//dangerSetInnerHTML和__html配套使用的，为了防止前端的XSS攻击
+		var rawHTML={
+			__html:"<h2>非dom属性，dangerouslySetInnerHTML标签</h2>"
+		};
+		ES6写法(等同于下面的ES5写法)：
+		ReactDOM.render(
+			<div dangerouslySetInnerHTML={rawHTML}></div>,
+			document.getElementById('example')
+		)
+		ES5写法：
+		ReactDOM.render(React.createElement("div",{
+			dangerouslySetInnerHTML:rawHTML
+		}),document.getElementById('example'))
+初始化阶段 可以使用的函数
+	getDefaultProps(RS6 defaultProps)
+		只调用一次，实例之间共享引用
+	getInitialState(ES6 super(props){})
+		初始化每个实例特有的状态
+	componentWillMount
+		render之前最后一次修改状态的机会
+	render
+		只能访问this.props和this.state，只有一个顶层组件，不允许修改状态和DOM输出
+	componentDidMount
+		成功render并渲染完成真实DOM之后触发，可以修改DOM(ReactDOM.findDOMNode(this.refs.myText))
+属性(props)
+	参考：https://www.cnblogs.com/daomul/p/4853637.html
+	属性往往是与生俱来的，无法自己改变的
+    属性的用法
+    	1.自定义组件HelloWorld,给name属性传递各种类型的值
+    		<HelloWorld name="text"//字符串
+    						{123}//number
+    						{"string"}//string
+    						{[1,2,3]}//array
+    						{variable}//变量
+		2.setProps形式：通过组件更新属性，不能在组件内部中修改属性的，因为会违背组件设计原则（尽量避免）
+			var instance =React.render(<ClassNameC ><ClaasNameC/>,document.body);
+			instance.setProps({name:”Tom" });
+		3.var props={
+			one:"123",
+			two:321
+		}<HelloWorld {...props}/>
+		//取值
+		React.Children.map(this.props.children,function(child){})//this.props.children可以拿到所有属性的值,.map匹配值
+	ES5(属性校验器)
+		getDefaultProps:function(){
+			return {title:'133'}
+		}
+		propTypes:{
+		title:React.PropTypes.string
+		}//属性校验器，表示必须是string
+	ES6(默认属性)
+		//es6这两个属性不能写在class内
+		NewDOM.propTypes={
+			title:React.PropTypes.bool
+		}
+		NewDOM.defaultProps={title:'133'}//设置默认属性
+状态(state)
+	状态时由事物自行处理、不断变化的
+	对于react来讲一些变化全部基于状态
+	setState和diff算法
+		状态时通过setState进行设置，然后通过diff算法，来判断是否发生变化，变换了就会更新
+		setState
+			更新组件状态
+	设置状态：
+		es5:
+			getInitialState:function(){
+				return {like:false}
+			}
+		es6:
+			contructor(props){
+				super(props);
+				this.state={
+					loopRmainint:this.props.maxLoops
+				}
+			}
+属性和状态
+	属性只修改一次render,状态每次更新都会修改render
+	能否从父组件获取初始值
+		属性-可以，状态-不可以
+	能否由父组件修改
+		属性-可以，状态-不可以
+	能否在组件内部设置默认值
+		属性-可以
+			getDefaultProps
+		状态-可以
+			getInitialState
+	能否在组件内部修改
+		属性-不可以，状态-可以
+	能否设置子组件的初始值
+		属性-可以，状态-不可以
+	能否修改子组件的值
+		属性-可以，状态-不可以
+
+React Style
+	https://github.com/js-next/react-style
+React Canvas
+	https://github.com/Flipboard/react-canvas
 sublime插件
 	babel-sublime
 		让sublime可以编译ES6代码
@@ -17,6 +164,5 @@ sublime插件
 	编译jsx
 	检测环境
 		http://www.jianshu.com/p/e826e13c67ec
-
-
 参考：https://segmentfault.com/a/1190000003698071
+

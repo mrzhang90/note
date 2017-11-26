@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+</head>
+<body>
+<div id="example"></div>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/react/16.0.0-alpha.4/react.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/react-dom/16.0.0-alpha.6/react-dom.min.js"></script>
+<script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+<script type="text/babel">
+	var Hi=React.createClass({
+		getDefaultProps:function(){
+			console.log('修改属性的值')
+			return {
+				name:"zhang"
+			}
+		},
+		getInitialState:function(){
+			console.log('修改状态的值')
+			return {
+				age:'27'
+			}
+		},
+		componentWillMount:function(){
+			console.log('render最后一次修改')
+		},
+		componentDidMount:function(){
+			console.log('加载真实的DOM元素')
+			var availableTags = [
+			  "ActionScript",
+			  "AppleScript",
+			  "Asp",
+			  "BASIC",
+			  "C",
+			  "C++",
+			  "Clojure",
+			  "COBOL",
+			  "ColdFusion",
+			  "Erlang",
+			  "Fortran",
+			  "Groovy",
+			  "Haskell",
+			  "Java",
+			  "JavaScript",
+			  "Lisp",
+			  "Perl",
+			  "PHP",
+			  "Python",
+			  "Ruby",
+			  "Scala",
+			  "Scheme"
+			];
+			console.log(this.refs.input)
+			console.log(ReactDOM.findDOMNode(this.refs.input))
+			$(this.refs.input).autocomplete({
+		      source: availableTags
+		    });
+		},
+		_chanage:function(e){
+			console.log(e.target)
+		},
+		render:function(){
+			console.log('render加载');
+			return (
+				<div>
+					<input type="text" ref="input" defaultValue="12" onChange={this._chanage}/>
+					<p>this is {this.props.name}, age is {this.state.age}</p>
+				</div>
+			)
+		}
+	})
+	ReactDOM.render(
+		<Hi/>,
+		document.getElementById('example')
+	)
+</script>
+</body>
+</html>
