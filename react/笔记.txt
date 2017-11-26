@@ -72,6 +72,16 @@ web优缺点
 		只能访问this.props和this.state，只有一个顶层组件，不允许修改状态和DOM输出
 	componentDidMount
 		成功render并渲染完成真实DOM之后触发，可以修改DOM(ReactDOM.findDOMNode(this.refs.myText))
+运行中的阶段
+	componentWillReceiveProps
+		父组件修改属性触发，可以修改新属性和状态
+	-.shouldComponentUpdate
+		返回false会阻止render调用
+	-.componentWillUpdate
+		不能修改属性和状态
+	render
+	componentDisUpdate
+		可以修改DOM
 属性(props)
 	参考：https://www.cnblogs.com/daomul/p/4853637.html
 	属性往往是与生俱来的，无法自己改变的
