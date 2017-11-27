@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+</head>
+<body>
+<div id="example"></div>
+<script type="text/javascript" src="https://cdn.bootcss.com/react/16.0.0-alpha.4/react.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/react-dom/16.0.0-alpha.6/react-dom.min.js"></script>
+<script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+<script type="text/babel">
+	var Hi=React.createClass({
+		getInitialState: function() {
+			return {value: 'Hello!'};
+		},
+		handleChange: function(event) {
+			this.setState({value: event.target.value});
+		},
+		render:function(){
+			return (
+				<input type="text" value={this.state.value} onChange={this.handleChange}/>
+			)
+		}
+	})
+	ReactDOM.render(
+		<Hi/>,
+		document.getElementById('example')
+	)
+</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+</head>
+<body>
+<div id="example"></div>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/react/16.0.0-alpha.4/react.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/react-dom/16.0.0-alpha.6/react-dom.min.js"></script>
+<script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+<script type="text/babel">
+	var ChildZj=React.createClass({
+		componentWillReceiveProps:function(next){
+			console.log("修改",next)
+		},
+		shouldComponentUpdate:function(data){
+			console.log("返回false会阻止render调用",data);
+			return true;
+		},
+		componentWillUpdate:function(data){
+			console.log('不能修改属性和状态',data);
+		},
+		componentDisUpdate:function(data){
+			console.log('可以修改DOM',data)
+		},
+		getDefaultProps:function(){
+			console.log('修改属性的值')
+			return {
+				name:"请输入"
+			}
+		},
+		getInitialState:function(){
+			console.log('修改状态的值')
+			return {
+				age:'27'
+			}
+		},
+		componentWillMount:function(){
+			console.log('render最后一次修改')
+		},
+		componentDidMount:function(){
+			console.log('加载真实的DOM元素')
+			var availableTags = [
+			  "ActionScript",
+			  "AppleScript",
+			  "Asp",
+			  "BASIC",
+			  "C",
+			  "C++",
+			  "Clojure",
+			  "COBOL",
+			  "ColdFusion",
+			  "Erlang",
+			  "Fortran",
+			  "Groovy",
+			  "Haskell",
+			  "Java",
+			  "JavaScript",
+			  "Lisp",
+			  "Perl",
+			  "PHP",
+			  "Python",
+			  "Ruby",
+			  "Scala",
+			  "Scheme"
+			];
+			console.log(this.refs.input)
+			console.log(ReactDOM.findDOMNode(this.refs.input))
+			$(this.refs.input).autocomplete({
+		      source: availableTags
+		    });
+		},
+		componentWillUnmount:function(){
+			console.log('销毁组件')
+		},
+		_chanage:function(e){
+			console.log(e.target)
+			if(e.target.value==123){
+				ReactDOM.unmountComponentAtNode(document.getElementById('example'));
+			}
+		},
+		render:function(){
+			console.log('render加载');
+			return (
+				<div id="xx">
+					<label htmlFor="uage">{this.props.name}:</label>
+					<input id="uage" type="text" ref="input" defaultValue="12" onChange={this._chanage}/>
+					<p>this age is {this.state.age}</p>
+				</div>
+			)
+		}
+	})
+	var ParentZj=React.createClass({
+		getInitialState:function(){
+			return {
+				name:'父输入状态'
+			}
+		},
+		click:function(){
+			this.setState({
+				name:'输入状态被改变'
+			})
+		},
+		render:function(){
+			return (
+				<form onClick={this.click}>
+					<ChildZj name={this.state.name}/>
+				</form>
+			)
+		}
+	})
+	ReactDOM.render(
+		<ParentZj/>,
+		document.getElementById('example')
+	)
+</script>
+</body>
+</html>

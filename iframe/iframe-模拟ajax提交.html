@@ -26,6 +26,7 @@
 	}
 	//这个方法-会被iframe自框架调用
 	function imgUploadSuccess(picName,type) {
+		alert('这是父元素的方法')
 		$('#'+type).attr('src',picName).fadeIn();
 	}
 </script>

@@ -4,3 +4,12 @@
 如果他们不同域，则必须遵守同源策略，
 	但子页还是可以对父页的location值进行写操作，这样可以让父页重定向到其他网页，
 	不过对location的操作仅仅只有写权限，而没有读权限，这样就不能获取到父页location URL的内容, 否则有可能会造成隐私数据泄露, 比如有的网站将身份认证token存在于URL中
+方法：
+	window.parent.fn();
+		子iframe调用父的方法
+		PS:需要同域访问
+	设置父窗口的高度
+		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;//获取父窗口
+		if (iframeWin.document.body) {
+			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+		}

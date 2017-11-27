@@ -8,6 +8,12 @@
 </head>
 <body>
 <h1>注意：调用父类方法-window.parent.callback</h1>
-<script type="text/javascript">window.parent.imgUploadSuccess('http://oss.camplink.cn/camps/jpg/4_20170828110736.jpg','aaa');</script>
+<script type="text/javascript">
+	try{
+		window.parent.imgUploadSuccess('http://oss.camplink.cn/camps/jpg/4_20170828110736.jpg','aaa');
+	}catch(e){
+		alert('你应该去同域下访问')
+	}
+</script>
 </body>
 </html>

@@ -4,10 +4,58 @@
 	this.refs.input
 		查找DOM节点，用在真实DOM加载完成后，也可用这个方法
 		ReactDOM.findDOMNode(this.refs.input)
+	ReactDOM
+		findDOMNode(element)
+			查找DOM节点
+		unmountComponentAtNode(element)
+			删除DOM节点
 事件：
 	回调参数e
 		e.target
 			找到对应的DOM元素
+	鼠标
+		onClick
+		onContextMenu
+		onDoubleClick
+		onMouseDown
+		onMouseEnter
+		onMouseLeave
+		onMouseMove
+		onMouseOut
+		onMouseOver
+		onMouseUp
+		onDrop
+		onDrag
+		onDragEnd
+		onDragEnter
+		onDragExit
+		onDragLeave
+		onDragOver
+		onDragStart
+	触摸
+		onTouchCancel
+		onTouchEnd
+		onTouchMove
+		onTouchStart
+	键盘
+		onKeyDown
+		onKeyPress
+		onKeyUp
+	剪切
+		onCopy
+		onCut
+		onPaste
+	表单
+		onChange
+		onInput
+		onSubmit
+	焦点
+		onFocus
+		onBlur
+	UI元素
+		onScroll
+	滚动
+		onWheel
 ref
     设置ref
     	<input type="text" ref="ts"/>
@@ -15,11 +63,24 @@ ref
     注意：
 	    this.refs.[refName] 属性获取的是真实DOM，所以必须等到虚拟DOM插入文档以后，才能使用这个属性;
 	    通过为组件绑定事件的回调函数，确保了只有等到真实DOM发生Click事件之后，才会读取this.refs.[refName]属性
-input的value属性值,要写成defaultValue
-class属性需要写成 className
-for 属性需要写成 htmlFor
-	这是因为 class 和 for 是 JavaScript 的保留字。
-
+表单元素
+	可控组件
+		<input type="text" defaultValue={this.state.value}/>
+		符合React的数据流
+		数据存储在state中，便于使用
+		便于对数据进行处理
+		defaultValue和value={this.state.value}
+	textarea
+		<textarea value={this.state.data}/>
+	select
+		<select value={this.state.value}>
+			<option value="one"></option>
+		</select>
+	label
+		<label htmlFor="ID" className="class"></label>
+			class属性需要写成 className
+			for 属性需要写成 htmlFor
+				这是因为 class 和 for 是 JavaScript 的保留字。
 web优缺点
 	1.web基于DOM，而DOM很慢
 	2.DOM拖慢javascript
@@ -29,6 +90,7 @@ web优缺点
 	6.免安装：浏览器运行
 	7.快速部署：更新服务器代码
 	8.超链接：可以与其他网站互联，可以被搜索引擎检索
+	参考：http://www.ruanyifeng.com/blog/2015/02/future-of-dom.html
 非DOM属性介绍
 	dangerouslySetlnnerHTML警告，应该被用来表明净化后的数据
 		前端要有安全意识，否则可能会被人注入
@@ -71,17 +133,25 @@ web优缺点
 	render
 		只能访问this.props和this.state，只有一个顶层组件，不允许修改状态和DOM输出
 	componentDidMount
+		获取真实的DOM节点
 		成功render并渲染完成真实DOM之后触发，可以修改DOM(ReactDOM.findDOMNode(this.refs.myText))
 运行中的阶段
 	componentWillReceiveProps
+		通过父组件控制子组件
 		父组件修改属性触发，可以修改新属性和状态
 	-.shouldComponentUpdate
+		动态设置更新增强性能
 		返回false会阻止render调用
 	-.componentWillUpdate
 		不能修改属性和状态
 	render
 	componentDisUpdate
 		可以修改DOM
+销毁阶段
+	componentWillUnmount
+		在删除组件之前进行清理操作，比如计时器和事件监听器
+			ReactDOM.unmountComponentAtNode
+			删除组件
 属性(props)
 	参考：https://www.cnblogs.com/daomul/p/4853637.html
 	属性往往是与生俱来的，无法自己改变的
