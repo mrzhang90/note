@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+</head>
+<body>
+<div id="example"></div>
+<script type="text/javascript" src="https://cdn.bootcss.com/react/16.0.0-alpha.4/react.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/react-dom/16.0.0-alpha.6/react-dom.min.js"></script>
+<script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+<script type="text/babel">
+	var Hi=React.createClass({
+		getInitialState: function() {
+			return {
+				data1:this.props.data
+			};
+		},
+		componentDidMount:function(){
+			var That=this;
+			setTimeout(function(){
+				That.setState({
+					data1:'hello 1',
+					data2:'hello 2'
+				})
+			},1000)
+		},
+		handleChange: function(e) {
+			console.log({
+				[e]:this.refs[e].value
+			})
+			this.setState({
+				[e]:this.refs[e].value
+			})
+		},
+		render:function(){
+			return (
+				<form>
+					<input ref="data1" type="text" onChange={this.handleChange.bind(this,'data1')} value={this.state.data1}/>
+					<input ref="data2" type="text" onChange={this.handleChange.bind(this,'data2')} value={this.state.data2}/>
+				</form>
+			)
+		}
+	})
+	ReactDOM.render(
+		<Hi data="hi1"/>,
+		document.getElementById('example')
+	)
+</script>
+</body>
+</html>

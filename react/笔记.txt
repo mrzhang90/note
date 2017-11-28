@@ -4,6 +4,13 @@
 	this.refs.input
 		查找DOM节点，用在真实DOM加载完成后，也可用这个方法
 		ReactDOM.findDOMNode(this.refs.input)
+	ref
+	    设置ref
+	    	<input type="text" ref="ts"/>
+	  	获取ref: this.refs.ts.value
+	    注意：
+		    this.refs.[refName] 属性获取的是真实DOM，所以必须等到虚拟DOM插入文档以后，才能使用这个属性;
+		    通过为组件绑定事件的回调函数，确保了只有等到真实DOM发生Click事件之后，才会读取this.refs.[refName]属性
 	ReactDOM
 		findDOMNode(element)
 			查找DOM节点
@@ -14,55 +21,44 @@
 		e.target
 			找到对应的DOM元素
 	鼠标
-		onClick
-		onContextMenu
-		onDoubleClick
-		onMouseDown
-		onMouseEnter
-		onMouseLeave
-		onMouseMove
-		onMouseOut
-		onMouseOver
-		onMouseUp
-		onDrop
-		onDrag
-		onDragEnd
-		onDragEnter
-		onDragExit
-		onDragLeave
-		onDragOver
-		onDragStart
+		onClick\onContextMenu\onDoubleClick
+		onMouseDown\onMouseEnter\onMouseLeave\onMouseMove\onMouseOut\onMouseOver\onMouseUp
+		onDrop\onDrag\onDragEnd\onDragEnter\onDragExit\onDragLeave\onDragOver\onDragStart
 	触摸
-		onTouchCancel
-		onTouchEnd
-		onTouchMove
-		onTouchStart
+		onTouchCancel\onTouchEnd\onTouchMove\onTouchStart
 	键盘
-		onKeyDown
-		onKeyPress
-		onKeyUp
+		onKeyDown\onKeyPress\onKeyUp
 	剪切
-		onCopy
-		onCut
-		onPaste
+		onCopy\onCut\onPaste
 	表单
-		onChange
-		onInput
-		onSubmit
+		onChange\onInput\onSubmit
 	焦点
-		onFocus
-		onBlur
+		onFocus\onBlur
 	UI元素
 		onScroll
 	滚动
 		onWheel
-ref
-    设置ref
-    	<input type="text" ref="ts"/>
-  	获取ref: this.refs.ts.value
-    注意：
-	    this.refs.[refName] 属性获取的是真实DOM，所以必须等到虚拟DOM插入文档以后，才能使用这个属性;
-	    通过为组件绑定事件的回调函数，确保了只有等到真实DOM发生Click事件之后，才会读取this.refs.[refName]属性
+this
+	ES5
+		-.方法1
+			handleChange: function(e){
+				console.log(e.target)
+			}
+			onChange={this.handleChange}
+		-.方法2
+		handleChange: function(name,value){}
+		onChange={this.handleChange.bind(this,'input1')}
+	ES6
+		-.方法1
+			onClick={this.handleClick}
+			contructor(props){
+				this.handleClick=this.handleClick.bind(this)
+			}
+			handleClick(a){
+				console.log(a.target)
+			}
+		-.方法2.箭头函数
+			onClick={(e)=>this.handleClick(this,e,'data1')}
 表单元素
 	可控组件
 		<input type="text" defaultValue={this.state.value}/>
