@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <script>
+    var o = [{ count: 6, menuId: "51", parentId: "45" }]
+    var n = [{ count: 6, menuId: "51", parentId: "45" }, { count: 6, menuId: "52", parentId: "45" }]
+    console.log(duplicateRemoval(max(o,n)))
+
+    function duplicateRemoval(numArr) {
+    	var o=numArr[0],n=numArr[1];
+        var tmp = [];
+        for (var i = 0; i < o.length; i++) {
+            var bool = true;
+            for (var j = 0; j < n.length; j++) {
+                if (o[i]['menuId'] == n[j]['menuId']) {
+                    bool = false;
+                    continue;
+                }
+            }
+            if (bool){
+                tmp.push(o[i]);
+            }
+        }
+        return tmp;
+    }
+    function max(o,n){
+    	var len1=o.length;
+    	var len2=n.length;
+    	return len1>len2 ? [o,n] : [n,o];
+    }
+    </script>
+</body>
+
+</html>

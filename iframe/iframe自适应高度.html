@@ -14,20 +14,24 @@
 	<b style="color:red;">要在同一个域下才能生效</b>
 </p>
 <div class="left">
-	<a href="IE7圆角.html" target="mainFrame">
+	<a href="demo2_模拟ajax提交-children.html" target="mainFrame">
 		联赛列表
 	</a>
 </div>
 <div class="right">
-	<iframe name="mainFrame" id="mainFrame" frameborder="0" scrolling="no" src="absolute自适应.html" width="100%;"></iframe>
+	<iframe name="mainFrame" id="mainFrame" frameborder="0" scrolling="no" src="demo2_模拟ajax提交.html" width="100%;"></iframe>
 </div>
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
 	function setIframeHeight(iframe) {
 		if (iframe) {
-			var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-			if (iframeWin.document.body) {
-				iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+			try{
+				var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+				if (iframeWin.document.body) {
+					iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+				}
+			}catch(e){
+				alert('你应该去同域下访问')
 			}
 		}
 	};

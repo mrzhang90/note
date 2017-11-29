@@ -1,0 +1,18 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript">
+        function say(){
+            alert("request parent.html");
+        }
+        function callChild(){
+            myFrame.window.say();
+            myFrame.window.document.getElementById('child_button').value="child_button";
+        }
+    </script>
+</head>
+<body>
+    <input id="parent_button" type="button" value="调用child.html中的函数say()" onclick="callChild()"/>
+    <iframe name="myFrame" src="demo3_子页面child.html"></iframe>
+</body>
+</html>
