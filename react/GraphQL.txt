@@ -1,0 +1,17 @@
+GraphQL是一个由Facebook提出的-应用层查询语言，可以基于图模式定义后端，然后客户端就可以请求所需的数据集。
+
+Graphql
+express-graphql
+
+查询user表的id=6的name字段
+	{
+		user(id:6){
+			name
+		}
+	}
+
+Relay是构建数据驱动 Reat应用的javascript框架
+特性：
+	1.声明式：不再使用一个命令式API与数据存储通讯。简单的使用GraphQL声明你的数据需求，让Relay理解如何，什么时候获取你的数据
+	2.托管：查询在视图后面，Relay聚合查询有效的网络请求，只获取你需要的数据
+	3.转变：Relay允许你使用GraphQL mutations在客户端和服务器端转变数据，提供自动数据一致，优化更新和错误处理。
