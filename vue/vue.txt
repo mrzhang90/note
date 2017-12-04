@@ -1,2 +1,68 @@
 vue.js不是一个框架,它只是一个MVVM风格的双向数据绑定的库，专注于UI层面
 vue不支持IE8以下浏览器，因为IE8以下为ES5支持不好，例如IE8以下不支持Object.assign对象拷贝的方法
+PS:
+	vue会把自定义的大写标签名转成小写，从而引起报错，可以安装decamelize，即可支持大写
+		https://www.npmjs.com/package/decamelize
+模板标签：
+	{{}}
+		{{$data | json}}
+		PS:vue + swig时，{{}}这种标记会有代码冲突，建议把swig的标识符改成[[]]
+	v-if
+	v-show
+	v-model
+	v-on:submit.prevent="submitMyForm"
+		v-on:submit 可以简写成 @:submit
+		.prevent 相当于脚本里的 ev.preventDefault();
+		即：@submit.prevent="submitMyForm"
+	@click
+		可以把脚本直接写在元素内，@click="num+=1"
+	template
+		首先自定义组件：
+			<praise id="yes" title="赞" pclass="btn btn-primary"></praise>
+		然后创建template模板
+			<template id="praise-templ">
+				<label for="{{id}}">{{ title }}</label>
+				<input id="{{ id }}" type="button" class="{{ pclass }}" name="" value="{{ count }}" @click=" uploadNum "/>
+			</template>
+		最后脚本注册
+			Vue.component('praise',{
+				props:['id','title','pclass'],//注册
+				template:'#praise-templ',
+				data:function(){
+					return {
+						count:0
+					}
+				},
+				methods:{
+					uploadNum:function(){
+						this.count+=1
+					}
+				}
+			})
+计算：
+	方式1.
+		元素内参与计算
+		{{ score>99 ? "好学生" : "普通学生"}}
+	方式二.
+		computed方法计算
+		调用方式
+			{{ userName }}
+		计算脚本
+			computed:{
+				userName:function(){
+					return "全名为：【"+ this.firstName + this.lastName+"】"
+				}
+			}
+vue：
+	new Vue({
+		el:'#app',
+		data:{
+			message:'Hello world'
+		},
+		methods:{
+			submitMyForm:function(ev){
+				ev.preventDefault();
+				alert('submit')
+			}
+		}
+	})

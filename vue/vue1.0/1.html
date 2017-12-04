@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+<div id="app">
+	<!-- .prevent 相当于脚本里的 ev.preventDefault(); 都可以 -->
+	<!-- <form action="index.php" method="get" v-on:submit.prevent="submitMyForm"> -->
+	<!-- 这里把v-on:submit 简化成了@submit -->
+	<form action="index.php" method="get" @submit.prevent="submitMyForm">
+		<p style="color:red;" v-if="!message">
+			<span>**请输入信息！！！**</span>
+		</p>
+		<h1 v-show="message">{{ message }}</h1>
+		<input type="text" v-model="message"/>
+		<pre>
+			{{$data | json}}
+		</pre>
+		<input type="submit" value="点击提交">
+	</form>
+</div>
+<script src="https://cdn.bootcss.com/vue/1.0.25/vue.min.js"></script>
+<script>
+	console.log(Vue)
+	new Vue({
+		el:'#app',
+		data:{
+			message:'Hello world'
+		},
+		methods:{
+			submitMyForm:function(ev){
+				// ev.preventDefault();
+				alert('submit')
+			}
+		}
+	})
+</script>
+</body>
+</html>

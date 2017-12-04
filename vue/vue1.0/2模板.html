@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+	<style type="text/css" media="screen">
+		#app{
+			width:500px;margin:0 auto;
+		}
+	</style>
+</head>
+<body>
+<div id="app">
+	<praise id="yes" title="赞" pclass="btn btn-primary"></praise>
+	<praise id=no title="踩" pclass="btn btn-warning"></praise>
+</div>
+<template id="praise-templ">
+	<label for="{{id}}">{{ title }}</label>
+	<input id="{{ id }}" type="button" class="{{ pclass }}" name="" value="{{ count }}" @click=" uploadNum "/>
+</template>
+<!-- <script src="vue.js"></script> -->
+<script src="https://cdn.bootcss.com/vue/1.0.25/vue.min.js"></script>
+<script>
+	Vue.component('praise',{
+		props:['id','title','pclass'],
+		template:'#praise-templ',
+		data:function(){
+			return {
+				count:0
+			}
+		},
+		methods:{
+			uploadNum:function(){
+				this.count+=1
+			}
+		}
+	})
+	new Vue({
+		el:'#app'
+	})
+</script>
+</body>
+</html>
