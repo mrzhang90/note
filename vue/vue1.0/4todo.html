@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		li{
+			cursor:pointer;
+		}
+		.active{
+			text-decoration: line-through;
+		}
+	</style>
+</head>
+<body>
+<ul id="app">
+	<li @click="deltEle(task)" :class={"active":task.complted} v-for="task in tasks">{{task.content}}</li>
+</ul>
+<script src="https://cdn.bootcss.com/vue/1.0.25/vue.min.js"></script>
+<script type="text/javascript">
+	new Vue({
+		el:'#app',
+		data:{
+			tasks:[{
+				'content':'123',
+				'complted':false
+			},{
+				'content':'456',
+				'complted':false
+			},{
+				'content':'789',
+				'complted':false
+			}]
+		},
+		methods:{
+			deltEle:function(task){
+				task.complted=!task.complted;
+			}
+		}
+	})
+</script>
+</body>
+</html>

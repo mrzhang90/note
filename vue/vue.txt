@@ -10,6 +10,12 @@ PS:
 	v-if
 	v-show
 	v-model
+	v-bind:title="message"
+		将元素绑定title属性，可简写：
+		:title
+	v-bind:class
+		简写：
+		:class
 	v-on:submit.prevent="submitMyForm"
 		v-on:submit 可以简写成 @:submit
 		.prevent 相当于脚本里的 ev.preventDefault();
@@ -39,6 +45,12 @@ PS:
 					}
 				}
 			})
+remove
+	this.items.$remove(task)
+filter
+	this.items.filter(function(task){
+		return !task.complted;
+	})
 计算：
 	方式1.
 		元素内参与计算

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		li{
+			cursor:pointer;
+		}
+		.active{
+			text-decoration: line-through;
+		}
+	</style>
+</head>
+<body>
+<div id="app">
+	<task :items="tasks"></task>
+</div>
+<template id="temp">
+	<p>
+		<span>还剩多少个</span>
+		<span v-show="remain">({{remain}})</span>
+	</p>
+	<ul>
+		<li @click="deltEle(task)" :class={"active":task.complted} v-for="task in items">
+			{{task.content}}
+			<span @click="deleteRowData(task)" style="color:red;">X</span>
+		</li>
+	</ul>
+</template>
+<script src="https://cdn.bootcss.com/vue/1.0.25/vue.min.js"></script>
+<script type="text/javascript">
+	Vue.component('task',{
+		props:['items'],
+		template:'#temp',
+		methods:{
+			deltEle:function(task){
+				task.complted=!task.complted;
+			},
+			deleteRowData:function(task){
+				this.items.$remove(task)
+			}
+		},
+		computed:{
+			remain:function(){
+				return this.items.filter(function(task){
+					return !task.complted;
+				}).length;
+			}
+		}
+	})
+	new Vue({
+		el:'#app',
+		data:{
+			tasks:[{
+				'content':'123',
+				'complted':false
+			},{
+				'content':'456',
+				'complted':false
+			},{
+				'content':'789',
+				'complted':false
+			}]
+		}
+	})
+</script>
+</body>
+</html>
