@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<div id="app">
+	<task page="1" ></task>
+	<task page="2"></task>
+</div>
+<template id="templ">
+	<ul>
+		<li v-for="task in list">{{task.name}}【{{task.gender}}】</li>
+	</ul>
+</template>
+<script src="https://cdn.bootcss.com/vue/1.0.25/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script>
+<script type="text/javascript">
+	Vue.component('task',{
+		props:['page'],
+		template:'#templ',
+		data:function(){
+			return {
+				list:[]
+			}
+		},
+		ready:function(){
+			var me=this;
+			this.$http.get('http://localhost:8000/index.php?page='+this.page).then(response => {
+				// get body data
+				me.list=response.body.member;
+			}, response => {
+				// error callback
+				alert('error')
+			});
+		}
+	})
+	new Vue({
+		el:'#app'
+	})
+</script>
+</body>
+</html>
