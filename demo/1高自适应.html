@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript">
+		document.getElementsByTagName('html')[0].style.fontSize=window.innerHeight/10+'px';
+	</script>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		html,body{
+			height:100%;
+		}
+		/*html{
+			font-size:59.3px;
+		}*/
+		.clearFix{
+			zoom:1;
+		}
+		.clearFix:after{
+			content:"";
+			display: block;
+			clear:both;
+		}
+		.box{
+			height:1rem;
+		}
+		.box .left{
+			float: left;
+			width:78%;
+			height:1rem;
+			line-height:1rem;
+			font-size:0.5rem;
+			border:solid 1px #000;
+		}
+		.box .left .team1,.box .left .team2{
+			float:left;
+			width:10%;
+		}
+		.box .left .vs{
+			float:left;
+			width:5%;
+		}
+		.box .right{
+			float: right;
+			width:20%;
+			height:1rem;
+			border:solid 1px red;
+		}
+		.box .right .one{
+			height:0.5rem;
+			line-height:0.5rem;
+			font-size:0.3rem;
+			background:yellow;
+		}
+		.box .right .two{
+			height:0.5rem;
+			line-height:0.5rem;
+			font-size:0.3rem;
+			background:green;
+		}
+		/*
+		.box{
+			height:100%;
+		}
+		.box .left{
+			float: left;
+			width:78%;
+			height:10%;
+		}
+		.box .left .team1,.box .left .team2{
+			float:left;
+			width:10%;
+			height:100%;
+			line-height:100%;
+		}
+		.box .left .vs{
+			float:left;
+			width:5%;
+		}
+		.box .right{
+			float: right;
+			width:20%;
+		}*/
+	</style>
+</head>
+<body>
+<h1>高度可以自适应，但拉窄后页面出现问题，我觉得此方案不适合宽高自适应的情况</h1>
+<p>建议以em单位的思路进行</p>
+<div class="box clearFix">
+	<div class="left">
+		<div class="team1">
+			<span>主队</span>
+		</div>
+		<div class="vs">VS</div>
+		<div class="team2">客队</div>
+	</div>
+	<div class="right">
+		<div class="one">
+			hello world
+		</div>
+		<div class="two">
+			<input type="button" name="" value="2017">
+			<input type="button" name="" value="12">
+			<input type="button" name="" value="16">
+		</div>
+	</div>
+</div>
+</body>
+</html>

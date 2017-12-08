@@ -27,7 +27,7 @@ ajax
 		简写：
 		:class
 	v-on:submit.prevent="submitMyForm"
-		v-on:submit 可以简写成 @:submit
+		v-on:submit 可以简写成 @submit
 		.prevent 相当于脚本里的 ev.preventDefault();
 		即：@submit.prevent="submitMyForm"
 	@click
