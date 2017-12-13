@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		.fade-leave-active{
+			animation:scale-out 0.5s;
+		}
+		.fade-enter-active{
+			animation:scale-in 0.5s;
+		}
+		@keyframes scale-in{
+			0%{
+				transform:scale(0);
+			}
+			100%{
+				transform:scale(1);
+			}
+		}
+		@keyframes scale-out{
+			0%{
+				transform:scale(1);
+			}
+			100%{
+				transform:scale(0);
+			}
+		}
+	</style>
+</head>
+<body>
+<div id="app" style="width:100px;height:100px;text-align: center;">
+	<button @click="show=!show">toggle</button>
+	<transition name="fade">
+		<p v-if="show">hello</p>
+	</transition>
+</div>
+<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+<script type="text/javascript">
+	new Vue({
+		el:'#app',
+		data:{
+			'show':true
+		}
+	})
+</script>
+</body>
+</html>
