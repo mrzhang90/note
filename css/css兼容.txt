@@ -44,7 +44,15 @@ background渐变兼容IE
 	在给没有margin-top-border父元素中的子元素添加margin-top时，发现没有直接表现出来，而是作用到父元素身上，就会导致子元素的margin-top溢出
 	条件：1、父元素没有上边框；2、为第一个子元素设置上外边距时
 	解决方案：
-		1、为父元素增加上边框，但父元素会变高；2.通过为父元素设置上内边距来取代子元素的上外边距，但也会增加父元素的高度；3.在父元素中，增加一个空 <table>元素，但会在页inlinC  清浮动完整版：.clearFix{zoom:1;}.clearFix:after{content:"";display:block;clear:both;}
+		1、为父元素增加上边框，但父元素会变高；
+		2.通过为父元素设置上内边距来取代子元素的上外边距，但也会增加父元素的高度；
+		3.在父元素中，增加一个空 <table>元素
+			//给父元素设置：before
+			#content:before{    
+				content: "";    
+				display: table;    
+	        }
+清浮动完整版：.clearFix{zoom:1;}.clearFix:after{content:"";display:block;clear:both;}
 IE7/8使用特殊字体造成文字出现锯齿等问题
 	h2, p {filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=hIEfix.png,sizingMethod=crop);zoom:1;}
 	参考：http://www.zhangxinxu.com/wordpress/2009/12/%E7%BF%BB%E8%AF%91-ie78font-face%E5%B5%8C%E5%85%A5%E5%AD%97%E4%BD%93%E4%B8%8E%E6%96%87%E5%AD%97%E5%B9%B3%E6%BB%91/

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<div id="app" v-demo-directive:bgcolod="msg">
+</div>
+<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+<script type="text/javascript">
+	Vue.directive('demoDirective',{
+		inserted:function(el,binding,vnode,oldVnode){
+			//被绑定元素插入父节点时调用 (仅保证父节点存在，但不一定已被插入文档中)
+			console.log(binding)
+			el.style.color='#fff';
+			el.style.backgroundColor=binding.value;
+			el.innerHTML='指令名：'+binding.name+
+				'<br/>指令绑定的值：'+binding.value+
+				'<br/>指令绑定的表达式：'+binding.expression+
+				'<br/>指令绑定的参数：'+binding.arg
+		}
+	})
+	new Vue({
+		'el':'#app',
+		'data':{
+			'msg':'blueviolet'
+		}
+	})
+</script>
+</body>
+</html>

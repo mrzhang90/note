@@ -16,7 +16,7 @@
 		Reset.css 重置
 		Normalize.css修复
 	html{box-sizing: border-box;}
-	*,*:before,X:after{box-sizing: inherit;}
+	*,*:before,*:after{box-sizing: inherit;}
 
 ICON-FONT与常用字体排版
 	no-image时代 不超过纯色为2的图像

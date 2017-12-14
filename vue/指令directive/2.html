@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<div id="app">
+	<input type="text" name="" v-demo="{'color':'#fff','backgroundColor':'#000','value':'hello world'}">
+</div>
+<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.5.9/vue.min.js"></script>
+<script type="text/javascript">
+	Vue.directive('demo',{
+		bind:function(el,binding){
+			for(var k in binding.value){
+				el.style[k]=binding.value[k];
+			}
+			el.setAttribute('value',binding.value.value);
+		},
+		inserted:function(el){
+			el.focus();
+		}
+	})
+	new Vue({
+		'el':'#app'
+	})
+</script>
+</body>
+</html>
