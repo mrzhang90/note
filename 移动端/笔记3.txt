@@ -123,7 +123,7 @@ ios系统中元素被触摸时产生的半透明灰色遮罩怎么去掉
   </html>
 
 屏幕旋转的事件和样式
-  事件
+  JS
   window.orientation
     取值：正负90表示横屏模式、0和180表现为竖屏模式；
   window.onorientationchange = function(){
@@ -138,7 +138,7 @@ ios系统中元素被触摸时产生的半透明灰色遮罩怎么去掉
       }
   }  
 
-  样式
+  CSS
   //竖屏时使用的样式
   @media all and (orientation:portrait) {
   .css{}
