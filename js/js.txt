@@ -264,20 +264,38 @@ DOM
         scrollTop:在拖动滚动条的过程中，会读取此时的scrollTop的值.
     方法:
         [Function] getBoundingClientRect():获取元素的盒模型信息.返回值为对象类型-left\top\bottom\right\width\height,相对于浏览器可视区域
-DOM属性:
-    childNodes 获取某个元素的所有子节点
-    getAttribute\setAttribute\attributes 属性节点
+    document.createElement(tagName)
+        通过标签名的形式创建一个元素
+    document.createdocumentfragment()
+        方法创建了一虚拟的节点对象，节点对象包含所有属性和方法。当你想提取文档的一部分，改变，增加，或删除某些内容及插入到文档末尾可以使用createDocumentFragment() 方法。
+    parent.appendChild
+        (添加的元素)往一个节点里边添加一个子节点，注意是添加在最后
+    parentNode.insertBefore
+        (要插入的元素,插到哪个元素的前面)；如果父级元素没有子节点，那么默认会往父级插入一个元素。
+    parentNode.removeChild
+        (删除哪个),从一个节点中删除指定的子节点
+    parentNode.replaceChild(node,childNode)
+        参数:node用来替换的节点，childNodes被替换的子节点,两个参数都必须写。
+    目标元素.cloneNode(boolean)
+        克隆元素-克隆一个节点,true：克隆元素和元素包含的子孙节点,flase：克隆元素但不包含元素的子孙节点
+DOM节点：
+    getAttribute\setAttribute\attributes属性节点
     (兼容)getAttribute:通过程序给对象添加属性，是可以读也可以写的。通过getAttribute就可以获取行间的属性，包括自定义的属性,可以解决通过src去做判断的问题。
         获取img的src路径:img.getAttribute('src'),兼容问题,在IE7获取到文件绝对路径,解决方案:
             img.getAttribute('src',2) 或者 img.getAttribute('src',3)
-    setAttribute:第一个参数：设置属性名;第二个参数：设置属性值,不要设置关键字或保留字,设置元素行间指定属性名的属性值
-    removeAttribute('要删除的属性名')
+    setAttribute
+        第一个参数：设置属性名;第二个参数：设置属性值,不要设置关键字或保留字,设置元素行间指定属性名的属性值
+    removeAttribute
+        要删除的属性名
     nodeValue\nodeName\
-    nodeType: 元素节点：1;属性节点：2;文本节点：3;注释节点：8;document:9
-节点:
-    parentNode-父节点
-    childNodes-所有子节点
-    children-元素子节点
+    nodeType
+        元素节点：1;属性节点：2;文本节点：3;注释节点：8;document:9
+    childNodes
+        获取某个元素的所有子节点
+    parentNode
+        获取父节点
+    children
+        获取元素子节点
     (兼容)
         firstElementChild-(IE9以下不兼容)通过父节点,查找到第一个子节点
         firstChild-(所有浏览器兼容)获取某个元素的第一个子节点,(包括空白节点,注释节点……),因为有空文本节点,所以判断上一个是否有值,需要nodeType==1判断
@@ -287,13 +305,6 @@ DOM属性:
         previousSibling-(所有浏览器兼容)
         nextElementSibling-(IE9以下不兼容)查找节点的下一个兄弟节点
         nextSibling-(所有浏览器兼容)查找节点的下一个兄弟节点
-    document.createElement(tagName)-通过标签名的形式创建一个元素
-    document.createdocumentfragment()-方法创建了一虚拟的节点对象，节点对象包含所有属性和方法。当你想提取文档的一部分，改变，增加，或删除某些内容及插入到文档末尾可以使用createDocumentFragment() 方法。
-    parent.appendChild(添加的元素)-往一个节点里边添加一个子节点，注意是添加在最后
-    parentNode.insertBefore(要插入的元素,插到哪个元素的前面)；如果父级元素没有子节点，那么默认会往父级插入一个元素。
-    parentNode.removeChild(删除哪个),从一个节点中删除指定的子节点
-    parentNode.replaceChild(node,childNode),参数:node用来替换的节点，childNodes被替换的子节点,两个参数都必须写。
-    目标元素.cloneNode(boolean)-克隆元素-克隆一个节点,true：克隆元素和元素包含的子孙节点,flase：克隆元素但不包含元素的子孙节点
 
 表单:
     对象：FormData-参考来源：https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/Using_FormData_Objects

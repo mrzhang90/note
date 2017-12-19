@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		*{
+			margin:0;padding:0;
+		}
+		.flex{
+			zoom:1;
+		}
+		.flex:after{
+			content:"";
+			display:block;
+			clear: both;
+		}
+		.flex-1{float:left;width:33.3333%;height:100%;}
+		.flex-30{width:30%;}
+		.flex-60{width:60%;}
+		.noWrap{
+			/*height: 100%;*/
+			-webkit-text-size-adjust: none;
+			/*white-space:nowrap;*/
+		}
+
+		html,body,.box{
+			height:100%;
+		}
+		.left{
+			height:100%;
+			float:left;
+		}
+		.right{
+			height:100%;
+			float:left;
+		}
+		 .box1{
+			height:20%;
+		}
+		 .box2{
+			height:20%;
+		}
+	</style>
+</head>
+<body>
+<div class="box flex">
+	<div class="flex left flex-v flex-60">
+		<div class="box1 flex flex-pack-justify flex-align-center">
+			<div class="noWrap group1 flex-1">嘿嘿~~哈哈！！哼哼</div>
+			<div class="noWrap group1 flex-1">嘿嘿~~哈哈！！哼哼</div>
+			<div class="noWrap group1 flex-1">嘿嘿~~哈哈！！哼哼。</div>
+		</div>
+		<div class="box2 flex flex-pack-justify flex-align-center">
+			<div class="noWrap group2 flex-1">嘿嘿~~哈</div>
+			<div class="noWrap group2 flex-1">嘿嘿~~哈</div>
+			<div class="noWrap group2 flex-1">嘿嘿~~哈</div>
+		</div>
+		<div class="box2 flex flex-pack-justify flex-align-center">
+			<div class="noWrap group5 flex-1">嘿嘿~~哈</div>
+			<div class="noWrap group5 flex-1">嘿嘿~~哈</div>
+			<div class="noWrap group5 flex-1">嘿嘿~~哈</div>
+		</div>
+		<div class="box2 flex flex-pack-justify flex-align-center">
+			<div class="noWrap group6 flex-1">嘿嘿~~哈</div>
+			<div class="noWrap group6 flex-1">嘿嘿~~哈</div>
+			<div class="noWrap group6 flex-1">嘿嘿~~哈</div>
+		</div>
+	</div>
+	<div class="flex right  flex-v flex-30">
+		<div class="box1 flex flex-pack-justify flex-align-center">
+			<div class="noWrap group3">嘿嘿~~哈哈</div>
+			<div class="noWrap group3">嘿嘿~~哈哈</div>
+			<div class="noWrap group3">嘿嘿~~哈哈</div>
+		</div>
+		<div class="box2 flex flex-pack-justify flex-align-center">
+			<div class="noWrap group4 flex-1">嘿嘿~~哈哈</div>
+			<div class="noWrap group4 flex-1">嘿嘿~~哈哈</div>
+			<div class="noWrap group4 flex-1">嘿嘿~~哈哈</div>
+		</div>
+		<div class="box2 flex flex-pack-justify flex-align-center">
+			<div class="noWrap group7 flex-1">嘿嘿~~哈哈</div>
+			<div class="noWrap group7 flex-1">嘿嘿~~哈哈</div>
+			<div class="noWrap group7 flex-1">嘿嘿~~哈哈</div>
+		</div>
+		<div class="box2 flex flex-pack-justify flex-align-center">
+			<div class="noWrap group8 flex-1">嘿嘿~~哈哈</div>
+			<div class="noWrap group8 flex-1">嘿嘿~~哈哈</div>
+			<div class="noWrap group8 flex-1">嘿嘿~~哈哈</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="http://admin.ydh123.com/assets/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+	$(window).on('load',function(){
+		init();
+	})
+	$(window).on('resize',function(){
+		init();
+	})
+	function init(){
+		for(var i=1;i<100;i++){
+			var group=$('.group'+i);
+			if(group.length<=0){
+				return false;
+			}
+			changeAuto(group)
+		}
+	}
+	function changeAuto(group){
+		var noWrap=group;
+		var fontW,fontH;
+		noWrap.each(function(k,v){
+			if(k==0){
+				var length=$(this).text().length;
+				var width=$(this).width();
+				var height=$(this).height();
+				fontW=width/(length+1);
+				fontH=height;				
+			}
+			if($(this).is('.group3'))
+				console.log(k,fontW,fontH)
+			$(this).css({
+				'font-size':fontW > fontH ? fontH : fontW,
+				'line-height':fontH+'px'
+			})
+		})
+	}
+	
+</script>
+</body>
+</html>

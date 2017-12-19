@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		*{
+			margin:0;padding:0;
+		}
+		/* ============================================================
+		   flex：定义布局为盒模型
+		   flex-v：盒模型垂直布局
+		   flex-1：子元素占据剩余的空间
+		   flex-align-center：子元素垂直居中
+		   flex-pack-center：子元素水平居中
+		   flex-pack-justify：子元素两端对齐
+		   兼容性：ios 4+、android 2.3+、winphone8+
+		   ============================================================ */
+		.flex{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+		.flex-v{-webkit-box-orient:vertical;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}
+		.flex-1{-webkit-box-flex:1;-webkit-flex:1;-ms-flex:1;flex:1;}
+		.flex-2{-webkit-box-flex:2;-webkit-flex:2;-ms-flex:2;flex:2;}
+		.flex-3{-webkit-box-flex:3;-webkit-flex:3;-ms-flex:3;flex:3;}
+		.flex-align-center{-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;}
+		.flex-pack-center{-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}
+		.flex-pack-justify{-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;}
+		.noWrap{
+			/*height: 100%;*/
+			-webkit-text-size-adjust: none;
+			/*white-space:nowrap;*/
+		}
+
+		html,body,.box{
+			height:100%;
+		}
+		.left{
+			height:100%;
+		}
+		.right{
+			height:100%;
+		}
+		 .box1{
+			height:20%;
+		}
+		 .box2{
+			height:20%;
+		}
+	</style>
+</head>
+<body>
+<div class="box flex">
+	<div class="flex left flex-v flex-2">
+		<div class="box1 flex flex-pack-justify flex-align-center">
+			<div class="noWrap group1 flex-1">嘿嘿~~哈哈！！哼哼</div>
+			<div class="noWrap group1 flex-1">嘿嘿~~哈哈！！哼哼</div>
+			<div class="noWrap group1 flex-1">嘿嘿~~哈哈！！哼哼。</div>
+		</div>
+		<div class="box2 flex flex-pack-justify flex-align-center">
+			<div class="noWrap group2 flex-1">嘿嘿~~哈</div>
+			<div class="noWrap group2 flex-1">嘿嘿~~哈</div>
+			<div class="noWrap group2 flex-1">嘿嘿~~哈</div>
+		</div>
+		<div class="box2 flex flex-pack-justify flex-align-center">
+			<div class="noWrap group5 flex-1">嘿嘿~~哈</div>
+			<div class="noWrap group5 flex-1">嘿嘿~~哈</div>
+			<div class="noWrap group5 flex-1">嘿嘿~~哈</div>
+		</div>
+		<div class="box2 flex flex-pack-justify flex-align-center">
+			<div class="noWrap group6 flex-1">嘿嘿~~哈</div>
+			<div class="noWrap group6 flex-1">嘿嘿~~哈</div>
+			<div class="noWrap group6 flex-1">嘿嘿~~哈</div>
+		</div>
+	</div>
+	<div class="flex right  flex-v flex-1">
+		<div class="box1 flex flex-pack-justify flex-align-center">
+			<div class="noWrap group3">嘿嘿~~哈哈</div>
+			<div class="noWrap group3">嘿嘿~~哈哈</div>
+			<div class="noWrap group3">嘿嘿~~哈哈</div>
+		</div>
+		<div class="box2 flex flex-pack-justify flex-align-center">
+			<div class="noWrap group4 flex-1">嘿嘿~~哈哈</div>
+			<div class="noWrap group4 flex-1">嘿嘿~~哈哈</div>
+			<div class="noWrap group4 flex-1">嘿嘿~~哈哈</div>
+		</div>
+		<div class="box2 flex flex-pack-justify flex-align-center">
+			<div class="noWrap group7 flex-1">嘿嘿~~哈哈</div>
+			<div class="noWrap group7 flex-1">嘿嘿~~哈哈</div>
+			<div class="noWrap group7 flex-1">嘿嘿~~哈哈</div>
+		</div>
+		<div class="box2 flex flex-pack-justify flex-align-center">
+			<div class="noWrap group8 flex-1">嘿嘿~~哈哈</div>
+			<div class="noWrap group8 flex-1">嘿嘿~~哈哈</div>
+			<div class="noWrap group8 flex-1">嘿嘿~~哈哈</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="http://admin.ydh123.com/assets/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+	$(window).on('load',function(){
+		init();
+	})
+	$(window).on('resize',function(){
+		init();
+	})
+	function init(){
+		for(var i=1;i<100;i++){
+			var group=$('.group'+i);
+			if(group.length<=0){
+				return false;
+			}
+			changeAuto(group)
+		}
+	}
+	function changeAuto(group){
+		var noWrap=group;
+		var fontW,fontH;
+		noWrap.each(function(k,v){
+			if(k==0){
+				var length=$(this).text().length;
+				var width=$(this).width();
+				var height=$(this).height();
+				fontW=width/(length+1);
+				fontH=height;				
+			}
+			if($(this).is('.group3'))
+				console.log(k,fontW,fontH)
+			$(this).css({'font-size':fontW > fontH ? fontH : fontW,
+				// 'line-height':fontH+'px'
+			})
+		})
+	}
+	
+</script>
+</body>
+</html>
