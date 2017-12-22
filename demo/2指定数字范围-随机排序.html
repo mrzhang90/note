@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+	function fn1(){
+		var arr=[],newArr=[];
+		for(var i=2;i<=32;i++){
+			arr.push(i);
+		}
+		arr.sort(function(a,b){
+			return Math.floor(Math.random()*a);
+		})
+		return arr;
+	}
+	console.log(fn1());
+
+	function fn(n){
+		var arr1=[];
+		const max=32,min=2;
+		if(max-min<n){
+			alert('不能大于'+(max-min)+'位数');
+			return false;
+		}
+		return hi(n);
+		function hi(n){
+			if(n>max){
+				alert("不能大于"+max)
+			}
+			--n;
+			var random=getRand(max,min);
+			if(checkInArr(arr1,random)){
+				++n;
+			}else{
+				arr1.push(random);
+			}
+			if(n>=0){
+				hi(n);
+			}
+			return arr1;
+		}
+		function getRand(max,min){
+			return Math.round(Math.random()*(max-min)+min)
+		}
+		function checkInArr(arr,random){
+			if(arr.indexOf(random)!=-1){
+				return true
+			}
+			return false;
+		}
+	}
+	console.log(fn(30))
+</script>
+</body>
+</html>

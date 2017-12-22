@@ -1,0 +1,60 @@
+/*
+* 设置元素的自适应行高和字体大小
+* element 默认为父元素和目标元素，如果设置了child参数，则此为父元素
+* defVal (可为空)预知N个字符的长度，这里的输入框需要预留2个数字的长度，那么就保持2个数字
+* child (可为空)修改的目标元素
+* outerHeight (可为空)这里为了特殊字体的数字情况下，用$(element).outerHeight()获取一个带bordet的高度，默认用$(element).height()
+* */
+function changeAuto(element,defVal,child,outerHeight){
+    var noWrap=element;
+    var fontW,fontH,height;
+    noWrap.each(function(k){
+        if(k==0){
+            var length= defVal ? defVal : $(this).text().trim().length;
+            var width=$(this).width();
+            height=outerHeight?$(this).outerHeight():$(this).height();
+            fontW=width/(length+1);
+            fontH=height-4;
+            if($(this).is('.second24')){
+                console.log($(this).text(),width,length,fontW,fontH)
+            }
+        }
+        (child ? child : $(this)).css({
+            'font-size':fontW > fontH ? fontH : fontW,
+            'line-height':(height)+'px'
+        })
+    })
+}
+
+/*
+* 设置style标签，针对动态标签元素使用
+* */
+function setStyle(){
+    var elem=$('style');
+    var parent=$('.logo_pause');
+    var width=0.19*parent.width();
+    var height=parent.height();
+    var diff=Math.floor(width>height ? height : width);
+    var inner='.YDHlogo i{height:'+diff+'px;width:'+diff+'px}';
+    if(elem.length<=0){
+        $('body').append($('<style/>').html(inner))
+    }else{
+        elem.html(inner);
+    }
+}
+
+/*
+* 设置img相对于父元素自适应大小
+* 首先图片的上级是圆形框，遮挡图片边角
+* 图片上下左右定位剧中
+* */
+function teamImg(){
+    var parent=$('.info_teamName');
+    var width=0.28*parent.width();
+    var height=0.9*parent.height();
+    var diff=width>height ? height : width;
+
+    var child=$('.radiusImg');
+    child.css({'width':diff,'height':diff,'margin-top':-diff/2});
+    child.find('img').css({"margin-top":-diff/2,"margin-left":-diff/2});
+}
