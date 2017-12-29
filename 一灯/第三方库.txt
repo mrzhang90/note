@@ -1,9 +1,0 @@
-es5-shim
-	解决低版本浏览器不支持ES5，https://github.com/es-shims/es5-shim
-seaJS
-	并行加载js
-FIS3
-	前端自动化工具
-yog2
-	是FIS3的分支
-	前后端的解决方案，任何项目都应该用到

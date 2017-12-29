@@ -1,0 +1,13 @@
+gulp编译node
+webpack编译前端
+
+构建项目流程
+	1.配置前端静态资源文件
+	2.webpack css js 插到对应页面的部分去
+	3.views 打包到 views文件夹去的真实界面 widget用来组装views的page
+	4.views里的index.html 负责作为webpack的打包入口~~~
+	5.所有的前端需要编译的资源全部由viewS作为主入口 承载
+	6.js负责吐swig 母的是天空 styles scipts  主内容
+	7.由webpack-html-plugin吐 -> index.js
+	8.page index.js -> index.html  -> views
+	index-index.enrty.js -> index.html -> widget -> js -> css -> img  -> assets

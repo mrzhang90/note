@@ -1,3 +1,23 @@
+模块化(阮一峰):
+	-.封装、复用
+	-.解决大量依赖
+	-.隔离
+	-.大功能的分层
+
+	require.js
+	sea.js
+	node.js
+	规范：
+		CMD
+		AMD
+			通过define
+			加载文件 并行下载 解决文件依赖
+		CommonJS
+
+	SystemJS
+		babel编译es6后，浏览器依然不识别exports
+		那么解决浏览器不识别exports
+
 结构简单，浏览器喜欢，顺着就解析下来了，顺着就渲染了
 数组是线性结构，读取快，性能好
 
@@ -26,3 +46,14 @@ browserify
 	能够让本地的js应用服务器的js，具有require的能力，基本上线也不需要它跑
 rollup
 	因为支持tree-shaking火起来的，受webpack3影响，已经冷了
+
+第三方库
+	es5-shim
+		解决低版本浏览器不支持ES5，https://github.com/es-shims/es5-shim
+	seaJS
+		并行加载js
+	FIS3
+		前端自动化工具
+	yog2
+		是FIS3的分支
+		前后端的解决方案，任何项目都应该用到

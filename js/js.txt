@@ -131,6 +131,7 @@ Object:
 正则表达式,可以当做变量,不要加引号,例:var pattern=/\w+/g;
 邮箱验证:一./^[A-Za-z1-9][\w(\.?)(\-?)]+@[a-z0-9]+(\.[a-z]{2,3}){1,2}$/
 中文验证:/[\u4e00-\u9fa5]/
+手机验证:/^1[34578]\d{9}$/
 className验证:new RegExp('\\b'+attr+'\\b','g'); //或者new RegExp('^'+attr+'$|^'+attr+' | '+attr+' | '+attr+'$','g');
 正则去掉左右空格:pattern =/(^\s+)|(\s+)$/g;
 去掉所有的html标记:str.replace(/<\/?[^>]*>/gim,"");
