@@ -74,6 +74,9 @@ git
 	git checkout
 		牵出版本库
 
+远程连接
+	ssh root@43.xxx.xxx.xxx
+		root是用户名，@后面是IP地址
 免密登录
 	ssh服务默认端口号22，要改去服务器改
 	ssh-keygen -t rsa -C test_user -f test_key

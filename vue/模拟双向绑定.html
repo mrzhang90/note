@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<input type="text" id="a" name="" placeholder="请输入">
+<span id="b"></span>
+<script type="text/javascript">
+	var obj={};
+	Object.defineProperty(obj,'Hello',{
+		set:function(e){
+			$('a').value=e;
+			$('b').innerHTML=e;
+		}
+	})
+	document.addEventListener('keyup',function(e){
+		obj.Hello=e.target.value;
+	})
+	function $(id){
+		return document.getElementById(id);
+	}
+</script>
+</body>
+</html>
