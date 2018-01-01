@@ -1,5 +1,0 @@
--.cd 文件夹下
--.npm init
-	命令 一顿回车，会在文件夹下看到package.json文件
--.npm install --save babel-cli ;;save失败，那么就用g
-	命令 安装babel-cli
