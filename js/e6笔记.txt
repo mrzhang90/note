@@ -50,6 +50,7 @@ async
 		import {$} form 'jquery.js' //$不能使变量
 	export
 		export {$} //不能使变量
+		export default aa;//导出变量为aa的数据
 模块-不一样的理念
 	按需引入
 		//模块思想
