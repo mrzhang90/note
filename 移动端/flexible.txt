@@ -1,0 +1,88 @@
+flexible：
+	http://blog.csdn.net/fgdfgasd/article/details/78811218
+	https://github.com/amfe/lib-flexible
+	https://github.com/amfe/lib-flexible/tree/master
+概念参考：
+	https://stackoverflow.com/questions/6333927/difference-between-visual-viewport-and-layout-viewport
+	https://www.quirksmode.org/mobile/viewports2.html
+基本概念
+	viewport
+		视窗-viewport是严格等于浏览器的窗口,在PC，viewport就是浏览器窗口的宽高，but移动端提供了两个viewport
+	visual viewport
+		可视视口-是当前显示在屏幕上的页面的一部分
+			当用户缩小或放大时，测量会发生变化，因为更多或更少的CSS像素会融入屏幕
+	layout viewport
+		布局视口-可能比视觉视口宽得多，并且包含显示在屏幕上的元素
+			布局视口的宽度和高度等于在最大缩小模式下可以在屏幕上显示的任何宽度和高度。用户放大这些尺寸时保持不变
+			布局视口宽度始终相同。如果旋转手机，可视视口会发生变化，但浏览器会稍微放大以适应新的方向，以使布局视口再次与可视视口一样宽。
+	这两个视口显然是用CSS像素来衡量的。但是，当可视视口尺寸随缩放而变化时（如果放大，则CSS屏幕上的CSS像素更少），布局视口尺寸保持不变。（如果他们的页面不会因为重新计算百分比宽度而不断回流）
+document.documentElement.clientWidth/clientHeight
+	布局视口尺寸,测量布局视口
+	支持Opera，iPhone，Android，Symbian，Bolt，MicroB，Skyfire，Obigo
+	问题：Iris浏览器的可视视口尺寸
+			Iris是Windows Mobile平台上的一种网页浏览器
+		当<meta viewport>标签应用于页面时，三星WebKit报告正确的值; <html>否则元素的尺寸
+		Symbian WebKit 1（较旧的S60v3设备）不支持这些属性
+		不支持 BlackBerry
+window.innerWidth/Height
+	可视视口尺寸,测量视觉视口
+	支持iPhone，Symbian，黑莓
+	Opera和Firefox返回设备像素的宽度尺寸
+		Android，Bolt，MicroB和NetFront以CSS像素返回布局视口尺寸
+	不支持IE，但是它提供了可视化的视口维度document.documentElement.offsetWidth/Height
+		三星WebKit会报告布局视口的尺寸，或者<html>取决于<meta viewport>标签是否已应用于页面。
+screen.width/height
+	屏幕尺寸，以设备像素为单位给出屏幕大小
+	支持Opera Mini，Android，Symbian，Iris，Firefox，MicroB，IE，BlackBerry
+	Windows Mobile上的Opera Mobile仅提供横向大小。在S60上的Opera Mobile是正确的
+		三星WebKit会报告布局视口的尺寸，或者<html>取决于<meta viewport>标签是否已应用于页面
+		iPhone和Obigo只给竖屏大小
+		NetFront(日本爱可信公司-移动电话)只提供横屏尺寸
+
+缩放级别
+	不能直接读出缩放级别，但可以通过screen.width/window.inerWidth得到，当然在保证兼容性的前提下。
+	幸运的是缩放级别并不重要。你需要知道的是目前屏幕上有多少个CSS像素。window.innerWidth如果支持正确的话，你可以从中获得这些信息。
+滚动偏移
+	您还需要知道的是可视视口相对于布局视口的当前位置。这是滚动偏移量，和PC一样，它被存储在window.pageXOffset/pageYOffset
+window.pageXOffset / pageYOffset
+	滚动偏移量; 布局视口相对于可视视口的偏移
+	支持iPhone，Android，Symbian，Iris，MicroB，Skyfire，Obigo
+	Opera，Bolt，Firefox和NetFront总是返回0
+		只有将a <meta viewport>应用于页面，Samsung WebKit才会报告正确的值
+	不支持IE，黑莓
+		IE中存储的值在document.documentElement.scrollLeft / scrollTop
+<html> 元素
+	和PC一样，document.documentElement.offsetWidth/Height给出<html>元素的总大小
+document.documentElement.offsetWidth/Height
+	<html>元素的总大小
+	支持Opera，iPhone，Android，Symbian，三星，Iris，Bolt，Firefox，MicroB，Skyfire，黑莓，Obigo
+	NetFront(日本爱可信公司-移动电话)的值只有在100％变焦时才是正确的
+	IE使用这个来存储可视视口的尺寸。在IE中，使用document.body.clientWidth/Height查看正确的值。
+媒询
+	和PC一样，width/height使用布局视口作为其参考，并在CSS像素中进行测量，device-width/height使用设备屏幕并在设备像素中进行测量。
+	等于说，width/height的值来自document. documentElement.clientWidth/Height，而device-width/height值来自 screen.width/height（他们实际上在所有浏览器中都这样做，即使值不正确。）
+媒体查询
+	测量<html>元素宽度（CSS像素）或设备宽度（设备像素）
+	支持Opera，iPhone，Android，Symbian，Samsung，Iris，Bolt，Firefox，MicroB
+	不支持Skyfire，IE，黑莓，NF，Obigo
+哪个测量对Web开发人员更有用？
+	我开始认为这device-width是最重要的一个，但是你可以用<meta viewport>，使用device-width媒体查询并不是绝对必要的
+	那么width更重要的媒体查询呢？也许; 它提供了一些线索，浏览器供应商认为这个设备上的网站是一个很好的宽度。但是，这是相当模糊的，width媒体查询并没有真正提供任何其他信息。
+	所以我还没决定 目前，我认为媒体查询对于确定您是在台式机，平板电脑还是移动设备上很重要，但对于区分各种平板电脑或移动设备来说并不那么有用。
+事件坐标
+	事件坐标或多或​​少地在PC上工作。不幸的是，在十二个测试过的浏览器中，只有两个，Symbian WebKit和Iris，都完全正确。所有其他浏览器都有或多或少严重的问题。
+	pageX/Y 仍然相对于CSS像素中的页面，这是三个属性对中最有用的，就像在PC上一样
+	clientX/Y相对于CSS像素中的视觉视口。这是有道理的，虽然我不完全确定它的好处。
+	screenX/Y相对于设备像素中的屏幕。当然，这是使用相同的参考clientX/Y，而设备像素是无用的。所以我们并不需要担心screenX/Y; 它和桌PC上一样无用
+	支持Symbian，Iris
+	Opera Mobile在所有三个属性对中都提供了pageX / Y，但是当您滚动很多时会出现问题。
+		在iPhone，Firefox和BlackBerry clientX / Y上，相当于pageX / Y
+		在Android和MicroB屏幕上，X / Y等于clientX / Y（换句话说，在CSS像素中）
+		在Firefox屏幕上X / Y是错误的
+		IE，BlackBerry和Obigo不支持pageX / Y。
+		在NetFront中，所有三个都是screenX / Y。
+		在Obigo clientX / Y是screenX / Y。
+		三星WebKit总是报告pageX / Y
+元视口
+	最后，我们来讨论一下<meta name="viewport" content="width=320">。原本是一个苹果扩展，但同时被更多的浏览器复制。这意味着调整布局视口。为了理解为什么这是必要的，让我们退一步
+	假设你建立一个简单的页面，并给你的元素没有width。现在，他们伸展到布局视口的宽度的100％。大多数浏览器缩小显示在屏幕上的整个布局视口，所有用户将立即放大，这是可行的，但大多数浏览器保持元素宽度不变，这使得文本难以阅读

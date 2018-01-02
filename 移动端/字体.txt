@@ -1,23 +1,3 @@
-基于移动端的PX与REM
-	目前的设计稿,一般是 640 750 1125，一般要先均分成100份，(兼容vh,vm) 750/10 = 75px。div宽是240px*120px css的书写改为3.2rem * 1.6rem。 配合响应式修改html根的大小。
-	data-dpr-字体大小	
-		different size  different DPR
-		字体不建议使用rem的，data-dpr属性动态设置字体大小。屏幕变大放更多的文字，或者屏幕更大放更多的字。
-	神奇的padding/margin-top等比例缩放间距
-
-	<html style="font-size:0.625rem">
-		这是font-size=10px,是利用10/16得来的，也就是说font-size就是10px，为了便于以后的计算
-
-弹性盒模型与Reset的选择
-	flex模型
-		如果做移动端页面，没必要用float、inline-block之类的了。flex最合适的
-	*的杀伤力太大！！！
-	Neat.css融合-推荐
-		Reset.css 重置
-		Normalize.css修复
-	html{box-sizing: border-box;}
-	*,*:before,*:after{box-sizing: inherit;}
-
 ICON-FONT与常用字体排版
 	no-image时代 不超过纯色为2的图像
 	宋体非宋体 黑体非黑体 WIndows下的宋体叫中易宋体SimSun，Mac是华文宋体STSong。WIndows下的黑体叫中易黑体SimHei，Mac是华文黑体STHeiti。
