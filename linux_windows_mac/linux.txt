@@ -1,0 +1,31 @@
+ps aux
+	查看进程
+	ubuntu只能查看自己账户的进程
+		那么 sudo ps aux，暂时提升为超级管理员，就可以查看其他管理员的进程了
+yum update
+	升级所有需要升级的软件
+工具
+	xhell
+		乱码解决
+			终端 -> 编码，改成utf-8
+		终端类型
+			xterm 其他的不要选择，否则字体会混乱
+	putty
+
+ubuntu
+	桌面版图形化界面
+		学习推荐
+centos
+	minimal ISO
+		配服务器推荐
+
+ubuntu和centos差异
+	安装包命令
+		前者-appget
+		后者-yum
+
+一个进程可以运行多个程序
+windows
+	一个行程有多个线程，至少一个线程，也叫主线程，其他是子线程
+linux
+	父进程和多个子进程

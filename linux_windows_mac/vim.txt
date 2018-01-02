@@ -1,0 +1,10 @@
+vi xxx.txt
+	使用vi命令进入文件，然后输入每个字母都代表输入一个命令
+	o
+		insert编辑模式
+	esc
+		编辑模式退回到命令模式
+	ZZ
+		命令模式下保存当前文件所做的修改后退出vi；
+参考：
+	http://man.linuxde.net/vi
