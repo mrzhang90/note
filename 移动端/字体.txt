@@ -13,3 +13,33 @@ ICON-FONT与常用字体排版
 	移动端字体单位font-size选择px还是rem
 	对于只需要适配手机设备，使用px即可
 	对于需要适配各种移动设备，使用rem，例如只需要适配iPhone和iPad等分辨率差别比较挺大的设备
+
+windows上默认安装有哪些字体？
+	OS X 的默认字体列表
+		https://en.wikipedia.org/wiki/List_of_typefaces_included_with_macOS
+	Windows 的默认字体列表
+		https://en.wikipedia.org/wiki/List_of_typefaces_included_with_Microsoft_Windows
+
+	在最原始的状态下，两者共有的字体仅有 Arial, Verdana, Tahoma, Trebuchet MS, Georgia 等几个 web-safe 字体。此外，在 Windows 没有安装 Helvetica 的情况下，将字体指定为 Helvetica, 也会根据注册表中的 font link 设置自动 fallback 为 Arial.通过共有字体来统一 Windows 和 OS X 的网页外观不太现实，因为字体渲染风格取向的不同，已经使得两者的网页观感有较大差别。而且，上述几个 web-safe 字体虽然不至于糟糕（我甚至觉得 Trebuchet 和 Georgia 都算是素质不错的），但也过于常见而没什么突出的地方。如果在设计中对字体考究一些，都是不宜使用的，而应该使用 Web Font. 在不便使用 Web Font 时，应当根据每个平台的情况合理编写 CSS 中的 font stack, 以通过字体回退达成各个平台较优的效果。中文字体方面，因为两平台没有共有的字体，而且字体渲染对于中文字体效果的影响更大，更应该如此操作。如果能通过 User Agent 识别平台，分配不同的 CSS 文件，就更好了。
+
+	作者：Linkzero Tsang
+	链接：https://www.zhihu.com/question/35482301/answer/62945018
+	来源：知乎
+	著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+安卓系统的默认中文字体是什么？
+	android 4.0（<=4.0）之前只有三种字体: 有衬线(Droid Serif)、无衬线(Droid Sans)、等宽(Droid Sans Mono)
+		中文是： Droid
+	android高版本 >= 4.1
+		Rotobo
+			由google开发的新的无衬线字体
+		Noto （思源）
+			新版Android的默认回退字体
+			Noto是一个包含超过一百个单独字体的字体系列
+			思源黑体
+				在Adobe那里，称为Noto Sans CJK
+				在google那里，称为Source Han Sans
+			思源宋体
+				在Adobe那里，称为Noto Serif CJK
+				在google那里，称为Source Han Serif
+	来源：https://www.zhihu.com/question/23487706
