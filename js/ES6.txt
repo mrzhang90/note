@@ -7,6 +7,8 @@ Traceur:
     import './Greeter.js';
   </script>
 
+Object.assign(obj1,obj2)
+  合并
 声明变量的6种方式：
   var、function、let、const、import、class
 方法：
