@@ -1,0 +1,58 @@
+免密登录
+	ssh服务默认端口号22，要改去服务器改
+	ssh-keygen -t rsa -C test_user -f test_key
+		生成秘钥,-t rsa是一种算法，-C test_user识别用户的字符串可以邮箱或用户名随意,-f test_key生成秘钥的文件名字随意写不带后缀
+		回车之后提示你输入口令，相当于双保险，不要写，两次回车
+			这是为了免密登录
+		然后产生了
+			test_key
+				公钥
+			test_key.pub
+				私钥，私钥不得泄露
+		mb test_key* .ssh/
+			把公钥秘钥移动到.ssh下
+			PS:
+				你的私钥权限是当前用户要可读可写，其他用户不给，否则操作系统拒绝使用秘钥
+				.ssh
+					带点的文件是隐藏的
+	ssh root@192.168.0.31
+		远程登录192.168.0.31的服务器上的root用户
+	scp ./test_key.pub root@192.168.0.31:/root/.ssh
+		把公钥远程拷贝到192.168.0.31,冒号是分隔符,传到服务器的root/.ssh里
+	ssh root@192.168.0.31-登录服务器，然后
+		cd .ssh，然后 
+		cat test_key.pub >> authorized_keys
+			把test_key.pub流入到authorized_keys
+			>是覆盖，>>流操作，把前面的文件灌倒后面的文件-authorized_keys
+	cat config
+		修改config
+	ssh
+		就可以免密登录了
+		或者这种麻烦的方式免密登录，不要config配置
+		ssh -i ~/.ssh/test_key root@192.168.0.31
+			-i ~/.ssh/test_key是私钥路径，就可以免密登录了
+
+	exit
+		退出当前服务器，退回到原来的服务器
+
+免密配置，config文件
+	user root
+		登录的用户
+	host XXXX
+		别名，服务器的别名
+	hostName www.xx.com
+		服务器地址-要改
+	port 888
+		端口-要改
+	strictHostKeyChecking no
+		热键检查-固定
+	identityFile ~/.ssh/id_rsa
+		私钥路径，~代表当前用户的home
+	identitiesOnly yes
+		只允许秘钥登录
+	Protocol 2
+	serverAliveInterval 60
+	serverAliveCountMax 20
+		过期时间，防止超时被踢
+	Loglevel INFO
+		日志等级
