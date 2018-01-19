@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width,,initial-scale=1,maximum-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+    <title>Download</title>
+    <style>
+    .hidden {
+        display: none;
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    @media screen and (min-width: 960px) {
+        .container {
+            position: relative;
+            text-align: left;
+            width: 960px;
+            margin: 106px auto;
+        }
+    }
+
+    .keep-text {
+        color: #584f60;
+        font-weight: 200;
+    }
+
+    body {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        background-color: #eaebed;
+        padding: 1px;
+    }
+
+    #logo {
+        display: block;
+        margin: 30px auto;
+        width: 80px;
+    }
+
+    @media screen and (min-width: 768px) {
+        #logo {
+            width: 86px;
+        }
+    }
+
+    @media screen and (min-width: 960px) {
+        #logo {
+            width: 86px;
+            margin: 0px 0px 12px;
+        }
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    @media screen and (min-width: 768px) {
+        h1 {
+            font-size: 34px;
+            margin-bottom: 23px;
+        }
+    }
+
+    @media screen and (min-width: 960px) {
+        h1 {
+            font-size: 36px;
+            margin: 12px 0 28px;
+        }
+    }
+
+    .dl-btn {
+        background-color: #584f60;
+        color: #fff;
+        font-size: 13px;
+        border-radius: 2px;
+        display: inline-block;
+        text-decoration: none;
+        margin: 0 auto;
+        text-align: center;
+        width: 91px;
+        height: 38px;
+        line-height: 38px;
+    }
+
+    @media screen and (min-width: 768px) {
+        .dl-btn {
+            font-size: 18px;
+            width: 125px;
+            height: 52px;
+            line-height: 52px;
+        }
+    }
+
+    @media screen and (min-width: 960px) {
+        .dl-btn {
+            font-size: 20px;
+            width: 141px;
+            height: 59px;
+            line-height: 59px;
+        }
+    }
+
+    #title {
+        margin-bottom: 15px;
+    }
+
+    @media screen and (min-width: 768px) {
+        #title {
+            margin-bottom: 30px;
+        }
+    }
+
+    #sideline {
+        line-height: 1.5;
+        margin-bottom: 30px;
+        font-size: 12px;
+    }
+
+    @media screen and (min-width: 768px) {
+        #sideline {
+            font-size: 19px;
+        }
+    }
+
+    @media screen and (min-width: 960px) {
+        #sideline {
+            margin-bottom: 78px;
+            font-size: 22px;
+        }
+    }
+
+    #sideline p {
+        margin: 0;
+    }
+
+    .screenshots {
+        margin: 50px auto 0;
+        background-size: contain;
+        max-width: 260px;
+    }
+
+    @media screen and (min-width: 768px) {
+        .screenshots {
+            max-width: 380px;
+        }
+    }
+
+    @media screen and (min-width: 960px) {
+        .screenshots {
+            position: absolute;
+            margin: 0;
+            right: 0;
+            top: 0;
+            max-width: 380px;
+        }
+    }
+
+    .screenshots img {
+        margin-top: -10px;
+        width: 100%;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a id="dl-btn" href="https://itunes.apple.com/app/apple-store/id952694580?pt=117139798&amp;ct=fensitongAug15&amp;mt=8" class="dl-btn">下载 Keep</a>
+    </div>
+    <script>
+    var androidUrl = 'http://dl-android.keepcdn.com/keep-weiboguanfang_99fc5914a33fc7cb2660ae2237bdb852.apk?download/Keep瑜伽跑步健身骑行教练-weiboguanfang.apk';
+    var iosUrl = 'https://itunes.apple.com/app/apple-store/id952694580?pt=117139798&ct=weiboguanfang&mt=8';
+    var qqAppUrl = '';
+    (function() {
+        'use strict';
+        //url == http://*****.com/app/?t=weiboguanfang&stop=true
+        function parseParams(url) {
+            var href = url || window.location.href,
+                array = href.split("?"),
+                query = "";
+            if (array.length === 1) {
+                return {};
+            } else {
+                query = array[array.length - 1];
+            }
+            // parseParams
+            var re = /([^&=]+)=?([^&]*)/g;
+            var decodeRE = /\+/g; // Regex for replacing addition symbol with a space
+            var decode = function(str) {
+                return decodeURIComponent(str.replace(decodeRE, " "));
+            };
+            query = decodeURIComponent(query);
+            var params = {},
+                e;
+            while (e = re.exec(query)) {
+                var k = decode(e[1]),
+                    v = decode(e[2]);
+                if (k.substring(k.length - 2) === '[]') {
+                    k = k.substring(0, k.length - 2);
+                    (params[k] || (params[k] = [])).push(v);
+                } else {
+                    params[k] = v;
+                }
+            }
+            return params;
+        }
+
+        var useragent = navigator.userAgent.toLowerCase();
+        var applink = 'https://*****.com';
+        var isWeixin = /micromessenger/i.test(useragent);
+        var iOS = /iP(hone|od|ad)/i.test(useragent);
+        var Android = /Android/i.test(useragent);
+        var params = parseParams();
+        var platform = 'desktop';
+        var self = document.getElementById('dl-btn');
+        if (isWeixin) {
+            applink = qqAppUrl || 'http://a.app.qq.com/o/simple.jsp?pkgname=com.*****.keep';
+            params.stop = true;
+        } else if (iOS) {
+            platform = 'iOS';
+            if (params.t) {
+                applink = iosUrl;
+            } else {
+                applink = 'https://itunes.apple.com/app/apple-store/id952694580?pt=117139798&ct=keep&mt=8';
+            }
+        } else if (Android) {
+            platform = 'android';
+            applink = androidUrl;
+        } else {
+            if (params.type == 'android') {
+                applink = androidUrl;
+            } else if (params.type == 'ios') {
+                applink = 'https://itunes.apple.com/app/apple-store/id952694580?pt=117139798&ct=keep&mt=8';
+            }
+        }
+
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?9b3c64aa4c27ad34a8b493b4a6b6c23f";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        self.href = applink;
+        _hmt.push(['_trackEvent', 'download', 'redirect', platform]);
+        if (!params.stop) {
+            _hmt.push(['_trackEvent', params.t, 'redirect']);
+            location.href = applink;
+        }
+    }());
+    </script>
+</body>
+
+</html>
