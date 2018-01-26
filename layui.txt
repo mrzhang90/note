@@ -1,0 +1,30 @@
+form.render();
+	更新全部
+form.render('select');
+	刷新select选择框渲染
+form.render(null, 'test1');
+	更新 lay-filter="test1" 所在容器内的全部表单状态
+form.render('select', 'test2');
+	更新 lay-filter="test2" 所在容器内的全部 select 状态
+
+lay-submit
+	无需填写值
+lay-verType
+	tips（吸附层）
+	alert（对话框）
+	msg（默认）
+lay-verify
+	required（必填项）
+	phone（手机号）
+	email（邮箱）
+	url（网址）
+	number（数字）
+	date（日期）
+	identity（身份证）
+	自定义值
+	同时支持多条规则的验证
+		格式：lay-verify="验证A|验证B" 
+		如：lay-verify="required|phone|number"
+	内置的校验规则，你还可以给他设定任意的值
+		lay-verify="pass"
+			那么你就需要借助form.verify()方法对pass进行一个校验规则的定义

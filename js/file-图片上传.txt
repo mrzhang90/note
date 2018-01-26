@@ -1,0 +1,92 @@
+FileReader对象
+	base64方式提交图片
+		参考链接：https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader/readAsDataURL
+	var $file = $('[name=file]').get(0).files[0];//得到文件对象
+	var $Reader = new FileReader();//创建FileReader对象
+	var $imgSrc = null;
+	$Reader.readAsDataURL($file);//读取文件到FileReader对象
+	$Reader.onload = function(){
+	    obj['logo'] = $Reader.result;//得到base64解码的图片信息 ，此可以用来显示成图片
+	    $.ajax({
+	        url: "/gm/editActivityMessage/updateByActivityId.json",
+	        type: "POST",
+	        // processData: false,
+	        // contentType: false,
+	        data: obj,
+	        success: function(d) {
+	            console.log(d);
+	        }
+	    });
+	};
+
+FormData
+	参考链接
+		https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/Using_FormData_Objects
+	var formElement = document.querySelector("form");
+	var formData = new FormData(formElement);
+	formData.append("serialnumber", serialNumber++);
+	// HTML 文件类型input，由用户选择
+	formData.append("userfile", fileInputElement.files[0]);
+
+jquery插件方式的三种方式
+	参考链接
+		http://zhangzhaoaaa.iteye.com/blog/1885517
+	ajaxFileUpload
+		参考链接
+			http://www.phpletter.com/Demo/AjaxFileUpload-Demo/
+		$.ajaxFileUpload({
+			url:"sys/function/upload",//需要链接到服务器地址
+			secureuri:false,
+			fileElementId:"filePath",//文件选择框的id属性
+			dataType: 'text/xml',   //也可以是json
+			success: function (data) {
+				alert_message("上传成功"); 
+				$('#myId').val(data);
+			},
+			error: function (data, status, e){
+				alert(e);
+			}
+		});
+	uploadify
+		参考链接
+			http://www.uploadify.com/
+		$('#fileInput').uploadify({
+			'swf'      : 'js/uploadify/uploadify.swf',
+			'uploader' : 'sys/function/upload;jsessionid='+$('#sessionId').val(),
+			'buttonText' : '浏览...',
+			'uploadLimit' : 5,
+			'auto':false,
+			queueSizeLimit:1,
+			'progressData' : 'percentage'
+	    });
+    MultiFile
+    	jquery.MultiFile网址：
+    		http://www.fyneworks.com/jquery/multiple-file-upload/
+		jqueryform网址：
+			http://jquery.malsup.com/form/#file-upload
+
+		$('#addUploadForm').ajaxForm({
+	       beforeSend: function() {
+	           status.empty();
+	           var percentVal = '0%';
+	           bar.width(percentVal);
+	           percent.html(percentVal);
+	       },
+	       uploadProgress: function(event, position, total, percentComplete) {
+	           var percentVal = percentComplete + '%';
+	           bar.width(percentVal);
+	           percent.html(percentVal);
+	       },
+	       success: function(data) {
+	           var percentVal = '100%';
+	           bar.width(percentVal);
+	           percent.html(percentVal);
+	           $('#myId').val(data.msg);
+	           $('input:file').MultiFile('reset');
+	       },
+		    complete: function(xhr) {
+		    },
+		    url:'sys/function/upload',
+		    type:'post',
+		    dataType:'json'
+	   });
