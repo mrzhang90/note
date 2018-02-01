@@ -28,3 +28,30 @@ lay-verify
 	内置的校验规则，你还可以给他设定任意的值
 		lay-verify="pass"
 			那么你就需要借助form.verify()方法对pass进行一个校验规则的定义
+
+layer
+	anim
+		0	平滑放大。默认
+		1	从上掉落
+		2	从最底部往上滑入
+		3	从左滑入
+		4	从左翻滚
+		5	渐显
+		6	抖动
+	icon
+		0-信息框
+		1-正确
+		2-错误
+		5-不开心
+		6-加载层
+
+开关checkbox空间的使用：
+	首先.不要设置name
+	修改时赋值：
+		data.top.value==1?
+          top.attr("checked", "checked"):
+          top.removeAttr("checked");
+  	提交时判断：
+		if(!obj['top']){
+			data.append('top',$('#top').prop('checked')?1:0);
+		}
