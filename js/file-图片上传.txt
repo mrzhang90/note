@@ -2,6 +2,10 @@ FileReader对象
 	base64方式提交图片
 		参考链接：https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader/readAsDataURL
 	var $file = $('[name=file]').get(0).files[0];//得到文件对象
+	if(!$file || $file.size<=0){
+		window.top.open_layer('请上传赛徽',{'icon':5,'anim':6})
+		return false;
+	}
 	var $Reader = new FileReader();//创建FileReader对象
 	var $imgSrc = null;
 	$Reader.readAsDataURL($file);//读取文件到FileReader对象
