@@ -12,6 +12,10 @@
     }, 0)
   }).appendTo($body);
 --.获取浏览器版本，判断是不是IE $.browser
+  这是一个兼容IE6-11的写法
+    var isIE = /msie/.test(navigator.userAgent.toLowerCase()); //jquery1.9之后采用  
+    //var isIE = $.browser.msie;//jquery1.9之前采用  
+    console.log (isIE || !!window.ActiveXObject || "ActiveXObject" in window) {
   使用：
       if($.browser.msie && parseInt($.browser.version) <=8){//解决ie8\ie7不支持nth-child的bug
           $('.hot_list li:nth-child(3n+1)').css("margin-left",0)

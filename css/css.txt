@@ -73,6 +73,15 @@
         }
         /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
         select::-ms-expand { display: none; }
+table
+    border-collapse:collapse
+        用于使用合并的边框来绘制表格
+        table{
+            border-collapse:collapse;
+        }
+        table,td{
+            border:solid 1px #000;
+        }
 font
     排版
         typo.css 、 Entry.css 、Type.css

@@ -39,7 +39,7 @@ IE9 Filter bug:由于IE9识别filter和css3，解决方法：(参考：https://w
 	@media all and (-ms-high-contrast:none) {
 		background:blue;
 	}
-pacity兼容IE6,7,8
+opacity兼容IE6,7,8
 	透明度：
 		写法1.filter:alpha(opacity=)  0-100
 			写法2.-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";

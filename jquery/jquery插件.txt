@@ -1,6 +1,7 @@
-应用迁移辅助插件:jquery-migrate.min.js
-    就是一个过渡插件 让你在原来代码上升级jquery 不用修改代码用的
-
+jquery-migrate.min.js
+    应用迁移辅助插件
+        过渡插件 让你在原来代码上升级jquery 不用修改代码用的
+        
 表单验证-validation :http://doc.jquery.com/Plugins/Validation
     Validation插件有两个经常被用到的选项,分别是方法(method)和规则(rule)
         方法(method):通过执行验证逻辑判断一个元素是否合法,例如email()就是检查当前文本格式是否是正确的email格式
