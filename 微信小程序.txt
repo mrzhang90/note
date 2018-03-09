@@ -1,53 +1,60 @@
-app.js:
-    App({//不能调用getApp(),取实例用this
-      onLaunch: function() {
-        // 不能用getCurrentPage()，此时 page 还没有生成。
-      },
-      onShow: function() {
-          //当小程序启动，或从后台进入前台显示，会触发 onShow
-      },
-      onHide: function() {
-          // 当小程序从前台进入后台，会触发 onHide
-      },
-      globalData: 'I am global data'
-    })
-接收页面参数：可以获取wx.navigateTo和wx.redirectTo及<navigator/>中的 query
-对界面的设置如：wx.setNavigationBarTitle请在onReady之后设置。
-登录：wx.login()
-获取用户信息：wx.getUserInfo
-读取本地缓存：wx.getStorageSync('logs') || []
-设置本地缓存：wx.setStorageSync('logs', logs)
-对象-globalData
+方法
+  app.js:
+      App({//不能调用getApp(),取实例用this
+        onLaunch: function() {
+          // 不能用getCurrentPage()，此时 page 还没有生成。
+        },
+        onShow: function() {
+            //当小程序启动，或从后台进入前台显示，会触发 onShow
+        },
+        onHide: function() {
+            // 当小程序从前台进入后台，会触发 onHide
+        },
+        globalData: 'I am global data'
+      })
+  接收页面参数：可以获取wx.navigateTo和wx.redirectTo及<navigator/>中的 query
+  对界面的设置如：wx.setNavigationBarTitle请在onReady之后设置。
+  wx.login()
+    登录
+  wx.getUserInfo
+    获取用户信息
+  wx.getStorageSync('logs') || []
+    读取本地缓存
+  wx.setStorageSync('logs', logs)
+    设置本地缓存
+  对象-globalData
     设置：this.globalData.userinfo=obj;
     读取：this.globalData.userinfo
+  数组中添加值
+    logs.unshift(Date.now())
 
-js
-数组中添加值
-logs.unshift(Date.now())
-
+事件
+  bindtap
+    点击事件
+  bindchange
+    checkbox选中事件
+  事件(bind事件绑定不会阻止冒泡事件向上冒泡，catch事件绑定可以阻止冒泡事件向上冒泡)：
+      冒泡：
+        touchstart  手指触摸动作开始
+        touchmove 手指触摸后移动
+        touchcancel 手指触摸动作被打断，如来电提醒，弹窗
+        touchend  手指触摸动作结束
+        tap 手指触摸后马上离开
+        longtap 手指触摸后，超过350ms再离开
+      非冒泡：
+        submit
+        input
+        scroll
 wxml:
-使用 wx:for-item 可以指定数组当前元素的变量名，
-使用 wx:for-index 可以指定数组当前下标的变量名：
-<view wx:for="{{array}}" wx:for-index="idx" wx:for-item="itemName">
-  {{idx}}: {{itemName.message}}
-</view>
-
-事件(bind事件绑定不会阻止冒泡事件向上冒泡，catch事件绑定可以阻止冒泡事件向上冒泡)：
-    冒泡：
-    touchstart	手指触摸动作开始
-    touchmove	手指触摸后移动
-    touchcancel	手指触摸动作被打断，如来电提醒，弹窗
-    touchend	手指触摸动作结束
-    tap	手指触摸后马上离开
-    longtap	手指触摸后，超过350ms再离开
-    非冒泡：
-    submit
-    input
-    scroll
+  使用 wx:for-item 可以指定数组当前元素的变量名，
+  使用 wx:for-index 可以指定数组当前下标的变量名：
+  <view wx:for="{{array}}" wx:for-index="idx" wx:for-item="itemName">
+    {{idx}}: {{itemName.message}}
+  </view>
 
 wxss:
-rpx:规定屏幕宽为750rpx。1rpx=1物理像素。例如iphone6，1px=2rpx(750/375屏幕宽度)，10px=750rpx(750/375*10)
-rem:规定屏幕宽为20rem,1rem=(750/20)rpx.例如ihone6,1px=屏幕宽度375/750=0.5,0.5*37.5=18.5,所以1rem=18.5
+  rpx:规定屏幕宽为750rpx。1rpx=1物理像素。例如iphone6，1px=2rpx(750/375屏幕宽度)，10px=750rpx(750/375*10)
+  rem:规定屏幕宽为20rem,1rem=(750/20)rpx.例如ihone6,1px=屏幕宽度375/750=0.5,0.5*37.5=18.5,所以1rem=18.5
 
 快捷键：
 格式调整
