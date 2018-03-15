@@ -12,8 +12,12 @@
         },
         globalData: 'I am global data'
       })
-  接收页面参数：可以获取wx.navigateTo和wx.redirectTo及<navigator/>中的 query
-  对界面的设置如：wx.setNavigationBarTitle请在onReady之后设置。
+  wx.navigateTo
+    接收页面参数：可以获取wx.navigateTo和wx.redirectTo及<navigator/>中的 query
+  wx.setNavigationBarTitle
+    对界面的设置
+    设置标题
+    如：wx.setNavigationBarTitle请在onReady之后设置。
   wx.login()
     登录
   wx.getUserInfo
