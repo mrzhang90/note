@@ -33,11 +33,13 @@
 		ls -a 显示文件及隐藏文件
 		ls -ah 查看所有文件,包括隐藏文件(只看文件名)
 		ls -al 查看所有文件,包括隐藏文件(文件详细信息)
-	ps aux
-		查看进程
+	ps aux 查看进程
+		ps -ef |grep mongodb 查看mongodb的进程
 		ubuntu只能查看自己账户的进程
 			那么 sudo ps aux，暂时提升为超级管理员，就可以查看其他管理员的进程了
-
+	tail -f mongodb.log
+		查看日志
+		
 --.insert
 	yum update
 		升级所有需要升级的软件

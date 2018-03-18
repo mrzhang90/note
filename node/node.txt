@@ -34,3 +34,19 @@ Node经典代码
 
 	异步解决方案
 	async( await ctx.render('index.html'));
+
+--.node实现web端文件下载
+	//node(koa)实现web端文件下载
+	downloadImg(ctx){
+		var fileName = 'code_testnet.png';
+		let filePath=path.join(__dirname,'../assets/images/',fileName)
+		var stats = fs.statSync(filePath); 
+		if(stats.isFile()){
+			ctx.type="application/octet-stream"
+			ctx.attachment(fileName);
+			ctx.length=stats.size
+			ctx.body=fs.readFileSync(filePath);
+		} else {
+			ctx.status=404
+		}
+	}
