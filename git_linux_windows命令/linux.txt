@@ -58,7 +58,10 @@
 	rm命令：
 		删除文件:  rm test.txt
 		删除文件夹: rm -r aa
-
+--.软连接
+	ln -s 源文件 目标文件
+		ln -s /bin/less /usr/local/bin/less
+		
 --.远程连接
 	ssh root@43.xxx.xxx.xxx
 		root是用户名，@后面是IP地址
