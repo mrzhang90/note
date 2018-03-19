@@ -1,0 +1,24 @@
+编辑器
+	左侧列表上的下箭头，可以选择查看工作代码、包或者所有代码
+		通常用android模式下
+	manifests
+		配置文件，或者叫资源清单。相当于node的package.json
+	res
+		资源目录
+			drawble
+				图片
+			layout
+				布局
+			menu
+				菜单
+			raw
+				mp3大小的音乐文件
+			values
+				设置资源的值
+		右击res可以创建不同的资源
+
+模拟器
+	windows
+		file->settings->Appearance&Behavior->System Sttings->Android SDK
+		启动模拟器
+			左上角图标-手机图标
