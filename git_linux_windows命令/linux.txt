@@ -21,6 +21,7 @@
 		cd 目录名  -切换到下级指定的目录里    
 		cd ..     -切换到上级目录
 		cd ../../ -切换两层上级目录
+		cd ~/     -切换到用户目录下
 	cp命令：
 		cp aa.txt bb/bb -把aa.txt文件复制到bb/bb目录下
 		cp aa.txt bb/cc -把aa.txt文件复制到bb目录下，并重命名为cc

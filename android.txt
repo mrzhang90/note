@@ -16,9 +16,14 @@
 			values
 				设置资源的值
 		右击res可以创建不同的资源
-
-模拟器
+打包发布
+	build->Generate Signed APK
+andriod studio模拟器
 	windows
+		Genymotion
+			windows下AMD的处理器装不上手机设备，那么就需要搭配Genymotion使用
+			如果android studio安装不上手机设备，那么就可以搭配Genymotion使用
 		file->settings->Appearance&Behavior->System Sttings->Android SDK
-		启动模拟器
-			左上角图标-手机图标
+			如果你不是AMD处理器，那么就可以这样配置android模拟器
+			启动模拟器
+				左上角图标-手机图标

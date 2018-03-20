@@ -1,0 +1,19 @@
+npm install weex-toolkit -g
+
+weex create awesome-app
+	创建一个空的模板项目
+cd awesome-app
+npm install
+npm start
+
+weex platform add ios
+weex platform add android
+	添加特定平台的项目
+
+weex run ios
+weex run android
+weex run web
+	在模拟器或真实设备上启动应用
+
+weex debug
+	启动一个调试服务，并且在 Chrome （目前只支持基于 V8 引擎的桌面浏览器） 中打开调试页面

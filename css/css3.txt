@@ -34,7 +34,9 @@ touch-acion: 规定用户能否以及如何操作页面上的指定区域; 当�
 :after，:before{content:".";background:red;}
     给元素的内容的末尾添加东西，并且可以给加进去的东西加样式
     任何一个HTML元素都可以创造3个可以供我们操作的视觉元素，即三个矩形
-
+flex
+    flex number
+        宽度=弹性宽度 * (flex-grow/sum(flex-grows))
 border-radius-造就万千可能
     圆角(半径|x半径/y半径);x轴是从左往右改变px,y轴是从上往下改变;
     border-top-left-radius,border-top-right-radius,border-bottom-right-radiusborder-bottom-left-radius;border-radius:10px(四个角);border-radius:10px(左上，右下) 30px(右上、左下);border-radius:10px(左上) 30px(右上、左下)  50px(右下);

@@ -1,0 +1,65 @@
+基于flexbox的css布局模式
+基于react jsx的组件化开发模式
+Chrome Dev Tool的集成
+环境依赖：windows,OSX,Xcode,Node
+环境安装
+	windows
+		Chocolatey
+			Windows上的包管理器
+			安装命令：
+			@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
+
+	MAC
+		Homebrew
+			 Mac系统的包管理器
+		 	安装命令：
+	 		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+ 		brew install node
+ 		brew install watchman
+ 			监视文件变化
+ 		brew install flow
+ 			检测jsx语法
+
+	npm install -g react-native-cli
+	react-native init reactNative
+		初始化项目
+	react-native run-android
+	react-native run-ios / Open ios\reactNative.xcodeproj in Xcode
+
+样式
+	样式声明
+		通过StyleSheet声明样式
+		1.引用styles
+			<Text style={styles.base}/>
+		2.数组形式引用
+			<Text style={[
+				styles.base,
+				styles.background,{
+					position:'relative'
+				}
+			]}/>
+		3.直接使用
+			<Text style={{
+					width:100,
+					height:100
+				}}/>
+	布局单位
+		设置高度或宽度不用带单位，默认单位pt
+		不能用100%、px
+		可通过Dimensions模块来获取窗口宽高
+			import Dimensions from 'Dimensions';
+			var {height, width} = Dimensions.get('window');
+		可通过PixelRatio模块来获取像素密度
+			import PixelRatio from 'PixelRatio';
+			var pixelRatio = PixelRatio.get();
+	定位模式
+		支持absolute和relative定位
+		和css的标准不同的是，元素容器不用设置position:'absolute|relative',而是相对于父级元素计算
+	css属性支持
+		transform
+		border style
+		font style
+		shadow
+		background
+		overflow,opacity
+		PS:输错属性页面可看到所有支持的css属性

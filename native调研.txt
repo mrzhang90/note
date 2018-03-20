@@ -1,15 +1,9 @@
-Vue
-	Weex
-		由阿里巴巴，“一次编写，到处运行”，在Apache孵化器下
-	NavigeteScript
-		使用Vue与NativeScript。NativeScript-Vue是一个NativeScript插件，，是Vue.js virtual DOM和NativeScript组件之间的桥梁，让你可以用Vue.js构建跨平台的应用程序
-		弊端
-			目前只能用户Android和iOS的构建（尽管有人在Web构建中共享代码）
-	ReactNative
-		环境依赖：windows,OSX,Xcode,Node
-		andrio
-			andriod studio
-			andriod 虚拟机
-		IOS
-			Xcode
-			ios虚拟机
+参考：http://blog.csdn.net/chaunceyw/article/details/78151222
+Weex
+	由阿里巴巴，“一次编写，到处运行”，在Apache孵化器下
+NavigeteScript
+	使用Vue与NativeScript。NativeScript-Vue是一个NativeScript插件，，是Vue.js virtual DOM和NativeScript组件之间的桥梁，让你可以用Vue.js构建跨平台的应用程序
+	弊端
+		目前只能用户Android和iOS的构建（尽管有人在Web构建中共享代码）
+ReactNative
+	"学习一次，写在任何地方"
