@@ -1,9 +1,27 @@
 参考：http://blog.csdn.net/chaunceyw/article/details/78151222
+ionic
+	angular
+	侧重于web技术(因为UI由web技术构成)
+	侧重web，所以不同平台UI表现的兼容性会是你可能遇到的坑
+ReactNative
+	React
+	UI由native组件构成
+	侧重native，UI的表现虽然很好，但大量的native知识侵入也是个问题
+	适合对android、ios原生开发本身有基础的
+	"学习一次，写在任何地方"
+	社区活跃度高，遇坑的几率小
+	插件丰富，开发效率高
 Weex
 	由阿里巴巴，“一次编写，到处运行”，在Apache孵化器下
 NavigeteScript
 	使用Vue与NativeScript。NativeScript-Vue是一个NativeScript插件，，是Vue.js virtual DOM和NativeScript组件之间的桥梁，让你可以用Vue.js构建跨平台的应用程序
 	弊端
 		目前只能用户Android和iOS的构建（尽管有人在Web构建中共享代码）
-ReactNative
-	"学习一次，写在任何地方"
+
+模板写法区别
+	weex
+		接近HTML写法，容易上手
+	RN
+		完全是一套新的HTML写法，但虚拟DOM的性能高
+样式区别
+	都要在元素上以style的形式写样式
