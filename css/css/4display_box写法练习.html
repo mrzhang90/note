@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		.ui-col {
+		    padding: 5px;
+		    text-align: center;
+		    -webkit-box-sizing: border-box;
+		    box-sizing: border-box;
+		    border: 1px solid #ddd;
+		}
+		.ui-row-flex:nth-child(even) div{
+			background: #777;
+			color:#fff;
+		}
+		.ui-row-flex:nth-child(odd) div{
+			background: #dcdcdc;
+			color:red;
+		}
+		.ui-row-flex{
+			box-sizing:border-box;
+			display:-webkit-box;
+			display: box;
+		}
+		.ui-row-flex-ver{
+			flex-direction:column;
+			-webkit-box-orient:vertical;
+		}
+		.ui-row-flex-rev{
+			box-direction:reverse;
+			-webkit-box-direction:reverse;
+		}
+		.ui-row-pack{
+			box-pack:justify;
+			-webkit-box-pack:justify;
+		}
+		.ui-row-flex-align{
+			box-align:stretch;
+			-webkit-box-align:stretch;
+		}
+		.ui-row-flex .ui-col{
+			-webkit-box-flex:1;
+			box-flex:1;
+		}
+		.ui-row-flex .ui-col-2{
+			-webkit-box-flex:2;
+			box-flex:2;
+		}
+		.ui-row-flex .ui-col-3{
+			-webkit-box-flex:3;
+			box-flex:3;
+		}
+		.ui-row-flex .ui-col-4{
+			-webkit-box-flex:4;
+			box-flex:4;
+		}
+		.ui-col-width300{
+			width:300px;
+			text-align:center;
+		}
+	</style>
+</head>
+<body>
+<p>box-flex</p>
+<p>父容器box的属性：box-orient, box-direction, box-align, box-pack, box-lines</p>
+<p><a href="http://www.zhangxinxu.com/wordpress/2010/12/css-box-flex%E5%B1%9E%E6%80%A7%EF%BC%8C%E7%84%B6%E5%90%8E%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B/">参考张鑫旭的文章</a></p>
+<div class="ui-row-flex ui-row-flex-ver">
+	<div class="ui-col">
+		竖排flex
+	</div>
+	<div class="ui-col">
+		竖排flex
+	</div>
+</div>
+<div class="ui-row-flex ui-row-flex-align">
+	<div class="ui-col">
+		start表示顶边对齐，end为底部对齐，center为居中对齐，
+	</div>
+	<div class="ui-col">
+		baseline表示基线（英文字母o,m,n等的底边位置线）对齐
+	</div>
+	<div class="ui-col-width300">
+		这里用的是stretch为默认值，为拉伸，也就是父标签高度过高，其孩子元素的高度就多高，//:以后等高布局不用愁了
+	</div>
+</div>
+<div class="ui-row-flex ui-row-pack">
+	<div class="ui-col-width300">
+		两端对齐
+	</div>
+	<div class="ui-col-width300">
+		两端对齐
+	</div>
+	<div class="ui-col-width300">
+		两端对齐
+	</div>
+</div>
+<div class="ui-row-flex ui-row-flex-rev">
+	<div class="ui-col">
+		1-倒叙了
+	</div>
+	<div class="ui-col">
+		2-倒叙了
+	</div>
+	<div class="ui-col">
+		3-倒叙了
+	</div>
+</div>
+<div class="ui-row-flex">
+	<div class="ui-col ui-col-3">
+		3/7
+	</div>
+	<div class="ui-col ui-col-2">
+		2/7
+	</div>
+	<div class="ui-col-width300">
+		不满足2/7，管你有多少，我就要300px
+	</div>
+</div>
+<div class="ui-row-flex">
+	<div class="ui-col">
+		平均分
+	</div>
+	<div class="ui-col">
+		平均分
+	</div>
+	<div class="ui-col">
+		平均分
+	</div>
+	<div class="ui-col">
+		平均分
+	</div>
+	<div class="ui-col">
+		平均分
+	</div>
+	<div class="ui-col">
+		平均分
+	</div>
+</div>
+<div class="ui-row-flex">
+	<div class="ui-col ui-col-4">
+		4/5
+	</div>
+	<div class="ui-col">
+		1/5
+	</div>
+</div>
+<div class="ui-row-flex">
+	<div class="ui-col ui-col-3">
+		3/4
+	</div>
+	<div class="ui-col">
+		1/4
+	</div>
+</div>
+<div class="ui-row-flex">
+	<div class="ui-col ui-col-2">
+		2/3
+	</div>
+	<div class="ui-col">
+		1/3
+	</div>
+</div>
+<div class="ui-row-flex">
+	<div class="ui-col ui-col-3">
+		3/5
+	</div>
+	<div class="ui-col ui-col-2">
+		2/5
+	</div>
+</div>
+</body>
+</html>

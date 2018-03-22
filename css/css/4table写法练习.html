@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Table Display test</title>
+<style>
+@media screen and (min-width: 30em) {
+	body {
+		display: table;
+		caption-side: top;
+	}
+	[role="navigation"] {
+		display: table-caption;
+	}
+	[role="navigation"] ol {
+		display: table-row;
+	}
+	[role="navigation"] ol li {
+		display: table-cell;
+		padding: 0 1em;
+	}
+}
+</style>
+</head>
+<body>
+<div role="main">
+<p>This is the main content.</p>
+</div>
+<nav role="navigation">
+<p>This is the navigation.</p>
+<ol>
+<li><a href="#">foo</a></li>
+<li><a href="#">bar</a></li>
+<li><a href="#">baz</a></li>
+</ol>
+</nav>
+</body>
+</html>

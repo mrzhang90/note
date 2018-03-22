@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding:0;}
+		.ui-row-flex div{
+			padding: 5px;
+		    text-align: center;
+		    -webkit-box-sizing: border-box;
+		    box-sizing: border-box;
+		    border: 1px solid #fff;
+		}
+		.ui-row-flex:nth-child(even) div{
+			background: #777;
+			color:#fff;
+		}
+		.ui-row-flex:nth-child(odd) div{
+			background: #aaa;
+			color:red;
+		}
+		.ui-row-flex{
+			display:flex;
+		}
+		.ui-row-flex-col{
+			flex-direction:column-reverse;
+		}
+		.ui-row-flex-wrap{
+			flex-wrap:wrap-reverse;
+		}
+		.ui-row-flex-justify{
+			justify-content:space-between;
+		}
+		.ui-row-flex-align{
+			align-items:stretch;
+		}
+		.ui-row-flex .ui-col{
+			flex:1;
+		}
+		.ui-row-flex .ui-col-2{
+			flex:2;
+		}
+		.ui-row-flex .ui-col-3{
+			flex:3;
+		}
+		.ui-row-flex .ui-col-4{
+			flex:4;
+		}
+		.ui-col-width300{
+			width:300px;
+		}
+		.ui-col-heihgt300{
+			height:300px;
+		}
+		.ui-row-flex .ui-col-order1{
+			order:1;
+		}
+		.ui-row-flex .ui-col-grow2{
+			flex-grow:2;
+		}
+		.ui-row-flex .ui-col-end{
+			align-self:flex-end;
+		}
+	</style>
+</head>
+<body>
+<div class="ui-row-flex">
+	<div class="ui-col">
+		平均分
+	</div>
+	<div class="ui-col ui-col-grow2">
+		平均分-flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍
+	</div>
+	<div class="ui-col">
+		平均分
+	</div>
+	<div class="ui-col">
+		平均分
+	</div>
+	<div class="ui-col">
+		平均分
+	</div>
+	<div class="ui-col">
+		平均分
+	</div>
+</div>
+<div class="ui-row-flex">
+	<div class="ui-col ui-col-4 ui-col-order1">
+		4/5-order默认0,数值越小越靠前
+	</div>
+	<div class="ui-col">
+		1/5
+	</div>
+</div>
+<div class="ui-row-flex">
+	<div class="ui-col ui-col-3">
+		3/4
+	</div>
+	<div class="ui-col">
+		1/4
+	</div>
+</div>
+<div class="ui-row-flex">
+	<div class="ui-col ui-col-2">
+		2/3
+	</div>
+	<div class="ui-col">
+		1/3
+	</div>
+</div>
+<div class="ui-row-flex">
+	<div class="ui-col ui-col-3">
+		3/5
+	</div>
+	<div class="ui-col ui-col-2">
+		2/5
+	</div>
+</div>
+<div class="ui-row-flex">
+	<div class="ui-col ui-col-3">
+		3/7
+	</div>
+	<div class="ui-col ui-col-2">
+		2/7
+	</div>
+	<div class="ui-col-width300">
+		不满足2/7，管你有多少，我就要300px
+	</div>
+</div>
+<div class="ui-row-flex ui-row-flex-col">
+	<div class="ui-col">
+		1-竖排flex反转
+	</div>
+	<div class="ui-col">
+		2-竖排flex反转
+	</div>
+	<div class="ui-col">
+		3-竖排flex反转
+	</div>
+</div>
+<div class="ui-row-flex ui-row-flex-align">
+	<div class="ui-col">
+		start表示顶边对齐，end为底部对齐，center为居中对齐，
+	</div>
+	<div class="ui-col ui-col-end">
+		baseline表示基线（英文字母o,m,n等的底边位置线）对齐
+		<b style="color:yellow;">这个底部对齐是因为我用了单独的设置align-self</b>
+	</div>
+	<div class="ui-col-width300">
+		这里用的是stretch为默认值，为拉伸，也就是父标签高度过高，其孩子元素的高度就多高，//:以后等高布局不用愁了
+	</div>
+</div>
+<div class="ui-row-flex ui-row-flex-wrap" style="width:600px;">
+	<div class="ui-col-width300">
+		1-元素宽度超出了父级600px的宽度，就反转换行
+	</div>
+	<div class="ui-col-width300">
+		2-lex-wrap属性定义，如果一条轴线排不下，如何换行
+	</div>
+	<div class="ui-col-width300">
+		3-元素宽度超出了父级600px的宽度，就反转换行
+	</div>
+	<div class="ui-col-width300">
+		4-lex-wrap属性定义，如果一条轴线排不下，如何换行
+	</div>
+</div>
+<div class="ui-row-flex ui-row-flex-justify">
+	<div class="ui-col-width300">
+		两端对齐
+	</div>
+	<div class="ui-col-width300">
+		两端对齐
+	</div>
+	<div class="ui-col-width300">
+		两端对齐
+	</div>
+</div>
+</body>
+</html>
