@@ -1,0 +1,20 @@
+wap2app
+	把在线的wap网站转成app，可以理解为通过app壳子套一个wap网站
+	实现
+		通过框架提供的 sitemap.json 文件，描述页面关系和动画强化方案
+		当 sitemap.json 配置无法满足复杂需求时，可使用 app.js 编程进行增强处理
+		wap端，应适当改造，去掉APP不应该出现的页面元素(如底部的电脑版链接，或某些原生APP下载引导等)
+	扩展原生的能力
+		如果需要调用 DCloud 的 HTML5+ 引擎 扩展的原生能力，比如M站之前无法实现的微信分享、推送、原生支付等，需要进行必要的编程工作。这部分工作，可以在 wap2app 本地端实现，也可以直接在M站实现（注意判定当前运行环境）
+
+	目录结构
+		sitemap.json
+			wap2app核心配置文件，wap2app的大部分工作在该文件中完成
+		app.js
+			为弥补sitemap.json的格式限制，提供的基于JavaScript的可编程增强方案
+		manifest.json
+			工程参数配置，比如icon、splash图等（打开该文件后有帮助链接）
+		client_index.html
+			内置静态页面，若首页有选项卡，需在该文件中配置
+		%APPID%.append.css
+			本示例中 APPID 为 “__W2A__m.example.com” ，故默认创建了一个 __W2A__m.example.com.append.css 文件；该 css 文件负责提前修饰首页的样式，比如隐藏M站首页的原生下载引导等 DOM 元素

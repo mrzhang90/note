@@ -1,4 +1,12 @@
 参考：http://blog.csdn.net/chaunceyw/article/details/78151222
+MUI
+	动态APP
+	跨平台：Android、IOS、微信小程序、支付宝小程序
+	适合快速开发，html+css+js
+	易上手，快读开发
+	性能略低
+Weex
+	由阿里巴巴，“一次编写，到处运行”，在Apache孵化器下
 ionic
 	angular
 	侧重于web技术(因为UI由web技术构成)
@@ -11,8 +19,6 @@ ReactNative
 	"学习一次，写在任何地方"
 	社区活跃度高，遇坑的几率小
 	插件丰富，开发效率高
-Weex
-	由阿里巴巴，“一次编写，到处运行”，在Apache孵化器下
 NavigeteScript
 	使用Vue与NativeScript。NativeScript-Vue是一个NativeScript插件，，是Vue.js virtual DOM和NativeScript组件之间的桥梁，让你可以用Vue.js构建跨平台的应用程序
 	弊端

@@ -25,7 +25,15 @@ Chrome Dev Tool的集成
 		初始化项目
 	react-native run-android
 	react-native run-ios / Open ios\reactNative.xcodeproj in Xcode
-
+适配插件
+	expo
+		npm install exp --global
+			全局cli
+		exp init my-new-project
+			注册exp账号、初始化项目
+		exp login
+		cd my-new-project
+		exp start
 样式
 	样式声明
 		通过StyleSheet声明样式
@@ -63,3 +71,6 @@ Chrome Dev Tool的集成
 		background
 		overflow,opacity
 		PS:输错属性页面可看到所有支持的css属性
+
+关于IOS热更新
+	因此 Code Push 这种热更新JavaScript代码的工具应该不会受到影响。Github上有人报告自己用React Native+ Code Push写的App被审核通过了。如果你的Weex/React Native 写的App连Code Push都没用到，没有热更新能力，那就更不会收到影响了。英文好的小伙伴可以订阅 GitHub上的这个 https://github.com/facebook/react-native/issues/12778 获取第一手消息
