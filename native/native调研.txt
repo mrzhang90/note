@@ -1,12 +1,15 @@
 参考：http://blog.csdn.net/chaunceyw/article/details/78151222
 MUI
-	动态APP
-	跨平台：Android、IOS、微信小程序、支付宝小程序
-	适合快速开发，html+css+js
-	易上手，快读开发
-	性能略低
+	两个产品
+		第一.UniApp
+			功能很全面的跨平台：支持原生Android、IOS、微信小程序、支付宝小程序、十大手机厂商快应用以及很快会到来的百度小程序
+		第二.Wap2App
+			可将web app站快速转换成App的开发框架
+	易上手，适合快速开发，html+css+js
+	据用户体验来说，开发项目越大，性能越低
 Weex
 	由阿里巴巴，“一次编写，到处运行”，在Apache孵化器下
+	如果你需要一些特性但 Weex 并未提供，可以通过扩展自定义的一些插件来实现，通过 WeexSDK 加载
 ionic
 	angular
 	侧重于web技术(因为UI由web技术构成)

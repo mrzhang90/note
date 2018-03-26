@@ -162,6 +162,7 @@ PS:
 	call\apply\bind-相同点
 		都是作用在function原型链上
 		都可以改变被调用函数中this指向的对象
+	bind绑定this会产生一个新的函数，不会立即执行;call会立即调用
 
 箭头函数
 	是ES新特性，是简写的函数表达式，拥有词法作用域和this值
