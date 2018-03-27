@@ -1,6 +1,3 @@
---.判断是移动端
-	if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-
 --.IOS上new Date获取时间的bug，兼容IOS5以上版本：
     new Date('2013/10/21');
     或者

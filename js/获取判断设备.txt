@@ -1,0 +1,102 @@
+var useragent = navigator.userAgent.toLowerCase();
+var isWeixin = /micromessenger/i.test(useragent);
+var iOS = /iP(hone|od|ad)/i.test(useragent);
+var Android = /Android/i.test(useragent);
+
+--.判断浏览器
+    第一种.
+        var isIE = /msie/.test(navigator.userAgent.toLowerCase()); //jquery1.9之后采用
+    第二种.
+        var isIE = $.browser.msie;//jquery1.9之前采用  
+    结合上面的方法
+        isIE || !!window.ActiveXObject || "ActiveXObject" in window
+--.判断是移动端
+	if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+--.标准浏览器使用jquery高版本，IE低版本浏览器使用jquery低版本
+    方案1.所有IE版本使用jquery低版本
+        <!--[if IE]> 
+        <script src="http://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+        <![endif]-->
+        <!--[if !IE]><!--> 
+        <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+        <!--<![endif]--> 
+    方案2.使用js判断是IE低版本则使用jquery低版本
+        <script type="text/javascript">
+            var userAgent = navigator.userAgent.toLowerCase();
+            var obj = {
+                version: (userAgent.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [])[1],
+                msie: (/msie/.test(userAgent)||/rv:/.test(userAgent)) && !/opera/.test(userAgent)
+            };
+            if(!obj.msie || (obj.msie && parseInt(obj.version)>8)){
+                document.write('<script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"><\/script>');
+            }
+            if(obj.msie && parseInt(obj.version)<=8){
+                document.write('<script src="http://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"><\/script>');
+            }
+        </script>
+    方案三.（参考自网络）
+        <script type="text/javascript" src="static/js/jquery-1.7.2.js"></script>
+        <script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>
+
+--.window.screenX判断浏览器的,678是undefined，91011是number,chrome浏览器也是true 
+  if (typeof window.screenX === "number") {
+        
+  } else {
+    alert("您现在使用的浏览器内力不足，为防止走火入魔，建议使用IE9+或Chrome 20+浏览器~~");    
+  }
+--.获取手机设备
+    //判断是不是iphone，获取iphone版本号
+    var p = String(navigator.platform);
+    if( p === 'iPad' || p === 'iPhone' || p === 'iPod touch' ){
+        var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+        if (parseInt(v[1], 10)>=7) {
+            // iOS >=7
+        }
+    }
+    //验证是不是手机设备
+    function isPhone(){
+        var mobileAgent = new Array("iphone", "ipod", "ipad", "android", "mobile", "blackberry", "webos", "incognito", "webmate", "bada", "nokia", "lg", "ucweb", "skyfire");
+        var browser = navigator.userAgent.toLowerCase(); 
+        var isMobile = false; 
+        for (var i=0; i<mobileAgent.length; i++){
+            if(browser.indexOf(mobileAgent[i])!=-1){
+                isMobile = true; 
+                alert(mobileAgent[i]);
+                // location.href = '手机网址';
+                break;
+            }
+        }
+        return isMobile;
+    }
+    //智能机浏览器版本信息:
+    var browser = {
+        versions: function() {
+            var u = navigator.userAgent, app = navigator.appVersion;
+            return {//移动终端浏览器版本信息
+                trident: u.indexOf('Trident') > -1, //IE内核
+                presto: u.indexOf('Presto') > -1, //opera内核
+                webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/), //是否为移动终端
+                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器
+                iPad: u.indexOf('iPad') > -1, //是否iPad
+                webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+            };
+        }(),
+        language: (navigator.browserLanguage || navigator.language).toLowerCase()
+    }
+    if (browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {
+        window.location="https://itunes.apple.com/cn/app/xxx";
+    }
+    else if (browser.versions.android) {
+        window.location="http://zhj8.aliapp.com/xxx.apk";
+    }
+    document.writeln("语言版本: " + browser.language);
+    document.writeln(" 是否为移动终端: " + browser.versions.mobile);
+    document.writeln(" ios终端: " + browser.versions.ios);
+    document.writeln(" android终端: " + browser.versions.android);
+    document.writeln(" 是否为iPhone: " + browser.versions.iPhone);
+    document.writeln(" 是否iPad: " + browser.versions.iPad);
+    document.writeln(navigator.userAgent);
