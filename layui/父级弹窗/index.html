@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<iframe src="child.html" frameborder="0"></iframe>
+<script src="../layui/layui.js"></script>
+<script>
+    var layer;
+    layui.use(['layer'], function(){
+        layer=layui.layer;
+    })
+    function closeLay(index){
+        layer.close(index);
+    }
+    function closeAll(type){
+        layer.closeAll(type && type);
+    }
+    function open_html(obj){
+        obj['type']=1;
+        layer.open(obj);
+    }
+    function open_iframe(obj){
+        obj['type']=2;
+        var index=layer.open(obj);
+    }
+    function open_confirm(callback){
+        layer.confirm('确定要删除么？',function(index){
+            callback && callback(index);
+            layer.close(index);
+        });
+    }
+    function open_layer(msg,icon){
+        icon ?
+            layer.msg(msg,icon) :
+            layer.msg(msg);
+    }
+</script>
+</body>
+</html>
