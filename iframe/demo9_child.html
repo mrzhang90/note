@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script type="text/javascript">
+  window.addEventListener('message',function(event){
+    // 通过origin属性判断消息来源地址
+    if(event.origin == 'http://localhost:8002'){
+      console.log('来自child.html的消息：',event.data);
+      console.log('来自child.html的消息：',event.source);
+    }
+  },false);
+</script>
+</body>
+</html>

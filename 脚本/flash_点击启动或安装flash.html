@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<h1>参考页面[JavaScript SWFObject Flash 增强插件]：http://code.ciaoca.com/javascript/swfobject/demo/embedSWF_callback</h1>
+<h1>参考页面[sina视频实例]：http://sifa.sina.com/ts/detail/video/vod/647239</h1>
+<div id="index_player" class="index_player"></div>
+<script type="text/javascript" src="swf/swfobject.js"></script>
+<script>
+	var swfVersionStr = "11.1.0";
+    var xiSwfUrlStr = "playerProductInstall.swf";
+	//1、使用Json初始化变量、参数、属性 
+    var flashvars = {
+        name1: "hello",
+        name2: "world",
+        name3: "foobar"
+    };
+    var params = {
+        menu: "false"
+    };
+    var attributes = {
+        id: "dynamicContent2",
+        name: "dynamicContent2"
+    };
+    swfobject.embedSWF("http://player.videoincloud.com/swf/PlayerV6.swf?v=1.3.0", "index_player", "300", "120", swfVersionStr,xiSwfUrlStr, flashvars, params, attributes,
+    	function(obj){
+    		console.log(obj)
+			if(obj.success==false){
+				var div = document.getElementById("index_player");
+				div.style.textAlign = "center";
+				div.style.padding = "10% 0";
+				div.innerHTML = '<span style="font-size:18px">您还没有安装flash播放器或者播放器被浏览器拦截,<br>请点击'+
+					'<a href="http://www.adobe.com/go/getflash" target="_blank">这里</a>安装或启用</span>';
+			}
+		}
+	);
+    swfobject.createCSS(".index_player", "display:block;width:50%;margin:0 auto;border:solid 1px red;");
+</script>
+</body>
+</html>

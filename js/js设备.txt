@@ -37,7 +37,25 @@ var Android = /Android/i.test(useragent);
     方案三.（参考自网络）
         <script type="text/javascript" src="static/js/jquery-1.7.2.js"></script>
         <script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>
-
+--.获取浏览器版本，判断是不是IE $.browser
+  这是一个兼容IE6-11的写法
+    var isIE = /msie/.test(navigator.userAgent.toLowerCase()); //jquery1.9之后采用  
+    //var isIE = $.browser.msie;//jquery1.9之前采用  
+    console.log (isIE || !!window.ActiveXObject || "ActiveXObject" in window) {
+  使用：
+      if($.browser.msie && parseInt($.browser.version) <=8){//解决ie8\ie7不支持nth-child的bug
+          $('.hot_list li:nth-child(3n+1)').css("margin-left",0)
+      }
+  方法：
+      var userAgent = navigator.userAgent.toLowerCase();
+      // Figure out what browser is being used 
+      jQuery.browser = {
+          version: (userAgent.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [])[1],
+          safari: /webkit/.test(userAgent),
+          opera: /opera/.test(userAgent),
+          msie: (/msie/.test(userAgent)||/rv:/.test(userAgent)) && !/opera/.test(userAgent),
+          mozilla: /mozilla/.test(userAgent) && !/(compatible|webkit)/.test(userAgent)
+      }; 
 --.window.screenX判断浏览器的,678是undefined，91011是number,chrome浏览器也是true 
   if (typeof window.screenX === "number") {
         
@@ -100,3 +118,43 @@ var Android = /Android/i.test(useragent);
     document.writeln(" 是否为iPhone: " + browser.versions.iPhone);
     document.writeln(" 是否iPad: " + browser.versions.iPad);
     document.writeln(navigator.userAgent);
+--.获取手机设备
+    <div id="container"></div>
+    <script>
+        var p = String(navigator.platform);
+        var container = document.getElementById("container");
+        alert(p)
+        if( p === 'iPad' || p === 'iPhone' || p === 'iPod touch' ){
+            var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+            if (parseInt(v[1], 10)>=7) {// iOS >=7
+                if (container) {
+                    container.style.top=(0) + "px";
+                    container.style.left=(0) + "px";
+                    container.style.width=(window.innerWidth) + "px";
+                    container.style.height=(window.innerHeight) + "px";
+                }
+                if (obj) {
+                    obj.setViewerSize(window.innerWidth, window.innerHeight);
+                }
+                window.scrollTo(0, 0);
+            }else{
+                if (container) {
+                    var cheight;
+                    switch(window.innerHeight) {
+                        case 208:cheight=268; break; // landscape
+                        case 260:cheight=320; break; // landscape, fullscreen
+                        case 336:cheight=396; break; // portrait, in call status bar
+                        case 356:cheight=416; break; // portrait
+                        case 424:cheight=484; break; // portrait iPhone5, in call status bar
+                        case 444:cheight=504; break; // portrait iPhone5
+                        default: cheight=window.innerHeight;
+                    }
+                    if ((cheight) && ((container.offsetHeight!=cheight) || (window.innerHeight!=cheight))) {
+                        container.style.height=cheight + "px";
+                    }
+                }
+                document.getElementsByTagName("body")[0].style.marginTop="1px";
+                window.scrollTo(0, 1);
+            }
+        }
+    </script>
