@@ -1,26 +1,9 @@
-grunt 
-	基于文件
-gulp
-	基于流-MD5
-	gulp简单类型的工程化
-	主要是任务
-webpack
-	编译、管理资源
-	wp2把rollup揉进来
-	wp3打包速度快，支持异步，增量编译-第二次编译以后，只编译修改后的
-rollup
-	支持AMD、CMD
-FIS
-	配置门槛高，集后端解决方案-JAVA，PHP，NODE，整体解决
-	
 模块化(阮一峰):
 	-.封装、复用
 	-.解决大量依赖
 	-.隔离
 	-.大功能的分层
 
-	require.js
-	sea.js
 	node.js
 	规范：
 		CMD
@@ -29,46 +12,72 @@ FIS
 			加载文件 并行下载 解决文件依赖
 		CommonJS
 
-	SystemJS
-		babel编译es6后，浏览器依然不识别exports
-		那么解决浏览器不识别exports
 
 结构简单，浏览器喜欢，顺着就解析下来了，顺着就渲染了
 数组是线性结构，读取快，性能好
 
-包管理器
-	npm
-		依托node，所有npm包都需要在npmjs官网上放一个仓库
-		是模块化管理器
-		数据结构，支持包文件和依赖库，不同版本也可以共存
-	bower
-		支持松散型的git，可以把项目仍在git上，由它指定构建工具
-		是前端资源管理器
-		一定要有独立对应的版本
-	npm和bower结合使用，npm负责项目包，bower负责处理前端静态资源
-
+npm
+	依托node，所有npm包都需要在npmjs官网上放一个仓库
+	是模块化管理器
+	数据结构，支持包文件和依赖库，不同版本也可以共存
+supervisor
+	热启动
+PM2
+	工具pm2 start app.js
+	是一个带有负载均衡功能的Node应用的进程管理器。
+	当你要把你的独立代码利用全部的服务器上的所有CPU,并保证进程永远都活着，0秒的重载。
+clusterfork(集群)运行Node.js
+	以集群方式运行Node.js时，将会跨多个处理器，这会更加稳定
+	cluster fork 
+FIS3
+	前端自动化工具
+	配置门槛高，集后端解决方案-JAVA，PHP，NODE，整体解决
+yog2
+	是FIS3的分支
+	前后端的解决方案，任何项目都应该用到
 webpack
 	包管理器 核心是loader
+	编译、管理资源
+	wp2把rollup揉进来
+	wp3打包速度快，支持异步，增量编译-第二次编译以后，只编译修改后的
 gulp / grunt
 	它俩同期的
-	前者-文件流的，所以比grunt更快，编译node更简洁-(这点比webpack更好,因为wp会生成很多无用代码)
-	后者-文件IO的
+	gulp
+		文件流的，所以比grunt更快，编译node更简洁-(这点比webpack更好,因为wp会生成很多无用代码)
+		基于流-MD5
+		gulp简单类型的工程化
+		主要是任务
+	grunt
+		文件IO的
+		基于文件
 yo
 	发布自己的模块
 bower
 	安装模块依赖-用的不多了
-browserify
-	能够让本地的js应用服务器的js，具有require的能力，基本上线也不需要它跑
+	支持松散型的git，可以把项目仍在git上，由它指定构建工具
+	是前端资源管理器
+	一定要有独立对应的版本
+	npm和bower结合使用，npm负责项目包，bower负责处理前端静态资源
 rollup
+	支持AMD、CMD
 	因为支持tree-shaking火起来的，受webpack3影响，已经冷了
+内存泄露分析
+	安装 node-inspector，模拟压力测试的
 
-第三方库
+
+web端库
+	underscore
+		是比util丰富很多的工具库
 	es5-shim
 		解决低版本浏览器不支持ES5，https://github.com/es-shims/es5-shim
+	require.js
+		AMD规范定义
+		实现js文件的异步加载，避免网页失去响应
+		管理模块之间的依赖性，便于代码的编写和维护
 	seaJS
 		并行加载js
-	FIS3
-		前端自动化工具
-	yog2
-		是FIS3的分支
-		前后端的解决方案，任何项目都应该用到
+	browserify
+		能够让本地的js应用服务器的js，具有require的能力，基本上线也不需要它跑
+	SystemJS
+		babel编译es6后，浏览器依然不识别exports
+		那么解决浏览器不识别exports

@@ -29,51 +29,12 @@ LIBUV ！！！
 LIBUV在linux下叫做custom threadpool,在window下叫做iocp
 帮助事件轮询的libuv 和 库v8不是一个线程
 
-nodejs代码单线程
-	cluster fork 
-	工具pm2 start app.js
-
-几个特殊的API
-	setTimeout和setInterval线程池不参与
-	process.nextTick() 实现类似
-		setTimeout(function(){},0);每次调用放入队列中，在下一次循环中取出
-	总结：
-		process.nextTick()，效率最高，消费资源小，但会阻塞CPU的后续调用；
-			idle观察者 ，执行优先级最高
-		setTimeout()，精确度不高，可能有延迟执行的情况发生，且因为动用了红黑树，所以消耗资源大；
-			io观察者 ，执行优先级次之
-		setImmediate()，消耗的资源小，也不会造成阻塞，但效率也是最低的
-			check观察者，执行优先级最低
-		http://blog.csdn.net/hkh_1012/article/details/53453138
-		https://www.zhihu.com/question/23028843/answer/34597367
-	node实现sleep
 
 函数式编程在Node中的应用
 	高阶函数：可以将函数作为输入或者返回值，形成一种后续传递风格的结果接受方式，而非单一的返回值形式。后续传递风格的程序将函数业务重点从返回值传递到回调函数中。
 	app.use(function(res,req){//todo});
 		你使用use函数，把函数返回值传到use的fn参数里，这种风格叫做后续传递风格
 	偏函数：指定部分参数产生一个新的定制函数的形式就是偏函数。Node中异步编程非常常见，我们通过哨兵变量会很容易造成业务的混乱。underscore,after变量
-
-常用的Node控制异步技术手段
-1.step,wind(提供等待的异步库)，Bigpipe,Q.js
-	早期的异步处理库
-	Q.JS
-		q.js在nodejs里是一个非常流行的promise库,支持浏览器端使用
-		https://yq.aliyun.com/articles/53393
-		http://www.xuanfengge.com/web-route-frame.html?utm_source=tuicool&utm_medium=referral
-2.Async,Await
-3.Promise/Defferred是一种先执行异步调用，延迟传递的处理方式。
-	Promise是高级接口，事件是低级接口。低级接口可以构建很多复杂场景，高级接口一旦定义，不太容易变化，不再有低级接口的灵活性，但对于解决问题非常有效
-4.由于Node基于v8的原因，目前还不支持协程。协程不是进程或线程，其执行过程类似于例程，或者说不带返回值得函数调用
-	进程
-		任务管理器里的进程中的那些，就是进程，相当于一个应用程序就是一个进程
-	线程
-		一个进程包含多个线程，线程是帮助应用程序做事情的
-	协程
-		一个进程包含多个协程
-	线程和协程的区别：
-		线程相对独立，有自己的上下文，切换受系统控制；
-		协程也相对独立，有自己的上下文，但是其切换由自己控制，由当前协程切换到其他协程由当前协程来控制
 
 V8垃圾回收机制
 	Node使用javascript在服务端操作大内存对象收到了一定的限制，64位系统下大约为1.4GB，32操作系统下是0.7GB
@@ -82,10 +43,4 @@ V8垃圾回收机制
 		闭包函数会被存到老生代，赋值为null则存到新生代
 	了解Scavenge算法
 
-内存泄露分析
-	安装 node-inspector，模拟压力测试的
-
-PM2
-	是一个带有负载均衡功能的Node应用的进程管理器。
-	当你要把你的独立代码利用全部的服务器上的所有CPU,并保证进程永远都活着，0秒的重载。
 服务器集群

@@ -328,6 +328,11 @@ ajax
         //这里用JSONP跨域访问数据
         $.getJSON('http://www.xxxx.com/index.php?u=a',callback)
 
+    禁用缓存方式很多种:
+        如果是通过$.post()方法获取的数据,那么默认就是禁用缓存的;
+        如果是用了$.get(),那么可以通过时间戳来避免缓存,可以在URL后面加个"+(+new Date)",//(+new Date)等价于 new Date().getTime();
+        如果使用了$.ajax()来获取数据,只需要设置cache:false即可
+
 ajax的全局事件:
     当ajax请求开始时,会触发ajaxStart()的回调函数;当ajax请求结束是,会触发ajaxStop()的回调函数,这些方法都是全局方法,只要触发ajax请求,就会触发
     ajaxStart()

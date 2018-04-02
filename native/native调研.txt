@@ -8,7 +8,7 @@ MUI
 	易上手，适合快速开发，html+css+js
 	据用户体验来说，开发项目越大，性能越低
 Weex
-	由阿里巴巴，“一次编写，到处运行”，在Apache孵化器下
+	“一次编写，到处运行”，在Apache孵化器下
 	如果你需要一些特性但 Weex 并未提供，可以通过扩展自定义的一些插件来实现，通过 WeexSDK 加载
 ionic
 	angular
@@ -16,12 +16,13 @@ ionic
 	侧重web，所以不同平台UI表现的兼容性会是你可能遇到的坑
 ReactNative
 	React
+	"学习一次，写在任何地方"
 	UI由native组件构成
 	侧重native，UI的表现虽然很好，但大量的native知识侵入也是个问题
 	适合对android、ios原生开发本身有基础的
-	"学习一次，写在任何地方"
 	社区活跃度高，遇坑的几率小
 	插件丰富，开发效率高
+
 NavigeteScript
 	使用Vue与NativeScript。NativeScript-Vue是一个NativeScript插件，，是Vue.js virtual DOM和NativeScript组件之间的桥梁，让你可以用Vue.js构建跨平台的应用程序
 	弊端
