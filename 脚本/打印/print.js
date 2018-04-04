@@ -56,11 +56,20 @@ function setdivvisible(id) {//把指定id以外的层统统显示
 function printpr() //预览函数 
 {
     pagesetup_null(); //预览之前去掉页眉页脚边距
-    setdivhidden("div1"); //打印之前先隐藏不想打印输出的元素
+    // setdivhidden("div1"); //打印之前先隐藏不想打印输出的元素
     var WebBrowser = '<OBJECT ID="WebBrowser1" WIDTH=0 HEIGHT=0 CLASSID="CLSID:8856F961-340A-11D0-A96B-00C04FD705A2"></OBJECT>';
     document.body.insertAdjacentHTML('beforeEnd', WebBrowser); //在body标签内加入html（WebBrowser activeX控件） 
     WebBrowser1.ExecWB(7, 1); //打印预览 
     WebBrowser1.outerHTML = ""; //从代码中清除插入的html代码 
-    pagesetup_default(); //预览结束后页眉页脚恢复默认值 
-    setdivvisible("div1"); //预览结束后显示按钮 
+    // pagesetup_default(); //预览结束后页眉页脚恢复默认值 
+    // setdivvisible("div1"); //预览结束后显示按钮 
+}
+function printIE() //打印函数
+{
+    pagesetup_null(); //打印之前去掉页眉，页脚
+    var WebBrowser = '<OBJECT ID="WebBrowser1" WIDTH=0 HEIGHT=0 CLASSID="CLSID:8856F961-340A-11D0-A96B-00C04FD705A2"></OBJECT>';
+    document.body.insertAdjacentHTML('beforeEnd', WebBrowser); //在body标签内加入html（WebBrowser activeX控件）
+    WebBrowser1.ExecWB(6, 1); //打印
+    WebBrowser1.outerHTML = ""; //从代码中清除插入的html代码
+    // pagesetup_default(); //打印结束后页眉页脚恢复默认值
 }

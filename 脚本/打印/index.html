@@ -3,6 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+    <style media="print">
+        #aa{display:none;}
+    </style>
 </head>
 <body>
 <div id="div1">
@@ -35,9 +38,10 @@ document.getElementById('aa').onclick=function(){
             openPrint();
             return;
         }
-        PageSetup_Null();
+        printpr();
+    }else{
+        window.print();
     }
-    window.print();
     return false;
 }
 function openPrint(){
@@ -53,20 +57,20 @@ function openPrint(){
             },
             content: '<div style="padding:10px 20px">' +
             '<p><span style="font-size:1.2em;">请按照以下操作，设置您的IE浏览器：</span></p>' +
-            '<p><span>第一步.打开IE，找到设置，再找到【Internet选项】鼠标单击进去，如图所示：</span><br/><img src="/static/images/print_msg1.png" style="max-width:100%;"/></p>' +
+            '<p><span>第一步.打开IE，找到设置，再找到【Internet选项】鼠标单击进去，如图所示：</span><br/><img src="print_msg1.png" style="max-width:100%;"/></p>' +
             '<p><br/></p>' +
-            '<p><span>第二步.切换到【安全】选项卡，单击【自定义级别】在当前界面中，找到【ActiveX控件和插件】参考如下图设置方法：</span><br/><img src="/static/images/print_msg2.png" style="max-width:100%;"/></p>' +
+            '<p><span>第二步.切换到【安全】选项卡，单击【自定义级别】在当前界面中，找到【ActiveX控件和插件】参考如下图设置方法：</span><br/><img src="print_msg2.png" style="max-width:100%;"/></p>' +
             '<p><span>第三步.以上步骤完成后请启浏览器即可。</span></p>' +
-            '<p style="color:red;">如遇到以下情况，如图所示，请点击“是”</p><br/><img src="/static/images/print_msg3.png" style="max-width:100%;"/></p>' +
+            '<p style="color:red;">如遇到以下情况，如图所示，请点击“是”</p><br/><img src="print_msg3.png" style="max-width:100%;"/></p>' +
             '</div>'
             // content: '<div style="padding:10px 20px">' +
             // '<p><span style="font-size:1.2em;">有两种情况造成无法打印：</span></p>' +
-            // '<p>第一种.如图所示，请点击“是”即可</p><br/><img src="/static/images/print_msg3.png" style="max-width:100%;"/></p>' +
+            // '<p>第一种.如图所示，请点击“是”即可</p><br/><img src="print_msg3.png" style="max-width:100%;"/></p>' +
             // '<p>第二种.<br/>' +
             // '<div style="padding-left:10px;">' +
-            // '<span>第一步.打开IE，找到设置，再找到【Internet选项】鼠标单击进去，如图所示：</span><br/><img src="/static/images/print_msg1.png" style="max-width:100%;"/></p>' +
+            // '<span>第一步.打开IE，找到设置，再找到【Internet选项】鼠标单击进去，如图所示：</span><br/><img src="print_msg1.png" style="max-width:100%;"/></p>' +
             // '<p><br/></p>' +
-            // '<p><span>第二步.切换到【安全】选项卡，单击【自定义级别】在当前界面中，找到【ActiveX控件和插件】参考如下图设置方法：</span><br/><img src="/static/images/print_msg2.png" style="max-width:100%;"/></p>' +
+            // '<p><span>第二步.切换到【安全】选项卡，单击【自定义级别】在当前界面中，找到【ActiveX控件和插件】参考如下图设置方法：</span><br/><img src="print_msg2.png" style="max-width:100%;"/></p>' +
             // '<p><span>第三步.以上步骤完成后请重启浏览器。</span></p>' +
             // '</div>'+
             // '</div>'

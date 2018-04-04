@@ -43,7 +43,7 @@
     console.log(Object.assign(target,source));//{a:{b:2}}
 
     console.log('下面代码中，Object.assign把数组视为属性名为0、1、2的对象，因此源数组的0号属性4覆盖了目标数组的0号属性1。')
-    console.log(Object.assign([1,2,3],[4,5]))//[4,5,6]
+    console.log(Object.assign([1,2,3],[4,5]))//[4,5,3]
 
     console.log('常见用途:为对象添加属性');
     class Point{

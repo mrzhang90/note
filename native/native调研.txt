@@ -35,3 +35,5 @@ NavigeteScript
 		完全是一套新的HTML写法，但虚拟DOM的性能高
 样式区别
 	都要在元素上以style的形式写样式
+
+Nw / electron 开发对应客户端
