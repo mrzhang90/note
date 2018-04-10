@@ -1,0 +1,4 @@
+自己配Nightwatch时，不能直接用node启动nightwatch.config.js，要建一个nightwatch.run.js的文件，用nightwatch.run.js帮助你启动nightwatch.config.js
+	因为要启动Selenium/WebDriver 两个进程
+spawn
+	把参数和命令到一起

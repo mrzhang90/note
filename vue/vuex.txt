@@ -1,0 +1,54 @@
+链接：https://vuex.vuejs.org/zh-cn/intro.html
+
+Vuex搭建vue-resource、vue-router
+vuex是一个专为vue.js应用程序开发的状态管理模式
+	vuex管理的是state
+
+Vuex 也集成到 Vue 的官方调试工具 devtools extension
+
+不是开发大型单页应用
+	尽量不要使用vuex
+
+## vuex的不同
+	1.vuex状态存储(state)是响应式的，组件更新很快，据说比react还要快
+	2.不能直接改变store的状态，应该
+		提交 mutations
+			以更新
+	3.vuex的声明周期很简单，当元素被插入和当元素渲染完
+
+## mutation
+	//更改 Vuex 的 store 中的状态的唯一方法是提交 mutation
+	Vue.use(Vuex)
+	const store = new Vuex.Store({
+	  state: {
+	    count: 1
+	  },
+	  mutations: {
+	    increment (state) {
+	      // 变更状态
+	      state.count++
+	    }
+	  }
+	})
+	store.commit('increment')//提交mutations
+	console.log(store.state.count)//1
+## Getter
+	//有时候我们需要从 store 中的 state 中派生出一些状态
+	//Getter是对state进行一些额外的运算，额外的扩展
+	//就像计算属性一样，getter 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算
+	const store = new Vuex.Store({
+	  state: {
+	    todos: [
+	      { id: 1, text: '...', done: true },
+	      { id: 2, text: '...', done: false }
+	    ]
+	  },
+	  getters: {
+	    doneTodos: state => {
+	      return state.todos.filter(todo => todo.done)
+	    }
+	  }
+	})
+## Actions
+## Modules
+	//把很多store拆分合并，共享
