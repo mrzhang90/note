@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/layer/3.1.0/mobile/need/layer.css">
+</head>
+<body>
+<!--[if (gt IE 8)|(!IE)]>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<![endif]-->
+<!--[if lte IE 8]> 
+	<script src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
+<![endif]-->
+<script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script>
+<script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script>
+	if($.cookie('winLow')!=1){
+        var date = new Date();
+        date.setTime(date.getTime()+12*60*60*1000);
+        $.cookie('winLow',1,{expires: date})
+        if (typeof window.screenX === "number") {
+			//ie高版本，什么都不用执行
+        } else {
+            if(isWinLow(detectOS())){
+                layer.alert('您现在使用的系统版本过低，建议升级到windows7及以上的系统')
+			}else{
+                layer.confirm('您现在使用的浏览器版本过低，请前往升级？', {icon: 3, title:'提示'}, function(index){
+                    if(isWin64()){//64位系统
+                        window.open('http://go.microsoft.com/fwlink/?LinkId=324629')
+                    }else{//32位系统
+						window.open('http://go.microsoft.com/fwlink/?LinkId=324628')
+                    }
+                    layer.close(index);
+                });
+			}
+        }
+	}
+	//获取客户端操作系统类型
+	function detectOS() {
+	    var sUserAgent = navigator.userAgent;
+	    var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
+	    var isMac = (navigator.platform == "Mac68K") || (navigator.platform == "MacPPC") || (navigator.platform == "Macintosh") || (navigator.platform == "MacIntel");
+	    if (isMac) return "Mac";
+	    var isUnix = (navigator.platform == "X11") && !isWin && !isMac;
+	    if (isUnix) return "Unix";
+	    var isLinux = (String(navigator.platform).indexOf("Linux") > -1);
+	    if (isLinux) return "Linux";
+	    if (isWin) {
+	        var isWin2K = sUserAgent.indexOf("Windows NT 5.0") > -1 || sUserAgent.indexOf("Windows 2000") > -1;
+	        if (isWin2K) return "Win2000";
+	        var isWinXP = sUserAgent.indexOf("Windows NT 5.1") > -1 || sUserAgent.indexOf("Windows XP") > -1;
+	        if (isWinXP) return "WinXP";
+	        var isWin2003 = sUserAgent.indexOf("Windows NT 5.2") > -1 || sUserAgent.indexOf("Windows 2003") > -1;
+	        if (isWin2003) return "Win2003";
+	        var isWin2003 = sUserAgent.indexOf("Windows NT 6.0") > -1 || sUserAgent.indexOf("Windows Vista") > -1;
+	        if (isWin2003) return "WinVista";
+	        var isWin2003 = sUserAgent.indexOf("Windows NT 6.1") > -1 || sUserAgent.indexOf("Windows 7") > -1;
+	        if (isWin2003) return "Win7";
+	    }
+	    return false;
+	}
+	function isWinLow(e){
+	    if(e=='Win2000' || e=='WinXP' || e=='Win2003'){
+	        return true;
+	    }
+	    return false;
+	}
+	//检测是64位还是32位
+	function isWin64(){
+		var agent = navigator.userAgent.toLowerCase();
+	    if (agent.indexOf("win64") >= 0 || agent.indexOf("wow64") >= 0) {
+	        return true
+	    }
+	    return false;
+	}
+</script>
+</body>
+</html>
