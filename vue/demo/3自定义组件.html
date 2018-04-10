@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<ol id="app">
+	<todo-list v-for="list in lists" v-bind:todo="list" v-bind:key="list.id"></todo-list>
+</ol>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+Vue.component('todo-list',{
+	props:["todo"],//子单元通过props跟父单元解耦
+	template:'<li>{{todo.data}}</li>'
+})
+new Vue({
+	'el':'#app',
+	'data':{
+		lists:[
+			{'id':1,'data':'aa'},
+			{'id':2,'data':'bb'},
+			{'id':3,'data':'cc'},
+			{'id':4,'data':'dd'}
+		]
+	}
+})
+</script>
+</body>
+</html>

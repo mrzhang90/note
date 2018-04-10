@@ -1,13 +1,17 @@
 链接：https://vuex.vuejs.org/zh-cn/intro.html
+为什么要用vuex?
+	问题1.多个view组件共享一个state，多个组件之间的状态传递会非常繁琐
+	问题2.多个view组件直接引用或通过事件修改或同步state状态，会很难以维护
+因此，我们可以把组件的共享状态抽取出来，构成一个巨大的“视图”，任何组件都能获取状态或触发状态
 
 Vuex搭建vue-resource、vue-router
-vuex是一个专为vue.js应用程序开发的状态管理模式
+vuex是一个专为vue.js应用程序开发的状态管理模式,它集中式存储管理应用的所有组件状态
 	vuex管理的是state
 
 Vuex 也集成到 Vue 的官方调试工具 devtools extension
 
-不是开发大型单页应用
-	尽量不要使用vuex
+如果不是开发大型单页应用
+	那就不要使用vuex
 
 ## vuex的不同
 	1.vuex状态存储(state)是响应式的，组件更新很快，据说比react还要快
