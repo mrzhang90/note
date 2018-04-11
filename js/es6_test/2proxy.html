@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script>
+	var proxy=new Proxy({},{
+		get(target,name,value,p){
+			return Reflect.get(target,name)
+		},
+		set(target,name,value,p){
+			Reflect.set(target,name,value)
+		}
+	})
+	proxy.count=1
+	console.log(proxy.count)
+	proxy.count=11
+	console.log(proxy.count)
+	proxy.count=12
+	console.log(proxy.count)
+</script>	
+</body>
+</html>

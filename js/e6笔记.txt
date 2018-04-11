@@ -47,6 +47,57 @@
       这种方式：提示字符串格式
   -.raw()
       String.raw方法可以作为处理模板字符串的基本方法，它会将所有变量替换，而且对斜杠进行转义，方便下一步作为字符串来使用。
+# Proxy()
+    在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截
+    get(target, propKey, receiver)
+      拦截对象属性的读取，比如proxy.foo和proxy['foo']。
+    set(target, propKey, value, receiver)
+      拦截对象属性的设置，比如proxy.foo = v或proxy['foo'] = v，返回一个布尔值。
+    has(target, propKey)
+      拦截propKey in proxy的操作，返回一个布尔值。
+    deleteProperty(target, propKey)
+      拦截delete proxy[propKey]的操作，返回一个布尔值。
+    ownKeys(target)
+      拦截Object.getOwnPropertyNames(proxy)、Object.getOwnPropertySymbols(proxy)、Object.keys(proxy)，返回一个数组。该方法返回目标对象所有自身的属性的属性名，而Object.keys()的返回结果仅包括目标对象自身的可遍历属性。
+    getOwnPropertyDescriptor(target, propKey)
+      拦截Object.getOwnPropertyDescriptor(proxy, propKey)，返回属性的描述对象。
+    defineProperty(target, propKey, propDesc)
+      拦截Object.defineProperty(proxy, propKey, propDesc）、Object.defineProperties(proxy, propDescs)，返回一个布尔值。
+    preventExtensions(target)
+      拦截Object.preventExtensions(proxy)，返回一个布尔值。
+    getPrototypeOf(target)
+      拦截Object.getPrototypeOf(proxy)，返回一个对象。
+    isExtensible(target)
+      拦截Object.isExtensible(proxy)，返回一个布尔值。
+    setPrototypeOf(target, proto)
+      拦截Object.setPrototypeOf(proxy, proto)，返回一个布尔值。如果目标对象是函数，那么还有两种额外操作可以拦截。
+    apply(target, object, args)
+      拦截 Proxy 实例作为函数调用的操作，比如proxy(...args)、proxy.call(object, ...args)、proxy.apply(...)。
+    construct(target, args)
+      拦截 Proxy 实例作为构造函数调用的操作，比如new proxy(...args)
+# Reflect()
+    1. 将Object对象的一些明显属于语言内部的方法（比如Object.defineProperty），放到Reflect对象上
+    2.修改某些Object方法的返回结果，让其变得更合理
+        Object.defineProperty改为
+        Reflect.defineProperty
+    3.让Object操作都变成函数行为。某些Object操作是命令式，比如:
+        name in obj 改为
+        Reflect.has(Object, 'assign')
+    4.Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法
+    静态方法：
+      Reflect.apply(target, thisArg, args)
+      Reflect.construct(target, args)
+      Reflect.get(target, name, receiver)
+      Reflect.set(target, name, value, receiver)
+      Reflect.defineProperty(target, name, desc)
+      Reflect.deleteProperty(target, name)
+      Reflect.has(target, name)
+      Reflect.ownKeys(target)
+      Reflect.isExtensible(target)
+      Reflect.preventExtensions(target)
+      Reflect.getOwnPropertyDescriptor(target, name)
+      Reflect.getPrototypeOf(target)
+      Reflect.setPrototypeOf(target, prototype)
 # 方法：
   -.利用codePointAt方法测试一个字符由两个字节还是由四个字节组成的最简单方法。
   function is32Bit(c){

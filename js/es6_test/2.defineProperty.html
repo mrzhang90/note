@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script>
+var obj={};
+var a=1;
+Object.defineProperty(obj,'a',{
+	get(){
+		console.log(a)
+		return a;
+	},
+	set(newVal){
+		console.log('newVal:'+newVal)
+		a=newVal
+	}
+})	
+obj.a;
+obj.a='2'
+obj.a;
+</script>
+</body>
+</html>

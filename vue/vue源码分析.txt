@@ -1,9 +1,10 @@
+参考：
+	http://jiongks.name/blog/vue-code-review/
+	https://www.cnblogs.com/aaronjs/p/7274965.html
 结论：
 	Vue.js的组成是由core+对应的平台补充代码构成
 		(独立构建和运行时构建只是platforms下web平台的两种选择)
 src
-	/compiler
-		目录是编译模版
 	/core : 目录是Vue.js的核心(重点)
 		/components
 			模版编译的代码
@@ -19,6 +20,8 @@ src
 			虚拟DOM
 		/config.js
 		/index.js
+	/compiler
+		目录是编译模版
 	/platforms
 		目录是针对核心模块的'平台'模块
 		/web
@@ -44,3 +47,11 @@ src
 			指令
 
 vue不支持IE8以下，因为一些ES5的新方法
+vue的小特性
+	vue/src/core/components/keep-alive.js
+		Vue的内置组件，复用组件(缓存组件),避免多次加载相应的组件,减少性能消耗
+			将首次触发请求写在created钩子函数中,就能实现缓存,
+				比如列表页,去了详情页 回来,还是在原来的页面
+	vue/src/core/instance/init.js
+	状态机的深入运用
+	缓存机制 异步队列

@@ -19,7 +19,7 @@ Vuex 也集成到 Vue 的官方调试工具 devtools extension
 		提交 mutations
 			以更新
 	3.vuex的声明周期很简单，当元素被插入和当元素渲染完
-
+## state
 ## mutation
 	//更改 Vuex 的 store 中的状态的唯一方法是提交 mutation
 	Vue.use(Vuex)
@@ -36,10 +36,9 @@ Vuex 也集成到 Vue 的官方调试工具 devtools extension
 	})
 	store.commit('increment')//提交mutations
 	console.log(store.state.count)//1
-## Getter
-	//有时候我们需要从 store 中的 state 中派生出一些状态
+## Getter	
 	//Getter是对state进行一些额外的运算，额外的扩展
-	//就像计算属性一样，getter 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算
+	//就像vue里的computer(计算属性)一样，getter 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算
 	const store = new Vuex.Store({
 	  state: {
 	    todos: [
@@ -54,5 +53,8 @@ Vuex 也集成到 Vue 的官方调试工具 devtools extension
 	  }
 	})
 ## Actions
+	事件方法
 ## Modules
-	//把很多store拆分合并，共享
+	可以把一个stata拆分成多个module
+	可以把很多store合并到一个state
+	共享

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script>
+// 1.return-------------------------------------------------------------
+	async function aa(ms){
+		return await sleep(ms);
+	}
+	aa(1000).then(function(res){
+		console.log(1,res)
+	})
+
+// 2.多个await条件-------------------------------------------------------------
+	async function bb(ms){
+		const f1=await sleep(ms)
+		const f2=await sync(f1);
+		return f2;
+	}
+	function sync(a){
+		return a;
+	}
+	bb(1000).then(function(result){
+		console.log(2,result);
+	})
+// 3.出错了-------------------------------------------------------------
+	async function error(){
+		throw new Error('出错啦')
+	}
+	error().then(
+		resolve=>console.log(resolve),
+		reject=>console.log(reject)
+	)
+// 4.try.catch避免中断
+	async function each(){
+		try{
+			await new Promise((resolve,reject)=>{
+				throw new Error('出错了')
+			})
+		}catch(e){
+			console.error('出错了-如果不用try-catch，到这里就中断不执行了')
+		}
+		return await('try保证了出错之后这句还能执行')
+	}
+	each().then(
+		resolve=>console.log(resolve),
+		reject=>console.log(reject)
+	)
+
+
+
+	function sleep(ms){
+		return new Promise(resolve=>setTimeout(function(){
+			resolve('hello world')
+		},ms));
+	}
+</script>
+</body>
+</html>

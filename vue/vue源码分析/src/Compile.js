@@ -1,13 +1,13 @@
 function Compile(node, vm) {
       if(node) {
-        this.$frag = this.nodeToFragment(node, vm);
+        this.$frag = this.nodeToFragment(node, vm);//DOM文档节点
         return this.$frag;
       }
     }
     Compile.prototype = {
       nodeToFragment: function(node, vm) {
         var self = this;
-        var frag = document.createDocumentFragment();
+        var frag = document.createDocumentFragment();//空的文档节点片段
         var child;
 
         while(child = node.firstChild) {
@@ -17,7 +17,7 @@ function Compile(node, vm) {
         return frag;
       },
       compileElement: function(node, vm) {
-        var reg = /\{\{(.*)\}\}/;
+        var reg = /\{\{(.*)\}\}/;//vue的{{}}
 
         //节点类型为元素
         if(node.nodeType === 1) {

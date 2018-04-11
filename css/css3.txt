@@ -1,3 +1,13 @@
+link
+    preload
+        提前加载资源,在页面加载的生命周期的早期阶段就开始获取，在浏览器的主渲染机制介入前就进行预加载
+        as 属性的作用是告诉浏览器被加载的是什么类型的资源
+        这一机制使得资源可以更早的得到加载并可用，且更不易阻塞页面的初步渲染，进而提升性能
+        <link rel="preload" href="style.css" as="style">
+        <link rel="preload" href="main.js" as="script">
+    prefetch
+        预先加载,所有资源都加载完后，开始预加载这里指定的资源，有最低的优先级
+        利用浏览器的空闲时间去先下载指定的内容,然后缓存起来
 image-set根据屏幕分辨率和网速决定使用1倍图还是2倍图
     background-image:url(/1x.png);
     background-image:-webkit-image-set(url(/1x.png) 1x,url(/2x.png) 2x);
