@@ -38,7 +38,7 @@ Vuex 也集成到 Vue 的官方调试工具 devtools extension
 	console.log(store.state.count)//1
 ## Getter	
 	//Getter是对state进行一些额外的运算，额外的扩展
-	//就像vue里的computer(计算属性)一样，getter 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算
+	//就像vue里的computed(计算属性)一样，getter 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算
 	const store = new Vuex.Store({
 	  state: {
 	    todos: [
@@ -47,8 +47,10 @@ Vuex 也集成到 Vue 的官方调试工具 devtools extension
 	    ]
 	  },
 	  getters: {
-	    doneTodos: state => {
-	      return state.todos.filter(todo => todo.done)
+	    doneTodos: (state,getter) => {
+	  		//Getter 接受 state 作为其第一个参数
+	  		//Getter 也可以接受其他 getter 作为第二个参数
+      		return state.todos.filter(todo => todo.done)
 	    }
 	  }
 	})

@@ -72,3 +72,9 @@ Virtual-dom
 	SSR-前端架构课完结了
 vuex
 	vue深入秘籍
+
+掌握的技能
+	vue\vuex\weex
+	react\next\react native
+	mui流应用、weui微信小程序
+	

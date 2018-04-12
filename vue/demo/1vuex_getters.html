@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<div id="app">
+	{{dataCount}}
+</div>
+<script src="https://unpkg.com/vuex@3.0.1/dist/vuex.js"></script>
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+<script>
+const store=new Vuex.Store({
+	state:{
+		data:1
+	},
+	getters:{
+		hello:state=>{
+			return state.data
+		}
+	}
+})
+console.log(store.getters.hello)
+new Vue({
+	el:'#app',
+	// 把 store 对象提供给 “store” 选项，这可以把 store 的实例注入所有的子组件
+	store,
+	computed:{
+		dataCount(){
+			//通过上面store注入，这里就可以用this.$store
+			return this.$store.getters.hello
+		}
+	}
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>点赞和踩的功能</title>
+</head>
+<body>
+<div id="app">
+	<favor-promise title="点赞" count="1"></favor-promise>
+	<input @keyup.ctrl.67="thumbsUp" />
+	<input @keyup.left="setpOn" />
+</div>
+<template id="favor">
+	<div>
+		<h3>{{title}}</h3>
+		<div>{{count}}</div>
+	</div>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+	Vue.component('favor-promise',{
+		props:['title','count'],
+		template:'#favor',
+		methods:{
+			thumbsUpChild(){
+
+			}
+		}
+	})
+	new Vue({
+		el:'#app',
+		methods:{
+			thumbsUp(){
+				console.log('enter')
+			},
+			setpOn(){
+				console.log('left')
+			}
+		}
+	})
+</script>
+</body>
+</html>

@@ -32,10 +32,62 @@ vue核心库只关心view视图
 			即：@submit.prevent="submitMyForm"
 		@click
 			可以把脚本直接写在元素内，@click="num+=1"
+		keyup的按键别名
+			.enter
+			.tab
+			.delete (捕获“删除”和“退格”键)
+			.esc
+			.space
+			.up
+			.down
+			.left
+			.right
+			<input @keyup.enter="submit">
+		系统修饰键
+			.ctrl
+			.alt
+			.shift
+			.meta
+			<input @keyup.ctrl.67="cpoy" value="ctrl+c">
+		事件修饰符
+			.stop - 调用 event.stopPropagation()。
+			.prevent - 调用 event.preventDefault()。
+			.capture - 添加事件侦听器时使用 capture 模式。
+			.self - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
+			.{keyCode | keyAlias} - 只当事件是从特定键触发时才触发回调。
+			.native - 监听组件根元素的原生事件。
+			.once - 只触发一次回调。
+			.left - (2.2.0) 只当点击鼠标左键时触发。
+			.right - (2.2.0) 只当点击鼠标右键时触发。
+			.middle - (2.2.0) 只当点击鼠标中键时触发。
+			.passive - (2.3.0) 以 { passive: true } 模式添加侦听器
+				<button @click.stop.prevent="doThis">串联修饰符</button>
+				<button v-on="{ mousedown: doThis, mouseup: doThat }">对象语法 (2.4.0+)</button>
+		PS:
+			修饰符顺序很重要,用 v-on:click.prevent.self 会阻止所有的点击，而 v-on:click.self.prevent 只会阻止对元素自身的点击
 	v-for
+		in:
+			v-for="(value, key, index) in items"
+		of:
+			v-for="item of items"
+		key:
+
+		PS:
+			在遍历对象时，是按 Object.keys() 的结果遍历
 	v-key
 	v-if
+		v-else-if
+			v-else
+		key管理可复用的元素
+			例如:
+				<template v-if="a=a">
+				  <input key="username-input">//添加key避免input切换时别复用
+				</template>
+				<template v-else>
+				  <input key="email-input">
+				</template>
 	v-show
+		不支持 <template> 元素，也不支持 v-else
 	v-once
 		插值处的{{内容不会更新}}
 	v-html
@@ -54,29 +106,18 @@ vue核心库只关心view视图
 	vm.$watch('a', function (newValue, oldValue) {
 	  // 这个回调将在 `vm.a` 改变后调用
 	})
-## template
-		首先自定义组件：
-			<praise id="yes" title="赞" pclass="btn btn-primary"></praise>
-		然后创建template模板
-			<template id="praise-templ">
-				<label for="{{id}}">{{ title }}</label>
-				<input id="{{ id }}" type="button" class="{{ pclass }}" name="" value="{{ count }}" @click=" uploadNum "/>
-			</template>
-		最后脚本注册
-			Vue.component('praise',{
-				props:['id','title','pclass'],//注册
-				template:'#praise-templ',
-				data:function(){
-					return {
-						count:0
-					}
-				},
-				methods:{
-					uploadNum:function(){
-						this.count+=1
-					}
-				}
-			})
+## Component
+	vue会把组件名转成小写，所以建议连词写法。例:praise-button
+		如果非要用驼峰praiseButton，那么可以使用库"decamelize"
+	template
+		1.写在组件内
+		2.写在html内，不会被html解析
+	props
+	data: function () {
+	    return {
+	      counter: 0
+	    }
+  	}
 ## directive
 	自定义指令
 	Vue.directive('focus',{
