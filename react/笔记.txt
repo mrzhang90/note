@@ -217,28 +217,3 @@ web优缺点
 	能否修改子组件的值
 		属性-可以，状态-不可以
 
-React Style
-	https://github.com/js-next/react-style
-React Canvas
-	https://github.com/Flipboard/react-canvas
-sublime插件
-	babel-sublime
-		让sublime可以编译ES6代码
-		react代码自动补全
-			https://github.com/facebookarchive/sublime-react
-		安装颜色高亮
-			https://github.com/babel/babel-sublime
-	sublimeLinter-jsxhint
-		让sublime可以支持jsx
-			https://github.com/SublimeLinter/SublimeLinter-jsxhint
-	修改Emmet 兼容jsx 文件
-		Emmet提示
-			https://github.com/facebookarchive/sublime-react
-	JsFormat格式化js代码
-		配置
-			"e4x":true
-	编译jsx
-	检测环境
-		http://www.jianshu.com/p/e826e13c67ec
-参考：https://segmentfault.com/a/1190000003698071
-
