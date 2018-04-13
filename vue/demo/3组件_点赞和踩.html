@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>点赞和踩的功能</title>
+</head>
+<body>
+<div id="app">
+	<p>父组件的{{count}}</p>
+	<childthumbsup title="点赞" @increment="incrementCount"></childthumbsup>
+</div>
+<template id="tmpThumbsUp">
+	<div>
+		<h1>{{title}}</h1>
+		<p>子组件的{{count}}</p>
+		<button @click="add">+</button>
+		<button @click="less">-</button>
+	</div>
+</template>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+Vue.component('childThumbsUp',{
+	props:['title'],
+	data:function(){
+		return {
+			count:0
+		}
+	},
+	template:'#tmpThumbsUp',
+	methods:{
+		add(){
+			this.count++
+			this.$emit('increment',this.count)
+		},
+		less(){
+			this.count--
+			this.$emit('increment',this.count)
+		}
+	}
+})
+const vm=new Vue({
+	el:'#app',
+	data:{
+		count:0
+	},
+	methods:{
+		incrementCount(count){
+			this.count=count
+		}
+	}
+})
+console.log(vm.count)
+</script>
+</body>
+</html>

@@ -92,6 +92,19 @@ vue核心库只关心view视图
 		插值处的{{内容不会更新}}
 	v-html
 		输出真正的 HTML
+## emit触发事件
+	$emit(eventName, optionalPayload)
+		触发事件
+## refs
+	注册过的组件
+	this.$refs.input.value
+## $event.target.value
+	传递元素的值
+	<input\
+        ref="input"\
+        v-bind:value="value"\
+        v-on:input="updateValue($event.target.value)"\
+      >
 ## $前缀
 	Vue 实例暴露了一些有用的实例属性与方法
 	var data = { a: 1 }
@@ -107,12 +120,34 @@ vue核心库只关心view视图
 	  // 这个回调将在 `vm.a` 改变后调用
 	})
 ## Component
+	组件作用域：
+		父组件模板的内容在父组件作用域内编译；子组件模板的内容在子组件作用域内编译。
+		例如：
+			message应该绑定到父组件上
+			<child-component>
+			  {{ message }}
+			</child-component>
+	组件命名约定
+		当注册组件 (或者 prop) 时，可以使用 kebab-case (短横线分隔命名)、camelCase (驼峰式命名) 或 PascalCase (单词首字母大写命名)
 	vue会把组件名转成小写，所以建议连词写法。例:praise-button
 		如果非要用驼峰praiseButton，那么可以使用库"decamelize"
 	template
 		1.写在组件内
 		2.写在html内，不会被html解析
 	props
+		就像 data 一样，prop 也可以在模板中使用
+		父组件的数据需要通过 prop 才能下发到子组件中
+		绑定对象
+			todo: {
+			  text: 'Learn Vue',
+			  isComplete: false
+			}
+			<todo-item v-bind="todo"></todo-item>
+			等价于
+				<todo-item
+				  v-bind:text="todo.text"
+				  v-bind:is-complete="todo.isComplete"
+				></todo-item>
 	data: function () {
 	    return {
 	      counter: 0
@@ -227,17 +262,31 @@ vue核心库只关心view视图
 	  }
 ## 生命周期
 	vue实例被创建时要经过一系列的初始化过程，例如：设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等
+	beforeCreate
+		实例初始化
 	created
 		在实例创建之后执行
 		这意味着已建立：数据绑定，计算属性，方法，watcher/事件回调。但是还没有开始 DOM 编译，$el 还不存在。
 	！！ready
 		在编译结束和 $el 第一次插入文档之后调用，如在第一次 attached 钩子之后调用。注意必须是由 Vue 插入（如 vm.$appendTo() 等方法或指令更新）才触发 ready 钩子。
+	beforeMount
+		DOM元素加载
 	mounted
+	beforeUpdate
 	updated
+	beforeDestroy
 	destroyed
 	PS:
 		生命周期钩子的 this 上下文指向调用它的 Vue 实例
 		不要在选项属性或回调上使用箭头函数
+		beforecreate
+			举个栗子：可以在这加个loading事件 
+		created
+			在这结束loading，还做一些初始化，实现函数自执行 
+		mounted
+			在这发起后端请求，拿回数据，配合路由钩子做一些事情
+		beforeDestory
+			你确认删除XX吗？ destoryed ：当前组件已被删除，清空相关内容
 method
 	用来定义方法的,比如你@click="test",methods就定义test这个方法
 remove
