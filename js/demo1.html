@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	console.log(Date)
+	console.log(typeof Date())
+	console.log(typeof new Date())
+	console.log(typeof alert)
+
+	const obj={'a':1};
+	obj['a']=2;
+	// obj={}
+	console.log(obj)
+
+	console.log(a);
+	var a=1;
+
+	var a;
+	console.log(a)
+	a=1;
+
+	function aa(...arg){
+		console.log(arg)
+	}
+	aa(1,2,3)
+
+	function Person(name1){//
+		this.name2=name1;
+	}
+	Person.prototype.hi=function(){
+		console.log(this.name2);
+	}
+	var p1=new Person('a1');
+	console.log(p1.toString())
+	//什么叫方法、函数
+	//他们本质上都是function,在当做对象的属性用的时候就叫方法，当它单独拿出来用的时候就叫函数
+
+	var a=10;
+	console.log(a.toString())
+	
+	function fn(){
+		this.i=0;
+		setInterval(function(){
+			console.log(this.i++);
+		}.bind(this),500)
+	}
+	// fn();
+
+	function fn1(){
+		this.i=0;
+		setInterval(()=>{
+			console.log(this.i++)
+		},500)
+	}
+	// fn1()
+</script>
+</body>
+</html>

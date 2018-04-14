@@ -14,16 +14,6 @@ iphone兼容：
 	--input输入框placeholder垂直不居中-参考：http://www.cnblogs.com/xiaoxiao2014/p/5009599.html
 		不要input的line-height，即：line-height:nomrmal
 
-html5,低版本不识别的问题,可以引用 html5shiv.min.js
-	<!--[if lt IE 9]>
-    <script src="js/html5shiv.min.js"></script>
-    <![endif]-->
-让IE8/9支持媒体查询，从而兼容栅格
-	<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-	<!--[if lt IE 9]>
-	<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-	<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-	<![endif]-->
 IE9 Filter bug:由于IE9识别filter和css3，解决方法：(参考：https://www.bokeyy.com/post/tag/ie9-filter)
 	1.利用ie9识别root和filter，而ie6/7/8都不识别root
 		input{background:rgba(38,141,183,.8);filter:progid:DXImageTransform.Microsoft.Gradient(startColorStr=#dd298fb8,endColorStr=#dd298fb8);}
@@ -123,12 +113,22 @@ IE6下的双边距BUG
 <!--[if IE 6]><link type="text/css" rel="stylesheet" media="screen" href="ie6.css"/><![endif]-->
 <!--[if IE 7]><link type="text/css" rel="stylesheet" media="screen" href="ie7.css"/><![endif]-->
 <!--[if IE 8]><link type="text/css" rel="stylesheet" media="screen" href="ie8.css"/><![endif]-->
-方法：如果大于IE8或者不是IE，那么使用最新jquery；如果是IE8及其以内的，使用jquery1.9.1版本
-    <![if (gt IE 8)|(!IE)]>
-    <script src="js/jquery-3.1.0.min.js"></script>
-    <![endif]>
-    <!--[if lte IE 8]> 
+让IE8/9支持媒体查询，从而兼容栅格
+	<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+	<!--[if lt IE 9]>
+	<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+	<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+方法：
+	如果大于IE8或者不是IE，那么使用最新jquery；如果是IE8及其以内的，使用jquery1.9.1版本
+	html5,低版本不识别的问题,可以引用 html5shiv.min.js
+	<!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <![endif]-->
+	<!--[if gte IE 9|(!IE)]>
+    <script src="https://cdn.bootcss.com/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
     <![endif]-->
 方法：把这段代码放到<head>里面，在IE8里面的页面解析起来就跟IE7一模一样的了，所以，基本上可以无视IE8，剩下的代码只需要这样写就可以了
 	<metahttp-equivmetahttp-equiv="x-ua-compatible"content="IE=7"/> 	

@@ -66,15 +66,4 @@ Virtual-dom
 			2.设置key可以最大化的利用节点
 			3.不要盲目相信diff的效率，在必要时可以手工优化
 				要考虑DOM DIFF的时间算法和空间算法
-第七周试卷+实战讲解
-	nightwatch测试+SSR
-前端架构师结业礼
-	SSR-前端架构课完结了
-vuex
-	vue深入秘籍
-
-掌握的技能
-	vue\vuex\weex
-	react\next\react native
-	mui流应用、weui微信小程序
 	

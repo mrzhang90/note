@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery制作-照片墙效果</title>
+<style>
+    *{margin:0;padding:0;}
+    li{list-style:none;}
+    input{border:none;}
+    .clear:after{display:block;content:'';clear:both;}
+    #div1{width:902px;margin:0 auto;}
+    ul{width:900px;height:550px;border:solid 1px red;padding-right:20px;padding-top:20px;position:relative;}
+    ul li{width:280px;float:left;margin-left:20px;margin-bottom:20px;}
+    img{width:100%;vertical-align:top;}
+    .active{border:dashed 1px red;}
+    #btn1{padding:8px 17px;color:#fff;border-radius:5px;}
+</style>
+</head>
+<body>
+<div id="div1">
+    <input type="button" id="btn1" value="随机">
+    <ul id="ul1" class="clear">
+        <li><img src="images/g1.jpg" alt=""></li>
+        <li><img src="images/g2.jpg" alt=""></li>
+        <li><img src="images/g3.jpg" alt=""></li>
+        <li><img src="images/g4.jpg" alt=""></li>
+        <li><img src="images/g5.jpg" alt=""></li>
+        <li><img src="images/g6.jpg" alt=""></li>
+        <li><img src="images/g7.jpg" alt=""></li>
+        <li><img src="images/g8.jpg" alt=""></li>
+        <li><img src="images/g9.jpg" alt=""></li>
+    </ul>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(window).load(function(){
+    var btn1=$('#btn1'),ul1=$('#ul1'),lis=$('#ul1 li');
+    var arr=[],x= 0,y= 0,zindex= 1;
+    lis.each(function(i,li){
+        var l=li.offsetLeft;
+        var t=li.offsetTop;
+        arr.push({
+            left:l,
+            top:t
+        });
+        $(li).css({
+            left:li.offsetLeft,
+            top:li.offsetTop
+        })
+        li.dataset.index=i;
+    });
+    lis.css({margin:0,position:'absolute'});
+
+    lis.on('mousedown',function(ev){
+        var obj=$(this),minObj=null;
+        x=ev.pageX-obj.position().left;
+        y=ev.pageY-obj.position().top;
+        $(document).on('mousemove',function(ev){
+            var liArr=[],min=Infinity;
+            obj.css({
+                left:ev.pageX- x,
+                top:ev.pageY-y,
+                zIndex:++zindex
+            })
+            lis.each(function(i,li){
+                if(obj[0]==li){return;}
+                if(bound(obj[0],li)){
+                    liArr.push(li);
+                }
+            })
+            liArr.forEach(function(elem){
+                var l=obj.position().left-$(elem).position().left;
+                var t=obj.position().top-$(elem).position().top;
+                var v=Math.sqrt(Math.pow(l,2)+Math.pow(t,2));
+                if(min>v){
+                    min=v;
+                    minObj=elem;
+                }
+            })
+            $(minObj).addClass('active').siblings().removeClass('active');
+        });
+        $(document).on('mouseup',function(){
+            if(minObj){
+                var tmp=obj[0].dataset.index;
+                obj.animate({
+                    left:arr[minObj.dataset.index].left,
+                    top:arr[minObj.dataset.index].top
+                })
+                $(minObj).animate({
+                    left:arr[tmp].left,
+                    top:arr[tmp].top
+                })
+                obj[0].dataset.index=minObj.dataset.index;
+                minObj.dataset.index=tmp;
+            }else{
+                obj.animate({
+                    left:arr[obj[0].dataset.index].left,
+                    top:arr[obj[0].dataset.index].top
+                })
+            }
+            $(this).off();
+        });
+        return false;
+    });
+    function bound(obj1,obj2){
+        var left1 = obj1.offsetLeft;
+        var right1 = left1 + obj1.offsetWidth;
+        var top1 = obj1.offsetTop;
+        var bom1 = top1 + obj1.offsetHeight;
+        var left2 = obj2.offsetLeft;
+        var right2 = left2 + obj2.offsetWidth;
+        var top2 = obj2.offsetTop;
+        var bom2 = top2 + obj2.offsetHeight;
+        if(right1 < left2 || bom1 < top2 || left1 > right2 || top1 > bom2){ //没碰到
+            //没碰到
+            return false;
+        }else{
+            //碰到
+            return true;
+        }
+    }
+    //随机排序图片
+    btn1.on('click',function(){
+        arr.sort(function(){
+            return Math.random()-0.5;
+        })
+        lis.each(function(i,li){
+            $(li).animate({
+                left:arr[i].left,
+                top:arr[i].top
+            })
+        })
+    })
+})
+</script>
+</body>
+</html>
