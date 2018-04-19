@@ -1,10 +1,19 @@
 后端添加头解决跨域
 Access-control-allow-origin
 	通过设置Access-Control-Allow-Origin来实现跨域访问比较简单
-	参考：http://blog.csdn.net/fdipzone/article/details/46390573/
-
-同源策略 参考：http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html
+	参考：
+		http://blog.csdn.net/fdipzone/article/details/46390573/
+PS:
+	IE 10 提供了对规范的完整支持，但在较早版本（8 和 9）中，CORS 机制是借由 XDomainRequest 对象完成的。
+	Firefox 3.5 引入了对 XMLHttpRequests 和 Web 字体的跨域支持（但最初的实现并不完整，这在后续版本中得到完善）；Firefox 7 引入了对 WebGL 贴图的跨域支持；Firefox 9 引入了对 drawImage 的跨域支持。
+	XDomainRequest(兼容IE8和IE9,IE10+或者其他标准浏览器已废弃)
+		https://developer.mozilla.org/zh-CN/docs/Web/API/XDomainRequest
+	参考：
+		https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS?spm=a2c4g.11186623.2.7.k12owi
+同源策略
 	同协议、同域名、同端口
+	参考：
+		http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html
 
 同源策略限制的对象
 	1.Cookie、LocalStorage 和 IndexDB 无法读取。
