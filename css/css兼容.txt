@@ -124,6 +124,7 @@ IE6下的双边距BUG
 	html5,低版本不识别的问题,可以引用 html5shiv.min.js
 	<!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/json2/20160511/json2.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
     <![endif]-->
 	<!--[if gte IE 9|(!IE)]>

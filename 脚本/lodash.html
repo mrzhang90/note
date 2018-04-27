@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<div id="aa">
+	hello world
+</div>
+<p>
+	lodash-非常好的柯里化-纯函数的实现方式，<br/>
+	首先，利用_.chain把函数专为lodash格式的函数，缓存起来或者链式调用<br/>
+	这种方式就可以理解为把多个纯函数按照自己的要求，随意转换顺序并组合，打到自己想要的结果<br/>
+
+</p>
+<script src="https://cdn.bootcss.com/lodash.js/4.17.5/lodash.js"></script>
+<script>
+var users=[
+	{'user':'zhang','age':26},
+	{'user':'zhao','age':18},
+	{'user':'lili','age':20},
+]
+//chain-把对象包装成lodash格式的对象
+var a=_.chain(users)
+	.sortBy('age')
+	.map(function(o){
+    	console.log("map", o);
+		return o.user+' is '+o.age
+	})
+	.zipObject()//收集key
+	.head()//等同于first
+	// .first()
+	.value()
+console.log(a)
+
+console.log(_.sortBy(users,'age'))
+console.log(_.head(users))
+console.log(_.values(users))
+
+//assign-对象合并，来源对象合并也会覆盖目标对象，也就是说下一个对象覆盖上一个对象
+function fna(){
+	this.a=1;
+}
+function fnb(){
+	this.b=2;
+}
+fna.prototype.c=3;
+fnb.prototype.d=4;
+var assign=_.assign({a:5},new fna,new fnb)
+var assignIn=_.assignIn({a:5},new fna,new fnb)
+console.log(assign);
+console.log(assignIn);
+
+function customizer(objValue, srcValue) {
+  return _.isUndefined(objValue) ? srcValue : objValue;
+}
+var defaults = _.partialRight(_.assignInWith, customizer);
+console.log(defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 }))
+</script>
+</body>
+</html>
