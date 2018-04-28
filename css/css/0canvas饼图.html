@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <canvas id="drawing" width="600" height="400">A drawing of someing!</canvas>
+    <script type="text/javascript">
+        //绘制饼图
+        var drawCircle = function(canvasId, data_arr, color_arr, text_arr){
+            var drawing = document.getElementById(canvasId);
+            if(drawing.getContext) {
+                var context = drawing.getContext('2d');
+                var radius = drawing.height/2 -20,//半径
+                    ox = radius +20, oy = radius +20;//圆心
+                var width = 30, height = 10, //图例宽高
+                    posX = ox * 2 +20, posY = 30;//图例位置
+                var textX = posX + width + 5, textY = posY + 10;//文本位置
+                var startAngle = 0, endAngle = 0;//起始、结束弧度
+                context.strokeStyle = 'Purple';
+                context.lineWidth = 3;
+                context.strokeRect(0, 0, drawing.width, drawing.height);
+                var len=data_arr.length;
+                var timer;
+                document.body.onclick=function(){
+                            clearInterval(timer)
+                }
+                function draw(i){
+                    //三段-先加载第一段
+                    //设置起始值和结束值
+                    //开启画圆动画，从起始值画到结束值结束动画
+                    var startVal=startAngle,
+                        ssVal=startAngle,
+                        stopVal=endAngle,
+                        c_color=color_arr[i];
+                    endAngle += data_arr[i] * 2*Math.PI;
+                    timer=setInterval(function(){
+                        if(ssVal>=endAngle){
+                            ssVal=endAngle;
+                        }
+                       //绘制饼图
+
+
+                        //画一个空心圆
+                        context.beginPath();
+                        console.log(ox, oy, radius, startAngle, ssVal)
+                        context.arc(ox, oy, radius, startAngle, ssVal==endAngle?ssVal-0.02:ssVal, false);
+                        context.lineWidth=6;
+                        context.strokeStyle=c_color;
+                        context.stroke();//画空心圆
+                        context.fillStyle = '#fff';
+                        context.closePath();
+
+                        context.fill();
+                        if(ssVal==endAngle){
+                            clearInterval(timer)
+                            // setTimeout(function(){
+                                startAngle = endAngle;
+                                if(++i==len){
+                                    return;
+                                }
+                                var a=0;
+                            
+                                draw(i)
+                            // },80);
+                            return;
+                        }
+                        ssVal+=2;
+                    },50);
+                }
+                draw(0)
+
+                // for(var i=0, len=data_arr.length; i<len; i++) {
+                    
+                //     //绘制饼图
+                //     endAngle += data_arr[i] * 2*Math.PI;
+
+                //     context.fillStyle = '#fff';
+
+                //     //画一个空心圆
+                //     context.beginPath();
+                //     context.arc(ox, oy, radius, startAngle, endAngle, false);
+                //     context.lineWidth=6;
+                //     context.strokeStyle=color_arr[i];
+                //     context.stroke();//画空心圆
+                //     context.closePath();
+
+                //     context.beginPath();
+                //     context.moveTo(ox, oy);
+                //     context.arc(ox, oy, radius, startAngle, endAngle, false);
+                //     context.closePath();
+
+                //     context.fill();
+                //     startAngle = endAngle;
+                // }
+
+            }
+        };
+
+        var init = function(){
+            var data_arr = [0.3, 0.4, 0.3],
+                color_arr = ['#00FF21', '#FFAA00', '#00AABB'],
+                text_arr =['第一季度', '第二季度', '第三季度'];
+            drawCircle('drawing', data_arr, color_arr, text_arr);
+        };
+
+        init();
+
+    </script>
+</body>
+</html>

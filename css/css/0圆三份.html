@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.wrap{
+			position:relative;
+			width:100px;height:100px;
+		}
+		.part{
+			position:absolute;left:0;top:0;
+			width:50%;height:100%;
+			border:solid 3px red;
+			box-sizing:border-box;
+		}
+		.spiner{
+			left:0;top:0;
+			border-color:red;
+		    border-radius: 50px 0 0 50px;
+		}
+		.filler{
+			left:50%;top:0;
+			border-color:blue;
+			border-radius: 0 50px 50px 0;
+		}
+		.masker{
+			left:0;top:0;
+			border-color:yellow;
+			border-radius: 50px 0 0 50px;
+		}
+	</style>
+</head>
+<body>
+<div class="wrap">
+	<div class="part spiner">
+	</div>
+	<div class="part filler">
+		
+	</div>
+	<div class="part masker">
+		
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+	   .pinOfStudent {
+	        background-color: #ffffff;
+	        width: 100%;
+	        position: relative;
+	    }
+
+	    #tipZone {
+	        position: relative;
+	        left: 0;
+	        right: 0;
+	        top: 1em;
+	        width: 12.5em;
+	        height: 12.5em;
+	        margin: 0 auto;
+	    }
+
+	    #base1 {
+	        margin-top: 10px;
+	        z-index: 1;
+	    }
+
+	    #base1 .bing {
+	        background-color: #af9df7;
+	        border-color: #af9df7;
+	        -moz-transform: rotate(72deg);
+	        -webkit-transform: rotate(72deg);
+	        -o-transform: rotate(72deg);
+	        transform: rotate(72deg);
+	    }
+
+	    #base2 {
+	        margin-top: 10px;
+	        -moz-transform: rotate(72deg);
+	        -webkit-transform: rotate(72deg);
+	        -o-transform: rotate(72deg);
+	        transform: rotate(72deg);
+	    }
+
+	    #base2 .bing {
+	        background-color: #93dec8;
+	        border-color: #93dec8;
+	        -moz-transform: rotate(72deg);
+	        -webkit-transform: rotate(72deg);
+	        -o-transform: rotate(72deg);
+	        transform: rotate(72deg);
+	    }
+
+	    #base3 {
+	        margin-top: 10px;
+	        -moz-transform: rotate(144deg);
+	        -webkit-transform: rotate(144deg);
+	        -o-transform: rotate(144deg);
+	        transform: rotate(144deg);
+	    }
+
+	    #base3 .bing {
+	        background-color: #efb486;
+	        border-color: #efb486;
+	        -moz-transform: rotate(72deg);
+	        -webkit-transform: rotate(72deg);
+	        -o-transform: rotate(72deg);
+	        transform: rotate(72deg);
+	    }
+
+	    #base4 {
+	        margin-top: 10px;
+	        -moz-transform: rotate(216deg);
+	        -webkit-transform: rotate(216deg);
+	        -o-transform: rotate(216deg);
+	        transform: rotate(216deg);
+	    }
+
+	    #base4 .bing {
+	        background-color: #f2b6c8;
+	        border-color: #f2b6c8;
+	        -moz-transform: rotate(72deg);
+	        -webkit-transform: rotate(72deg);
+	        -o-transform: rotate(72deg);
+	        transform: rotate(72deg);
+	    }
+
+	    #base5 {
+	        margin-top: 10px;
+	        -moz-transform: rotate(288deg);
+	        -webkit-transform: rotate(288deg);
+	        -o-transform: rotate(288deg);
+	        transform: rotate(288deg);
+	    }
+
+	    #base5 .bing {
+	        background-color: #cae9ff;
+	        border-color: #cae9ff;
+	        -moz-transform: rotate(72deg);
+	        -webkit-transform: rotate(72deg);
+	        -o-transform: rotate(72deg);
+	        transform: rotate(72deg);
+	    }
+
+	    .part {
+	        position: absolute;
+	        width: 100%;
+	        height: 100%;
+	        clip: rect(0em, 12.5em, 12.5em, 6.25em);
+	    }
+
+	    .effective1 {
+	        margin-top: -0.1rem !important;
+	        margin-left: 0.56rem;
+	        z-index: 0 !important;
+	    }
+
+	    .effective1 .bing {
+	        background-color: #866af3 !important;
+	        border-color: #866af3 !important;
+	    }
+
+	    .effective2 {
+	        margin-top: 0.18rem !important;
+	        margin-left: 0.2rem;
+	    }
+
+	    .effective2 .bing {
+	        background-color: #3ccda3 !important;
+	        border-color: #3ccda3 !important;
+	    }
+
+	    .effective3 {
+	        margin-top: 1.4em !important;
+	        margin-left: 0em;
+	    }
+
+	    .effective3 .bing {
+	        background-color: #fa9241 !important;
+	        border-color: #fa9241 !important;
+	    }
+
+	    .effective4 {
+	        margin-top: 0.55em !important;
+	        margin-left: -0.7em;
+	    }
+
+	    .effective4 .bing {
+	        background-color: #f680a4 !important;
+	        border-color: #f680a4 !important;
+	    }
+
+	    .effective5 {
+	        margin-top: -0.1rem !important;
+	        margin-left: -0.13rem;
+	    }
+
+	    .effective5 .bing {
+	        background-color: #1f9cf5 !important;
+	        border-color: #1f9cf5 !important;
+	    }
+
+	    .bing {
+	        position: absolute;
+	        width: 12.5em;
+	        height: 12.5em;
+	        clip: rect(0px, 6.25em, 12.5em, 0px);
+	        -moz-border-radius: 6.25em;
+	        -webkit-border-radius: 6.25em;
+	        border-radius: 6.25em;
+	    }
+
+	    .bing span {
+	        position: absolute;
+	        transform: rotate(-30deg);
+	        top: 1.7em;
+	        left: 2.4em;
+	        display: block;
+	        color: #ffffff;
+	    }
+
+	    .inner {
+	        position: absolute;
+	        top: 6%;
+	        width: 50%;
+	        height: 50%;
+	        background-color: #579edf;
+	        border-radius: 50%;
+	        left: 0;
+	        right: 0;
+	        bottom: 0;
+	        margin: auto;
+	        color: #ffffff;
+	        text-align: center;
+	        z-index: 15;
+	    }
+
+	    .inner span {
+	        font-size: 1.5em;
+	        width: 50%;
+	    }
+
+	    .inner span:first-child {
+	        margin-top: 0.8em;
+	        display: inline-block;
+	    }
+
+	    .inner span:last-child {
+	        font-size: 0.35rem;
+	    }
+
+	    .active {
+	        width: 52%;
+	        height: 52%;
+	        background-color: #127ce0;
+	        border: 2px solid #328de4;
+	        box-shadow: 0.07rem 0.05rem 0.07rem #333;
+	    }
+    </style>
+</head>
+
+<body>
+	<div class="pinOfStudent">  
+        <div id="tipZone">  
+            <div id="base1" class="part effective1">  
+                <div class="bing">  
+                    <span>良好</span>  
+                </div>  
+            </div>  
+            <div id="base2" class="part" >  
+                <div class="bing">  
+                    <span>优秀</span>   
+                </div>  
+            </div>  
+            <div id="base3" class="part">  
+                <div class="bing">  
+                    <span>未提交</span>  
+                </div>  
+            </div>  
+            <div id="base4"class="part" >  
+                <div class="bing">  
+                    <span>需努力</span>  
+                </div>  
+            </div>  
+            <div id="base5" class="part" >  
+                <div class="bing">  
+                    <span>加油</span>  
+                </div>  
+            </div>  
+            <div id="base6" class="inner"  >  
+                <span>98%</span><br/>  
+                <span>得分率</span>  
+            </div>  
+        </div>  
+</div>  
+</body>
+
+</html>
