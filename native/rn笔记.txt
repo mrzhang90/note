@@ -1,0 +1,35 @@
+## 子组件修改父组件
+	export default class parendZuJian extends Component {
+		constructor(props) {
+		    super(props);
+		    this.state = {
+	    		currentElement:'child'
+		    };
+		  }
+		  render() {
+		    return (
+		      		this.state.currentElement=='child' ?
+			      		<childZujian 
+			      			onClicked={
+			      				()=>this.setState({
+						    		currentElement:'arguments'
+			      				})
+			      			}
+			      		/> :
+					    <Agreement  />
+		    );
+	  }
+	}
+	function childZujian(props){
+		return (
+			<View>
+		      	<Text 
+		      		onPress={()=>
+	      				props.onClicked()
+		      		}
+		      		style={[styles.font24,{color:'#8680ff'}]}>
+		      		《用户服务协议》
+		      	</Text>
+		    </View>
+		)
+	}
