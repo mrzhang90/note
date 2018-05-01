@@ -1,8 +1,23 @@
+# 总结：
+	## commit用法
+		this.$store.commit('todos/add', e.target.value)//提交到todos.js模块下的add方法
+	## ...mapMutations
+		将 store 中的 commit 方法映射到组件的 methods
+		import { mapMutations } from 'vuex';
+		...mapMutations({
+            toggle:'todos/toggle',
+            remove:'todos/remove'
+        })
+        
 链接：https://vuex.vuejs.org/zh-cn/intro.html
-为什么要用vuex?
+## 为什么要用vuex?
 	问题1.多个view组件共享一个state，多个组件之间的状态传递会非常繁琐
 	问题2.多个view组件直接引用或通过事件修改或同步state状态，会很难以维护
 因此，我们可以把组件的共享状态抽取出来，构成一个巨大的“视图”，任何组件都能获取状态或触发状态
+
+## store是什么
+	就是把各组件的状态统一管理，这样就不存在父子组件等来回调用的问题，或者兄弟组件本来是要通过跟父组件才能共享数据，甚至通过麻烦的回调来。
+	stroe把不同的state放在一个容器里，获取就真真方便了
 
 Vuex搭建vue-resource、vue-router
 vuex是一个专为vue.js应用程序开发的状态管理模式,它集中式存储管理应用的所有组件状态
@@ -19,7 +34,9 @@ Vuex 也集成到 Vue 的官方调试工具 devtools extension
 		提交 mutations
 			以更新
 	3.vuex的声明周期很简单，当元素被插入和当元素渲染完
+
 ## state
+
 ## mutation
 	//更改 Vuex 的 store 中的状态的唯一方法是提交 mutation
 	Vue.use(Vuex)
@@ -36,6 +53,7 @@ Vuex 也集成到 Vue 的官方调试工具 devtools extension
 	})
 	store.commit('increment')//提交mutations
 	console.log(store.state.count)//1
+
 ## Getter	
 	//Getter是对state进行一些额外的运算，额外的扩展
 	//就像vue里的computed(计算属性)一样，getter 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算
@@ -54,8 +72,10 @@ Vuex 也集成到 Vue 的官方调试工具 devtools extension
 	    }
 	  }
 	})
+
 ## Actions
 	事件方法
+
 ## Modules
 	可以把一个stata拆分成多个module
 	可以把很多store合并到一个state

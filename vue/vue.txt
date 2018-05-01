@@ -1,3 +1,13 @@
+# 总结：
+	## 绑定元素(:)
+		:title
+		:class="{done:todo.done}"
+			class="done" || class=""
+	## 绑定事件(@)
+		@submit.prevent="aa"、@keyup.enter="addTodo"
+	## 遍历
+		v-for=“item of items”
+
 vue1.0时因为全部依赖DOM DIFF导致大量内存泄露
 	2.0时很聪明的做了判断，可以直接吐的元素就直接吐出来，不走DOM DIFF
 vue.js不是一个框架,它只是一个MVVM风格的双向数据绑定的库，专注于UI层面
