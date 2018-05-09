@@ -1,0 +1,32 @@
+函数延时500ms后调用
+	_.debounce(fn,500)
+		使用场景：
+			用户连续输入一段时间后，才执行
+			用户连续点击一个按钮，停止后才执行
+			
+强制函数以固定的速率执行
+	_.throttle(func, [wait=0], [options={}])
+		fun
+			节流函数
+		wait
+			将调用限制为的毫秒数
+		使用场景
+			滚动时避免过度更新位置
+			点击按钮，n分钟不得超过一次
+			//滚动时避免过度更新位置。
+			Query(window).on('scroll', _.throttle(updatePosition, 100));
+ 
+			//点击事件触发时调用`renewToken`，但每5分钟不超过一次。
+			var throttled = _.throttle(renewToken, 300000, { 'trailing': false });
+			jQuery(element).on('click', throttled);
+
+			//取消尾部调节的调用。
+			jQuery(window).on('popstate', throttled.cancel)
+继承
+	_.assing
+		函数不会处理原型链上的属性，也不会合并相同的属性，而是用后面的属性值覆盖前面的属性值
+	_.extend
+		3.x 版本中和 assign 一样
+		4.x 版本中会合并原型链上的属性
+	_.merge
+		遇到相同属性名的时候，如果属性值是纯对象或集合的时候，会合并属性值
