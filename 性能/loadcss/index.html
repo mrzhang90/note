@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<h1>懒加载来提高网站加载速度，所以将非首屏渲染必需的css文件进行动态加载操作</h1>
+<p><a href="http://wangxiaokai.vip/posts/2017-01-17-load-css/">参考地址</a></p>
+<script type="text/javascript" src="loadCss.js"></script>
+<script type="text/javascript">
+	loadCss({
+		url:'https://g.alicdn.com/de/prismplayer/2.6.0/skins/default/aliplayer-min.css',
+		id:'css',
+		callback:function(){
+			console.log(arguments)
+		}
+	})
+</script>
+</body>
+</html>

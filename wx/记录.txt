@@ -1,0 +1,12 @@
+文件作用域
+	通过app=getApp()可以获取全局的应用实例
+	设置全局数据
+		app.globalData.sayHi='hello'
+		或者在app.js中
+			app({
+				globalData:{
+					sayHi:'hello'
+				}
+			})
+	任意页面获取
+		app.globalData.sayHi

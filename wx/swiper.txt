@@ -1,0 +1,4 @@
+圆点位置上移
+	.wx-swiper-dots{
+	  position:absolute;top:216rpx;
+	}

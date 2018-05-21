@@ -11,6 +11,12 @@
 	</style>
 </head>
 <body>
+<p>
+	利用冒泡事件实现li点击：<br/>
+	绑定在ul上两个好处：<br/>
+	&nbsp;&nbsp;1.不需要遍历li的每个节点，性能更优<br/>
+	&nbsp;&nbsp;2.动态的li也可以获取到，这是直接给li绑定事件做不到的
+</p>
 	<ul>
 		<li>1</li>
 		<li>2<b>hi</b></li>
@@ -18,13 +24,19 @@
 	</ul>
 	<script>
 		~(function(){
-            var ul=document.getElementsByTagName('ul');
-            ul[0].onclick=function(e){
+            var ul=document.querySelector('ul');
+            //利用事件冒泡实现
+            ul.onclick=function(e){
             	console.log(e.target)//通过target可以知道点击的li
             	if(e.target.nodeName!='li'){//通过nodeName知道点击元素的节点名称
             		console.log(e.target.parentNode)//获取点击元素的父节点
             	}
             }
+            setTimeout(function(){
+            	var li=document.createElement('li');
+            	li.innerHTML="hello world"
+            	ul.appendChild(li)
+            },1000)
 		})()
 	</script>
 </body>

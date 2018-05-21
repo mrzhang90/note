@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head></head>
+<body>
+<canvas id="clock">
+    您的浏览器不支持canvas标签，无法看到时钟
+</canvas>
+<script>
+    var clock=document.getElementById('clock');
+    var cxt=clock.getContext('2d');
+    var width=156,height=85,lineWidth=10;
+    clock.width=width;
+    clock.height=height;
+    function drawClock(num){    
+        cxt.clearRect(0,0,width,height);    //清除画布区域
+        var x=width/2-lineWidth/2,y=height-lineWidth,r=width/2-lineWidth,sAngle=0,eAngle=Math.PI;
+        var arr=['#333','#063','#396','#9c9','#ccc'];
+
+        for(var i=0;i<5;i++){
+            eAngle=Math.PI*((i+1)*0.2);
+            console.log(-sAngle,-eAngle)
+            cxt.beginPath();
+            cxt.arc(x,y,r,-sAngle,-eAngle,true);
+            cxt.strokeStyle=arr[i];    //表盘(蓝色)
+            cxt.lineWidth=lineWidth;
+            cxt.stroke();
+            cxt.closePath();
+
+            sAngle=eAngle+0.03;
+        }
+
+        //秒针            
+        cxt.save();
+        cxt.strokeStyle="#999";
+        cxt.lineWidth=3;
+        cxt.translate(width/2,height-lineWidth);     
+        num=num/(100/180)
+        cxt.rotate((num-90)*Math.PI/180);//设置旋转角度                
+        cxt.beginPath();    //画图
+        cxt.moveTo(0,-height+lineWidth+13);//指针长度
+        cxt.lineTo(0,0);//指针跟圆圈的交叉点
+        cxt.closePath();
+        cxt.stroke();                
+        cxt.beginPath();    //画出时针、分针、秒针的交叉点、
+        cxt.arc(0,0,5,0,360,false);
+        cxt.closePath();                
+        cxt.fillStyle="#fff";    //设置填充样式
+        cxt.fill();                
+        cxt.stroke();
+       
+        cxt.restore();
+    }
+    
+    var i=70;//命中率百分比
+    var j=0;
+    function renderCanves(){
+        if(j<i){
+            window.requestAnimationFrame(renderCanves);
+        }
+        drawClock(j);    //1000毫秒前要显示
+        j+=2;
+    }
+    window.requestAnimationFrame(renderCanves);
+</script>
+</body>
+</html>

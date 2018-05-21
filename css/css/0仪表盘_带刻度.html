@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<canvas id="board" width="600" height="300"></canvas>
+<script type="text/javascript">
+//仪表盘对象
+//option仪表盘参数，可以通过扩展定制仪表盘
+var panel=function(id,option){
+	this.canvas=document.getElementById(id);
+	this.cvs=this.canvas.getContext('2d');
+	this.width=this.canvas.width;
+	this.height=this.canvas.height;
+	this.level=option.level;
+	this.outsideStyle=option.outsideStyle;
+}
+//保存和恢复现场
+panel.prototype.save=function(fn){
+	this.cvs.save();
+	fn();
+	this.cvs.restore();
+}
+//定义化半个圆的方法
+panel.prototype.drawArc=function(){
+	var That=this;
+	var cvs=this.cvs;
+	That.save(function(){
+		cvs.translate(That.width/2,That.height);//将坐标点移到矩形的底部的中间
+		cvs.beginPath();
+		cvs.lineWidth=That.outsideStyle.lineWidth;
+		cvs.stockeStyle=That.outsideStyle.color;
+		cvs.arc(0,0,That.height-cvs.lineWidth,0,Math.PI/180*180,true);//画半圆
+		cvs.stroke();
+	})
+}
+//绘制中间颜色的填充区域
+panel.prototype.drawLevelArea=function(level){
+	var That=this;
+	var cvs=this.cvs;
+	for(var i=0;i<level.length;i++){
+		That.save(function(){
+			cvs.translate(That.width/2,That.height);
+			cvs.rotate(Math.PI/180*level[i].start);
+			That.save(function(){
+				cvs.beginPath();
+				cvs.arc(0,0,That.height-That.outsideStyle.lineWidth,Math.PI/180*180,Math.PI/180*360);
+				cvs.fillStyle=level[i].color;
+				cvs.fill();
+			})
+		})
+	}
+}
+panel.prototype.drawLine = function() {  
+    var p = this;  
+    var cvs = this.cvs;  
+    for (var i = 0; i <= 180; i++) {  
+        p.save(function() {  
+            cvs.translate(p.width / 2, p.height);  
+            cvs.rotate(Math.PI / 180 * i);  
+            p.save(function() {  
+                cvs.beginPath();  
+                cvs.lineTo(-(p.height - p.outsideStyle.lineWidth) + 10, 0);  
+                cvs.lineTo(-(p.height - p.outsideStyle.lineWidth) + 5, 0);  
+                cvs.stroke();  
+                if (i % 10 == 0) {  
+                    p.drawText(i);  
+                }  
+            });  
+        });  
+    }  
+}  
+panel.prototype.drawText = function(val) {  
+    var p = this;  
+    var cvs = this.cvs;  
+    p.save(function() {  
+        cvs.lineWidth = 1;  
+        cvs.strokeText(val, -(p.height - p.outsideStyle.lineWidth) + 5, 0);  
+    });  
+}  
+panel.prototype.drawSpanner = function(value) {  
+    var p = this;  
+    var cvs = this.cvs;  
+    p.save(function() {  
+        cvs.translate(p.width / 2, p.height);  
+        cvs.moveTo(0, 0);  
+        cvs.arc(0, 0, p.height / 30, 0, (Math.PI / 180) * 360);  
+        cvs.lineWidth = 3;  
+        cvs.stroke();  
+    });  
+  
+    p.save(function() {  
+        cvs.translate(p.width / 2, p.height);  
+        cvs.rotate(Math.PI / 180 * -90);  
+        p.save(function() {  
+            cvs.rotate(Math.PI / 180 * value);  
+            cvs.beginPath();  
+            cvs.moveTo(5, -3);  
+            cvs.lineTo(0, -p.height * 0.7);  
+            cvs.lineTo(-5, -3);  
+            cvs.lineTo(5, -3);  
+            cvs.fill();  
+        });  
+    });  
+}  
+panel.prototype.init = function(value) {  
+    var p = this;  
+    var cvs = this.cvs;  
+    cvs.clearRect(0, 0, this.width, this.height);  
+  
+    p.drawArc();  
+    p.drawLevelArea(p.level);  
+    p.drawLine();  
+    p.drawSpanner(value);  
+}  
+window.onload = function() {  
+    var panelOption={
+		maxLength:30,
+		interval:5,
+		level:[//仪表盘需要呈现的数据隔离区域
+			{start:0,color:'#ccc'},
+			{start:36,color:'#99cc99'},
+			{start:72,color:'#339966'},
+			{start:108,color:'#006633'},
+			{start:141,color:'#333'},
+		],
+		outsideStyle:{lineWidth:5,color:'rgba(100,100,100,1)'}
+	}
+	// var panelOption = {  
+ //        maxLength: 30,  
+ //        interval: 5,  
+ //        level: [//仪表盘需要呈现的数据隔离区域  
+ //              {start: 0, color: "red" },  
+ //              { start: 30, color: "yellow" },  
+ //              { start: 40, color: "blue" },  
+ //              { start: 100, color: "Lime" }  
+ //              ],  
+ //        outsideStyle: { lineWidth: 4, color: "rgba(100,100,100,1)" }  
+ //    };  
+    Panel = new panel("board", panelOption);  
+    Panel.init(15);  
+}  
+</script>
+</body>
+</html>

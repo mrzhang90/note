@@ -232,7 +232,9 @@ BOM:
     兼容:onmousewheel-支持Chrome/IE,可以通过ev.wheelDelta来得到滚轮的方向,为正数的时候,说明向上滚动,为负数的时候：说明向下滚动
         DOMMouseScroll:支持FF,可以通过ev.detail来得到滚轮的方向,为正数的时候,说明向下滚动,为负数的时候：说明向上滚动
     DOMContentLoaded:仅当DOM加载完成，不包括样式表，图片，flash;而当onload事件触发时，页面上所有的DOM，样式表，脚本，图片，flash都已经加载完成了
-        兼容:高版本：DOMContentLoaded;;;IE处理方式:d.documentElement.doScroll('left');当有left的时候说明DOM加载完了。
+    兼容不支持该事件的浏览器
+        在IE8中,可以使用readystatechange事件来检测DOM文档是否加载完毕.
+        在更早的IE版本中,可以通过每隔一段时间执行一次document.documentElement.doScroll("left")来检测这一状态，因为这条代码在DOM加载完毕之前执行时会抛出错误(throw an error)
 
 DOM
     document.scripts[0]:获取页面里，第一个script脚本

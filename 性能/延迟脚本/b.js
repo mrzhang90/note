@@ -1,0 +1,1 @@
+createText('hello b.js')

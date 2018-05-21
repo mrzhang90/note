@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<p>
+	addEventListener可以多次绑定同一个事件，都会执行<br/>
+		可以支持冒泡和捕获<br/>
+		PS:只能兼容到IE9，so IE8.0及其以下版本不支持该方法，它使用attachEvent()来绑定事件监听函数<br/>
+	onclick多次绑定会被覆盖
+</p>
+<ul id="color-list">
+    <li id="addEvent">red</li>
+    <li id="on_click">yellow</li>
+</ul>
+    <script type="text/javascript">
+        (function(){
+            var addEvent = document.getElementById("addEvent");
+            addEvent.addEventListener("click",function(){
+                alert("我是addEvent1");
+            },false);
+            addEvent.addEventListener("click",function(){
+                alert("我是addEvent2");
+            },false);
+
+            var addEvent = document.getElementById("on_click"); 
+
+            on_click.onclick = function() {
+                alert("我是click1");
+            }
+            on_click.onclick = function() {
+                alert("我是click2");
+            }
+        })();
+    </script>
+</body>
+</html>

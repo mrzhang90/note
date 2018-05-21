@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div>
+	总结：
+		async：
+			立即下载但延迟执行。并且async不保证执行先后顺序。
+			可能会在DOMContentLoaded前后执行
+		defer：立即下载但延迟执行。脚本延迟到DOM加载完成(load触发前)
+			defer不阻塞进程，因此会并行下载
+			通常第一个延迟脚本先于第二个延迟脚本执行，而这些延迟脚本会先于DOMContentLoaded事件执行。
+			但现实中，延迟脚本不一定按顺序执行，也不一定在DOMContentLoaded事件触发前执行
+</div>
+<script type="text/javascript" async src="a.js"></script>
+<script type="text/javascript" defer="defer" src="b.js"></script>
+<script type="text/javascript">
+function createText(text){
+	var p=document.createElement('p');
+	p.innerHTML=text;
+	document.body.appendChild(p)
+}
+	document.addEventListener("DOMContentLoaded",function(event){
+		createText('hello world')
+	})
+</script>
+</body>
+</html>

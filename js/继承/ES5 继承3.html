@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+	function Fn(){
+		this.name=['zhang']
+	}
+	Fn.prototype={
+		constructor:Fn,
+		sayName:function(name){
+			console.log(this)
+			this.name.push(name)
+		},
+		getName:function(){
+			return this.name;
+		}
+	}
+	var f=new Fn();
+	var f2=new Fn();
+	f.sayName('zhang')
+	f2.sayName('zhao')
+	console.log(f.constructor==Fn)//true
+	console.log(f.constructor==Object)//true
+	console.log(f.getName())
+	console.log(f2.getName())
+</script>
+</body>
+</html>

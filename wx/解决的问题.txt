@@ -1,0 +1,66 @@
+## 点击事件捕获
+	一般来说，这样可以获取点击元素的data-id属性
+		e.target.dataset.id
+	但是有时就发生捕获，点击当前却获取了元素属性
+		我的解决方案是：
+		e.currentTarget.dataset.id;
+## swiper轮播图
+	圆点位置上移
+		.wx-swiper-dots{
+		  position:absolute;top:216rpx;
+		}
+
+## radio样式重写
+	html  
+	  <radio-group class="radio-group" bindchange="radioChange">
+	    <view class="radio_attr">
+	        <label class="f36">
+	          <radio value="0"/>
+	          <view>文科</view>  
+	        </label>
+	    </view>
+	    <view class="radio_attr">
+	        <label class="f36">
+	          <radio value="1" checked='true'/>
+	          <view>理科</view>
+	        </label>
+	    </view>
+	  </radio-group>
+
+	style
+	.radio-group{
+	  height:34rpx;
+	  display: flex;
+	  align-items: center;
+	}
+	.radio_attr {
+	  padding:0 50rpx 0 45rpx;
+	  position:relative;
+	}
+	.radio_attr label{
+	  display: flex;
+	}
+	/*radio默认样式重置*/
+	radio {
+	  background: none;
+	}
+	 
+	radio .wx-radio-input {
+	  width: 25rpx;
+		height: 25rpx;
+	  border: solid 1px #cacaca;
+	  position: absolute;
+	  top:50%;
+	  left:0;
+	  transform:translate(0,-50%);
+	}
+	radio .wx-radio-input.wx-radio-input-checked {
+	  border-color:#2b9cff;
+	  background-color: #2b9cff;
+	}
+	 
+	radio .wx-radio-input.wx-radio-input-checked::before {
+	  content: '';
+	  background-color: #2b9cff;
+	}
+	/*radio默认样式重置*/

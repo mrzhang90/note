@@ -1,0 +1,104 @@
+注意： 
+	require 不支持绝对路径
+		var common = require('common.js')
+	花括号和引号之间如果有空格，将最终被解析成为字符串
+	bind事件绑定不会阻止冒泡事件向上冒泡
+	catch事件绑定可以阻止冒泡事件向上冒泡。
+	capture-事件捕获
+		capture-catch将中断捕获阶段和取消冒泡阶段
+	dataset
+		以data-开头，多个单词以-连接，不要大小写(微信会给你全转小写)
+			比如data-aa-bb,会被转成aaBb
+				dataset.aaBb
+	小程序在微信6.5.3版本中，部分Android机触发不了onLoad事件，可以用onReady替代
+	
+exports
+	module.exports={
+		sayHello : sayHello
+	}
+
+var app=getApp();
+获取data数据
+	app.globalData.name
+设置data数据
+	app.setData={
+		'name':'hello world'
+	}
+
+wx.navigateTo和wx.redirectTo
+	不允许跳转到tabbar页面
+wx.switchTab
+	可以跳转到tabbar页面
+
+template模板
+	模板拥有自己的作用域，只能使用 data 传入的数据以及模版定义文件中定义的 <wxs /> 模块
+	使用 is 属性，声明需要的使用的模板
+	<template is="msgItem" name="msgItem">
+	  <view>
+	    <text> {{index}}: {{msg}} </text>
+	    <text> Time: {{time}} </text>
+	  </view>
+	</template>
+
+block不会渲染的元素
+	<block/> 并不是一个组件，它仅仅是一个包装元素，不会在页面中做任何渲染，只接受控制属性
+		<block wx:if="{{true}}">
+		  <view> view1 </view>
+		  <view> view2 </view>
+		</block>
+
+if
+<view wx:if="{{condition}}"> </view>
+关键字
+<checkbox checked="{{false}}"> </checkbox>
+三元运算
+<view hidden="{{flag ? true : false}}"> Hidden </view>
+字符串运算
+<view>{{"hello" + name}}</view>
+
+数组-for
+<view wx:for="{{array}}" wx:for-index="idx" wx:for-item="itemName"> {{index}}: {{item.message}} </view>
+<view wx:for="{{[zero, 1, 2, 3, 4]}}"> {{item}} </view>
+使用 wx:for-item 可以指定数组当前元素的变量名，
+使用 wx:for-index 可以指定数组当前下标的变量名
+	wx:key的两种形式
+		1.wx:key="index"
+		2.wx:key="*this"
+			保留关键字 *this 代表在 for 循环中的 item 本身，这种表示需要 item 本身是一个唯一的字符串或者数字
+			<switch wx:for="{{numberArray}}" wx:key="*this" style="display: block;"> {{item}} </switch>
+对象
+<template is="objectCombine" data="{{for: a, bar: b}}"></template>
+<template is="objectCombine" data="{{...obj1, ...obj2, e: 5}}"></template>
+
+事件
+	bindtap
+	以下是冒泡事件
+		touchstart
+		touchmove
+		touchcancel
+		touchend
+		tap
+			手指触摸后马上离开
+		longpress
+			手指触摸后，超过350ms再离开，如果指定了事件回调函数并触发了这个事件，tap事件将不被触发
+		longtap
+			手指触摸后，超过350ms再离开（推荐使用longpress事件代替）	
+		transitionend
+			会在 WXSS transition 或 wx.createAnimation 动画结束后触发	
+		animationstart
+			会在一个 WXSS animation 动画开始时触发	
+		animationiteration
+			会在一个 WXSS animation 一次迭代结束时触发	
+		animationend
+			会在一个 WXSS animation 动画完成时触发	
+		touchforcechange
+			在支持 3D Touch 的 iPhone 设备，重按时会触发
+	非冒泡
+		<form/>的submit事件
+		<input/>的input事件
+		<scroll-view/>的scroll事件
+
+小程序rich-text里多张图片自适应	
+	this.setData({
+		detail_tb: res.data.replace(/\<img/gi, '<img style="max-width:100%;height:auto" '),
+    })

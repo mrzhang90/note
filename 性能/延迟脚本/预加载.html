@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<p><a href="https://blog.csdn.net/as645788/article/details/52078734" target="_blank">参考地址</a></p>
+<p>
+  因为Firefox对Image对象做了限制，所以这里先对Firefox做一个判断<br/>
+  if(不是火狐){<br/>
+  &nbsp;&nbsp;new Image().src='资源URL' <br/>
+  }else{<br/>
+  &nbsp;&nbsp;用object对象，<br/>
+  &nbsp;&nbsp;利用HTML5特性，object的data属性<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;例如：
+  <xmp><object width="400" height="400" data="对象所用资源的 URL"></object></xmp>
+  }
+</p>
+<script type="text/javascript">
+  window.onload = function () {
+    var testPrefetch = [
+      'https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.13/vue-router.min.js'
+    ];
+    var _object;
+    //Firefox对Image对象做了限制，所以改用object对象，这里先对Firefox做一个判断
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+    console.log(isFirefox);
+    if (!isFirefox) {
+      for (var i = testPrefetch.length - 1; i >= 0; i--) {
+        new Image().src = testPrefetch[i];
+      }
+    } else {
+      for (var j = testPrefetch.length - 1; j >= 0; j--) {
+        _object = document.createElement('object');
+        _object.data = testPrefetch[j];
+        _object.width  = 0;
+        _object.height = 0;
+        document.body.appendChild(_object);
+      }
+    }
+  }
+</script>
+</body>
+</html>

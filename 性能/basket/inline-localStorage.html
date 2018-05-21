@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h2>第一次响应时把需要放入 localStorage 的文件都内联进 html 中，后面每次响应只要文件版本没有变化，都是渲染一段从 localStorage 加载该文件的代码。这样做的好处是可以有效减少请求次数，即使是第一次</h2>
+<!-- 版本号不匹配（版本号可记在 Cookie 中，第一次访问没有版本号），服务端响应内容： -->
+<script id="jquery.js">
+	document.write('hello world')
+	document.write(new Date().getTime());
+</script>
+<script type="text/javascript">
+	function script2ls(id){
+		var script=document.getElementById(id);
+		if(script){
+			localStorage[id]=script.innerHTML;
+		}
+	}
+	script2ls("jquery.js")
+</script>
+<!-- 版本号匹配，服务端响应内容： -->
+<script type="text/javascript">
+	function ls2script(id){
+		var script=document.createElement('script');
+		script.text=localStorage[id];
+		document.head.appendChild(script);
+	}
+	ls2script('jquery.js')
+</script>
+</body>
+</html>
