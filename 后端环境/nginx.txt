@@ -17,3 +17,19 @@ window下安装
 			nginx.exe -s reopen
 		nginx版本
 			nginx -v
+
+mac
+	# 启动 nginx服务
+	sudo nginx
+
+	# 重新加载配置|重启|停止|退出 nginx
+	nginx -s reload|reopen|stop|quit
+
+	#测试配置是否有语法错误
+	nginx -t
+
+# 启动 nginx
+sudo ngixn -c /usr/local/etc/nginx/nginx.conf
+
+#测试配置是否有语法错误
+nginx -t -c /usr/local/etc/nginx/nginx.conf

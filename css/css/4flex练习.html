@@ -5,6 +5,21 @@
 	<title>Document</title>
 	<style>
 		*{margin:0;padding:0;}
+		button{
+			margin-bottom:31px;
+			width: 190px;
+			height: 64px;
+			line-height: 64px;
+			padding:0;
+			border-radius: 10px;
+			border: solid 1px #cacaca;
+			font-size: 28px;
+			color: #282828;
+		}
+		.flex-wrap{
+			padding:25px;
+			flex-wrap:wrap;
+		}
 		.ui-row-flex div{
 			padding: 5px;
 		    text-align: center;
@@ -62,9 +77,23 @@
 		.ui-row-flex .ui-col-end{
 			align-self:flex-end;
 		}
+		.ui-right{
+			margin-left:auto;
+		}
 	</style>
 </head>
 <body>
+<div class="ui-row-flex flex-wrap">
+	<button>am button</button>
+	<button>am button</button>
+	<button>am button</button>
+	<button>am button</button>
+	<button>am button</button>
+	<button>am button</button>
+	<button>am button</button>
+	<button>am button</button>
+	<button>am button</button>
+</div>
 <div class="ui-row-flex">
 	<div class="ui-col">
 		平均分
@@ -174,6 +203,17 @@
 	</div>
 	<div class="ui-col-width300">
 		两端对齐
+	</div>
+</div>
+<div class="ui-row-flex">
+	<div class="">
+		左边的元素
+	</div>
+	<div class="">
+		中间的内容元素
+	</div>
+	<div class="ui-right">
+		右边居右，其他的随意
 	</div>
 </div>
 </body>

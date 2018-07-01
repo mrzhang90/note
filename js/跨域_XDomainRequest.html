@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+fetchIe9(url,{
+  method:'post',
+  params:{
+
+  }
+},function(){
+  console.log(arguments)
+});
+
+
+function fetchIe9(url,options,callback){
+  if (window.XDomainRequest) {
+
+    var method = options.method || 'GET';
+    var timeout = options.timeout || 30000;
+    var data = options.body || options.params || {};
+    if (data instanceof Object) {
+      data = JSON.stringify(data);
+    }
+
+    var XDR = new XDomainRequest();
+    XDR.open(method, url);
+    XDR.timeout = timeout;
+    XDR.onload=function(){
+      try {
+        var json = JSON.parse(XDR.responseText);
+        callback(json.data)
+      } catch (e) {
+        callback(e)
+      }
+      callback({})
+    };
+
+    // fix random aborting: https://cypressnorth.com/programming/internet-explorer-aborting-ajax-requests-fixed/
+    XDR.onprogress = function(){};
+    XDR.ontimeout = function(){callback('XDomainRequest timeout')};
+    XDR.onerror = function(){callback('XDomainRequest error')};
+    setTimeout(function(){
+      XDR.send(data);
+    }, 0);
+  } else {
+    //jquery ajax
+    
+  }
+}
+</script>
+</body>
+</html>

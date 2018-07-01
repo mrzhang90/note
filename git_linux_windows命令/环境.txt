@@ -1,0 +1,25 @@
+php
+	php artisan serve
+		启动php环境
+
+nginx
+	sudo nginx
+		启动命令
+	sudo nginx -s reload
+		重启命令
+
+mysql
+	开机启动mysql
+		mkdir -p ~/Library/LaunchAgents/
+		cp /usr/local/Cellar/mysql/5.7.12/homebrew.mxcl.mysql.plist ~/Library/LaunchAgents/launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+
+	设置修改root密码（设置过了可以不用设置，略过）、删除匿名访问、删除root网络访问、删除test数据库。指令执行完后，登陆mysql就需要密码验证了
+		/usr/local//bin/mysql_secure_installation
+		
+	登录mysql root账户
+		mysql -u root -p
+
+	查证正在运行的mysql进程
+		ps -ef | grep mysql
+
+	mysqladmin

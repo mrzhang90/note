@@ -1,53 +1,66 @@
-html  
+## html  
   <radio-group class="radio-group" bindchange="radioChange">
     <view class="radio_attr">
-        <label class="f36">
+        <label class="f36" data-index="0" bindtap="changeRadio">
           <radio value="0"/>
-          <view>文科</view>  
+          <text class="{{selected[0]}}">文科</text>  
         </label>
     </view>
     <view class="radio_attr">
-        <label class="f36">
+        <label class="f36" data-index="1" bindtap="changeRadio">
           <radio value="1" checked='true'/>
-          <view>理科</view>
+          <text class="{{selected[1]}}">理科</text>
         </label>
     </view>
   </radio-group>
 
-style
-.radio-group{
-  height:34rpx;
-  display: flex;
-  align-items: center;
-}
-.radio_attr {
-  padding:0 50rpx 0 45rpx;
-  position:relative;
-}
-.radio_attr label{
-  display: flex;
-}
-/*radio默认样式重置*/
-radio {
-  background: none;
-}
- 
-radio .wx-radio-input {
-  width: 25rpx;
-	height: 25rpx;
-  border: solid 1px #cacaca;
-  position: absolute;
-  top:50%;
-  left:0;
-  transform:translate(0,-50%);
-}
-radio .wx-radio-input.wx-radio-input-checked {
-  border-color:#2b9cff;
-  background-color: #2b9cff;
-}
- 
-radio .wx-radio-input.wx-radio-input-checked::before {
-  content: '';
-  background-color: #2b9cff;
-}
-/*radio默认样式重置*/
+## js
+  data: {
+    selected: { 0: "colorGray" }
+  },
+  changeRadio: function(e){//修改字体颜色
+    let index = e.currentTarget.dataset.index;
+    let selected = { 0: "colorGray", 1:"colorGray"};
+    selected[index] = "";
+    this.setData({
+      selected: selected
+    })
+  }
+
+## style
+  .colorGray{
+    color:#cacaca;
+  }
+  .radio-group{
+    height:34rpx;
+    display: flex;
+    align-items: center;
+  }
+  .radio_attr {
+    padding:0 50rpx 0 45rpx;
+    position:relative;
+  }
+  .radio_attr label{
+    display: flex;
+  }
+  /*radio默认样式重置*/
+  radio {
+    background: none;
+  }
+  radio .wx-radio-input {
+    position: absolute;
+    top:50%;left:0;
+    width: 25rpx;
+    height: 25rpx;
+    transform:translate(0,-50%);
+  }
+  radio .wx-radio-input.wx-radio-input-checked {
+    /*必须要优先级最高-否则会被默认样式影响*/
+     border-color:#2b9cff!important;
+    background: #2b9cff!important;
+  }
+   
+  radio .wx-radio-input.wx-radio-input-checked::before {
+    content: '';/*清楚默认样式*/
+  }
+  /*radio默认样式重置*/

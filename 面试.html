@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<div id="app">
+	<h2></h2>
+	<P>快速求出数组之和-eval:{{total}}</P>
+	<p>去重后的结果-Array.from和Set:{{repeat}}</p>
+	<p>数组去重-json法性能好-{{repeatJSON}}</p>
+	<p>数组最大的值是:{{maximun}}</p>
+	<p>字符串中j--{{strPosition}}</p>
+	<p>数组排序--{{sort}}</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+var arr=[1,2,4,3,4,5,6,7,8,2,1,2,3,4,5,6,7];
+var str="asjlhfknv,jblskjblkwj.laksn.kjsc.kjnec.";
+var total=eval(arr.join("+"))//合计
+var repeat=Array.from(new Set(arr))
+new Vue({
+	el:'#app',
+	data:{
+		total:`${arr.join("+")}=${total}`,
+		repeat:repeat.join(",")
+	},
+	computed:{
+		maximun(){
+			var _initVal=-Infinity;
+			for(var val of arr){
+				if(_initVal<val){
+					_initVal=val;
+				}
+			}
+			return _initVal
+		},
+		repeatJSON(){
+			var json={},newArr=[];
+			for(var val of arr){
+				if(!json[typeof val+val]){
+					json[typeof val+val]=1;
+					newArr.push(val)
+				}
+			}
+			return newArr.join(',');
+		},
+		strPosition(){
+			let n=0,positionLog=[];
+			while(str.indexOf('j',n)!=-1){
+				n=str.indexOf('j',n);
+				positionLog.push(n)
+				n++;
+			}
+			return `出现的位置有：${positionLog.join(",")},出现了${positionLog.length}次`
+		},
+		sort(){
+			var arr=[3,1,4,2,5,21,6,15,63]
+			return sortA(arr)
+		}
+	},
+	methods:{
+	}
+})
+function sortA(arr){
+    // 如果只有一位，就没有必要比较
+    if(arr.length<=1){
+        return arr;
+    }
+    // 获取中间值的索引
+    var len = Math.floor(arr.length/2);
+    // 截取中间值
+    var cur = arr.splice(len,1);
+    // 小于中间值放这里面
+    var left = [];
+    // 大于的放着里面
+    var right = [];
+    for(var i=0;i<arr.length;i++){
+        // 判断是否大于
+        if(cur>arr[i]){
+            left.push(arr[i]);
+        }else{
+            right.push(arr[i]);
+        }
+    }
+    // 通过递归，上一轮比较好的数组合并，并且再次进行比较。
+    return sortA(left).concat(cur,sortA(right));
+}
+</script>
+</body>
+</html>

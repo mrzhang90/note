@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="443f53b8-2cc7-492b-af80-08271f106d01" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/js兼容.txt" beforeDir="false" afterPath="$PROJECT_DIR$/js/js兼容.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/移动端/meta.txt" beforeDir="false" afterPath="$PROJECT_DIR$/移动端/meta.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/css/4flex练习.html" beforeDir="false" afterPath="$PROJECT_DIR$/css/css/4flex练习.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wx/radio样式重写.txt" beforeDir="false" afterPath="$PROJECT_DIR$/wx/radio样式重写.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,12 +19,12 @@
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="img图片压缩.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/性能/img图片压缩.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="375">
-              <caret line="25" column="19" lean-forward="true" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+              <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -89,7 +88,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/demo/demo37.xml" />
         <option value="$PROJECT_DIR$/demo/demo37_3D全景图.html" />
         <option value="$PROJECT_DIR$/demo/js/skin.js" />
         <option value="$PROJECT_DIR$/demo/demo38_createDocumentFragment的作用.html" />
@@ -140,6 +138,7 @@
         <option value="$PROJECT_DIR$/karma_test/app/index_new.js" />
         <option value="$PROJECT_DIR$/karma_test/e2e.js" />
         <option value="$PROJECT_DIR$/性能/img图片压缩.html" />
+        <option value="$PROJECT_DIR$/share.html" />
       </list>
     </option>
   </component>
@@ -168,7 +167,7 @@
       <path value="$PROJECT_DIR$/脚本/calendar/日历/ChiperSoft-Kalendae-e784e29/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="23" />
     <option name="width" value="1936" />
@@ -182,7 +181,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -190,15 +188,11 @@
               <item name="note" type="b2602c69:ProjectViewProjectNode" />
               <item name="note" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="note" type="b2602c69:ProjectViewProjectNode" />
-              <item name="note" type="462c0819:PsiDirectoryNode" />
-              <item name="性能" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -355,19 +349,20 @@
       <workItem from="1503628132994" duration="67000" />
       <workItem from="1503628846489" duration="5000" />
       <workItem from="1526196182902" duration="564000" />
+      <workItem from="1527276138277" duration="1357000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="340192000" />
+    <option name="totallyTimeSpent" value="341549000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="23" width="1936" height="800" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="807" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16890496" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16875" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -376,10 +371,10 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
     </layout>
@@ -391,6 +386,13 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/性能/img图片压缩.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="19" lean-forward="true" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/demo/demo39_减少迭代次数_达夫设备.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -441,9 +443,6 @@
     <entry file="file://$PROJECT_DIR$/ES6/demo14_Promise1基本用法.html" />
     <entry file="file://$PROJECT_DIR$/ES6/demo14_Promise5_同步or异步.html" />
     <entry file="file://$PROJECT_DIR$/ES6/demo15_Iterator.html" />
-    <entry file="file://$PROJECT_DIR$/demo/less.less">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/demo/demo43_高德地图_普通定位.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="817">
@@ -465,9 +464,6 @@
           <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/font/webfontloader/webfont.js">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/font/webfontloader/font.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -505,10 +501,17 @@
     <entry file="file://$PROJECT_DIR$/karma_test/test/appSpec.js" />
     <entry file="file://$PROJECT_DIR$/karma_test/app/index.js" />
     <entry file="file://$PROJECT_DIR$/karma_test/app/index_new.js" />
+    <entry file="file://$PROJECT_DIR$/share.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="41">
+          <caret line="16" column="6" lean-forward="true" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/性能/img图片压缩.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
-          <caret line="25" column="19" lean-forward="true" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
         </state>
       </provider>
     </entry>

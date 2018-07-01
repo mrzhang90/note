@@ -1,3 +1,16 @@
+##自定义导航栏
+	custom 模式可自定义导航栏，只保留右上角胶囊状的按钮
+		"window": {
+	    	"navigationStyle": "custom"
+	  	}
+  	重写wx方法，获取导航栏和状态栏
+
+  	开发者工具-新建Component组件
+		ui-nav-bar组件
+  	在项目.json中引入组件
+	在项目.wxml中声明组件
+		<ui-nav-bar>slot内容</ui-nav-bar>
+		
 ## 点击事件捕获
 	一般来说，这样可以获取点击元素的data-id属性
 		e.target.dataset.id
