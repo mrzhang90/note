@@ -1,3 +1,8 @@
+nginx反向代理解决跨域
+	#接口代理到api下
+    location ~ ^/(api)/ {
+            proxy_pass http://www.bkenglish.com;
+    }
 后端添加头解决跨域
 Access-control-allow-origin
 	通过设置Access-Control-Allow-Origin来实现跨域访问比较简单
