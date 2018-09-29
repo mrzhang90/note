@@ -20,8 +20,23 @@
     }
 </style>
 ```
+### 父组件给子组件传值
+####父组件
+```html
+    <loading :name="name"/>
+```
+```js
+    this.name='hi'
+```
+####子组件
+props:{
+    name:{
+        type:string,
+        default:''
+    }
+}
 
-### 父组件调共子组件方法
+### 父组件调子组件方法
 ####父组件
 使用模板
 ```html
@@ -40,3 +55,25 @@ components:{
 ```
 ####子组件
 没啥好些的直接引用就好
+
+### 子组件调父组件方法
+####父组件监听子组件的child的事件
+```html
+    <birthday @child="changeBirthday"/>
+```
+```js
+    methods:{
+        changeBirthday(val){
+            console.log(val);
+        }
+    }
+```
+#####子组件
+```js
+    methods:{
+        sub(val){
+            // 子组件通知父组件
+            this.$emit("child",val);
+        }
+    }
+```
