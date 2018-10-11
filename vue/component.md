@@ -29,12 +29,14 @@
     this.name='hi'
 ```
 ####子组件
+```js
 props:{
     name:{
         type:string,
         default:''
     }
 }
+```
 
 ### 父组件调子组件方法
 ####父组件
