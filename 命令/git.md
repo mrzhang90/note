@@ -1,8 +1,7 @@
-MAC 安装git
 #一、先注册一个github用户
     https://github.com/join
 
-#二、命令行安装
+#二、命令行安装(MAC 安装)
     访问 http://brew.sh,
     1.拷贝首页代码到命令行,等待后,提示密码输入"123456",提示成功则表示OK;
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -27,13 +26,13 @@ MAC 安装git
     ps:Git支持多种协议，包括https(速度慢)，但通过ssh支持的原生git协议速度最快。
     touch 1.txt :创建一个名字叫 1.txt的文件
 
-删除：
+#删除：
     git rm [文件名] :删除本地文件
     git rm -f [文件名] :删除本地文件,以及暂存区中的文件
     git rm --cached [文件名] :删除暂存区文件
     git rm -r 目录名
 
-查看:
+#查看:
     git status 查看工作区的状态
     git reflog :查看命令历史记录(方便回滚用),以便确定要回到未来的哪个版本
     git log 查看暂存区的记录
@@ -49,13 +48,13 @@ MAC 安装git
     git diff --cached 查看暂存区与版本区的区别
     git diff master 查看工作区与版本去的区别
 
-提交到版本库:
+#提交到版本库:
     git add . [等同于] git add -A::把工作区中的所有的修改添到暂存区
     git add 1.txt 添加暂存区,添加文件
     git commit -m "注释" 把文件提交到缓存区
     git commit -a -m "注释" //工作区直接到到版本区
 
-撤销：
+#撤销：
     1.git reset HEAD 文件名   将暂存区的代码撤销到工作区。
     2.将工作区的代码还原成版本库的代码:
         git checkout -- [文件名] //撤销,讲版本区撤销到工作区
@@ -63,7 +62,7 @@ MAC 安装git
     3.在已经提交到版本库的时候，如果遗漏了某个文件，那么先将这个遗漏文件放到
         暂存区，然后git commit -m "新的注释" --amend
         就能将之前提交到版本库的文件与遗漏的文件一起保存到版本库。
-恢复：
+#恢复：
     git checkout -- [文件名]
         把指定文件在工作区的修改全部撤销,两种情况:1.修改后还没有被放到暂存区,那么撤销和版本库一样;2.已经添加到暂存区后，又作了修改,那么撤销回新添加暂存区后的状态
     git checkout 历史记录（git log）
@@ -75,7 +74,7 @@ MAC 安装git
     PS:git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。
     PS:git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
 
-远程仓库:
+#远程仓库:
     git push origin master  //上传到版本区
     git pull origin master  //pull与push相反，是将代码从远程仓库同步至本地仓库并merge的命令;pull=fetch+merge 获取代码并且自动合并
     git remote add teacher https://github.com/mrzhang90/nodejs //关联一个已有的仓库,把内容推送的空仓库中
@@ -83,7 +82,7 @@ MAC 安装git
        关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
        此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
 
-分支：
+#分支：
     git branch  查看分支
     git branch move  新建了move这个分支
     git checkout move  切换到move分支
@@ -92,12 +91,12 @@ MAC 安装git
     git branch -D up  (强行删除--还没合并的分支就要强行删除)
     git branch -d move (合并过的分支，-d就可以删除了)
 
-给Node提交分支-遵循以下规范
+#给Node提交分支-遵循以下规范
     branch name:fix/gh-{num}
     commit message:"module name:description"
     test/parallel/test-*.js
 
-解决问题:
+#解决问题:
     如果说在push的时候，发现了冲突:
         git fetch :(将远程的代码拉取下来) fetch是单纯将代码从远程仓库同步至本地仓库，并不作merge。
         git diff master origin/master :对比(查看冲突)
@@ -120,7 +119,7 @@ MAC 安装git
         2.如果可以合并new pull request
         3.留言
 
-总结:
+#总结:
     场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。
     场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。
     场景3：多人协作的工作模式通常是这样：
@@ -138,7 +137,7 @@ MAC 安装git
         git tag v1.0 :添加一个标签
         git tag :查看所有标签
         git show v1.0 :查看标签信息
-冲突解决：
+#冲突解决：
     -.放弃本地修改，直接覆盖之：(参考：http://blog.csdn.net/lincyang/article/details/21519333)
         git reset --hard
         git pull

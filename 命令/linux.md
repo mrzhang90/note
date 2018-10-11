@@ -1,4 +1,4 @@
---.环境变量
+#环境变量
 	export ANDROID_HOME=~/Library/Android/sdk
 		添加环境变量
 		~表示用户目录，即/Users/你的用户名/，而小数点开头的文件在Finder中是隐藏的，并且这个文件有可能并不存在
@@ -6,7 +6,7 @@
 		使其立即生效（否则重启后才生效）
 	echo $ANDROID_HOME
 		检查此变量是否已正确设置
---.select
+#select
 	ifconfig
 		查看IP
 	iptables
@@ -30,10 +30,6 @@
 		cd ..     -切换到上级目录
 		cd ../../ -切换两层上级目录
 		cd ~/     -切换到用户目录下
-	cp命令：
-		cp aa.txt bb/bb -把aa.txt文件复制到bb/bb目录下
-		cp aa.txt bb/cc -把aa.txt文件复制到bb目录下，并重命名为cc
-		cp -R aa bb     -把aa文件夹复制到bb目录下
 	ls命令：
 		ls 显示文件
 		ls -s 显示文件及基础信息
@@ -49,7 +45,7 @@
 	tail -f mongodb.log
 		查看日志
 		
---.insert
+#insert
 	yum update
 		升级所有需要升级的软件
 	useradd user1
@@ -61,21 +57,29 @@
 		mkdir -p a/b
 			创建a和b文件夹，-p表示递归创建目录
 
---.update
-
---.delete
+#update
+	cp命令：
+		cp aa.txt bb/bb -把aa.txt文件复制到bb/bb目录下
+		cp aa.txt bb/cc -把aa.txt文件复制到bb目录下，并重命名为cc
+		cp -R aa bb     -把aa文件夹复制到bb目录下
+	mv命令：
+		mv dir1 dir2
+			将dir1移动到dir2下
+		mv file1 file2 dir
+			将多个文件移动到dir下
+#delete
 	rm命令：
 		删除文件:  rm test.txt
 		删除文件夹: rm -r aa
---.软连接
+#软连接
 	ln -s 源文件 目标文件
 		ln -s /bin/less /usr/local/bin/less
 		
---.远程连接
+#远程连接
 	ssh root@43.xxx.xxx.xxx
 		root是用户名，@后面是IP地址
 
---.进程命令
+#进程命令
 	1号进程是其他所有进程的祖先
 	进程命令：
 		lsof -i:80 -查看80端口是否占用
@@ -89,10 +93,10 @@
 			firewall-cmd
 				管理防火墙
 				
---.退出输入状态：
+#退出输入状态：
 	command+d 或 command+c+c
 
---.vi命令
+#vi命令
 	vi xxx.txt
 		使用vi命令进入文件，然后输入每个字母都代表输入一个命令
 		i
