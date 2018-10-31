@@ -34,3 +34,11 @@
 	/usr/local/etc/nginx/sites-enabled
 1. log日志
 	/usr/local/var/log/nginx/access.log
+
+#mysql
+启动
+/usr/local/Cellar/mysql/5.7.22/support-files/mysql.server start
+停止
+/usr/local/Cellar/mysql/5.7.22/support-files/mysql.server stop
+重启
+/usr/local/Cellar/mysql/5.7.22/support-files/mysql.server restart
