@@ -9,6 +9,7 @@
         处理css
     style-loader
         css查到页面
+### webpack
 1. webpack1-2-3
     都需要有一个webpack.config.js，而4就不需要了，而是默认指向src的index.js
 1. webpack2
@@ -33,12 +34,15 @@
         - 则是将映射值打包进我们的业务 js 了。这样就可以完完全全的提前抽离了第三方依赖库。之后，只会打包编译业务部分的代码，再也不用去重复构建第三方库 jjs
         - **结论：DllPlugin + DllReferencePlugin,可以很好的完成抽离公共代码，永久缓存这部分文件**
 1. webpack4
-    不需要config配置文件，它默认指向src的index.js文件
+    零配置.不需要config配置文件，它默认指向src的index.js文件
     **webpack-deep-scope-analysis-plugin
         深度tree-shaking,深度分析scope**
         假如：import lodash from "lodash-es";那整个包都会引入很慢了，所以引入这个包就好了，打包又小又快
         假如：使用import {isArray} from "lodash-es，webpack正常压缩，可以不用引包
-###打包优化：
+1. webpack5
+    还没上线.
+    多核编译.
+### 打包优化：
 1. 减少编译时间
 1. 减少编译输出文件的大小
 1. 提高页面的性能
