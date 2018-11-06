@@ -38,10 +38,6 @@
 		ls -a 显示文件及隐藏文件
 		ls -ah 查看所有文件,包括隐藏文件(只看文件名)
 		ls -al 查看所有文件,包括隐藏文件(文件详细信息)
-	ps aux 查看进程
-		ps -ef |grep mongodb 查看mongodb的进程
-		ubuntu只能查看自己账户的进程
-			那么 sudo ps aux，暂时提升为超级管理员，就可以查看其他管理员的进程了
 	tail -f mongodb.log
 		查看日志
 		
@@ -84,8 +80,13 @@
 	进程命令：
 		lsof -i:80 -查看80端口是否占用
 		kill 488   -杀掉PID为488的进程
-		kill -9 XX -强制杀进程
+		kill -9 489 -强制杀掉PID为488的进程
 		pkill 程序名 -根据程序名杀掉进程
+	查看进程
+		ps -ef |grep mysql 查看mysql的进程
+		ps -ef |grep mongodb 查看mongodb的进程
+		ubuntu只能查看自己账户的进程
+			那么 sudo ps aux，暂时提升为超级管理员，就可以查看其他管理员的进程了
 	centos
 		firewall
 			firewalld
