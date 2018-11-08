@@ -35,10 +35,7 @@
         - **结论：DllPlugin + DllReferencePlugin,可以很好的完成抽离公共代码，永久缓存这部分文件**
 1. webpack4
     零配置.不需要config配置文件，它默认指向src的index.js文件
-    **webpack-deep-scope-analysis-plugin
-        深度tree-shaking,深度分析scope**
-        假如：import lodash from "lodash-es";那整个包都会引入很慢了，所以引入这个包就好了，打包又小又快
-        假如：使用import {isArray} from "lodash-es，webpack正常压缩，可以不用引包
+    但是webpack4自己的tree-tracking是有些净化不到的地方，比如回调的地方，webpack是不会净化的，因为不是纯函数
 1. webpack5
     还没上线.
     多核编译.
