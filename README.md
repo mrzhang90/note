@@ -45,7 +45,7 @@ http://***?vframe/jpg/offset/0
 1. 获取视频信息
 http://***.mp4?avinfo
 ## 图标
-🔍🚚
+🔍🚚 🍎
 ☁️🌞   ☁   ☁
    ☁ ✈   ☁  🚁
  🏬🏨🏫🏢🏤🏥🏦🏪
