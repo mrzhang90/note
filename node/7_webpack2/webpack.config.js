@@ -24,6 +24,7 @@ module.exports = {
             template: path.join(__dirname, "/index.html"), //new 一个这个插件的实例，并传入相关的参数
             inject: true
         }), 
+        // Scope Hoisting
         new webpack.optimize.ModuleConcatenationPlugin(),//作用域提升，把一样的代码合并一起，减小转换后的es5代码
         new webpack.optimize.UglifyJsPlugin({//压缩，同时会去掉用不到的代码
         	compress:{
