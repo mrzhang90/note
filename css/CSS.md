@@ -1,100 +1,90 @@
-##CSS HINT
-1. 不要使用多个class选择元素，如a.foo.boo，这在ie6及以下不能正确解析
-2. 移除空的css规则，如a{}
-3. 正确的使用显示属性，如display:inline不要和width，height，float，margin,padding同时使用，display:inline-block不要和float同时使用等
-4. 避免过多的浮动，当浮动次数超过十次时，会显示警告
-5. 避免使用过多的字号，当字号声明超过十种时，显示警告
-6. 避免使用过多web字体，当使用超过五次时，显示警告
-7. 避免使用id作为样式选择器
-8. 标题元素只定义一次
-9. 使用width:100%时要小心
-10. 属性值为0时不要写单位
-11. 各浏览器专属的css属性要有规范，
-例如.foo{-moz-border-radius:5px;border-radius:5px}
-12. 避免使用看起来像正则表达式的css3选择器
-13. 遵守盒模型规则
-##CSS Reset
-	reset.css 重置
-	normalize.css 修复
-	neat.css 融合-基于normalize
+##兼容写法
+```css
+ background-size兼容写法：
+    /*Mozilla*/ 
+    -moz-background-size: auto(原始图片大小) || number(数值) || percentage(百分比) || cover(放大铺满) || contain(缩小铺满) 
+    /*Webkit*/ 
+    -webkit-background-size: auto(原始图片大小) || number(数值) || percentage(百分比) || cover(放大铺满) || contain(缩小铺满) 
+    /*Oprea*/ 
+    -o-background-size: auto(原始图片大小) || number(数值) || percentage(百分比) || cover(放大铺满) || contain(缩小铺满) 
+    /*W3c标准*/ 
+    background-size: auto(原始图片大小) || number(数值) || percentage(百分比) || cover(放大铺满) || contain(缩小铺满)
+
+background-color兼容写法：
+    background: #d8d8d8;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fcfcfc), to(#d8d8d8));
+    background: -moz-linear-gradient(top,  #fcfcfc,  #d8d8d8);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#d8d8d8');
+
+transform在不同浏览器内核下的书写规则:
+    -moz-transform: rotate | scale | skew | translate ;//Mozilla内核浏览器：firefox3.5+
+    -webkit-transform: rotate | scale | skew | translate ;//Webkit内核浏览器：Safari and Chrome
+    -o-transform: rotate | scale | skew | translate ;//Opera
+    -ms-transform: rotate | scale | skew | translate ;//IE9
+    transform: rotate | scale | skew | translate ;//W3C标准
+transform-origin:
+    -moz-transform-origin: x y;//Mozilla内核浏览器：firefox3.5+
+    -webkit-transform-origin: x y;//Webkit内核浏览器：Safari and Chrome
+    -o-transform-origin: x y ;//Opera
+    -ms-transform-origin: x y;//IE9
+    transform-origin: x y ;//W3C标准
+transition:
+    -moz-transition ： [<'transition-property'> || <'transition-duration'> || <'transition-timing-function'> || <'transition-delay'> [, [<'transition-property'> || <'transition-duration'> || <'transition-timing-function'> || <'transition-delay'>]]*
+    -webkit-transition ： [<'transition-property'> || <'transition-duration'> || <'transition-timing-function'> || <'transition-delay'> [, [<'transition-property'> || <'transition-duration'> || <'transition-timing-function'> || <'transition-delay'>]]*
+    -o-transition ： [<'transition-property'> || <'transition-duration'> || <'transition-timing-function'> || <'transition-delay'> [, [<'transition-property'> || <'transition-duration'> || <'transition-timing-function'> || <'transition-delay'>]]*
+    transition ： [<'transition-property'> || <'transition-duration'> || <'transition-timing-function'> || <'transition-delay'> [, [<'transition-property'> || <'transition-duration'> || <'transition-timing-function'> || <'transition-delay'>]]*
+@keyframes 规则
+    @keyframes mymove{from {top:0px;}to {top:200px;}}
+    @-moz-keyframes mymove /* Firefox */{}
+    @-webkit-keyframes mymove /* Safari 和 Chrome */
+    @-o-keyframes mymove {}/* Opera */
+animation规则:
+    animation: myfirst 5s linear 2s infinite alternate;
+    -moz-animation: myfirst 5s linear 2s infinite alternate;/* Firefox: */
+    -webkit-animation: myfirst 5s linear 2s infinite alternate;/* Safari 和 Chrome: */
+    -o-animation: myfirst 5s linear 2s infinite alternate;/* Opera: */
+```
 ##移动端：
 	html{box-sizing:border-box;}
 	*,*:befor,*.after{box-sizing:inhert;}//继承html
-##flex
-	display: flex
-		容器指定为Flex
-	display: inline-flex;
-		行内元素也可以使用 Flex 布局
-	PS:设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效
-	容器属性
-		flex-direction
-			排列方向
-			参数：row | row-reverse | column | column-reverse
-				row（默认值）：主轴为水平方向，居左水平排列。
-				row-reverse：主轴为水平方向，倒叙。
-				column：主轴为垂直方向，垂直排列。
-				column-reverse：主轴为垂直方向，倒叙垂直排列
-		flex-wrap
-			如何换行
-			参数：nowrap | wrap | wrap-reverse
-				wrap-reverse：换行，第一行在下方。
-		flex-flow
-			flex-direction和flex-wrap的简写形式，默认值为row nowrap
-			参数：<flex-direction> || <flex-wrap>
-		justify-content
-			水平排列方式
-			参数：flex-start | flex-end | center | space-between | space-around;
-				flex-start（默认值）：左对齐
-				flex-end：右对齐
-				center： 居中
-				space-between：两端对齐，平均分布。
-				space-around：居中、平均 的分布。
-		align-items
-			定义项目在交叉轴上如何对齐,stretch（默认值）
-			参数：flex-start | flex-end | center | baseline | stretch
-				flex-start：上对齐，交叉轴的起点对齐。
-				flex-end：底部对齐，交叉轴的终点对齐。
-				center：交叉轴的中点对齐。
-				baseline: 项目的第一行文字的基线对齐。
-				stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度
-					PS:stretch会拉伸，如果父标签高度过高，其孩子元素的高度就有多高，那么等高布局不用愁了
-		align-content
-			定义多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用
-			参数：align-content: flex-start | flex-end | center | space-between | space-around | stretch
-				flex-start：与交叉轴的起点对齐。
-				flex-end：与交叉轴的终点对齐。
-				center：与交叉轴的中点对齐。
-				space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。
-				space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
-				stretch（默认值）：轴线占满整个交叉轴
-	容器儿子的属性
-		order
-			数值越小，排列越靠前，默认为0
-		flex-grow
-			放大比例，默认为0
-		flex-shrink
-			缩小比例，默认为1
-		flex-basis
-			固定尺寸，浏览器根据这个属性，计算其他项目是否有多余空间
-			参数：350px | auto(默认)
-		flex
-			flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。
-			参数：none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
-			该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)
-		align-self
-			允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。
-			默认值为auto,继承父元素的align-items属性
-			参数：auto | flex-start | flex-end | center | baseline | stretch;
-			参数含义等同于align-items
-	参考：http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?^%$
-**Flexbox**
-1. display: box;box-{*}
-    2009年旧版本的Flexbox
-1. display: flexbox;
-    2011年的一个令人尴尬的中间阶段。
-1. display: flex;和flex-{*}属性
-    当前最新的Flexbox
 ##实用技巧:
+1. link
+    * preload
+        提前加载资源,在页面加载的生命周期的早期阶段就开始获取，在浏览器的主渲染机制介入前就进行预加载
+        as 属性的作用是告诉浏览器被加载的是什么类型的资源
+        这一机制使得资源可以更早的得到加载并可用，且更不易阻塞页面的初步渲染，进而提升性能
+        <link rel="preload" href="style.css" as="style">
+        <link rel="preload" href="main.js" as="script">
+    * prefetch
+        预先加载,所有资源都加载完后，开始预加载这里指定的资源，有最低的优先级
+        利用浏览器的空闲时间去先下载指定的内容,然后缓存起来
+1. image-set根据屏幕分辨率和网速决定使用1倍图还是2倍图
+    ```css
+    background-image:url(/1x.png);
+    background-image:-webkit-image-set(url(/1x.png) 1x,url(/2x.png) 2x);
+    ```
+1. a:any-link{color:red}
+    上边的那些a没有写到的选择器，都适用于这一条规则
+1. iphone兼容：
+	[input输入框placeholder垂直不居中](http://www.cnblogs.com/xiaoxiao2014/p/5009599.html)
+		不要input的line-height，即：line-height:nomrmal
+1. 解决运动的圆不够圆的问题
+    ```css
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    //不需要宽高
+    // .px2rem(width, 8);
+    // .px2rem(height, 8);
+    background-color: #D34612;
+    border:solid #D34612;
+    //设置border宽度代替宽高
+    .px2rem(border-width, 5);
+    border-radius: 50%;
+    //上下居中，并且利用GPU加速，提高性能
+    transform:translate3d(-50%,-50%,0)
+    ```
 1. CSS透视
 	开启3D只针对子元素
     ```css
@@ -106,18 +96,10 @@
 	开启GPU加速，让2D动画在手机上的性能更好
     ```css
 	.cube{
-		-webkit-transform:translate3d(0,0,0);
-		-moz-transform:translate3d(0,0,0);
-		-ms-transform:translate3d(0,0,0);
-		transform:translate3d(0,0,0);//用了3d,默认就会让盒子有个背面，这个背面也会相应的造成浏览器卡顿
+        //用了3d,默认就会让盒子有个背面，这个背面也会相应的造成浏览器卡顿
+		transform:translate3d(0,0,0);
 		//所以如果是为了让2d加速，那么把背面设置hidden即可
-		-webkit-backface-visibility:hidden;
-		-moz-backface-visibility:hidden;
-		-ms-backface-visibility:hidden;
 		backface-visibility:hidden;
-		-webkit-perspective:1000;
-		-moz-perspective:1000;
-		-ms-perspective:1000;
 		perspective:1000;
 	}
     ```
@@ -226,30 +208,106 @@ input,input:focus{ outline:none;}
     /*清除ie的默认选择框样式清除，隐藏下拉箭头*/
     select::-ms-expand { display: none; }
     ```
-##table
+1. 子元素的margin-top溢出
+	在给没有margin-top-border父元素中的子元素添加margin-top时，发现没有直接表现出来，而是作用到父元素身上，就会导致子元素的margin-top溢出
+	条件：1、父元素没有上边框；2、为第一个子元素设置上外边距时
+	解决方案：
+		1、为父元素增加上边框，但父元素会变高；
+		2.通过为父元素设置上内边距来取代子元素的上外边距，但也会增加父元素的高度；
+		3.在父元素中，增加一个空 <table>元素
+			//给父元素设置：before
+			#content:before{    
+				content: "";    
+				display: table;    
+	        }
+1. 清浮动完整版：
+	```css
+	.clearFix{zoom:1;}.clearFix:after{content:"";display:block;clear:both;}
+	```
+1. table
     ```css
-    border-collapse:collapse
-        用于使用合并的边框来绘制表格
-        table{
-            border-collapse:collapse;
-        }
-        table,td{
-            border:solid 1px #000;
-        }
+    //border-collapse:collapse -- 用于使用合并的边框来绘制表格
+    table{
+        border-collapse:collapse;
+    }
+    table,td{
+        border:solid 1px #000;
+    }
     ```
-##font
-    排版
-        typo.css 、 Entry.css 、Type.css
-    font-family: sans-serif;系统默认，字体多个单词组成加引号。
-    宋体非宋体
-        WIndows下的宋体叫中易宋体SimSun，Mac是华文宋体STSong
-    黑体非黑体
-        WIndows下的黑体叫中易黑体SimHei，Mac是华文黑体STHeiti。
-    不要只写中文字体名，保证西文字体在中文字体前面
-        Mac->Linux->Windows
-    切忌不要直接使用设计师PSD的设计font-family,关键时刻再去启动font-face
-
-
+##flex
+	display: flex
+		容器指定为Flex
+	display: inline-flex;
+		行内元素也可以使用 Flex 布局
+	PS:设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效
+	容器属性
+		flex-direction
+			排列方向
+			参数：row | row-reverse | column | column-reverse
+				row（默认值）：主轴为水平方向，居左水平排列。
+				row-reverse：主轴为水平方向，倒叙。
+				column：主轴为垂直方向，垂直排列。
+				column-reverse：主轴为垂直方向，倒叙垂直排列
+		flex-wrap
+			如何换行
+			参数：nowrap | wrap | wrap-reverse
+				wrap-reverse：换行，第一行在下方。
+		flex-flow
+			flex-direction和flex-wrap的简写形式，默认值为row nowrap
+			参数：<flex-direction> || <flex-wrap>
+		justify-content
+			水平排列方式
+			参数：flex-start | flex-end | center | space-between | space-around;
+				flex-start（默认值）：左对齐
+				flex-end：右对齐
+				center： 居中
+				space-between：两端对齐，平均分布。
+				space-around：居中、平均 的分布。
+		align-items
+			定义项目在交叉轴上如何对齐,stretch（默认值）
+			参数：flex-start | flex-end | center | baseline | stretch
+				flex-start：上对齐，交叉轴的起点对齐。
+				flex-end：底部对齐，交叉轴的终点对齐。
+				center：交叉轴的中点对齐。
+				baseline: 项目的第一行文字的基线对齐。
+				stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度
+					PS:stretch会拉伸，如果父标签高度过高，其孩子元素的高度就有多高，那么等高布局不用愁了
+		align-content
+			定义多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用
+			参数：align-content: flex-start | flex-end | center | space-between | space-around | stretch
+				flex-start：与交叉轴的起点对齐。
+				flex-end：与交叉轴的终点对齐。
+				center：与交叉轴的中点对齐。
+				space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。
+				space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
+				stretch（默认值）：轴线占满整个交叉轴
+	容器儿子的属性
+		order
+			数值越小，排列越靠前，默认为0
+		flex-grow
+			放大比例，默认为0
+		flex-shrink
+			缩小比例，默认为1
+		flex-basis
+			固定尺寸，浏览器根据这个属性，计算其他项目是否有多余空间
+			参数：350px | auto(默认)
+		flex
+			flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。
+			参数：none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+			该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)
+		align-self
+			允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。
+			默认值为auto,继承父元素的align-items属性
+			参数：auto | flex-start | flex-end | center | baseline | stretch;
+			参数含义等同于align-items
+	参考：http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html?^%$
+**Flexbox**
+1. display: box;box-{*}
+    2009年旧版本的Flexbox
+1. display: flexbox;
+    2011年的一个令人尴尬的中间阶段。
+1. display: flex;和flex-{*}属性
+    当前最新的Flexbox
 ##选择器:
     nth-child(odd) 与 :nth-child(even) -- (参数可以接受odd|even-偶数行|奇数行)
     p:first-child   相当于 p:nth-child(1) ;;; p:last-child 相当于 nth-last-child(1)
@@ -264,11 +322,108 @@ input,input:focus{ outline:none;}
     E[attr*="value"]指定了属性名，并且有属性值，而且属值中包含了value
     E[attr|="value"]指定了属性名，并且属性值是value或者以“value-”开头的值（比如说zh-cn）
 ##CSS3
-1. 3D变形函数
-	rotateX、rotateY、rotateZ，旋转XYZ轴
-	translateX、translateY、translateZ 在XYZ轴上移动
-	scaleZ(sz) Z轴缩放
-	matrix3d()函数则牵扯到线性代数、立体几何、三角学等的各种知识
+    3D变形函数
+        rotateX、rotateY、rotateZ，旋转XYZ轴
+        translateX、translateY、translateZ 在XYZ轴上移动
+        scaleZ(sz) Z轴缩放
+        matrix3d()函数则牵扯到线性代数、立体几何、三角学等的各种知识
+    文本默认提示文字样式：
+        :-moz-placeholder{color:#21a8e2}
+        :-ms-input-placeholder{color:#21a8e2}
+        ::-webkit-input-placeholder{color:#21a8e2}
+    pointer-events:none
+        特性是让元素不可点击，具有穿透性。顾名思意，就是鼠标事件拜拜的意思。元素应用了该CSS属性，链接啊，点击啊什么的都变成了“浮云牌酱油”。
+    touch-acion: 规定用户能否以及如何操作页面上的指定区域; 当手指在屏幕上滑动时(MSPointerMove)连续触发。通常我们再滑屏页面，会调用css的html{-ms-touch-action: none;}可以触发默认的手势操作：阻止页面滚动
+        PS：这是IE11的属性，在IE10应使用-ms-touch-action，IE10之前的浏览器不支持
+        auto默认值，允许浏览器给元素添加touch行为;
+        none,不允许默认的touch行为;
+        pan-x 允许水平轴触摸驱动的平移;
+        pan-y 允许垂直轴触摸驱动的平移;
+        pinch-zoom 允许拖拽缩放 ;
+        manipulation 允许触摸驱动的平移和拖拽缩放;
+        double-tap-zoom 允许整个页面双击缩放指定元素;
+        inherit 继承父元素的值
+    -webkit-user-select:用来指定文本的可选择性,需要加各自的前缀,
+        参数:none-不允许用户选中文字
+            auto——默认值，用户可以选中元素中的内容
+            text——用户可以选择元素中的文本
+            element——文本可选，但仅限元素的边界内(只有IE和FF支持)
+            all——在编辑器内，如果双击或上下文点击发生在子元素上，该值的最高级祖先元素将被选中。
+    -webkit-text-size-adjust: none;
+        允许字体小于12
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+        点击链接高亮，覆盖颜色
+    -webkit-appearance: none;
+        改变按钮外观
+    :after，:before{content:".";background:red;}
+        给元素的内容的末尾添加东西，并且可以给加进去的东西加样式
+        任何一个HTML元素都可以创造3个可以供我们操作的视觉元素，即三个矩形
+    flex
+        flex number
+            宽度=弹性宽度 * (flex-grow/sum(flex-grows))
+    border-radius-造就万千可能
+        圆角(半径|x半径/y半径);x轴是从左往右改变px,y轴是从上往下改变;
+        border-top-left-radius,border-top-right-radius,border-bottom-right-radiusborder-bottom-left-radius;border-radius:10px(四个角);border-radius:10px(左上，右下) 30px(右上、左下);border-radius:10px(左上) 30px(右上、左下)  50px(右下);
+        border-radius:10px(左上) 30px(右上)  50px(右下) 70px(左下);
+        PS: border-radius: 100px / 50px; 中有一个“/” 这个符号是很少出现在css样式中的。因为，圆角有水平方向也有垂直方向，所以"/"前面代表水平方向，后面代表垂直方向。
+    box-shadow
+        阴影;inset (可选参数) x偏移 y偏移 blur模糊半径 扩展半径(可选参数) color 颜色;阴影可以有多层，每层阴影中间以“,”隔开，先写的在上边有写的在下边;PS:扩展的边框阴影不占位置
+        box-shadow是可以定义为任意颜色的，并且同一个元素可以投射出不同的box-shadow
+    渐变:线性渐变
+        linear-gradient(90deg, red 0, red 20px, #EEE 20px,#EEE 40px, red 40px, red 60px, #EEE 60px) repeating-linear-gradient(90deg, red 0, red 20px, #EEE 20px,#EEE 40px);
+    径向渐变:
+        背景基点设置-radial-gradient(circle, red 10%, blue 50%);ellipse、circle background-origin: content-box;
+        例如:background: -webkit-radial-gradient(left top,100px 80px, red 10%, blue 100%);
+            background: -ms-radial-gradient(left top,100px 80px, red 10%, blue 100%);
+            background: -moz-radial-gradient(left top,farthest-corner, red 10%, blue 100%);
+        1.要设置起点，必须需要加前缀,2.火狐的私有设置中，大小只支持关键字,关键字（最近端，最近角，最远端，最远角，包含或覆盖 (closest-side, closest-corner, farthest-side, farthest-corner, contain or cover)）
+    animation
+        应用在页面上已存在的DOM元素上;执行动画时,最后出现的权根是最大的;当动画结束后，样式回到默认效果;我们可以同时附几个animation给一个元素，我们只需要用逗号“，”隔开
+        animation:move 2s 1s infinite cubic-bezier(0.825, -0.590, 0.320, 1.495);PS:在关键帧中没有 起始位置 或者 结束位置，默认会以元素的初始位置为准
+        共六个属性:
+        animation-name//动画属性名,其主要有两个值：IDENT是由Keyframes创建的动画名，none为默认值，当值为none时，将没有任何动画效果。
+        animation-duration//动画持续时间,取值:<time>为数值，单位为s （秒.）其默认值为“0”
+        animation-timing-function//动画频率,动画的播放方式,六种变换方式:linear匀速;ease逐渐变慢(默认值);ease-in加速;ease-out减速;ease-in-out先加速再减速;animation-delay延迟时间;cubic-bezier(n,n,n,n) 贝塞尔曲线;https://matthewlein.com/ceaser/
+        animation-delay//动画延迟时间,取值为<time>为数值，单位为s(秒)，其默认值也是0
+        animation-iteration-count//定义循环次数，其可以取值<number>为数字，其默认值为“1”；infinite为无限次数循环
+        animation-direction//指定元素动画播放的方向，其只有两个值，默认值为normal，如果设置为normal时，动画的每次循环都是向前播放；另一个值是alternate，他的作用是，动画播放在第偶数次向前播放，第奇数次向反方向播放
+        animation-play-state:paused; 控制元素动画的播放状态。其主要有两个值，running和paused其中running为默认值。paused暂停，running重新播放,这个属性目前很少内核支持
+        animation-fill-mode:forwards;
+            backwards 动画执行之前，位置停留在第一帧;forwards  动画执行之后，位置停留在最后一帧;both 动画执行之前，位置停留在第一帧,动画执行之后，位置停留在最后一帧
+    transition
+        允许css的属性值在一定的时间区间内平滑地过渡。这种效果可以在鼠标单击、获得焦点、被点击或对元素任何改变中触发，并圆滑地以动画效果改变CSS的属性值。
+        特性:在移动端用transform记得加前缀;transform 不脱离文档流;transform 的层级比普通元素高，但是比定位元素低;transform 移走之后，原始位置一样会被保留;transform 不会影响元素的占位大小
+        语法:transition: <transition-property> <transition-duration> <transition-timing-function> <transition-delay>,如果实现两个或者多个css属性的transition效果，那么我们只要把几个transition的声明串在一起，用逗号（“，”）隔开
+        属性值：执行变换的属性：transition-property变换延续的时间：transition-duration在延续时间段，变换的速率变化,transition-timing-function运动形式,transition-delay延迟时间。
+            transition-property:是用来指定当元素其中一个属性改变时执行transition效果，其主要有以下几个值：none(没有属性改变)；all（所有属性改变）这个也是其默认值；indent（某一个属性值）,其对应如下:
+                1、color: 通过红、绿、蓝和透明度组件变换（每个数值处理）如：background-color,border-color,color,outline-color等css属性；
+                2、length: 真实的数字 如：word-spacing,width,vertical-align,top,right,bottom,left,padding,outline-width,margin,min-width,min-height,max-width,max-height,line-height,height,border-width,border-spacing,background-position等属性；
+                3、percentage:真实的数字 如：word-spacing,width,vertical-align,top,right,bottom,left,min-width,min-height,max-width,max-height,line-height,height,background-position等属性；
+                4、integer离散步骤（整个数字），在真实的数字空间，以及使用floor()转换为整数时发生 如：outline-offset,z-index等属性；
+                5、number真实的（浮点型）数值，如：zoom,opacity,font-weight,等属性；
+                6、transform list:详情请参阅：《CSS3 Transform》
+                7、rectangle:通过x, y, width 和 height（转为数值）变换，如：crop
+                8、visibility: 离散步骤，在0到1数字范围之内，0表示“隐藏”，1表示完全“显示”,如：visibility
+                9、shadow: 作用于color, x, y 和 blur（模糊）属性,如：text-shadow
+                10、gradient: 通过每次停止时的位置和颜色进行变化。它们必须有相同的类型（放射状的或是线性的）和相同的停止数值以便执行动画,如：background-image
+                11、paint server (SVG): 只支持下面的情况：从gradient到gradient以及color到color，然后工作与上面类似
+                12、space-separated list of above:如果列表有相同的项目数值，则列表每一项按照上面的规则进行变化，否则无变化
+                13、a shorthand property: 如果缩写的所有部分都可以实现动画，则会像所有单个属性变化一样变化
+            transition-duration:用来指定元素,转换过程的持续时间，取值：<time>为数值，单位为s（秒）或者ms(毫秒),可以作用于所有元素，包括:before和:after伪元素。其默认值是0，也就是变换时是即时的。
+            transition-delay延迟时间,其使用和transition-duration极其相似
+            transition-timing-function:1、ease：（逐渐变慢）默认值，2、linear：（匀速），3、ease-in：(加速)，4、ease-out：（减速），5、ease-in-out：（加速然后减速），6、cubic-bezier：初始默认值为default,特定的cubic-bezier曲线。 (x1, y1, x2, y2)四个值特定于曲线上点P1和点P2。所有值需在[0, 1]区域内，否则无效。
+    transform:含义是属性向元素应用 2D 或 3D 转换。字面上就是变形，改变的意思
+        示例:transform: rotate(45deg) scale(0.8,1.2) skew(60deg,-30deg);PS:使用多个属性值时，其之间不能用逗号（“，”）分隔，必须使用空格分隔
+        属性:旋转rotate、扭曲skew、缩放scale和移动translate以及矩阵变形matrix。分别还有x、y之分，比如：rotatex() 和 rotatey() ，以此类推。
+    transform:rotate(<angle>)：通过指定的角度参数对原元素指定一个2D rotation（2D 旋转），
+        需先有transform-origin属性的定义,transform-origin定义的是旋转的基点，其中angle是指旋转角度，如果设置的值为正数表示顺时针旋转，如果设置的值为负数，则表示逆时针旋转。
+    transform:skew(x,y)
+        使元素在水平和垂直方向同时扭曲（X轴和Y轴同时按一定的角度值进行扭曲变形）,同样是以元素中心为基点，我们也可以通过transform-origin来改变元素的基点位置。
+    transform:scale()
+        比例；“1.5”表示以1.5的比例放大，如果要放大2倍，须写成“2.0”，缩小则为负“-”。
+    transform:translate(x,y)
+        水平方向和垂直方向同时移动（也就是X轴和Y轴同时移动）；translateX(x)仅水平方向移动（X轴移动）；translateY(Y)仅垂直方向移动（Y轴移动）.同样其基点是元素中心点，也可以根据transform-origin改变基点位置
+        transform:matrix(<number>, <number>, <number>, <number>, <number>, <number>) ：矩阵,以一个含六值的(a,b,c,d,e,f)变换矩阵的形式指定一个2D变换，相当于直接应用一个[a b c d e f]变换矩阵。就是基于水平方向（X轴）和垂直方向（Y轴）重新定位元素
 ##CSS:
 1. a:l-v-h-a
     a标签在一行显示,不支持宽高,不继承父级的字体颜色,默认下划线;l-v-h-a===link{} 此链接未被访问过,:visited{} 此链接已访问,:hover{} 鼠标移入,:active{} 鼠标按下
@@ -338,232 +493,3 @@ input,input:focus{ outline:none;}
     1. background-clip:content-box;背景裁切,默认是border-box;border-box从边框区域显示背景;padding-box 从padding区域显示背景;content-box 从content区域显示背景
         background-clip: -webkit-text;
     1. background-attachment: fixed 背景图定位
-##矩阵
-在数学中，矩阵（Matrix）是一个按照长方阵列排列的复数或实数集合，最早来自于方程组的系数及常数所构成的方阵。
-矩阵是高等代数学中的常见工具，也常见于统计分析等应用数学学科中。在物理学中，矩阵于电路学、力学、光学和量子物理中都有应用；计算机科学中，三维动画制作也需要用到矩阵。 矩阵的运算是数值分析领域的重要问题。
-由m * n个数排成的m行n列的数表称为m行n列的矩阵，简称m*n矩阵。这m*n个数称为矩阵的元素，简称元
-
-计算规则
-矩阵第m行与第n列交叉位置的那个值，等于第一个矩阵第m行与第二个矩阵第n列，对应位置的每个值的乘积之和。线性代数是向量计算的基础，很多重要的数学模型都要用到向量计算。矩阵的本质就是线性方程式，两者是一一对应关系。如果从线性方程式的角度，理解矩阵乘法就毫无难度。
-
-对于CSS属性来讲，默认的XY值为transform的中心点
-
-matrix()和matrix3d()
-前者是元素2D平面的移动变换(transform)，后者则是3D变换。2D变换为3*3的矩阵；3D变换则是4*4的矩阵
-
-transform:matrix(a,b,c,d,e,f);
-    无论是旋转拉伸缩放位移，本质上都是应用matrix()实现，只是类似transform:rotate这种便于理解,记忆与上手
-
-transform:origin
-    通过transform:origin属性进行设置的时候，矩阵相关计算也随之发生改变。实际图形效果上就是，旋转拉伸的中心点变了。
-[matrix3d-可视化生成器](http://ds-overdesign.com/transform/matrix3d.html)
-[matrix-可视化生成器](http://meyerweb.com/eric/tools/matrix/)
-[matrix-可视化生成器](www.f2e.name/case/css3/tools.html)  
-[matrix3d工程化-自动把transform动画转成matrix](https://github.com/Zhangdroid/CSS-Matrix3d)
-##BFC
-(Block Formatting Contexts)块级格式化上下文
-BFC的布局环境，会使元素，在页面中变成一个独立的布局容器，容器中的布局不会影响到容器外的布局,容器外的布局同样不会影响容器内的布局。
-1. 阻止margin传递,
-2. 不被浮动元素覆盖,
-3. 包含浮动元素(清浮动)
-
-触发BFC的条件：
-1. float(值不为none的float。);
-1. overflow (值不为visible的overflow。);
-1. display (值为table-cell、table-caption、inline-block中的任何一个。）;
-1. position (值不为relative和static的position)   
-
-Box: CSS布局的基本单位
-Box 是 CSS 布局的对象和基本单位， 直观点来说，就是一个页面是由很多个 Box 组成的。元素的类型和 display 属性，决定了这个 Box 的类型。 不同类型的 Box， 会参与不同的 Formatting Context（一个决定如何渲染文档的容器），因此Box内的元素会以不同的方式渲染。
-让我们看看有哪些盒子：
-    **block-level**
-        box:display 属性为 block, list-item, table 的元素，会生成 block-level box。并且参与 block fomatting context；
-    **inline-level**
-        box:display 属性为 inline, inline-block, inline-table 的元素，会生成 inline-level box。并且参与 inline formatting context；
-    **Formatting**
-        context 是 W3C CSS2.1 规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。
-        最常见的 Formatting context 有：
-            **Block fomatting context (简称BFC)
-            Inline formatting context (简称IFC)**
-**哪些元素会生成BFC?**
-    根元素
-    float属性不为none
-    position为absolute或fixed
-    display为inline-block, table-cell, table-caption, flex, inline-flex
-    overflow不为visible
-**BFC规则**
-    BFC的区域不会与float box重叠
-    同一个BFC的两个相邻的margin会发生重叠
-总结：
-    **BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此**
-##IFC
-IFC(Inline Formatting Contexts)直译为"内联格式化上下文"，IFC的line box（线框）高度由其包含行内元素中最高的实际高度计算而来（不受到竖直方向的padding/margin影响)
-## FFC
-FFC(Flex Formatting Contexts)直译为"自适应格式化上下文"，display值为flex或者inline-flex的元素将会生成自适应容器（flex container）
-##GFC
-GFC(GridLayout Formatting Contexts)直译为"网格布局格式化上下文"，当为一个元素设置display值为grid的时候，此元素将会获得一个独立的渲染区域，我们可以通过在网格容器（grid container）上定义网格定义行（grid definition rows）和网格定义列（grid definition columns）属性各在网格项目（grid item）上定义网格行（grid row）和网格列（grid columns）为每一个网格项目（grid item）定义位置和空间
-
-**document**
-html 的父级是 document,document的高度和可视区的高度一致
-块:
-1. 独占一行;
-2. 支持所有的样式;
-3. 不设置宽度，宽度撑满父级的宽度
-
-内嵌：
-1. 在一行显示  ;
-2. 不支持宽高,不支持上下margin,对上下的padding支持的也有问题;
-3. 宽度由内容撑开;
-4. 换行会被解析出一个空格(通过字体和字体大小控制)
-
-内联块(inline-block):
-1. 在一行显示,
-2. 支持宽高,
-3. 换行会被解析出一个空格,
-4. 不设置宽度宽度有内容撑开
-
-float;
-1. 在一行显示;
-2. 支持所有的样式;
-3. 在不设置宽度的时候,宽度有内容撑开;
-4. 元素浮动之后，margin不叠加;
-5. 脱离文档流(元素不占位置了);按照指定方向去移动,直到碰到了父级的边界,或者碰到了上一个浮动元素停止
-
-**块标签**:div,p,h1-h6,section,header,footer,nav,ul,ol,li,dl,dt,dd
-**内嵌标签**: a,span,time,strong,em--em和strong都有强调的作用
-**div不设置宽度 宽度会跟随父级走;div不设置高度 高度会被内容撑开**
-**在IE下,a标签抱img,img会有边框**
-**inline-block:代码换行有空格,建议清掉空格用margin来控制距离;**
-**选择器的优先级一致的情况下,后边的样式覆盖前边**
-**form**
-    form块,
-    input内联块,
-    label内嵌,
-    select内联块,
-    option 块,
-    textarea 内联块
-    disabled禁用;
-    maxlength 最大输入长度;
-    checked 单选或者复选的默认选中;
-    selected 下拉菜单默认选中项;
-    for="idName" label的for属性 里边写的label要辅助的input的id;
-    thead、tbody、tr 没有padding和margin这两个属性;
-    th,td 没有margin这个属性;
-    border-spacing 单元格间距;
-    border-collapse 边框合并(collapse合并/separate 不合并);
-    table{border-collapse:collapse;};
-    td,th{padding:0;}
-    单元格设置宽度，一竖列宽度都会变;单元格设置高度，一横行高度都会变;单元格中的内容默认垂直对齐 ( vertical-align 在单元格 用来设置单元格的内容垂直方向的对齐方式)   
-##盒模型:
-padding:内边距(内填充),元素和它的内容之间距离,padding区域也会显示元素的背景(background-position的00点 从元素padding的左上角开始),
-content=width||height;
-可视宽高=content+padding+border;
-margin:外边距,(margin用在两个元素之间的距离),margin的距离产生在元素的边框以外,margin的区域不显示元素的背景,margin传递-子元素的上下margin会传递给父级,同级元素的上下margin是叠加在一起的
-margin-left:auto; 元素居右
-padding-用在元素和内容之间,margin-用在两个同级元素之间的距离,同级元素之间的距离用margin,父子级之间的距离用padding
-##OOCSS
-**[参考]http://oocss.org**
-1. 不要直接定义子节点，应把共性声明放到父类。
-    ```css
-    .mod .inner{}  //.mod下面的inner
-    .inner{}       //不建议
-    ```
-2. 结构和皮肤相分离。
-    ```html
-    <div class=“container simpleExt”></div>   //html 结构
-    .container {……}    //控制结构的class
-    .simpleExt{……}      //控制皮肤的class
-    ```
-3. 容器和内容相分离。
-    ```html
-    <div class=“container”><ul><li>排行</li></ul></div>   //html 结构
-    .container ul{……}    //ul依赖了容器
-    <div class=“container”><ul class=“rankList ”><li>排行</li></ul></div>   
-    .rankList ul{……}    //解除与容器的依赖，可以从一个容器转移到其他容器
-    ```
-4. 抽象出可重用的元素，建好组件库，在组件库内寻找可用的元素组装页面。
-5. 往你想要扩展的对象本身增加class而不是他的父节点。
-6. 对象应保持独立性。
-    ```html
-    <div class=“container”><div class=“mod”></div></div>   //html 结构
-    .container {……} .container .mod{……} //控制结构的class
-    <div class=“container mod”></div>//这种方案最佳，只要保证container和mod两个的独立性就好了
-    ```
-7. 避免使用ID选择器，权重太高，无法重用。
-8. 避免位置相关的样式。
-    ```css
-    #header .container {……}, #footer .container{……} //头和尾都写了container容器
-    .container{}//最佳方式是把container容器提炼出来
-
-    header h1 {……}, #footer h1 {……} //头和尾都用了h1，这里就不好直接提炼h1出来
-    h1.h1{}    h2.h2{}   <h1 class=“h1”></h1>//可以这样用，在h1标签定义h1的类名，然后h1.h1、h1.h2依次类推
-    ```
-9. 保证选择器相同的权重。
-10. 类名 简短 清晰 语义化 OOCSS的名字并不影响HTML语义化。
-##CSS分层
-学习方向：
-1.css next
-2.bem + acss
-
-1. SMACSS-https://smacss.com/
-	SMACSS像OOCSS一样以减少重复样式为基础。然而SMACSS使用一套五个层次来划分CSS给项目带来更结构化的方法
-	Base -设定标签元素的预设值  PS:html {} input[type=text] {}
-	Layout -整个网站的「大架构」的外观  PS:#header { margin: 30px 0; }
-	Module -应用在不同页面公共模块 PS:.button{}
-	State -定义元素不同的状态 PS:.nav--main {  .active {} }
-	Theme - 画面上所有「主视觉」的定义 PS: border-color、background-image
-	修饰符使用的是--，子模块使用__符号。
-	例:
-    ```html
-        <div class="container">
-   		<div class="container-header">
-	   		<div class="container-header__title">
-		   		<div class="container-header__title--home">
-    ```
-1. BEM-推荐-https://en.bem.info/
-	BEM和SMACCS非常类似，主要用来如何给项目命名。比如选项卡导航是一个块(Block)，这个块里的元素的是其中标签之一(Element)，而当前选项卡是一个修饰状态(Modifier)
-	block -代表了更高级别的抽象或组件
-	block__element -代表.block的后代，用于形成一个完整的.block的整体。
-	.block--modifier -代表.block的不同状态或不同版本。
-	修饰符使用的是_，子模块使用__符号。(不用一个-的原因是CSS单词连接)
-	例:
-    ```html
-        <ul class="menu">
-            <li class="menu__item"></li>
-            <li class="menu__item_state_current"></li>
-            <li class="menu__item"></li>
-    ```
-1. SUIT-https://suitcss.github.io/
-	Suit起源于BEM，但是它对组件名使用驼峰式和连字号把组件从他们的修饰和子孙后代中区分出来:
-		修饰符使用的是—，子模块使用__符号。(不用一个-的原因是CSS单词连接)
-	例:
-    ```css
-		.ProductDetails {}
-		.ProductDetails-price {}
-		.ProductDetails-title--sale {}
-    ```
-	如果你不想使用如此严格或者复杂的命名规则，给每一个选择器加前缀同样可以达到这样的效果。
-	例:
-    ```css
-		.s-product-details {}
-		.t-product-details {}
-		.js-product-details {}
-    ```
-	结构属性将会被应用到s-product-details选择器中。主题属性将应用于t-product-details选择器。
-1. ACSS-http://patternlab.io/
-	考虑如何设计一个系统的接口。
-		原子(Atoms)是创建一个区块的最基本的特质，比如说表单按钮。
-		分子(Molecules)是很多个原子(Atoms)的组合，比如说一个表单中包括了一个标签，输入框和按钮。
-		生物(Organisms)是众多分子(Molecules)的组合物，比如一个网站的顶部区域，他包括了网站的标题、导航等。
-		而模板(Templates)又是众多生物(Organisms)的结合体。比如一个网站页面的布局。而最后的页面就是特殊的模板。
-		atoms -> molecules -> organisms -> templates -> pages
-1. ITCSS-http://csswizardry.net/talks/2014/11/itcss-dafed.pdf
-	```
-    Settings — 全局可用配置，设置开关。$color-ui: #BADA55; $spacing-unit:10px
-	Tools —通用工具函数。@mixin font-color() {font-color: $color-ui;}
-	Generic — 通用基础样式。Normalize, resets, box-sizing: border-box;
-	Base — 未归类的HTML元素。ul {list-style: square outside;}
-	Objects —设计部分开始使用专用类。.ui-list__item {padding: $spacing-unit;}
-	Components — 设计符合你们的组件。.products-list {@include font-brand();border-top: 1px solid $color-ui;}
-	Trumps —重写，只影响一块的DOM。(通常带上我们的!important)
-    ```
