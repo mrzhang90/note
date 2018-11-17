@@ -2,6 +2,10 @@
 ## 单页应用
     每个页面都是一个components
     单页的核心在直出，runtime一定要打到页面，减少页面请求量，提升移动端首屏加载速度
+## 多页应用
+    多页面即多entry,一个view对应一个entry
+    entry管理资源(index.enntry.js管理index.html里所有的资源,index.html管理layout等模板)，
+    最终entry交给webpack
 ## webpack
 1. webapck最核心的四个包
     * main.bundles.js
@@ -66,7 +70,17 @@
 1. Code Spliting
     webpack2，Async的新方法import()，用于动态引入ES Module，webpack将传入import方法的模块打包到一个单独的代码块（chunk），但是却不能像require.ensure一样，为生成的chunk指定chunkName
     因为webpack3引入Magic Comments解决这个问题
-## 插件
+## 开发插件
+1. webpack-dashboard
+    开发面板更清晰
+1. progress-bar-webpack-plugin
+    打包进度条
+1. uglifyjs-webpack-plugin
+    **开启多核压缩**(webpack4.0+);
+    webpack官方推荐的多核压缩：(webpack-parallel-uglify-plugin)，这两个都差不多
+1. speed-measure-webpack-plugin
+    监控面板
+    这个是**webpack性能优化前一定要配置的**，只有他你才知道webpack慢在哪里
 1. **webpack-deep-scope-analysis-plugin**
 	让webpack tree-tracking增效的插件
 	深度tree-shaking,深度分析scope
@@ -106,8 +120,17 @@
             filename: 'index.html',
             template:"src/index.html"
         }),
-    ]
+    ] 
     ```
+1. webpack-build-notifier
+    通知消息，当npm run 时，会在系统界面上提示消息
+##上线插件
+1. es6不需要编译
+
+1. polyfill
+    加参数的形式，给你返回需要的polyfill方法，如果浏览器不支持该方法则不会返回
+    例如：cdn.polyfill.io/v2/polyfill.min.js?features=Map,Set
+    PS:这种形式要比babel-polyfill更聪明，前者尽可能减少不必要的体积
 ## 笔记
 1. webpack-dev-server
 热启，修改代码-实时刷新，开发环境用

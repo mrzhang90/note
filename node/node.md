@@ -1,4 +1,12 @@
-方法
+##插件
+1. http-server
+    快速开启node服务
+    一个简单的零配置命令行http服务器
+    * 全局安装：
+        npm i -g http-server
+    * 快读启动
+        cd到要运行到目录，然后使用命令http-server
+##方法
 	process()
 		全局变量，即global对象的属性
 	util
@@ -20,7 +28,7 @@
 			https://www.zhihu.com/question/23028843/answer/34597367
 		node实现sleep
 
-Node经典代码
+##Node经典代码
 	正则匹配路由-三个model服务正则路由
 		router.get(/^\/(\d+)_(\d+)/,cModel.A,cModel.B,cModel.C);
 
@@ -61,7 +69,7 @@ Node经典代码
 				线程相对独立，有自己的上下文，切换受系统控制；
 				协程也相对独立，有自己的上下文，但是其切换由自己控制，由当前协程切换到其他协程由当前协程来控制
 
---.node实现web端文件下载
+##node实现web端文件下载
 	//node(koa)实现web端文件下载
 	downloadImg(ctx){
 		var fileName = 'code_testnet.png';
