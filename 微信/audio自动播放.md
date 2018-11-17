@@ -2,8 +2,8 @@
 template
 ```html
 <audio ref="keepTry" src="http://qiniu.bkenglish.cn/practice/audio/keepTry.mp3" controls="controls" style="display:none;"></audio>
-    <audio ref="goods" src="http://qiniu.bkenglish.cn/practice/audio/goods.mp3" controls="controls" style="display:none;"></audio>
-    <audio ref="excellent" src="http://qiniu.bkenglish.cn/practice/audio/excellent.mp3" controls="controls" style="display:none;"></audio>
+<audio ref="goods" src="http://qiniu.bkenglish.cn/practice/audio/goods.mp3" controls="controls" style="display:none;"></audio>
+<audio ref="excellent" src="http://qiniu.bkenglish.cn/practice/audio/excellent.mp3" controls="controls" style="display:none;"></audio>
 ```
 js
 ```js

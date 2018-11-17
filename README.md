@@ -2,6 +2,8 @@
 1. set-iterm2-badge
 	命令行的背景上打上描述文字，用来提示当前窗口
 	[github地址](https://github.com/bammoo/set-iterm2-badge)
+1. node-bash-title
+	设置当前命令窗口标题
 ## 库
 1. vue核心库
 	* svelte
