@@ -135,6 +135,12 @@ input,input:focus{ outline:none;}
     ```css
         table-layout: fixed; word-break: break-all;;border-collapse: collapse
     ```
+1. 隐藏滚动条
+    ```css
+    .div::-webkit-scrollbar{
+        display: none;
+    }
+    ```
 1. 超出显示省略号
     ```css
         display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
