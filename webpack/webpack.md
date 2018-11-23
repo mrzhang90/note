@@ -7,6 +7,15 @@
     entry管理资源(index.enntry.js管理index.html里所有的资源,index.html管理layout等模板)，
     最终entry交给webpack
 ## webpack
+1. entry
+    ```js
+    //自动收集entry,扩充output 
+    if (/.+\/([a-zA-Z]+-[a-zA-Z]+)(\.entry\.js$)/g.test(item) == true) {
+        const entrykey = RegExp.$1
+        _entry[entrykey] = item;
+        const [dist, template] = entrykey.split(“-");
+    }
+    ``` 
 1. webapck最核心的四个包
     * main.bundles.js
         主包
@@ -70,14 +79,39 @@
 1. Code Spliting
     webpack2，Async的新方法import()，用于动态引入ES Module，webpack将传入import方法的模块打包到一个单独的代码块（chunk），但是却不能像require.ensure一样，为生成的chunk指定chunkName
     因为webpack3引入Magic Comments解决这个问题
+1. webpack-dev-server
+热启，修改代码-实时刷新，开发环境用
+	```js
+	"scripts": {
+		"serve": "webpack-dev-server --mode development"
+	}
+	```
+1. devServer
+    指定启动端口、自己做接口-可以在mock数据的时候用
+    ```js
+    module.exports={
+        devServer:{
+            // 指定要监听的端口号
+            port:3000,
+            // 启用 webpack 的模块热替换特性
+            // hot:true,
+            // 接口-可以做mock数据
+            before(app){
+                app.get('/api/test',(req,res)=>{
+                    res.json({'code':200,'name':'john'})
+                })
+            }
+        },
+    }
+    ```
 ## 开发插件
 1. webpack-dashboard
     开发面板更清晰
 1. progress-bar-webpack-plugin
     打包进度条
-1. uglifyjs-webpack-plugin
-    **开启多核压缩**(webpack4.0+);
-    webpack官方推荐的多核压缩：(webpack-parallel-uglify-plugin)，这两个都差不多
+1. webpack-parallel-uglify-plugin
+    webpack官方推荐的**多核压缩**(webpack4.0+);
+    同类型产品还有：uglifyjs-webpack-plugin
 1. speed-measure-webpack-plugin
     监控面板
     这个是**webpack性能优化前一定要配置的**，只有他你才知道webpack慢在哪里
@@ -126,37 +160,57 @@
     通知消息，当npm run 时，会在系统界面上提示消息
 ##上线插件
 1. es6不需要编译
-
 1. polyfill
-    加参数的形式，给你返回需要的polyfill方法，如果浏览器不支持该方法则不会返回
+    * 加参数的形式，给你返回需要的polyfill方法，如果浏览器不支持该方法则不会返回
     例如：cdn.polyfill.io/v2/polyfill.min.js?features=Map,Set
-    PS:这种形式要比babel-polyfill更聪明，前者尽可能减少不必要的体积
-## 笔记
-1. webpack-dev-server
-热启，修改代码-实时刷新，开发环境用
-	```js
-	"scripts": {
-		"serve": "webpack-dev-server --mode development"
-	}
-	```
-1. devServer
-    指定启动端口、自己做接口-可以在mock数据的时候用
-    ```js
-    module.exports={
-        devServer:{
-            // 指定要监听的端口号
-            port:3000,
-            // 启用 webpack 的模块热替换特性
-            // hot:true,
-            // 接口-可以做mock数据
-            before(app){
-                app.get('/api/test',(req,res)=>{
-                    res.json({'code':200,'name':'john'})
-                })
-            }
-        },
-    }
+    * PS:
+    这种形式要比babel-polyfill更聪明，前者尽可能减少不必要的体积，后者的体积非常大
+    * 用法：
+    可以用node读这个文件然后吐出来这个js文件，然后前端引入这个js文件
+1. **webpack-manifest-plugin**
+    前端缓存小负载 webapp
+    这个包会在dist下生成一个manifest.json文件，可以知道什么时候应该去更新文件，性能优化中非常重要的插件    
+    a.js -> a.xx1.js 怎么计算a.js变化然后把文件变成a.xx1.js
+    a.xxx.js -> 代码 后台每次计算出当前包
+1. loading
+    单页中用的，webpack的loading
+    ```html
+    <div id="app">
+        <!-- webpack的loading -->
+        <%= htmlWebpackPlugin.options.loading.html %>
+    </div>
     ```
+    ```js
+    //在webpack.config.js中，加上loading即可
+    new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template:"src/index.html",
+        loading:{
+            html:"加载中..."
+        }
+    }),
+    ```
+1.  单页的性能
+    多页转单页时，webapp下，保证性能用直出，减少请求数量，**把runtime打到html里**
+1. 分析打包结果
+    监控打包大小
+    * [bundlesize](https://github.com/siddharthkp/bundlesize)
+        控制包的大小-[CI(持续集成)](http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html)里用的
+        [size-limit](https://github.com/ai/size-limit)
+        防止JS库臃肿。如果您不小心添加了大量依赖项，则大小限制将引发错误
+    * webpack图标
+        http://webpack.github.io/analyse/#/chunks
+        https://alexkuz.github.io/webpack-chart/
+1. test exculde include - 提升速度
+    检测尾缀 干掉 除掉谁 ，这三个loader都设置，速度提升很快
+1. 压缩JS CSS
+    nano
+        修复css
+        happypack
+    ts-loader
+    optimize-css-assets-webpack-plugin
+1. devtool eval
+1. cache-loader
 ###css
     styled-components
     css tree-tracking
