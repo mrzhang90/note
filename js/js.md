@@ -1,3 +1,8 @@
+##Date
+```js
+// 2018/7/6 10:00:00
+new Date().toLocaleString();
+```
 ## 方法
 1. eval(arr.join("+"))
         数组快速相加-得相加之合
