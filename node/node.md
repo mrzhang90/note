@@ -84,3 +84,34 @@
 			ctx.status=404
 		}
 	}
+
+# Node和Npm版本升级到最新版
+1. 先查看本机node.js版本：
+	```js
+	node -v
+	```
+1. 清除node.js的cache：
+	```js
+	sudo npm cache clean -f
+	```
+1. 安装 n 工具，这个工具是专门用来管理node.js版本的，别怀疑这个工具的名字，是他是他就是他，他的名字就是 "n"
+	```js
+	sudo npm install -g n
+	```
+1. 安装最新版本的node.js
+	```js
+	sudo n stable
+	```
+1. 再次查看本机的node.js版本：
+	```js
+	node -v
+	```
+1. 更新npm到最新版：
+	```js
+	$ sudo npm install npm@latest -g
+	```
+1. 验证
+	```js
+	node -v
+	npm -v
+	```
