@@ -3,6 +3,24 @@
 // 2018/7/6 10:00:00
 new Date().toLocaleString();
 ```
+##兼容
+scrollTop跳转
+```js
+// 兼容判断1.
+// if(document.documentElement && document.documentElement.scrollTop>=0){
+        //     document.documentElement.scrollTop = anchor.offsetTop-100
+// }
+// if(document.body && document.body.scrollTop>=0){
+        //     document.body.scrollTop = anchor.offsetTop-100
+// }
+// 兼容判断2.推荐(代码可读性)
+try{
+        document.documentElement.scrollTop = anchor.offsetTop-100
+        // safari下 、没有DOCtype会走这里
+        document.body.scrollTop = anchor.offsetTop-100
+}catch(e){
+}
+```
 ## 方法
 1. eval(arr.join("+"))
         数组快速相加-得相加之合
