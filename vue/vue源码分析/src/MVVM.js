@@ -1,6 +1,7 @@
 function Vue(options) {
       this.data = options.data;
       var data = this.data;
+      // 传入一个对象 data和this 这个this身上也有一个data
       observe(data, this);
       var id = options.el;
       var dom =new Compile(document.getElementById(id),this);

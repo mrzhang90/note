@@ -1,9 +1,18 @@
+## Object.create(null)
+	Object.create(null)没有继承任何原型方法，也就是说它的原型链没有上一层
+	在js中null是没有任何属性和方法的。你继承了一个null，所以里面没有任何东西
+	来源
+		https://segmentfault.com/q/1010000009976954
+##可学习汤姆大叔的
+[设计模式之观察者模式](https://blog.csdn.net/qq_21201143/article/details/79752377)		
 参考：
 	http://jiongks.name/blog/vue-code-review/
 	https://www.cnblogs.com/aaronjs/p/7274965.html
 结论：
 	Vue.js的组成是由core+对应的平台补充代码构成
 		(独立构建和运行时构建只是platforms下web平台的两种选择)
+benchmarks
+	测试性能
 src
 	/core : 目录是Vue.js的核心(重点)
 		/components
@@ -40,7 +49,7 @@ src
 		Observer
 			观察者模式
 		Watcher
-
+			相当于订阅者，也就是接收观察者的消息
 		Dep
 			保持观察者模式的依赖
 		Directive

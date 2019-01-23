@@ -1,6 +1,6 @@
 
     function defineReactive (obj, key, val) {
-
+      //obj-new的date
       var dep = new Dep();
       Object.defineProperty(obj, key, {
         get: function() {
