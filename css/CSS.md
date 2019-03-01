@@ -241,6 +241,12 @@ input,input:focus{ outline:none;}
     }
     ```
 ##flex
+    固定宽度
+    ```css
+        flex:0 0 60px;
+        //相当于
+        flex-basis:60px;
+    ```
 	display: flex
 		容器指定为Flex
 	display: inline-flex;
