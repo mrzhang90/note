@@ -23,13 +23,17 @@ try{
 ```
 ## 方法
 1. eval(arr.join("+"))
-        数组快速相加-得相加之合
-1. 数组快速删除
+数组快速相加-得相加之合
+2. 数组快速删除
 ```js
 //清空
 arr.length=0
 //只保留前三个
 arr.length=3
+```
+3.创建长度20的的数组
+```js
+Array.apply(null,{length:20}) //[undefined, undefined, ***]
 ```
 ## 能力
 1.  javascript获取 CPU/GPU/memory 信息
