@@ -2,17 +2,45 @@
 //angular-CLI
 npm i -g @angular/cli
 ng new project
+// ng new demo --style less
 cd project
 ng serve --open
 
 //安装antd
 ng add ng-zorro-antd
 
+//内联在@component.styles数组中
+//在@component.styleUrls所指出的样式表文件
+@Component({
+  selector: 'app-heroes',
+  templateUrl: './heroes.component.html',
+  styleUrls: ['./heroes.component.css']
+})
+```
+###组件
+```js
 //创建组件
 ng generate component heroes
+ng generate component hero-app --inline-style
 
 //ngModel双向绑定
 [(ngModel)]="hero.name"
+
+//绑定属性
+[hero]="selectedHero"
+// input name为searchBox
+<input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
+// 管道转换
+{{today}}
+{{today | date:'fullDate'}}
+{{today | date:'shortTime'}}
+{{birthday | date:"MM/dd/yy"}}
+// 管道绑定到属性上
+{{ birthday | date:format }}
+get format()   { return this.toggle ? 'shortDate' : 'fullDate'; }
+// 链式管道
+{{ birthday | date | uppercase}}
 
 //在模板中的元素上添加 [class.selected] 绑定
 [class.selected]="hero === selectedHero"
@@ -25,21 +53,30 @@ ng generate component heroes
 
 //点击事件,click 外面的圆括号会让 Angular 监听这个 <li> 元素的 click 事件
 <li (click)="onSelect(hero)">
+<li (click)="add(heroName.value);heroName.value=''">
+```
+###CSS
+```css
+/* 
+  /deep/ 组合器还有两个别名：>>> 和 ::ng-deep
+  推荐使用::ng-deep以便兼容 */
+:host /deep/ h3 {
+  font-style: italic;
+}
 
-//内联在@component.styles数组中
-//在@component.styleUrls所指出的样式表文件
-@Component({
-  selector: 'app-heroes',
-  templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.css']
-})
+/* 把样式加入组件：
+  设置 styles 或 styleUrls 元数据
+  内联在模板的 HTML 中
+  通过 CSS 文件导入 */
+@import './hero-details-box.css';
 ```
 ###服务
 ```js
 // 创建一个服务
 ng generate service hero
 
-// 组件不应该直接获取或保存数据，应该聚焦展示数据，而服务最适合处理数据
+// 组件不应该直接获取或保存数据，应该聚焦用户体验
+// 从服务器获取数据、验证用户输入或直接往控制台中写日志等工作委托给各种服务
 // 不要使用new创建服务，依靠angular的依赖注入机制把服务注入到组件的构造函数中
 
 // @Injectable() services 可注入的服务
@@ -217,8 +254,41 @@ this.location.back();
 //@Input() 装饰器 可接受父组件传值，让 hero 属性可以在外部的 HeroesComponent 中绑定
 import { Input } from '@angular/core';
 @Input() hero: Hero;
-```
 
+// ViewChild实现父子通讯
+@ViewChild(CountdownTimerComponent)
+private timerComponent: CountdownTimerComponent;
+// 调用
+this.timerComponent.start();
+this.timerComponent.count;
+
+// parent
+  // component
+  <app-children *ngFor="let voter of voters"
+    [name]="voter"
+    (voted)="onVoted($event)">
+  </app-children>
+  // JS
+  agreed = 0;
+  disagreed = 0;
+  voters = ['Mr. IQ', 'Ms. Universe', 'Bombasto'];
+
+  onVoted(agreed: boolean) {
+    agreed ? this.agreed++ : this.disagreed++;
+  }
+// children
+  // component
+  <button (click)="vote(true)"  [disabled]="didVote">Agree</button>
+  // JS
+  @Input()  name: string;
+  @Output() voted = new EventEmitter<boolean>();
+  didVote = false;
+ 
+  vote(agreed: boolean) {
+    this.voted.emit(agreed);
+    this.didVote = true;
+  }
+```
 ```js
 module模块/model模型
 provide 提供
@@ -227,7 +297,12 @@ subscribe 订阅
 Observe 观察
 Observable 可观察的
 dashboard 仪表盘
+dependency injection 依赖注入DI
 
 @NgModule 模块装饰器，包含组件、服务、导入其他模块功能、导出指定功能供其他NgModul使用
 @Component 组件装饰器
+@Directive() 指令装饰器，结构型指令和属性型指令
+@Injectable() 装饰器定义类为服务,以便让ng把类注入的到组件中
+@Pipe 转换装饰类，把输入值转换成供视图显示用的值，Angular自带很多管道，如date和currency管道
+  {{interpolated_value | pipe_name}}
 ```
