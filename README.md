@@ -4,6 +4,27 @@
 	[github地址](https://github.com/bammoo/set-iterm2-badge)
 1. node-bash-title
 	设置当前命令窗口标题
+1. postcss-px-to-viewport
+	px转vw，[如何在Vue项目中使用vw实现移动端适配](https://www.w3cplus.com/mobile/vw-layout-in-vue.html)
+	例：
+	```js
+	"postcss": {
+		"plugins": {
+			"autoprefixer": {},
+			"postcss-px-to-viewport": { 
+				"viewportWidth": 320, 
+				"viewportHeight": 1334,
+				"unitPrecision": 3,
+				"viewportUnit": "vw",
+				"fontViewportUnit": "vw",
+				"selectorBlackList": [".ignore", ".hairlines"],
+				"minPixelValue": 1,
+				"mediaQuery": false,
+				"landscapeWidth": 568
+			}
+		}
+	}
+	```
 ## 微前端
 百度fis适合微前端
 独立的微项目，有一个集成控制微项目的路由
