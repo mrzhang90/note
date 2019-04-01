@@ -25,6 +25,27 @@
 		}
 	}
 	```
+1. 微信h5，在IOS手机上下滑动的时候，整个页面就被拖着走
+	```
+	使用iNoBounce，使用方法：
+	1、在public文件夹下自己创建一份inobounce.min.js
+	2、然后在index.html加这段代码 <script src="./inobounce.min.js"></script>
+
+	github地址：https://github.com/wangyupo/iNoBounce
+	```
+	加上iNoBounce以后IOS不能滚动什么情况？部分页面不能滚动又是什么情况
+	```
+	所有页面都不能滚动
+	在最外层加这样的css：
+	overflow-y:scroll;
+	-webkit-overflow-scrolling:touch;
+
+	如果有单个页面不滚动，比如你在页面里面加了vant的list组件，发现页面不能上下滑动
+	本页面最外层的css这样写：
+	height: 100vh;
+	overflow-y:scroll;
+	-webkit-overflow-scrolling:touch;
+	```
 ## 微前端
 百度fis适合微前端
 独立的微项目，有一个集成控制微项目的路由
@@ -76,6 +97,13 @@ webpack-system把webpack原来的模块化机制踢掉，换位systemjs，
 http://***?vframe/jpg/offset/0
 1. 获取多媒体(视频、音频)信息，包括时长、格式等
 http://***.mp4?avinfo
+## 解决safair下QQ在线客服调起bug
+	```js
+	//这是腾讯给的API，但是safair下会在重定向的时候，刷掉调起QQ的弹窗
+	http://wpa.qq.com/msgrd?v=3&uin=757927051&site=qq&menu=yes
+	//完美版：直接重定向，保留调起QQ的弹窗(腾讯很搞笑，sigT和sigU可为空但必须传)
+	tencent://message/?Menu=yes&uin=757927051&Site=&Service=201&sigT=&sigU=
+	```
 ## 图标
 ❤️🔍🚚 🚗🚴🍎🍌🌺
 ☁️😙🌞   ☁   ☁
