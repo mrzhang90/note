@@ -1,4 +1,121 @@
 vue是响应式的，当你在控制台通过app.data=XXX时，会自动调用set修改data属性值
+##vue
+1. 由于js限制，vue不能检测到数组修改,例如vm.arr[index]=nVal;或vm.arr.length=length
+    ```js
+    //使用vue的set方法
+    vm.set(obj.arr,index,newValue)
+    ```
+1. vue Bus总线
+    兄弟组件传值
+    有一种方法是参考github上，"ComponentsMediator"全局存一个对象，再暴露出register、send、remove
+    **另一种就是bus**
+    ```js
+    //定义全局
+    vue.prototype.$bus=new Vue();
+    //emit通知
+    this.$bus.emit('fn',{key:value})
+    //on监听
+    this.$bus.on('fn',callback)
+    //off销毁
+    this.$bus.off('fn',callback)
+    ```
+1.  watch
+    ```js
+        var unwatch = watch(string|function,callback,[options])
+        //options
+        //deep为true深度监听对象内部
+        //immediate为true立即触发callback，默认要等到数据改变才会触发
+        //返回值unwatch可以调用来取消监听
+        watch:{
+            fn:{
+                handler(){},
+                dep:true,
+                immediate:true
+            }
+        }
+    ```
+1. component is是用来绑定组件，可以动态切换组件，如果需要缓存用keep-alive
+    [keep-alive](https://panjiachen.github.io/vue-element-admin-site/zh/guide/essentials/tags-view.html#visitedviews-cachedviews)
+    ```html
+    //缓存组件
+    //cachedViews : 实际 keep-alive 的路由。可以在配置路由的时候通过 meta.noCache 来设置是否需要缓存这个路由 默认都缓存
+    <keep-alive :include="cachedViews">
+    //组件切换
+    <component :is="组件名">
+    </keep-alive>
+    ```
+1. props的validator可以校验自定义组件
+    ```html
+    //自定义组件
+    <Test btnv="small"></Test>
+    ```
+    ```js
+    props:{
+        validator(val){
+            return ['size','middle','bid'].indexOf(val)!==-1?true:false
+        },
+        default:'middle'
+    }
+    ```
+1. nextTick
+    ```js
+    mounted(){
+        //确保DOM获取；在修改数据之后立即使用这个方法，获取更新后的 DOM
+        this.$nextTick(()=>{
+            //code
+        })
+        //或 then方式
+        this.$nextTick().then()
+    }
+    //nextTick的await用法
+    methods:{
+        async fn(){
+            await this.$nextTick();
+        }
+    }
+    ```
+1. mixin
+    全局混入对象,
+    同名钩子函数混合一个数组(created,mounted),优先执行mixin
+    值为对象的选项混合一个对象(watch,methods,components,directives)，键名冲突，组件覆盖mixin
+    **vm.extend()也是同样的合并策略**
+    ```js
+    var vm=new Vue({
+        mixin:[mixin]
+    })
+    ```
+1. directives
+    ```js
+    directives: {
+        focus: {
+            bind(el, binding, vnode,oldVnode) {},
+            //binding:{
+                //name,指令名
+                //value,指令绑定值
+                //oldValue,指令绑定的前一个值
+                //expression,字符串形式的指令表达式
+                //arg,传给指令的参数
+                //modifiers
+            //}
+            //vnode虚拟节点
+            //oldVnode上一个虚拟节点
+            inserted(el, binding, vnode) {},
+            update(el, binding){}
+            unbind(el, binding){}
+        }
+    }
+    ```
+##VUEX
+1. mapMutatios是mutatios的辅助函数
+相当于this.$store.commit('a')
+...mapMutatios(['a','b'])
+...mapMutatios({
+    'bieMing':'a',
+    'bm2':'b'
+})
+1. mapGetters辅助函数是将store的getters映射到组件生命周期中
+相当于this.$store.state.getCount
+...mapGetters(['getCount'])
 ##nuxt
 ```js
 //  To get started:

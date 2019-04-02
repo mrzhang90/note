@@ -22,6 +22,22 @@ try{
 }
 ```
 ## 方法
+```
+Boolean 'attribute' in obj
+    检测对象的自身和原型上是否存在该属性
+Boolean obj.hasOwnproperty(attribute)
+    检测对象上的自身属性是否存在该属性
+Boolean obj.isPrototypeOf(attribute)
+    检测对象的原型链上是否存在该属性
+Boolean obj instanceof Object
+    instanceof 运算符用来检测 constructor.prototype 是否存在于参数 object 的原型链上
+    检测Object.prototype是否存在于参数obj
+Array Object.getOwnPropertyNames(obj)
+    获取对象自身的属性
+Object Object.getPrototypeOf(obj)
+    ES5的方法，用来替代__prtot__这种非标准写法
+    获取obj对象上的原型方法，如果没有返回null
+```
 1. eval(arr.join("+"))
 数组快速相加-得相加之合
 2. 数组快速删除

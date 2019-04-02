@@ -46,6 +46,10 @@
 	overflow-y:scroll;
 	-webkit-overflow-scrolling:touch;
 	```
+## AXIOS
+**data和params是有区别的：**
+1. data是添加请求体到body中，用户post请求
+1. params是添加到url的请求字符串里，用于get请求
 ## 微前端
 百度fis适合微前端
 独立的微项目，有一个集成控制微项目的路由
@@ -188,6 +192,29 @@ Wasm同样在JavaScript虚拟机中运行，但是它表现得更好。两者可
 		2. 设置key可以最大化的利用节点
 		3. 不要盲目相信diff的效率，在必要时可以手工优化
 			要考虑DOM DIFF的时间算法和空间算法
-	
+##设置VSCode为符合ESLint
+1. 安装ESlint插件，然后文件--》首选项--》设置
+    ```js
+    {
+        "eslint.autoFixOnSave": true,
+        "eslint.validate": [
+            "javascript",
+            "javascriptreact",
+            {
+            "language": "html",
+            "autoFix": true
+            },
+            {
+            "language": "vue",
+            "autoFix": true
+            }
+        ]
+    }
+    ```
+1. 另外 我还安装了 prettier 和 Vetur
+1. 点击菜单栏中的文件--》首选项--》设置,
+    搜索tabsize设置为2，搜索Detect Indentation不要勾选
+1. 字符串单引号
+1. 文件尾回车
 **xx** 相当于strong
 > >向后缩,并且文字为灰色
