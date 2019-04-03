@@ -5,7 +5,7 @@ vue是响应式的，当你在控制台通过app.data=XXX时，会自动调用se
     //使用vue的set方法
     vm.set(obj.arr,index,newValue)
     ```
-1. vue Bus总线
+1. vue Bus-eventBus事件中心
     兄弟组件传值
     有一种方法是参考github上，"ComponentsMediator"全局存一个对象，再暴露出register、send、remove
     **另一种就是bus**
@@ -19,6 +19,15 @@ vue是响应式的，当你在控制台通过app.data=XXX时，会自动调用se
     //off销毁
     this.$bus.off('fn',callback)
     ```
+1. .native .sync
+1. slot-scope
+    ```
+    // 自2.6.0起，已废弃slot-scope
+    // slot-scope接受prop,然后scope存在于template作用域中
+    // slot="default"为默认，可省略
+    <template slot="default" slot-scope="scope"></template>
+    ```
+1. 插件
 1.  watch
     ```js
         var unwatch = watch(string|function,callback,[options])
@@ -86,8 +95,14 @@ vue是响应式的，当你在控制台通过app.data=XXX时，会自动调用se
     ```
 1. directives
     ```js
+    //调用
     directives: {
-        focus: {
+        inputLog
+    }
+    //封装
+    let focus={}
+    focus.install=function(Vue){
+        Vue.directives('focus',{
             bind(el, binding, vnode,oldVnode) {},
             //binding:{
                 //name,指令名
@@ -102,8 +117,9 @@ vue是响应式的，当你在控制台通过app.data=XXX时，会自动调用se
             inserted(el, binding, vnode) {},
             update(el, binding){}
             unbind(el, binding){}
-        }
+        })
     }
+    export default focus;
     ```
 ##VUEX
 1. mapMutatios是mutatios的辅助函数
