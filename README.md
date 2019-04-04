@@ -180,6 +180,7 @@ Wasm同样在JavaScript虚拟机中运行，但是它表现得更好。两者可
 	总结,SSR考虑请求多的情况，先吐一部分重要的东西，其他的ajax慢慢来
 	所以，SSR适合移动端，国外一般都不用SSR
 * vue全家桶
+
 ## Virtual-dom
 * Virtual-dom是一系列的模块集合，用来提供声明式的DOM渲染。既然DOM这么慢，我们就在JS和DOM之间加个缓存。JS只操作Virtual DOM,最后的时候写入DOM
 * Virtual DOM算法主要实现三个函数：element、diff、patch(补丁)，然后就可以实际使用
@@ -192,6 +193,7 @@ Wasm同样在JavaScript虚拟机中运行，但是它表现得更好。两者可
 		2. 设置key可以最大化的利用节点
 		3. 不要盲目相信diff的效率，在必要时可以手工优化
 			要考虑DOM DIFF的时间算法和空间算法
+
 ##设置VSCode为符合ESLint
 1. 安装ESlint插件，然后文件--》首选项--》设置
     ```js
@@ -216,5 +218,7 @@ Wasm同样在JavaScript虚拟机中运行，但是它表现得更好。两者可
     搜索tabsize设置为2，搜索Detect Indentation不要勾选
 1. 字符串单引号
 1. 文件尾回车
+
+##MarkDown
 **xx** 相当于strong
 > >向后缩,并且文字为灰色
