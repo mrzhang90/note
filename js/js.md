@@ -3,6 +3,12 @@
 // 2018/7/6 10:00:00
 new Date().toLocaleString();
 ```
+##事件委托
+```
+事件代理又叫事件委托，事件委托利用事件冒泡
+js的事件模型，采用冒泡模式，子元素逐级向上冒泡，成为父元素事件。
+比如对每个表格td要做事件监听，可以在table上写事件，当点击td会通过冒泡找到table，这个就叫做"事件委托"
+```
 ##兼容
 scrollTop跳转
 ```js
@@ -50,40 +56,4 @@ arr.length=3
 3.创建长度20的的数组
 ```js
 Array.apply(null,{length:20}) //[undefined, undefined, ***]
-```
-## 能力
-1.  javascript获取 CPU/GPU/memory 信息
-```html
-<!-- 参考：https://ask.helplib.com/others/post_12581088 -->
-<html>
-<body>
- <canvas id="glcanvas" width="0" height="0"></canvas>
- <script>
- var performance = window.performance || window.mozPerformance || window.msPerformance || window.webkitPerformance || {};
- document.write("<br>");
- for (var value in performance) {
- document.write(value +"<br>");
- }
- document.write("<br><br><br>");
- var canvas;
- canvas = document.getElementById("glcanvas");
- var gl = canvas.getContext("experimental-webgl");
- document.write(gl.getParameter(gl.RENDERER) +"<br>");
- document.write(gl.getParameter(gl.VENDOR) +"<br>");
- document.write(getUnmaskedInfo(gl).vendor +"<br>");
- document.write(getUnmaskedInfo(gl).renderer +"<br>");
- function getUnmaskedInfo(gl) {
- var unMaskedInfo = {
- renderer: '',
- vendor: ''
- };
- var dbgRenderInfo = gl.getExtension("WEBGL_debug_renderer_info");
- if (dbgRenderInfo!= null) {
- unMaskedInfo.renderer = gl.getParameter(dbgRenderInfo.UNMASKED_RENDERER_WEBGL);
- unMaskedInfo.vendor = gl.getParameter(dbgRenderInfo.UNMASKED_VENDOR_WEBGL);
- }
- return unMaskedInfo;
- }
- </script>
-</body>
 ```

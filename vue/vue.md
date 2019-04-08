@@ -1,12 +1,74 @@
 vue是响应式的，当你在控制台通过app.data=XXX时，会自动调用set修改data属性值
+##vue-element-admin
+**权限分析**
+```
+1. 在router.js里定义了两种路由constantRouterMap和asyncRouterMap
+1. 在store的permissios.js里根据token判断登录用户的身份，把可以展示的路由存到state的addRouters数组里
+1. 在src的permission.js里引入vue-router，通过router.addRouters方法把store的addRouters推倒vue-router里
+1. main里引入permission.js
+```
+1. router.js
+    ```js
+    //不需要动态判断权限的路由，如登录页、404
+    constantRouterMap 
+        //会通过main在new Vue时引入
+    //需要动态判断权限并通过 addRoutters 动态添加的页面
+    asyncRouterMap
+        //设置权限 meta: {roles: ['admin', 'editor'] }
+    ```
+1. sotre/modules/permissios.js
+    ```js
+    state:{
+        //通过校验的 所有要展示的路由
+        addRouters:[]
+    },
+    mutations：{
+        SET_ROUTERS(routers){
+            state.addRouters = routers
+        }
+    },
+    actions:{
+        GenerateRoutes({commit},data){
+            if(admin){
+                //返回全部 asyncRouterMap
+            }else{
+                //filter asyncRouterMap
+            }
+            //把constantRouterMap与动态路由合并
+            commit('SET_ROUTERS',routers)
+        }
+    }
+    ```
+1. permission.js
+    ```js
+    router.beforeEach((to,form,next)=>{
+        if(token){
+            if(登录路由) **
+            else{
+                //获取     store->GetUserInfo
+                //然后获取 store->GenerateRoutes
+                //然后 动态添加可访问路由表
+                router.addRoutes(store.getters.addRouters)
+            }
+        }else{
+            if(登录白名单) next();
+            else //重定向登录页
+        }
+    })
+    ```
+1. main.js
+    ```js
+    new Vue时引入 constantRouterMap()
+    同时导入 src/permissios.js,这里已经准备好，会自动注入到路由
+    ```
 ##vue
 1. 由于js限制，vue只能检测的对象的修改，不能检测新属性被添加到对象上(this.obj.aa=1)也无法侦测到一个属性从对象中删除了(delete this.obj.aa),为此：vue提供了，**
 1. 由于js限制，vue不能检测到数组修改,例如vm.arr[index]=nVal;或vm.arr.length=length
     ```js
     //使用vue的set方法
     vm.set(obj.arr,index,newValue)
-    ```this.$set和this.$delete**
-1. vue Bus总线
+    ```
+1. vue Bus-eventBus事件中心
     兄弟组件传值
     有一种方法是参考github上，"ComponentsMediator"全局存一个对象，再暴露出register、send、remove
     **另一种就是bus**
@@ -20,6 +82,15 @@ vue是响应式的，当你在控制台通过app.data=XXX时，会自动调用se
     //off销毁
     this.$bus.off('fn',callback)
     ```
+1. .native .sync
+1. slot-scope
+    ```
+    // 自2.6.0起，已废弃slot-scope
+    // slot-scope接受prop,然后scope存在于template作用域中
+    // slot="default"为默认，可省略
+    <template slot="default" slot-scope="scope"></template>
+    ```
+1. 插件
 1.  watch
     ```js
         var unwatch = watch(string|function,callback,[options])
@@ -87,8 +158,14 @@ vue是响应式的，当你在控制台通过app.data=XXX时，会自动调用se
     ```
 1. directives
     ```js
+    //调用
     directives: {
-        focus: {
+        inputLog
+    }
+    //封装
+    let focus={}
+    focus.install=function(Vue){
+        Vue.directives('focus',{
             bind(el, binding, vnode,oldVnode) {},
             //binding:{
                 //name,指令名
@@ -103,8 +180,9 @@ vue是响应式的，当你在控制台通过app.data=XXX时，会自动调用se
             inserted(el, binding, vnode) {},
             update(el, binding){}
             unbind(el, binding){}
-        }
+        })
     }
+    export default focus;
     ```
 ##VUEX
 1. mapMutatios是mutatios的辅助函数
