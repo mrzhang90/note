@@ -1,4 +1,66 @@
 vue是响应式的，当你在控制台通过app.data=XXX时，会自动调用set修改data属性值
+##vue-element-admin
+**权限分析**
+```
+1. 在router.js里定义了两种路由constantRouterMap和asyncRouterMap
+1. 在store的permissios.js里根据token判断登录用户的身份，把可以展示的路由存到state的addRouters数组里
+1. 在src的permission.js里引入vue-router，通过router.addRouters方法把store的addRouters推倒vue-router里
+1. main里引入permission.js
+```
+1. router.js
+    ```js
+    //不需要动态判断权限的路由，如登录页、404
+    constantRouterMap 
+        //会通过main在new Vue时引入
+    //需要动态判断权限并通过 addRoutters 动态添加的页面
+    asyncRouterMap
+        //设置权限 meta: {roles: ['admin', 'editor'] }
+    ```
+1. sotre/modules/permissios.js
+    ```js
+    state:{
+        //通过校验的 所有要展示的路由
+        addRouters:[]
+    },
+    mutations：{
+        SET_ROUTERS(routers){
+            state.addRouters = routers
+        }
+    },
+    actions:{
+        GenerateRoutes({commit},data){
+            if(admin){
+                //返回全部 asyncRouterMap
+            }else{
+                //filter asyncRouterMap
+            }
+            //把constantRouterMap与动态路由合并
+            commit('SET_ROUTERS',routers)
+        }
+    }
+    ```
+1. permission.js
+    ```js
+    router.beforeEach((to,form,next)=>{
+        if(token){
+            if(登录路由) **
+            else{
+                //获取     store->GetUserInfo
+                //然后获取 store->GenerateRoutes
+                //然后 动态添加可访问路由表
+                router.addRoutes(store.getters.addRouters)
+            }
+        }else{
+            if(登录白名单) next();
+            else //重定向登录页
+        }
+    })
+    ```
+1. main.js
+    ```js
+    new Vue时引入 constantRouterMap()
+    同时导入 src/permissios.js,这里已经准备好，会自动注入到路由
+    ```
 ##vue
 1. 由于js限制，vue不能检测到数组修改,例如vm.arr[index]=nVal;或vm.arr.length=length
     ```js
