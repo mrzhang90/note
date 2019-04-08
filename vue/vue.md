@@ -1,10 +1,11 @@
 vue是响应式的，当你在控制台通过app.data=XXX时，会自动调用set修改data属性值
 ##vue
+1. 由于js限制，vue只能检测的对象的修改，不能检测新属性被添加到对象上(this.obj.aa=1)也无法侦测到一个属性从对象中删除了(delete this.obj.aa),为此：vue提供了，**
 1. 由于js限制，vue不能检测到数组修改,例如vm.arr[index]=nVal;或vm.arr.length=length
     ```js
     //使用vue的set方法
     vm.set(obj.arr,index,newValue)
-    ```
+    ```this.$set和this.$delete**
 1. vue Bus总线
     兄弟组件传值
     有一种方法是参考github上，"ComponentsMediator"全局存一个对象，再暴露出register、send、remove
