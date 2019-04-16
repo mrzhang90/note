@@ -5,24 +5,28 @@
 	添加一条hosts地址
 
 #window下安装
-1. 进入nginx官网下载包
-2. 解压至C盘下，c:/nginx
-3. 双击setp.exe 即可
-4. 访问http://localhost
+1. 进入[nginx官网](https://nginx.org/en/download.html)
+1. 命令启动nginx
+	```
+		cd nginx-1.14.2
+		start nginx
+	```
+1. 访问http://localhost
 	PS:如果失败，输入netstat -ano命令，查看80端口是否占用
-5. 命令
+1. 命令
 	启动：start nginx
 	停止：nginx.exe -s quit
 	重新载入：nginx.exe -s reload
 	重新打开日志：nginx.exe -s reopen
-	nginx版本：nginx -v
 
 #mac
 1. 超管
 	sudo su
 1. 启动 nginx服务
 	sudo nginx
-1. 重新加载配置|重启|停止|退出 nginx
+1. nginx版本
+	nginx -v
+1. 常用命令 重启|打开日志|强制停止|退出
 	nginx -s reload|reopen|stop|quit
 1. 测试配置是否有语法错误
 	nginx -t
