@@ -46,10 +46,6 @@
 	overflow-y:scroll;
 	-webkit-overflow-scrolling:touch;
 	```
-## AXIOS
-**data和params是有区别的：**
-1. data是添加请求体到body中，用户post请求
-1. params是添加到url的请求字符串里，用于get请求
 ## 微前端
 百度fis适合微前端
 独立的微项目，有一个集成控制微项目的路由
