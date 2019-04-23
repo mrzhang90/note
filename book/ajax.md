@@ -1,16 +1,16 @@
 ## 为什么会有跨域？
 表单提交不会有跨域，但为什么js的ajax请求就会有跨域？我们都知道是浏览器的**同源策略**导致的。  
 [那么为什么会有跨域](https://segmentfault.com/a/1190000015597029)
-- 什么是同源策略？
+- 什么是同源策略？  
   同协议、同端口、同域名
-- 同源策略限制的对象
+- 同源策略限制的对象  
 	- Cookie、LocalStorage 和 IndexDB 无法读取。
 	- DOM 无法获得。
-  - [解决canvas图片getImageData,toDataURL跨域问题](https://www.zhangxinxu.com/wordpress/2018/02/crossorigin-canvas-getimagedata-cors/)
 	- AJAX 请求不能发送。
+  - [解决canvas图片getImageData,toDataURL跨域问题](https://www.zhangxinxu.com/wordpress/2018/02/crossorigin-canvas-getimagedata-cors/)
 - 为什么要限制cookie  
   cookie的工作流程：1.服务端向客户端发送cookie；2.浏览器存储cookie；3.之后每次http请求浏览器都将cookie自动添加到request header中(同域下)发送到服务端。  
-  在跨域下 cookie不会自动添加到request header中  
+  在跨域下,cookie不会自动添加到request header中  
   [你真的会使用XMLHttpRequest吗？](https://segmentfault.com/a/1190000004322487#articleHeader13)了解-xhr.withCredentials与 CORS 什么关系  
   [聊一聊cookie](https://segmentfault.com/a/1190000004556040#articleHeader6)  
   [Cookie/Session的机制与安全](https://harttle.land/2015/08/10/cookie-session.html)  
