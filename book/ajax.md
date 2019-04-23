@@ -1,14 +1,14 @@
 ## 为什么会有跨域？
 表单提交不会有跨域，但为什么js的ajax请求就会有跨域？我们都知道是浏览器的**同源策略**导致的。  
 [那么为什么会有跨域](https://segmentfault.com/a/1190000015597029)
-1. 什么是同源策略？
+- 什么是同源策略？
   同协议、同端口、同域名
-1. 同源策略限制的对象
+- 同源策略限制的对象
 	- Cookie、LocalStorage 和 IndexDB 无法读取。
 	- DOM 无法获得。
   - [解决canvas图片getImageData,toDataURL跨域问题](https://www.zhangxinxu.com/wordpress/2018/02/crossorigin-canvas-getimagedata-cors/)
 	- AJAX 请求不能发送。
-1. 为什么要限制cookie
+- 为什么要限制cookie  
   cookie的工作流程：1.服务端向客户端发送cookie；2.浏览器存储cookie；3.之后每次http请求浏览器都将cookie自动添加到request header中(同域下)发送到服务端。  
   在跨域下 cookie不会自动添加到request header中  
   [你真的会使用XMLHttpRequest吗？](https://segmentfault.com/a/1190000004322487#articleHeader13)了解-xhr.withCredentials与 CORS 什么关系  
@@ -17,18 +17,18 @@
   [浅谈CSRF攻击方式](http://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html)  
 
 ## 跨域的解决方案
-1. CORS请求头
-  [阮一峰 跨域资源共享 CORS 详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)
+1. CORS请求头  
+  [阮一峰 跨域资源共享 CORS 详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)  
   它允许浏览器向跨资源服务器，发送一个XMLHttpRequest请求，从而克服AJAX只能同源使用的限制，整个CORS通信都是浏览器自动完成的。  
   so,实现CORS通信，关键是服务器设置。 
-1. iframe加form
+1. iframe加form  
   表单提交的时候，动态创建一个iframe，用于form表单提交，模拟出ajax提交的效果
-1. WebSocket
+1. WebSocket  
   WebSocket 是一种双向通信协议，在建立连接之后， WebSocket的 server与 client都能主动向对方发送或接收数据而不受同源策略的限制
-1. postMessage
+1. postMessage  
   适合不同窗口之间的通信
 1. document.domain
-1. jsonp
+1. jsonp  
   **script标签的 src属性中的链接可以访问跨域的 js脚本**，利用这个特性，服务端不再返回 JSON格式的数据，而是返回一段调用某个函数的 js代码，在 src中进行了调用，这样实现了跨域
 1. nginx代理
 ```js
@@ -50,7 +50,7 @@ proxyTable: {
   }
 }
 ```
-## 原生ajajx
+## ajax
 XMLHttpRequest，(IE6下使用ActiveXObject)  
 参数withCredentials：ajax请求默认会携带同源请求的 cookie，而跨域请求则不会携带 cookie，设置 xhr的 withCredentials的属性为 true将允许携带跨域 cookie。  
 ## Jquery
