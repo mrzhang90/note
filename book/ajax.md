@@ -19,6 +19,7 @@
 ## 跨域的解决方案
 1. CORS请求头  
   [阮一峰 跨域资源共享 CORS 详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)  
+  后端添加头解决跨域 Access-control-allow-origin  
   它允许浏览器向跨资源服务器，发送一个XMLHttpRequest请求，从而克服AJAX只能同源使用的限制，整个CORS通信都是浏览器自动完成的。  
   so,实现CORS通信，关键是服务器设置。 
 2. WebSocket  
@@ -78,9 +79,7 @@ server{
   }
 }
 ```
-9. 后端添加头解决跨域 Access-control-allow-origin  
-  通过设置Access-Control-Allow-Origin来实现跨域访问比较简单
-10. vue-cli devServe配置
+9. vue-cli devServe配置
 ```js
 proxyTable: {
   '/list': {
