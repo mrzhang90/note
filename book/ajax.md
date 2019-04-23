@@ -21,24 +21,66 @@
   [阮一峰 跨域资源共享 CORS 详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)  
   它允许浏览器向跨资源服务器，发送一个XMLHttpRequest请求，从而克服AJAX只能同源使用的限制，整个CORS通信都是浏览器自动完成的。  
   so,实现CORS通信，关键是服务器设置。 
-1. iframe加form  
-  表单提交的时候，动态创建一个iframe，用于form表单提交，模拟出ajax提交的效果
-1. WebSocket  
+2. WebSocket  
   WebSocket 是一种双向通信协议，在建立连接之后， WebSocket的 server与 client都能主动向对方发送或接收数据而不受同源策略的限制
-1. postMessage  
+3. postMessage  
   适合不同窗口之间的通信
-1. document.domain
-1. jsonp  
+4. iframe加form  
+  表单提交的时候，动态创建一个iframe，用于form表单提交，模拟出ajax提交的效果。iframe不显示就行，虽然表单提交刷新了iframe，但对于用户无感知。
+5. document.domain
+  ```
+  //两个网页一级域名相同，只是二级域名不同，浏览器允许通过设置document.domain共享 Cookie。例如：www.baidu.com 和 hi.baidu.com
+	test.xxx.com a.html
+	<script>
+		document.domain="baidu.com";//设置同源策略
+		document.cookie="test1=hello";
+	</script>
+
+	test.xxx.com b.html
+	<script>
+		document.cookie
+	</script>
+
+	domain='baidu.com';//最实用的同源策略
+  ```
+6. jsonp(script)  
   **script标签的 src属性中的链接可以访问跨域的 js脚本**，利用这个特性，服务端不再返回 JSON格式的数据，而是返回一段调用某个函数的 js代码，在 src中进行了调用，这样实现了跨域
-1. nginx代理
+  ```js
+    <script type="text/javascript" src="http://aa.com/index.php?callback=test"></script>
+		<script type="text/javascript">
+			function test(data){
+				console.log(data);
+			}
+		</script>
+
+		<?php
+			if(callback){
+				test({'aa':123})
+			}
+		?>
+  ```
+7. img、link(background)
+  ```js
+    var s=new Image();
+	 	vat start=Date.now();
+	 	s.src="http://www.baidu.com/s.gif";
+	 	s.onload=function(){
+	 		var end=Date.now();
+	 		var t=end-start;
+	 		v=s.size / t +'kb/s';
+	 	}
+  ```
+8. nginx代理
 ```js
 server{
   location ^~ /api {
       proxy_pass http://localhost:8080;
-  }    
+  }
 }
 ```
-8. vue-cli devServe配置
+9. 后端添加头解决跨域 Access-control-allow-origin  
+  通过设置Access-Control-Allow-Origin来实现跨域访问比较简单
+10. vue-cli devServe配置
 ```js
 proxyTable: {
   '/list': {
