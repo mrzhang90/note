@@ -1,3 +1,11 @@
+## request payload 、form data 、Query String Parameters的区别
+- Request Payload  
+  当发起post提交，参数为string、array、object，content-type默认为text/plain(普通文本)
+- Form Data  
+  当发起post提交，且参数是formData类型，若未指定content-type，则默认content-type为multipart/form-data  
+  主要用于发送表单数据，支持bolb、file或者string
+- Query String Parameters  
+  当发起get请求是，参数会以&的方式连接，和url?拼接
 ## 为什么会有跨域？
 表单提交不会有跨域，但为什么js的ajax请求就会有跨域？我们都知道是浏览器的**同源策略**导致的。  
 [那么为什么会有跨域](https://segmentfault.com/a/1190000015597029)
@@ -91,6 +99,7 @@ proxyTable: {
   }
 }
 ```
+[全面分析前端的网络请求方式](https://mp.weixin.qq.com/s/x4YM3TtToN29k4piJlppug)
 ## ajax
 XMLHttpRequest，(IE6下使用ActiveXObject)  
 参数withCredentials：ajax请求默认会携带同源请求的 cookie，而跨域请求则不会携带 cookie，设置 xhr的 withCredentials的属性为 true将允许携带跨域 cookie。  
@@ -146,4 +155,4 @@ axios.post('/add',{
   }
 })
 ```
-[全面分析前端的网络请求方式](https://mp.weixin.qq.com/s/x4YM3TtToN29k4piJlppug)
+欢迎star:[https://github.com/mrzhang90/note/blob/master/book/ajax.md](https://github.com/mrzhang90/note/blob/master/book/ajax.md)
