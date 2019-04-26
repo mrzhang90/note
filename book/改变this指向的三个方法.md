@@ -1,0 +1,5 @@
+## bind
+
+## call
+
+## apply

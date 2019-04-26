@@ -1,3 +1,11 @@
+**断言**
+```js
+function assert(expression,errorMessage){
+    if(!!expression === false){
+        throw new Error(errorMessage)
+    }
+}
+```
 **ajax中断请求 - jquery中断ajax（取消/abort）**
 ```js
 //如果一个ajax请求过长，你可能会有取消之前发起的一次请求的需要
