@@ -190,11 +190,20 @@ Wasm同样在JavaScript虚拟机中运行，但是它表现得更好。两者可
 		3. 不要盲目相信diff的效率，在必要时可以手工优化
 			要考虑DOM DIFF的时间算法和空间算法
 
-##设置VSCode为符合ESLint
-1. 安装ESlint插件，然后文件--》首选项--》设置
+## 设置VSCode为符合ESLint
+[参考](https://www.jianshu.com/p/d6a69eb08f07)
+[VS Code 配置](https://www.cnblogs.com/suzhen-2012/p/6750157.html)
+1. vsCode安装插件-ESlint，然后文件--》首选项--》设置
     ```js
     {
+			//一个tab等于2个空格
+			"editor.tabSize": 2,
+		//双引号格式化为单引号
+		"prettier.semi": false,
+	    "prettier.singleQuote": true,
+		//用来保存时自动格式化，默认只支持.js
         "eslint.autoFixOnSave": true,
+		//配置校验的文件类型
         "eslint.validate": [
             "javascript",
             "javascriptreact",
@@ -209,12 +218,38 @@ Wasm同样在JavaScript虚拟机中运行，但是它表现得更好。两者可
         ]
     }
     ```
-1. 另外 我还安装了 prettier 和 Vetur
-1. 点击菜单栏中的文件--》首选项--》设置,
-    搜索tabsize设置为2，搜索Detect Indentation不要勾选
-1. 字符串单引号
-1. 文件尾回车
-
-##MarkDown
+1. prettier，使用ESLint运行Prettier
+	```js
+	//或者选择npm安装
+	npm i D prettier eslint-plugin-prettier
+	```
+1. vsCode安装插件-Vetur，格式化vue代码
+## git commit提交检测
+[参考](https://www.jianshu.com/p/cdd749c624d9)
+安装
+```js
+npm i --save-dev husky lint-staged
+```
+添加 hook 函数
+```js
+// package.json
+{
+...
+    "scripts": {
+        ...
+        "precommit": "lint-staged", // git commit 执行这个命令，这个命令在调起 lint-staged
+    },
+    "lint-staged": {   // lint-staged 配置
+        "app/**/*.{js,jsx}": [
+            "prettier --tab-width 4 --write",
+            "eslint --fix",
+            "git add"
+        ]
+    },
+...
+}
+```
+这里 lint-staged 的配置是：在 git 的待提交的文件中，在 app 目录下的所有 .js .jsx 都要执行三条命令。前两条一会儿说，后一条是将处理过的代码重新 add 到 git 中。
+## MarkDown
 **xx** 相当于strong
 > >向后缩,并且文字为灰色
