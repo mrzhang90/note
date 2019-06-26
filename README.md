@@ -46,6 +46,11 @@
 	overflow-y:scroll;
 	-webkit-overflow-scrolling:touch;
 	```
+## 解决问题
+1. 页面引入https图片，404
+	```html
+		<meta name="referrer" content="no-referrer">
+	```
 ## 微前端
 百度fis适合微前端
 独立的微项目，有一个集成控制微项目的路由
