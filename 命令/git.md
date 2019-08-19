@@ -36,6 +36,7 @@
     git status 查看工作区的状态
     git reflog :查看命令历史记录(方便回滚用),以便确定要回到未来的哪个版本
     git log 查看暂存区的记录
+    git log --pretty 文件名   :查看文件的修改记录
     git log --pretty=oneline :查看暂存区记录的简介
     git log --graph :可以看到分支合并图
     git remote  默认为origin,说明连接成功;查看当前远程仓库
@@ -88,14 +89,15 @@
        此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
 
 #分支：
+    git push origin 本地分支:线上分支
+    git branch newbranch v1.0 会以tag v1.0创建新的分支newbranch
     git branch  查看分支
     git branch move  新建了move这个分支
     git checkout move  切换到move分支
     git checkout -b move  新建move并且切换到move分支;git checkout -b dev origin/dev:创建origin的dev分支
-    git merge dev :合并div分支到当前分支
+    git merge dev :合并dev分支到当前分支
     git branch -D up  (强行删除--还没合并的分支就要强行删除)
     git branch -d move (合并过的分支，-d就可以删除了)
-
 #给Node提交分支-遵循以下规范
     branch name:fix/gh-{num}
     commit message:"module name:description"
