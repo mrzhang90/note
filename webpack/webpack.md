@@ -7,6 +7,41 @@
     entry管理资源(index.enntry.js管理index.html里所有的资源,index.html管理layout等模板)，
     最终entry交给webpack
 ## webpack
+1. 定义环境变量
+    ```js
+    //DefinePlugin是webpack内置插件，可以用webpack.DefinePlugin直接获取
+    plugins:[
+        new webpack.DefinePlugin({
+            VERSION:JSON.stringify('123456'),//const VERSION='123456'
+            TWO:'1+1',//const TWO=1+1
+        })
+    ]
+    console.log('VERSION is '+VERSION)
+    ```
+1. externals
+    我们想引入一个库，又不想webpack打包，并且不影响以AMD、CMD、window/global全局等方式使用，那么可以配置externals
+    [关于externals](https://segmentfault.com/a/1190000012113011?utm_source=tag-newest)
+    **externals的配置有以下几种：array , object ,reg**
+    ```js
+    configureWebpack: {
+        externals: {
+            'jquery': 'jQuery'//支持import $ from 'jquery'||var $=require('jquery')
+        }
+    }
+
+    //假设我们引用了lodash，发现这个打包文件太大了，那么也可以用externals的方式引入
+    //使用lodash
+    import _ from 'lodash';
+    //配置externals
+    externals: {
+        "lodash": {
+            commonjs: "lodash",//如果我们的库运行在Node.js环境中，import _ from 'lodash'等价于const _ = require('lodash')
+            commonjs2: "lodash",//同上
+            amd: "lodash",//如果我们的库使用require.js等加载,等价于 define(["lodash"], factory);
+            root: "_"//如果我们的库在浏览器中使用，需要提供一个全局的变量‘_’，等价于 var _ = (window._) or (_);
+        }
+    }
+    ```
 1. entry
     ```js
     //自动收集entry,扩充output 
