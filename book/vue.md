@@ -33,7 +33,53 @@
       })
     },
 	```
-1. WebSocket心跳
+1.30s倒计时
+  ```js
+  var timer
+  const d = new Date()
+  clearInterval(timer)
+  var count = 30
+  timer = setInterval(() => {
+    if (count > 28) {
+      count = 30 - Math.floor((new Date() - d) / 1000)
+      console.log(1,count)
+        return
+    }
+      clearInterval(timer)
+      timer = null
+      console.log(count)
+  }, 1000)
+  ```
+1. VConsole 线上连续6次调用
+  ```js
+  //调用
+  debug(this.$el)
+
+  //debug.js
+  import VConsole from 'vconsole'
+  export function debug(el) {
+    //如果不是线上环境
+    if (process.env.VUE_APP_TITLE !== 'production') {
+      new VConsole()
+      return
+    }
+    //线上环境-1s内连续6次点击
+    let i = 0
+    let timer = null
+    el.addEventListener('click', function() {
+      i++
+      !timer && (timer = setTimeout(() => {
+        if (i >= 6) {
+          new VConsole()
+        } else {
+          i = 0
+          timer = null
+        }
+      }, 1000))
+    })
+  }
+  ```
+1. WebSocket心跳(连续尝试3次机会，连接成功重置状态)
 	```js
     data() {
       return {
@@ -42,13 +88,13 @@
         connectNum: 0, // websocket心跳数
       }
     },
-    openWebsocket(){//打开websocket
-      this.freshTotal = 0 //清除心跳断开数
-      this.initWebSocket()
-    },
     initWebSocket() {
       this.websock = new WebSocket(options.url)
-      this.websock.onmessage = { // 数据接收
+      this.websock.onopen = ()=>{
+        this.freshTotal = 0 // 重置断开重连数
+        console.log('e', e)
+      }
+      this.websock.onmessage = ()=>{ // 数据接收
         // websocket心跳数据
         if (typeof e.data === 'number' || !isNaN(Number(e.data))) {
           this.connectNum = e.data
@@ -59,9 +105,12 @@
       var connectNum = 0
       this.timerHeartbeat && this.clearHeartbeat()// 停止心跳
       this.timerHeartbeat = setInterval(() => {
-        if (!this.$store.state.app.isOpenHeartbeat || this.freshTotal === 3) {
-          this.clearHeartbeat()// 停止心跳
+        if (!this.$store.state.app.isOpenHeartbeat) {
+          console.log('心跳暂停')
           return
+        }
+        if (this.freshTotal === 3) {
+          this.clearHeartbeat()// 停止心跳
         }
         ++connectNum
         // websocket状态为OPEN时，才能发送消息
