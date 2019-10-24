@@ -141,12 +141,12 @@
     ```
 ## 开发插件
 1. webpack-dashboard
-    开发面板更清晰
+    开发面板更清晰
 1. progress-bar-webpack-plugin
     打包进度条
 1. webpack-parallel-uglify-plugin
     webpack官方推荐的**多核压缩**(webpack4.0+);
-    同类型产品还有：uglifyjs-webpack-plugin
+    同类型产品还有：uglifyjs-webpack-plugin(老牌，打包更彻底)
 1. speed-measure-webpack-plugin
     监控面板
     这个是**webpack性能优化前一定要配置的**，只有他你才知道webpack慢在哪里
@@ -195,8 +195,8 @@
     通知消息，当npm run 时，会在系统界面上提示消息
 ##上线插件
 1. es6不需要编译
-1. polyfill
-    * 加参数的形式，给你返回需要的polyfill方法，如果浏览器不支持该方法则不会返回
+1. **polyfill**
+    * 加参数的形式，给你返回需要的polyfill方法，如果浏览器不支持该方法则不会返回
     例如：cdn.polyfill.io/v2/polyfill.min.js?features=Map,Set
     * PS:
     这种形式要比babel-polyfill更聪明，前者尽可能减少不必要的体积，后者的体积非常大

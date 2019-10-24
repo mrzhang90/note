@@ -1,3 +1,7 @@
+# ssh 与 https
+git可以工作在ssh和https两种协议上，但为了安全性，更多会选择ssh
+**如果采用https，则每次git push都需要验证身份**
+
 #一、先注册一个github用户
     https://github.com/join
 
