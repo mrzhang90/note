@@ -1,15 +1,13 @@
 ### 方法
-1. 设置文本内容-可动态删除
+1. 遍历Map-报错
     ```dart
-    TextField(
-      controller: TextEditingController.fromValue(TextEditingValue(
-      // 设置内容
-      text: inputText,
-      // 保持光标在最后
-      selection: TextSelection.fromPosition(TextPosition(
-          affinity: TextAffinity.downstream,
-          offset: inputText.length)))),
-    )
+    var map=[
+      {'name': "北京北京1"},
+    ];
+    map.forEach((item) {
+      //这里是关键，如果写成item.name会报错
+      item['name'];//北京北京1      
+    })
     ```
 1. 方法
     ```dart
@@ -33,6 +31,30 @@
     }).catchError((){
       print("出现异常了");
     });
+    ```
+1. 点击空白处隐藏键盘
+
+    给Container添加一个点击隐藏子widget TextField隐藏键盘的操作，加上去后发现没有用，点击空白处并不能收起键盘。给container添加一个背景后才起作用。
+
+    是因为默认清楚下透明区域不响应事件，给GestureDetector加上behavior: HitTestBehavior.translucent,这个参数就可以正常接受了。
+1. 颜色
+    ```dart
+    0xaarrggbb Color(0xff00ffff); // 这个一定要注意前面两位是透明度
+    argb Color.fromARGB(255, 150, 150, 150) 各值的范围都是0 - 255
+    ```
+1. 时间日期格式化
+    ```dart
+    DateTime date = joke.createdAt;
+    // yyyy-MM-dd HH:mm:ss
+    String timestamp = "${date.year.toString()}-${date.month.toString().padLeft(2,'0')}-${date.day.toString().padLeft(2,'0')} ${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}";
+    ```
+1. TextField键盘显示和隐藏
+    给TextField指定一个FocusNode.
+    ```dart
+    //要显示键盘调下面的代码：
+    FocusScope.of(context).requestFocus(focusNode);
+    //隐藏键盘：
+    focusNode.unfocus();
     ```
 1. 操作符
     [参考：Dart运算符](https://www.cnblogs.com/upwgh/p/11173472.html)
@@ -63,34 +85,6 @@
             .get('http://api.douban.com/v2/movie/top250', data: {'count': 15});
       });
     }
-    ```
-### 解决问题
-1. Column 提示高度溢出
-    如果子list非Expanded或Flexible，就可能会提示
-    **解决方案：最后一个子组件用Expanded包一下**
-    例如:
-    ```dart
-    Column(
-      children: <Widget>[
-        SizedBox(...),
-        SizedBox(...),
-        Expanded(//这里包一下就好
-          child:Column(
-            ...//这里的最后一个也要包一下
-          )
-        )
-      ]
-    )
-    ```
-1. 遍历Map-报错
-    ```dart
-    var map=[
-      {'name': "北京北京1"},
-    ];
-    map.forEach((item) {
-      //这里是关键，如果写成item.name会报错
-      item['name'];//北京北京1      
-    })
     ```
 ### 泛类型
 ```dart
@@ -167,39 +161,6 @@ assert
   在SDK 1.22.0中，assert()添加了第二个参数message，用于在抛出异常的时候，输出具体信息
 new DateTime.now()
 ```
-### EdgeInsets
-1. EdgeInsets.all
-1. EdgeInsets.fromLTRB
-1. EdgeInsets.only
-    ```dart
-    padding: EdgeInsets.all(20)
-    padding: EdgeInsets.fromLTRB(0,30,20,40)
-    padding: EdgeInsets.only(top: 30)
-    ```
-### shape
-**shape用来设置按钮的形状**，其接收值是ShapeBorder类型，ShapeBorder是一个抽象类:
-1. BeveledRectangleBorder 带斜角的长方形边框
-1. CircleBorder 圆形边框
-1. StadiumBorder 两端是半圆的边框
-1. **RoundedRectangleBorder 圆角矩形**
-    1. side 用来设置边线（颜色，宽度等）
-        side接收一个BorderSide类型的值,属性有：color、width、style
-    1. borderRadius 用来设置圆角,分为上下左右四个方向
-        1. all 配置所有方向
-        1. cricular 环形配置，跟all效果差不多，直接接收double类型的值
-        1. horizontal 只配置左右方向
-        1. only 可选左上，右上，左下，右下配置
-        1. vertical 只配置上下方向
-```dart
-shape: RoundedRectangleBorder(//圆角矩形
-  side: BorderSide(
-    color: Color(0xff848FA9),
-    width: 1,
-  ),
-  //borderRadius: BorderRadius.circular(4),
-  borderRadius: BorderRadius.all(Radius.circular(10)),
-)
-```
 ### 字符串
 ```dart
 //StringBuffer可以特别高效的构建多个字符串
@@ -208,8 +169,79 @@ sb.write('use a string');
 sb.writeAll(['for','aa','bb']);
 print(sb.toString());//use a stringforaabb
 sb.clear();
+
+str.runtimeType   //返回对象运行时的类型
+str.contains('D', [int startIndex = 0]) //判断字符串中是否包含某字符
+str.substring(start Index,end Index)     //字符串截取
+'titan'.compareTo('jun')                 //字符串比较
+str.padLeft(2, '0')//在字符串前后补占位符1.想要得到的字符串的位数2. 位数不足时, 补充的字符
+str.toUpperCase()                        //大小写
+str.toLowerCase()                        //大小写
+str.isEmpty //字符串是否存在
+str.isNotEmpty
+str.indexOf() str.lastIndexOf()  //indexOf的顺序是从左到右, lastIndexOf是从右到左
+str.startsWith('p') //判断字符串是否以给定字符串开头, 参数不接受正则表达式
+str.endsWith('p')
+string1.trim()                           //去掉字符串里面的tab空格和换行符
+string1.trimLeft()                       //去掉字符串开头的tab空格和换行符
+string1.trimRight()                      //去掉字符串结尾的tab空格和换行符
+str.decode() //转换回Utf-8 接收的是一个int类型的集合
+str.runes         // 返回字符串Unicode代码的可迭代对象
+str.codeUnits()   //返回字符串的UTF-16代码单元列表
+str.hashCode()    //返回根据代码单元生成的哈希码
+//****************替换字符****************
+str.replaceFirst //只能替换一次, 参数三为开始的索引值, 默认0
+str.replaceAll   //替换所有符合条件的字符(字符串)
+str.replaceRange //替换某一区间的字符
 ```
-### Set、List、Map
+### List
+```dart
+// 创建一个指定长度的List, 不能添加/删除元素
+List([int length]);
+
+//通过指定长度创建一个固定长度的List，并使用fill初始化每个位置的值, 不能添加/删除元素
+List.filled(int length, E fill, {bool growable: false});
+
+//创建一个包含所有elements的List, 
+//当growable为true（默认）时，构造函数返回一个可增长的List。 否则，它返回一个固定长度的List
+List.from(Iterable elements, {bool growable: true})
+
+//生成一个包含所有值的List
+//除非growable为true(默认)，否则创建的List是固定长度的
+List.generate(int length, E generator(int index), {bool growable: true})
+
+//创建一个包含所有elements的，不能改变它的长度或元素
+List.unmodifiable(Iterable elements)
+
+var nl=new List<String>();//指定类型为String
+var v=new List();
+v.add(123); //添加一个
+v.addAll([456,'789']);//添加多个
+v.removeAt(v.indexOf('789'));//indexOf获取索引 remoteAt删除指定索引
+v.sort((a,b)=>b.compareTo(a));//sort排序 compareTo比较函数,这里倒序
+print(v.toString());//打印数组，toString获取数组的内容
+v.clear();               //clear删除数组，长度为1
+v.first、v.last          // 数组的第一个和最后一个元素
+v.isEmpty、v.isNotEmpty // 判断数组是否为空
+v.reversed               //倒序
+v.iterator               //返回Iterator，被允许迭代Iterable的所有元素
+v.hashCode               //获取对象的哈希值
+//******************查找******************
+var arr2 = ['one', 'two', 'three', 'one', 'four'];
+arr2.contains('one')    //是否包含
+arr2.any((item) => item.length > 4)   //判断数组是否有满足条件的元素
+arr2.every((item) => item.length > 4) //判断数组是否所有元素都满足条件
+// 转化为Map类型, 索引作为Key值，对应的元素作为Value
+arr2.asMap()       // {0: one, 1: two, 2: three, 3: one, 4: four}
+arr2.shuffle();    //随机打乱List中的元素
+arr2.elementAt(3)  // 通过索引获取元素, 等价于arr2[3]
+arr2.indexOf、arr2.lastIndexOf
+arr3.firstWhere((item) => item == 'one')  // 返回满足条件的第一个元素
+arr2.singleWhere((item) => item.length == 5)// 查找符合条件的元素, 如果有且仅有一个则返回该元素
+arr2.skip(2) // 返回除了最初的2个元素外的所有元素
+arr2.skipWhile((item) => item.length == 3) // 返回所有不符合该条件的元素
+```
+### Set、Map
 Set、List、Map都继承自Iterable，是可以迭代的
 ```dart
 //********************数组********************
@@ -227,20 +259,13 @@ print(arr['oahu'].every((v) => v.indexOf('waikiki') != -1)); //every-所有元�
 var teamAssignments = {};
 teamAssignments.putIfAbsent('Catcher', () => 'Catcher'.length);//putIfAbsent(K key, Function V ifAbsent())函数，通过Key来查找Value;当Key不存在执行第二个参数追加Value
 print(teamAssignments['Catcher']);
-//**********************list**********************
-var nl=new List<String>();//指定类型为String
-var v=new List();
-v.add(123); //添加一个
-v.addAll([456,'789']);//添加多个
-v.removeAt(v.indexOf('789'));//indexOf获取索引 remoteAt删除指定索引
-v.sort((a,b)=>b.compareTo(a));//sort排序 compareTo比较函数,这里倒序
-print(v.toString());//打印数组，toString获取数组的内容
-v.clear();//clear删除数组，长度为1
 //*********************SET集合*********************
 var s=new Set();
 s.add('a');
 s.addAll(['a', 'b', 'c']);
 s.remove('a');
+//***************contains 判断指定索引处的字符是否是某字符***************
+bool contains(Pattern other, [int startIndex = 0]);
 s.contains('a');//是否包含某个元素
 s.containsAll(['a','b']);//是否包含多个元素
 print(s1.intersection(s));//获取两个SET的交集

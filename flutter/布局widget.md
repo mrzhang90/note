@@ -1,3 +1,114 @@
+### 方法
+1. Row和Column高度自适应
+    ```dart
+    Column(
+      mainAxisSize: MainAxisSize.min,
+    )
+    ```
+1. Column 提示高度溢出
+    如果子list非Expanded或Flexible，就可能会提示
+    **解决方案：最后一个子组件用Expanded包一下**
+    例如:
+    ```dart
+    Column(
+      children: <Widget>[
+        SizedBox(...),
+        SizedBox(...),
+        Expanded(//这里包一下就好
+          child:Column(
+            ...//这里的最后一个也要包一下
+          )
+        )
+      ]
+    )
+    ```
+1. 左右布局 Row
+    ```dart
+    Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,//左右布局
+      children: <Widget>[
+        Container(
+          alignment: Alignment.centerLeft,
+          child: Text('账号')
+        ),
+        Container(
+          alignment: Alignment.centerRight,
+          child: Text('158')
+        ),
+      ],
+    )
+    ```
+### EdgeInsets
+1. EdgeInsets.all
+1. EdgeInsets.fromLTRB
+1. EdgeInsets.only
+    ```dart
+    padding: EdgeInsets.all(20)
+    padding: EdgeInsets.fromLTRB(0,30,20,40)
+    padding: EdgeInsets.only(top: 30)
+    ```
+### decoration
+背景设定（边框、圆角、阴影、形状、渐变、背景图像等）
+```dart
+decoration: new BoxDecoration(
+  border: new Border.all(width: 2.0, color: Colors.red),
+  color: Colors.grey,
+  borderRadius: new BorderRadius.all(new Radius.circular(20.0)),
+  image: new DecorationImage(
+    image: new NetworkImage('http://h.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=0d023672312ac65c67506e77cec29e27/9f2f070828381f30dea167bbad014c086e06f06c.jpg'),
+    centerSlice: new Rect.fromLTRB(270.0, 180.0, 1360.0, 730.0),
+  ),
+)
+```
+### container
+Container是一个widget，允许您自定义其子widget。设置填充，边距，边框或背景色
+使用其color属性设置图标的颜色。使用Text的style属性来设置字体，颜色，粗细等
+```dart
+//下边线
+Container(
+  padding: EdgeInsets.fromLTRB(l,t,r,b),
+  decoration: new BoxDecoration(
+    border: new Border(bottom: BorderSide(color: Color(0xFFDCDFE6))),
+  ),
+  child: Text('温馨提示',
+    style: TextStyle(fontSize: 16,color:Color(0xff343D54)),
+  ),
+)
+
+Container(
+  //设置圆角
+  foregroundDecoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(4),
+  )
+)
+
+new Container(
+  padding: const EdgeInsets.all(32.0),
+  decoration: new BoxDecoration(color: Colors.white),
+  child: new Center(
+    child: new Text('Hello World',
+        textDirection: TextDirection.ltr,
+        style: new TextStyle(fontSize: 40.0, color: Colors.black87)),
+  ),
+)
+```
+### Flexible、Expanded
+**主轴方向：Row在水平方向，Column在垂直方向**
+Expanded会撑开Row、Column、Flex，充满主轴可用空间
+**Flexible**可以使Row、Column、Flex等子组件在主轴方向有填充可用空间的能力，但与Expanded不同，它**不强制子组件填充可用空间**
+```dart
+// Expanded
+new Expanded(
+  flex: 1,//弹性系数设置
+  child: new Image.asset('images/pic2.jpg'),
+)
+// Flexible
+new Flexible(
+  flex: 1,
+  child: new Text('黄色按钮'),
+)
+```
 ### 布局
 1. 无状态的StatelessWidget
 1. 有状态的StatefulWidget,widget需要管理一些状态
@@ -21,18 +132,6 @@ InkWell(
 Offstage(
   offstage: isShow, //控制显示隐藏
 }
-//**********************Container**********************
-// Container是一个widget，允许您自定义其子widget。设置填充，边距，边框或背景色
-// 使用其color属性设置图标的颜色。使用Text的style属性来设置字体，颜色，粗细等
-new Container(
-  padding: const EdgeInsets.all(32.0),
-  decoration: new BoxDecoration(color: Colors.white),
-  child: new Center(
-    child: new Text('Hello World',
-        textDirection: TextDirection.ltr,
-        style: new TextStyle(fontSize: 40.0, color: Colors.black87)),
-  ),
-)
 //*****************Image*****************
 //引入本地图片
 //1.在工程根目录创建一个 images 文件夹.
@@ -108,6 +207,11 @@ new Center(
   child: new Text('Hello World', style: new TextStyle(fontSize: 32.0)
 )
 // *********************ListView********************* 
+ListView.builder(//ListView 30个
+  itemCount: 30,
+  itemBuilder: (BuildContext context, int index) {
+    return ListTile(title: Text('当前 index = $index'), onTap: () => Navigator.of(context).pop(index));
+})
 // widget放置到ListView中，而不是列中，因为在小设备上运行应用程序时，ListView会自动滚动
 new ListView(
   scrollDirection: Axis.horizontal,//水平的ListView
@@ -130,11 +234,6 @@ new ListView.builder(
     );
   },
 );
-// Expanded 弹性布局
-new Expanded(
-  flex: 2,//弹性系数设置为2
-  child: new Image.asset('images/pic2.jpg'),
-)
 //Column
 //Row
 new Row(
