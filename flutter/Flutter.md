@@ -1,4 +1,39 @@
 ### 方法
+1. 类型转换
+    ```dart
+    var a = int.parse('1234');         //把字符串 1234 转换成 数值 1234
+    print(a is int);                   //输出 ture，判断是否转换成功
+    
+    var b = double.parse('1234.12');  //把字符串 1234.12 转换成 数值 1234.12
+    print(b is double);               //输出 ture ，判断是否转换成功
+    
+    var str = 1234.toString();        //把数值 1234 转换成 字符串 1234
+    print(str  is String);            //输出 ture ，判断是否转换成功
+    ```
+1. 泛型
+    ```dart
+    //Map
+    Map<String,dynamic> map={'userName':1,'password':123456}
+    //List
+    List list=[
+      {'userName':1,'password':123456},
+    ]
+
+    //定义一个Base数据结构
+    class baseModel<T>{
+      int code=0;
+      T result;//result可能是数据 也可能是对象
+      baseModel(this.code,this.result);
+    }
+    //定义一个Model数据结构
+    class UserModel={
+      String userName='';
+      UserModel(this.userName);
+    }
+    //定义一个Map或List数据
+    baseModel<List<UserModel>> response= list;
+    baseModel<UserModel> response= map;
+    ```
 1. 遍历Map-报错
     ```dart
     var map=[
@@ -11,6 +46,8 @@
     ```
 1. 方法
     ```dart
+    //获取元素高度
+    MediaQuery.of(context).size.height
     setState
     //强制撑满
     width: double.infinity
@@ -66,7 +103,9 @@
 
     //as：类型转换（也用来作为 library 前缀）
     (emp as Person).firstName = 'Bob';//as 方式，注意当 emp 为 null 或者不是 Person类型时，会抛出异常
-    
+    //类型转换
+    BaseModel().code = json['code'] as num
+
     b ??= value    //??= 表示当左边变量为 null 时，将右边的值赋给左边变量
     expr1 ?? expr2 //expre1 不为 null时返回 expre1，否则返回 expre2
 
@@ -244,6 +283,30 @@ arr2.skipWhile((item) => item.length == 3) // 返回所有不符合该条件的�
 ### Set、Map
 Set、List、Map都继承自Iterable，是可以迭代的
 ```dart
+//创建一个map
+var mapTest = numList.map((f)=> f*5);
+print("mapTest的长度"+ mapTest.length.toString());
+mapTest.forEach((f){
+  print(f);
+});
+print(mapTest.contains(15)) ;//是否包含某个元素
+print(mapTest.elementAt(1)) ;// 通过索引获取元素, 等价于arr2[3]
+var a = mapTest.toList();//转化成list
+
+//创建映射表
+var map = { "a": 100,"b":true,"c":"yy","d":"today","e":"is","f":"a","g":"good","h":"day"};
+map["c"]= 5; //更改value
+print(map.containsKey("today"));//是否包含某个键。
+print(map.containsValue("today"));//是否包含某个值。
+map.forEach((k,v){
+  print(k+"=="+v.toString());  //类型不一样的时候就toString()
+});
+map.remove("a");//remove()移除某个元素。
+map.length //字典中键值对的个数。
+isEmpty() //是否为空，
+isNotEmpty()是否不为空。
+keys获取所有的键。
+values获取所有的值。
 //********************数组********************
 var arr = {
   'oahu' : ['waikiki', 'kailua', 'waimanalo'],

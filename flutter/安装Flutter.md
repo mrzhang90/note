@@ -23,7 +23,15 @@
   flutter packages get
   flutter run
 
-  flutter create
+  //创建一个项目
+  flutter create xx
+  
+  //修改文件后，再次启动项目报错说找不到文件，是因为缓存
+  flutter clear
+
+  //打包 - 最后生成的apk在 build\app\outputs\apk
+  //参考：https://www.jianshu.com/p/888ac3b7df01
+  flutter build apk --target-platform android-arm,android-arm64 --split-per-abi
 ```
 
 **VSCode 命令面板(cmd+shift+p)支持搜索所以一般输入flutter 就可以方便找到我们需要的命令**
