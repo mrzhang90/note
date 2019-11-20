@@ -140,13 +140,23 @@
     }
     ```
 ## 开发插件
-1. webpack-dashboard
-    开发面板更清晰
-1. progress-bar-webpack-plugin
-    打包进度条
-1. webpack-parallel-uglify-plugin
+1. happypack
+    压缩 - ts-loader
+    在整个 Webpack 构建流程中，最耗时的流程可能就是Loader对文件的转换操作了，因为要转换的文件数据巨多，而且这些转换操作都只能一个个挨着处理。HappyPack的核心原理就是把这部分任务分解到多个进程去并行处理，从而减少了总的构建时间。
+    从前面的使用中可以看出所有需要通过Loader处理的文件都先交给了happypack/loader去处理，收集到了这些文件的处理权后HappyPack就好统一分配了。
+
+    每通过new HappyPack()实例化一个HappyPack其实就是告诉HappyPack核心调度器如何通过一系列Loader去转换一类文件，并且可以指定如何给这类转换操作分配子进程。
+
+    核心调度器的逻辑代码在主进程中，也就是运行着Webpack的进程中，核心调度器会把一个个任务分配给当前空闲的子进程，子进程处理完毕后把结果发送给核心调度器，它们之间的数据交换是通过进程间通信API实现的。
+
+    核心调度器收到来自子进程处理完毕的结果后会通知Webpack该文件处理完毕。
+1. [webpack-parallel-uglify-plugin](性能优化-压缩ParallelUglifyPlugin.md)
     webpack官方推荐的**多核压缩**(webpack4.0+);
     同类型产品还有：uglifyjs-webpack-plugin(老牌，打包更彻底)
+1. progress-bar-webpack-plugin
+    打包进度条
+1. webpack-dashboard
+    开发面板更清晰
 1. speed-measure-webpack-plugin
     监控面板
     这个是**webpack性能优化前一定要配置的**，只有他你才知道webpack慢在哪里
@@ -158,23 +168,23 @@
 1. webpack-merge
     webpack的合并，合并配置，合并对象
     ```js
-        const merge=require("webpack-merge");
-        ...
-        module.exports=merge(_mergeConfig,WebpackConfig)
+    const merge=require("webpack-merge");
+    ...
+    module.exports=merge(_mergeConfig,WebpackConfig)
     ```
 1. yargs-parser
     解析命令行参数，返回键和值的简单映射。参数，表示要解析的选项的字符串或字符串数​​组。
     ```js
-            // { _: [], mode: 'development' }
-        var argv = require('yargs-parser')(process.argv.slice(2))
-        const _mode = argv.mode || "development";
-        //引入开发 或者 生产环境的特定配置
-        const _mergeConfig=require(`./config/webpack.${_mode}.js`);
+    // { _: [], mode: 'development' }
+    var argv = require('yargs-parser')(process.argv.slice(2))
+    const _mode = argv.mode || "development";
+    //引入开发 或者 生产环境的特定配置
+    const _mergeConfig=require(`./config/webpack.${_mode}.js`);
     ```
 1. clean-webpack-plugin
     用于在构建之前删除/清除构建文件夹
     ```js
-        new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(['dist']),
     ```
 1. html-webpack-plugin
     产出html
@@ -225,7 +235,7 @@
         }
     }),
     ```
-1.  单页的性能
+1.  **单页的性能**
     多页转单页时，webapp下，保证性能用直出，减少请求数量，**把runtime打到html里**
 1. 分析打包结果
     监控打包大小
@@ -236,17 +246,16 @@
     * webpack图标
         http://webpack.github.io/analyse/#/chunks
         https://alexkuz.github.io/webpack-chart/
-1. test exculde include - 提升速度
+1. **test exclude include - 提升速度**
     检测尾缀 干掉 除掉谁 ，这三个loader都设置，速度提升很快
 1. 压缩JS CSS
-    nano
-        修复css
-        happypack
-    ts-loader
-    optimize-css-assets-webpack-plugin
+    * nano
+        HintCSS、修复css
+    * optimize-css-assets-webpack-plugin
+        多核处理CSS
 1. devtool eval
 1. cache-loader
-###css
+### css
     styled-components
     css tree-tracking
         一般用在多页,单页不要用这个，单页走的是CSS Module
