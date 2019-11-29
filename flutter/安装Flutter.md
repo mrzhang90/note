@@ -20,7 +20,8 @@
   emulator -list-avds
 
   flutter doctor
-  flutter packages get
+  flutter packages get     //安装包
+  flutter packages upgrade //更新包（在IntelliJ中点击Upgrade dependencies）
   flutter run
 
   //创建一个项目

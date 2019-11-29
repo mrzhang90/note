@@ -42,15 +42,6 @@
         }
     }
     ```
-1. entry
-    ```js
-    //自动收集entry,扩充output 
-    if (/.+\/([a-zA-Z]+-[a-zA-Z]+)(\.entry\.js$)/g.test(item) == true) {
-        const entrykey = RegExp.$1
-        _entry[entrykey] = item;
-        const [dist, template] = entrykey.split(“-");
-    }
-    ``` 
 1. webapck最核心的四个包
     * main.bundles.js
         主包

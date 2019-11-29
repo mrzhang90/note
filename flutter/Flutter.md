@@ -44,11 +44,29 @@
       item['name'];//北京北京1      
     })
     ```
+1. 获取元素宽高尺寸
+    ```dart
+    GlobalKey popTopKey; //定义key
+    popTopKey = GlobalKey(); //设置key
+    Container(
+      key: popTopKey,        //元素绑定key
+    }
+    //根据key获取元素
+    RenderBox renderBox = popTopKey.currentContext.findRenderObject();
+    //获取元素尺寸
+    Size size = renderBox.size; //targetWidget的size
+    //拿到width
+    print('size.width${size.width}');
+    ```
 1. 方法
     ```dart
     //获取元素高度
     MediaQuery.of(context).size.height
-    setState
+      //实例
+      /*Container(
+        height: MediaQuery.of(context).size.height,
+        child: bodyList[this._index]
+      )*/
     //强制撑满
     width: double.infinity
     //isNotEmpty 是否为空

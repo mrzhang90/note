@@ -122,8 +122,30 @@ new Flexible(
       accentColor: Colors.cyan[600],
     )
     ```
+1. SafeArea
+    ```dart
+    //解决IphoneX刘海屏、以及其他设备的状态栏高度
+    SafeArea(
+      child: ……,
+    )
+    ```
+1. Wrap
+    ```js
+    //相当于web的div，高度可自己撑开
+    Wrap(children: <Widget>[……],);
+    ```
+1. Stack
+    ```dart
+    //********************Stack使子组件堆叠 浮动********************
+    Stack(
+      children: <Widget>[……],
+      Positioned(
+        top:0,
+        right:0,
+      )
+    )
+    ```
 ```js
-//********************Stack使子组件堆叠 浮动********************
 //***********************InkWell给widget添加点击事件***********************
 InkWell(
   onTap: () {
