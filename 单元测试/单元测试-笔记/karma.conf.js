@@ -14,21 +14,21 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
     //因为我要测试baseCls.min.js，所以我的files列表里，包含了它以及所有相关的测试脚本
-    //files 测试时，浏览器需要加载的文件list
+    //files 测试时，浏览器需要加载的文件aa
     files: ['*.js'],
 
 
     //exclude 测试时，浏览器会忽略掉这个list里面的文件，不加载它们
     exclude: ['karma.conf.js'],
 
-
-    // 插件preprocess matching files before serving them to the browser
+    // 配置测试报表 覆盖率
+    // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
     },
 
 
-    // 报告 进度条test results reporter to use
+    // 生成报表
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress'],
@@ -50,13 +50,14 @@ module.exports = function(config) {
     // 是否要检测文件的变化 enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
-
+    //无头浏览器 方便与未来的自动化测试
     //browsers 测试浏览器，有IE，Chrome，ChromeCanary，FireFox，Opera，Safari，PhantomJS
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
+    //要独立的运行在PhantomJS
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: false,
 
