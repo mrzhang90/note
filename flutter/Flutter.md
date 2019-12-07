@@ -9,6 +9,9 @@
     
     var str = 1234.toString();        //把数值 1234 转换成 字符串 1234
     print(str  is String);            //输出 ture ，判断是否转换成功
+
+    //字符串与日期相互转换
+    DateTime.parse(string) //字符串转DateTime
     ```
 1. 泛型
     ```dart
@@ -57,6 +60,40 @@
     Size size = renderBox.size; //targetWidget的size
     //拿到width
     print('size.width${size.width}');
+    ```
+1. 时间 Date
+    ```date
+    //获取时间戳，并转换成字符串
+    String TIMESTAMP=new DateTime.now().millisecondsSinceEpoch.toString();
+    ```
+1. JSON
+    ```dart
+    //jsonEncode 对象转字符串
+    String data=jsonEncode(options.data);
+    ```
+1. 对象拷贝
+  ```dart
+  Map m={};
+  Map _map = DeepCopy().copy(JSON_DATA);
+  m.add(_map);
+  ```
+1. 定时器
+    ```dart
+    //*******伪代码 30s倒计时*******
+    const count=30;
+    //调用倒计时
+    initState(count)
+    initState(count){
+      Timer _timer;
+      if(count>0){
+        _timer = Timer.periodic(
+          Duration(seconds: 1),
+          (Timer timer) => initState(--count),
+        );
+      }else{
+        _timer?.cancel();
+      }
+    }    
     ```
 1. 方法
     ```dart

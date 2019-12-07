@@ -145,6 +145,38 @@ new Flexible(
       )
     )
     ```
+1. Radio
+  ```dart
+  @override
+  String _locale = '男';
+  List _locales = ['男', '女'];
+  @override
+  Widget buildBody(BuildContext context) {
+    List<Widget> radios = List<Widget>();
+    _locales.forEach(
+      (locale) {
+        radios.add(
+          Container(
+            width: FormatSize.getSize('width', 18),
+            height: FormatSize.getSize('height', 18),
+            margin:EdgeInsets.only(left:FormatSize.getSize('right', 8),),
+            child: Radio(
+              value: locale,
+              groupValue: _locale,
+              onChanged: (value) {
+                setState(() {
+                  _locale = value;
+                });
+              },
+            ),
+          ),
+        );
+      },
+    );
+  }
+  
+  Wrap(direction: Axis.horizontal, children: radios)
+  ```
 ```js
 //***********************InkWell给widget添加点击事件***********************
 InkWell(
