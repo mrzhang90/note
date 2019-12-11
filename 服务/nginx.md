@@ -18,7 +18,9 @@
 	停止：nginx.exe -s quit
 	重新载入：nginx.exe -s reload
 	重新打开日志：nginx.exe -s reopen
-
+1. 查看配置
+	cd ~
+	cat start_nginx.sh 可以看到nginx指向的配置
 #mac
 1. 超管
 	sudo su

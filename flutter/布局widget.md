@@ -1,4 +1,16 @@
 ### 方法
+1. 数字键盘
+  ```dart
+  import 'package:flutter/services.dart';
+  TextField(
+    maxLength: 2,
+    keyboardType: TextInputType.number,   //数字键盘
+    inputFormatters: <TextInputFormatter>[
+        WhitelistingTextInputFormatter.digitsOnly,//只输入数字
+        LengthLimitingTextInputFormatter(6)//限制长度
+    ],
+  )
+  ```
 1. Row和Column高度自适应
     ```dart
     Column(
@@ -138,11 +150,16 @@ new Flexible(
     ```dart
     //********************Stack使子组件堆叠 浮动********************
     Stack(
-      children: <Widget>[……],
-      Positioned(
-        top:0,
-        right:0,
-      )
+      children: <Widget>[
+        Positioned(
+          top:0,
+          right:0,
+        ),
+        Positioned(
+          top:0,
+          right:0,
+        )
+      ],      
     )
     ```
 1. Radio

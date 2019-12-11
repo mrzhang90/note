@@ -65,6 +65,8 @@
     ```date
     //获取时间戳，并转换成字符串
     String TIMESTAMP=new DateTime.now().millisecondsSinceEpoch.toString();
+    //10年后的日期
+    parseTime(date: DateTime.now().add(Duration(days: 365*10)), format: "{y}-{m}-{d}")
     ```
 1. JSON
     ```dart
