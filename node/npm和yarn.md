@@ -11,40 +11,43 @@ nodejs的命令需要在前面加点，.help查看所有命令，退出命令是
 	解决
 		加上sudo执行
 
-#包管理器npm详解
-	npm
-		查看子命令
-	npm -v
-	npm i express -g(全局更新npm版本)
-		i是install的简写
-		g是global的简写
-	npm uninstall express
-		删除本地的express包
-	npm search express
-		查询express以及基于express之上开发的扩展包、支持包等
-	npm help
-		查询npm的子命令
-	npm help install
-		查询install的相关说明
-	npm list
-		查看依赖关系
-	npm install msbuild:
-		会把msbuild包安装到node_modules目录中
-		不会修改package.json
-		之后运行npm install命令时，不会自动安装msbuild
-	npm install --save:
-		会把msbuild包安装到node_modules目录中
-		会在package.json的dependencies属性下添加msbuild
-		之后运行npm install命令时，会自动安装msbuild到node_modules目录中
-		之后运行npm install --production或者注明NODE_ENV变量值为production时，会自动安装msbuild到node_modules目录中
-	npm install --save-dev:
-		会把msbuild包安装到node_modules目录中
-		会在package.json的devDependencies属性下添加msbuild
-		之后运行npm install命令时，会自动安装msbuild到node_modules目录中
-		之后运行npm install --production或者注明NODE_ENV变量值为production时，不会自动安装msbuild到node_modules目录中
-	使用原则:
-		运行时需要用到的包使用--save，否则使用--save-dev。
-
+# 包管理器npm详解
+```js
+npm install --production
+	上线前安装npm
+npm
+	查看子命令
+npm -v
+npm i express -g(全局更新npm版本)
+	i是install的简写
+	g是global的简写
+npm uninstall express
+	删除本地的express包
+npm search express
+	查询express以及基于express之上开发的扩展包、支持包等
+npm help
+	查询npm的子命令
+npm help install
+	查询install的相关说明
+npm list
+	查看依赖关系
+npm install msbuild:
+	会把msbuild包安装到node_modules目录中
+	不会修改package.json
+	之后运行npm install命令时，不会自动安装msbuild
+npm install --save:
+	会把msbuild包安装到node_modules目录中
+	会在package.json的dependencies属性下添加msbuild
+	之后运行npm install命令时，会自动安装msbuild到node_modules目录中
+	之后运行npm install --production或者注明NODE_ENV变量值为production时，会自动安装msbuild到node_modules目录中
+npm install --save-dev:
+	会把msbuild包安装到node_modules目录中
+	会在package.json的devDependencies属性下添加msbuild
+	之后运行npm install命令时，会自动安装msbuild到node_modules目录中
+	之后运行npm install --production或者注明NODE_ENV变量值为production时，不会自动安装msbuild到node_modules目录中
+使用原则:
+	运行时需要用到的包使用--save，否则使用--save-dev。
+```
 # npm start命令
 	在package.json中对scripts对象进行相关设置即可
 	例如配置webpack:
