@@ -150,6 +150,13 @@
     //隐藏键盘：
     focusNode.unfocus();
     ```
+1. TextField 禁用
+    ```dart
+    TextField(
+      enabled: false,//只读不可编辑、也无法响应点击事件
+      enableInteractiveSelection: false, //只读不可编辑
+    )
+    ```
 1. 操作符
     [参考：Dart运算符](https://www.cnblogs.com/upwgh/p/11173472.html)
     ```dart
