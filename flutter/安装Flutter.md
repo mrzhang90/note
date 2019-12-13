@@ -34,5 +34,17 @@
   //参考：https://www.jianshu.com/p/888ac3b7df01
   flutter build apk --target-platform android-arm,android-arm64 --split-per-abi
 ```
-
+#### 版本
+^1.0.0
+'1.0.0'
+'^0.1.2'
+'>=0.1.2 <0.2.0'
 **VSCode 命令面板(cmd+shift+p)支持搜索所以一般输入flutter 就可以方便找到我们需要的命令**
+
+1. 安装包失败
+  * 安装成功，引用提示找不到包
+    * 重启编辑器
+  * 安装失败，提示Flutter SDK低
+    * 降低包版本
+1. EventBus引用未生效
+  * 项目停止再启动
