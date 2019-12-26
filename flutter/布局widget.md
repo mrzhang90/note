@@ -1,4 +1,13 @@
 ### 方法
+1. 高度撑满，滚动
+  ```dart
+  Container(
+    height: double.infinity,//高度撑满
+    child: SingleChildScrollView(//滚动
+      child:
+    ),
+  ),
+  ```
 1. 数字键盘
   ```dart
   import 'package:flutter/services.dart';
@@ -141,6 +150,10 @@ new Flexible(
       child: ……,
     )
     ```
+1. SingleChildScrollView
+    ```dart
+    //滚动
+    ```
 1. Wrap
     ```js
     //相当于web的div，高度可自己撑开
@@ -195,10 +208,13 @@ new Flexible(
   Wrap(direction: Axis.horizontal, children: radios)
   ```
 ```js
-//***********************InkWell给widget添加点击事件***********************
+//***********************给widget添加点击事件***********************
 InkWell(
-  onTap: () {
+  onTap: () {}
 ),
+GestureDetector(
+  onTap: () {}
+)
 //***********************Offsetage控制显示隐藏***********************
 Offstage(
   offstage: isShow, //控制显示隐藏
