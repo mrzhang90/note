@@ -119,6 +119,11 @@ new Container(
 Expanded会撑开Row、Column、Flex，充满主轴可用空间
 **Flexible**可以使Row、Column、Flex等子组件在主轴方向有填充可用空间的能力，但与Expanded不同，它**不强制子组件填充可用空间**
 ```dart
+//Column
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,//居左，默认元素居中
+  children: <Widget>[]
+)
 // Expanded
 new Expanded(
   flex: 1,//弹性系数设置
