@@ -20,9 +20,17 @@
   emulator -list-avds
 
   flutter doctor
-  flutter packages get     //安装包
-  flutter packages upgrade //更新包（在IntelliJ中点击Upgrade dependencies）
+  flutter upgrade          //同时更新Flutter SDK和你的依赖包
+  flutter packages get     //获取pubspec.yaml文件中列出的所有依赖包
+  flutter packages upgrade //获取pubspec.yaml文件中列出的所有依赖包的最新版本（在IntelliJ中点击Upgrade dependencies）
+  //查看Flutter SDK 分支
+  flutter channel
+  //切换Flutter分支到稳定版
+  flutter channel stable
+  //flutter 运行，默认指向mart.dart
   flutter run
+  //fltter 运行 dev环境
+  flutter run --target=./lib/main_dev.dart
 
   //创建一个项目
   flutter create xx
