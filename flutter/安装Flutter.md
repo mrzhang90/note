@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2019-12-13 23:47:08
+ * @LastEditTime : 2020-01-08 11:56:45
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \note\flutter\安装Flutter.md
+ -->
 ## 安装Flutter
 1. 下载Flutter
   git clone -b beta https://github.com/flutter/flutter.git
@@ -23,6 +31,12 @@
   flutter upgrade          //同时更新Flutter SDK和你的依赖包
   flutter packages get     //获取pubspec.yaml文件中列出的所有依赖包
   flutter packages upgrade //获取pubspec.yaml文件中列出的所有依赖包的最新版本（在IntelliJ中点击Upgrade dependencies）
+  
+  //Flutter SDK版本切换**************
+  1. cd到SDK文件夹，
+  2. 切换版本 git checkout v1.9.1-hotfixes
+  3. 命令 flutter doctor
+
   //查看Flutter SDK 分支
   flutter channel
   //切换Flutter分支到稳定版
