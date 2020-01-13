@@ -1,4 +1,12 @@
 ### 方法
+1. 解决ListView高度无法自适应
+    ```dart
+    ListView.builder(
+      shrinkWrap: true,
+      //ListView禁用滑动
+      physics: NeverScrollableScrollPhysics(),
+    )
+    ```
 1. 高度撑满，滚动
     ```dart
     Container(
@@ -136,9 +144,16 @@
     ```
 1. 对象拷贝
     ```dart
+    //对象拷贝1：
     Map m={};
     Map _map = DeepCopy().copy(JSON_DATA);
     m.add(_map);
+    //对象拷贝2：
+    jsonDecode(jsonEncode({
+      'a':1
+    }))
+    //数组拷贝：
+    list.toList();//可创建一个数组副本
     ```
 1. 定时器
     ```dart

@@ -1,0 +1,38 @@
+{
+  // 使用 IntelliSense 了解相关属性。 
+  // 悬停以查看现有属性的描述。
+  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Dart",
+      "program": "D:/xx/lib/main.dart",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "dev",
+      "type": "dart",
+      "request": "launch",
+      "program": "D:/xx/lib/main_dev.dart"
+    },
+    {
+      "name": "test",
+      "type": "dart",
+      "request": "launch",
+      "program": "D:/xx/lib/main_test.dart"
+    },
+    {
+      "name": "prod",
+      "type": "dart",
+      "request": "launch",
+      "program": "D:/xx/lib/main_prod.dart"
+    },
+    {
+      "name": "mock",
+      "type": "dart",
+      "request": "launch",
+      "program": "D:/xx/lib/main_mock.dart"
+    }
+  ]
+}
