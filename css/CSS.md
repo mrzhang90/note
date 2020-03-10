@@ -243,9 +243,14 @@ input,input:focus{ outline:none;}
 ##flex
     固定宽度
     ```css
+        //方案1
         flex:0 0 60px;
         //相当于
         flex-basis:60px;
+        //方案2
+        //需要固定的元素
+        width:65px;
+        flex-shrink:0;
     ```
 	display: flex
 		容器指定为Flex
