@@ -1,7 +1,8 @@
 #### 部署NodeJS上线步骤
 在**生产环境**的服务进程和日志管理领域，**pm2** 是当之无愧的首选，功能很强大，使用简单，**开发环境常用的是 nodemon。**
 1. https://brew.sh/index_zh-cn.html
-1. brew search nginx brew install nginx
+1. brew search nginx
+1. brew install nginx
 1. brew info nginx
 1. nginx -v
 1. 启动sudo brew services start nginx（默认端口8080）

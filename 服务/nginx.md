@@ -24,6 +24,16 @@
 #mac
 1. 超管
 	sudo su
+1. 安装
+	brew install nginx
+1. 启动、停止、重启
+	brew services start nginx
+	brew services stop nginx
+	brew services restart nginx
+1. nginx配置
+	vim /usr/local/etc/nginx/nginx.conf
+1. 测试配置是否有语法错误
+	nginx -t -c /usr/local/etc/nginx/nginx.conf
 1. 启动 nginx服务
 	sudo nginx
 1. nginx版本
@@ -33,10 +43,8 @@
 1. 测试配置是否有语法错误
 	nginx -t
 1. 启动 nginx
-	sudo ngixn -c /usr/local/etc/nginx/nginx.conf
-1. 测试配置是否有语法错误
-	nginx -t -c /usr/local/etc/nginx/nginx.conf
-1. ngixn配置
+	sudo nginx -c /usr/local/etc/nginx/nginx.conf
+1. nginx配置
 	/usr/local/etc/nginx/sites-enabled
 1. log日志
 	/usr/local/var/log/nginx/access.log
