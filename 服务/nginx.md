@@ -34,6 +34,10 @@
 	vim /usr/local/etc/nginx/nginx.conf
 1. 测试配置是否有语法错误
 	nginx -t -c /usr/local/etc/nginx/nginx.conf
+1. 查看nginx的进程  进程ID号比较小的是主进程
+	ps aux | grep nginx
+1. 热启动，服务器不中断
+	nginx -r
 1. 启动 nginx服务
 	sudo nginx
 1. nginx版本
@@ -49,10 +53,19 @@
 1. log日志
 	/usr/local/var/log/nginx/access.log
 
-#mysql
-启动
-/usr/local/Cellar/mysql/5.7.22/support-files/mysql.server start
-停止
-/usr/local/Cellar/mysql/5.7.22/support-files/mysql.server stop
-重启
-/usr/local/Cellar/mysql/5.7.22/support-files/mysql.server restart
+### Nginx配置
+1. vue-router的mode为history
+1. **二级目录设为站点**
+	```
+	http {
+		server {
+			listen       9000;
+			server_name  localhost;
+			location /realtime_test {
+				alias /Users/zhang/haoweilai/realtime/dist/;
+				try_files $uri $uri/ /realtime_test/index.html;//二级目录设为站点
+			}
+		}
+		include servers/*;
+	}
+	```

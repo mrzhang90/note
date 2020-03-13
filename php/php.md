@@ -1,29 +1,32 @@
-全局：
-	global $c -声明变量c为全局可用
-	session:
+### 启动php环境
+	php artisan serve
+### 全局：
+1. global $c -声明变量c为全局可用
+1. session:
 		session_start();//session开关，每个页面使用session前要加这么一句，也可以在全局设置
 		$_SESSION['view']='你访问session了';
-		
-方法：
-	include_once和require_once的区别，前者包含或执行中遇错依然可以执行；后者则不执行
-	json_encode($array) -数组编码
-	__autoload() --自动加载类
-		__autoload() 是专门为 类的不存在 而设计的！！！很多框架利用这个函数，实现 类文件的自动加载 ！！！
-	unset($ourfirstdog) -- 注销类
+### 方法：
+	include_once和require_once的区别
+		前者包含或执行中遇错依然可以执行；后者则不执行
+	json_encode($array)
+		--数组编码
+	__autoload()
+		--自动加载类
+		__autoload() 是专门为 类的不存在 而设计的,很多框架利用这个函数，实现 类文件的自动加载
+	unset($ourfirstdog)
+		--注销类
 		$ourfirstdog = new dog("Rover",12,"Lisa and Graham");
 		unset($ourfirstdog);//注销这个类
-
-转换序列化
-	serialize() -- 序列化
-		将对象为字符串
-		$ourfirstdog = new dog("Rover",12,"Lisa and Graham");
-		serialize($ourfirstdog);//序列化为字符串 O:3:"dog":3:
-	unserialize() -- 反序列化
-		将字符串反序列化为对象
-		$pet = unserialize($dogdisc); //此时的 $pet 已经是前面的 $ourfirstdog 对象了
-		$old = $pet->getage();//获得属性
-
-时间：
+### 转换序列化
+1. **serialize() -- 序列化**
+	将对象为字符串
+	$ourfirstdog = new dog("Rover",12,"Lisa and Graham");
+	serialize($ourfirstdog);//序列化为字符串 O:3:"dog":3:
+1. **unserialize() -- 反序列化**
+	将字符串反序列化为对象
+	$pet = unserialize($dogdisc); //此时的 $pet 已经是前面的 $ourfirstdog 对象了
+	$old = $pet->getage();//获得属性
+### 时间：
 	time()
 		服务器当前时间的时间戳
 		$time()+2*3600
@@ -33,8 +36,7 @@
 	date("Y-m-d");
 		将时间戳转换成我们需要的格式
 			date("Y-m-d",$data);
-
-判断存在
+### 判断存在
 	defined('MYCONSTANT')
 		判断常量是否存在
 	isset($var_name)
@@ -67,12 +69,10 @@
 	filter_has_var(INPUT_GET, "name")
 		检查是否存在指定输入类型的变量
 		若成功，则返回 true，否则返回 false
-
-乱码解决：
+### 乱码解决：
 	header('Content-Type: json; charset=utf-8'); //添加报头
 	mysql_query("set names 'utf8'"); //添加到数据库内容乱码时
-
-面向对象：
+### 面向对象：
 	__get(),__set() ：获取赋值属性。这两个方法不是默认存在的，是我们手工添加到类里的
 	__isset(),__unset() ：检查和删除属性
 		一般来说，类的属性通常是private,PHP5中预定义了__get(),__set()，__isset(),__unset()

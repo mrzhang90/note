@@ -83,8 +83,6 @@
 		kill -9 489 -强制杀掉PID为488的进程
 		pkill 程序名 -根据程序名杀掉进程
 	查看进程
-		ps -ef |grep mysql 查看mysql的进程
-		ps -ef |grep mongodb 查看mongodb的进程
 		ubuntu只能查看自己账户的进程
 			那么 sudo ps aux，暂时提升为超级管理员，就可以查看其他管理员的进程了
 	centos

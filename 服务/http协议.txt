@@ -101,8 +101,6 @@ HTTP与反向代理
 反向代理做负载均衡
 	DNS就近原则
 
-nginx安装
-	xshell软件安装在linux下
 linux命令
 	tar
 		压缩命令
@@ -119,9 +117,6 @@ linux命令
 		添加权限
 	sudo ps aux -如果是root，就不用sudo
 		查看进程
-	ps aux | grep nginx
-		查看nginx的进程
-		进程ID号比较小的是朱金城
 	kill 80
 		傻掉80端口
 	kill -9 80
@@ -130,8 +125,6 @@ linux命令
 		查看80端口
 	ss
 		查看端口
-	nginx -r
-		热启动，服务器不中断
 	
 Accept-Language
 	zh-CN
