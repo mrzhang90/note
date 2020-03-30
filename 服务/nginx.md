@@ -24,12 +24,14 @@
 #mac
 1. 超管
 	sudo su
-1. 安装
+1. 安装、启动、停止、重启
 	brew install nginx
-1. 启动、停止、重启
 	brew services start nginx
 	brew services stop nginx
 	brew services restart nginx
+	brew uninstall nginx
+1. 重新加载配置（不会stop，只是重新加载配置）
+	sudo nginx -s reload
 1. nginx配置
 	vim /usr/local/etc/nginx/nginx.conf
 1. 测试配置是否有语法错误

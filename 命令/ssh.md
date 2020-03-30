@@ -9,3 +9,12 @@ cat ~/.ssh/id_rsa.pub
 
 GIT版本
 git version
+
+ssh版本
+ssh -V
+
+登陆
+ssh name@192.168.0.10
+
+登出
+logout 192.168.0.10
