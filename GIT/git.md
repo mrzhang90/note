@@ -26,9 +26,15 @@ git可以工作在ssh和https两种协议上，但为了安全性，更多会选
     PS:如果你没有看到.git目录，那是因为这个目录默认是隐藏的，用ls -al命令就可以看见。
 
 #工作流程
-    git clone [地址] :把自己的项目下载到本地
-    ps:Git支持多种协议，包括https(速度慢)，但通过ssh支持的原生git协议速度最快。
-    touch 1.txt :创建一个名字叫 1.txt的文件
+git clone [地址] :把自己的项目下载到本地
+```js
+git clone ssh://user:pssword@url
+//其中user是你的账号
+//password是你的密码
+//url是远程git库地址
+```
+ps:Git支持多种协议，包括https(速度慢)，但通过ssh支持的原生git协议速度最快。
+touch 1.txt :创建一个名字叫 1.txt的文件
 
 #删除：
     git rm [文件名] :删除本地文件

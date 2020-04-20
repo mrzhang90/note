@@ -1,16 +1,5 @@
-Node Error
-	Error code
-		一般是没有权限的原因，MAC下使用sudo命令执行
-命令
-nodejs的命令需要在前面加点，.help查看所有命令，退出命令是.exit
-退出：两次ctrl+C或者一次ctrl+D
-
-#MAC全局安装报错
-	报错
-		npm ERR! Darwin 16.7.0
-	解决
-		加上sudo执行
-
+# 锁定node版本号
+npm config set save-exact true
 # 包管理器npm详解
 ```js
 npm install --production
@@ -63,7 +52,7 @@ npm install --save-dev:
   	devDependencies
   		生产环境
 
-#Node.js REPL环境
+# Node.js REPL环境
 	ctrl+c 
 		退出当前终端
 	ctrl+c 
