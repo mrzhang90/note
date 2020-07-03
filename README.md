@@ -1,3 +1,10 @@
+## curl请求
+```js
+curl -X POST \
+	https://baidu.com \
+	-F wd=refresh_token
+```
+
 ## 插件
 1. set-iterm2-badge
 	命令行的背景上打上描述文字，用来提示当前窗口
