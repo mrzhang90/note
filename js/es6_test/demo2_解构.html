@@ -9,6 +9,18 @@
 <div></div>
 <script type="text/javascript">
 	"use strict"
+	// 对象结构
+	var a=function(){
+		return  {
+			validateStatus: 'error',
+			errorMsg: 'The prime between 8 and 12 is 11!',
+		};
+	}
+	var b={
+		...a()
+	}
+	console.log(b) //{validateStatus: "error", errorMsg: "The prime between 8 and 12 is 11!"}
+	
 	const items=['a',123,'hi'];
 	console.log(...items)
 
