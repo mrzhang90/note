@@ -71,3 +71,56 @@
 		include servers/*;
 	}
 	```
+### NGINX 配置本地HTTPS(免费证书)
+1. 命令创建证书文件
+	```js
+	//生成秘钥key,运行:
+	$ openssl genrsa -des3 -out server.key 2048
+	//会有两次要求输入密码,输入同一个即可
+	//然后你就获得了一个server.key文件
+
+	//以后使用此文件(通过openssl提供的命令或API)可能经常回要求输入密码,如果想去除输入密码的步骤可以使用以下命令:
+	$ openssl rsa -in server.key -out server.key
+
+	//创建服务器证书的申请文件server.csr,运行:
+	openssl req -new -key server.key -out server.csr
+	//其中Country Name填CN,Common Name填主机名也可以不填,如果不填浏览器会认为不安全.(例如你以后的url为https://abcd/xxxx….这里就可以填abcd),其他的都可以不填.
+
+	//创建CA证书:
+	openssl req -new -x509 -key server.key -out ca.crt -days 3650
+	//此时,你可以得到一个ca.crt的证书,这个证书用来给自己的证书签名.
+
+	//创建自当前日期起有效期为期十年的服务器证书server.crt：
+	openssl x509 -req -days 3650 -in server.csr -CA ca.crt -CAkey server.key -CAcreateserial -out server.crt
+	
+	//ls你的文件夹,可以看到一共生成了5个文件:
+	ca.crt   ca.srl    server.crt   server.csr   server.key
+	//其中,server.crt和server.key就是你的nginx需要的证书文件
+	```
+1. 配置nginx
+	```
+	server {
+		listen 8443 ssl;
+		server_name local.liuxue.com;
+		ssl_certificate /usr/local/etc/nginx/conf/server.crt;
+		ssl_certificate_key /usr/local/etc/nginx/conf/server.key;
+		location / {
+			root   /vue-crp/dist/;
+			index  index.html index.htm;
+		}
+	}
+	```
+1. nginx -t 检测是否有配置问题
+	nginx -s reload 重启服务
+### 问题解决
+1. **nginx: [error] invalid PID number**
+	在Mac上用brew安装Nginx，然后修改Nginx配置文件，再重启时报出如下错误：
+	```
+	nginx: [error] invalid PID number "" in "/usr/local/var/run/nginx/nginx.pid"
+	```
+
+	解决办法：
+	```js
+	$ sudo nginx -c /usr/local/etc/nginx/nginx.conf
+	$ sudo nginx -s reload
+	```

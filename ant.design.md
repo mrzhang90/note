@@ -42,6 +42,7 @@ const Validate={
     }
 }
 data(){
+  form:this.$form.createForm(),
     // 校验级联
     cityConfig: {
         rules: [{
@@ -66,22 +67,26 @@ data(){
     }
 },
 created () {
-    this.form = this.$form.createForm(this, {
-      name: 'xxxx',
-      mapPropsToFields: () => {
-        const formInformation = this.formInformation
-        const _form = {}
-        // 将数据遍历，通过createFormField将数据渲染到控件上
-        Object.keys(formInformation).forEach(key => {
-          Object.assign(_form, {
-            [key]: this.$form.createFormField({
-              value: formInformation[key]
-            })
-          })
-        })
-        return _form
-      }
-    })
+    // this.form = this.$form.createForm(this, {
+    //   name: 'xxxx',
+    //   mapPropsToFields: () => {
+    //     const formInformation = this.formInformation
+    //     const _form = {}
+    //     // 将数据遍历，通过createFormField将数据渲染到控件上
+    //     Object.keys(formInformation).forEach(key => {
+    //       Object.assign(_form, {
+    //         [key]: this.$form.createFormField({
+    //           value: formInformation[key]
+    //         })
+    //       })
+    //     })
+    //     return _form
+    //   }
+    // })
+},
+mounted(){
+  // 渲染数据
+  this.form.setFieldsValue(this.formInformation)
 },
 methods:{
     // 校验级联

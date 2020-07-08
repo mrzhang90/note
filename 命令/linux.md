@@ -6,6 +6,13 @@
 		使其立即生效（否则重启后才生效）
 	echo $ANDROID_HOME
 		检查此变量是否已正确设置
+# scp
+1. 拷贝远程文件到本地
+	```js
+	-P指定端口
+	-r拷贝文件夹
+	scp -P 指定端口 -r root@远程IP:远程路径 本地路径
+	```
 #select
 	ifconfig
 		查看IP
