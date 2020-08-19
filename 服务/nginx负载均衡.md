@@ -9,19 +9,39 @@ Upstream是nginx服务器一个重要的模块，实现轮询和客户端ip之�
   upstrean指令主要用于设置一组可以在proxy_pass和fastcgi_pass指令中使用额外代理服务器，默认负载均衡方式为轮询。
 
 #### nginx实现负载均衡
-```
-worker_processes 4;  //电脑是几核，就设置多少
+```nginx
+worker_processes 4; #电脑是几核，就设置多少
 events{
-  worker_connections 1024; //并发连接
+  worker_connections 1024; #并发连接
 }
 #error_ log logs/error.log;        //出错的日志
 #error_ log logs/error.log notice; //警告
 #error_ log logs/error.log info;   //基本信息
 http{
+  #配置一 默认 这两个ip地址 权重一样 都是1:1 的概率访问到;
+  #upstream firsttest {
+      #server 47.104.64.78:3389;
+      #server 47.104.64.79:3389;
+  #}
+
+  #配置二 ip_hash; 让用户落在第一个次访问ip上
+  #upstream firsttest {
+      #ip_hash;
+      #server 47.104.64.78:3389;
+      #server 47.104.64.79:3389;
+  #}
+
+  #配置三 ip 添加weight; 使当前被访问的 ip权重 为2:1
+  #upstream firsttest {
+      #server 47.104.64.78:3389 weight=2;
+      #server 47.104.64.79:3389;
+  #}
+
+  # 根据上述三种配置
   upstream firsttest {
     ip_hash;
-    server 192.168.0.21 weight=2;  //访问权重
-    server 192.168.0.31;
+    server 47.104.64.78:3389 weight=2;  #访问权重
+    server 47.104.64.79:3389;
   }
   server {
     listen 8080;

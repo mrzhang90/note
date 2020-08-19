@@ -38,7 +38,8 @@
   1. 能够动态监控文件的上传 0秒热启动
   1. **也能够负载均衡CPU**
   1. 内存的使用 过多了 CPU调度太频繁 重启
-  1. restart 个数
+  1. PM2性能优化
+    keymetrics平台监控 https://app.keymetrics.io/#/ 注册登陆上去就能连上自己的pm2 就能界面化 监控,查看cpu情况
       ```js
       //pm2.json
       {
