@@ -3,7 +3,8 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 ```
 // 设置淘宝镜像代理
-npm config set proxy = registry.npm.taobao.org
+npm config set registry https://registry.npm.taobao.org
+npm config set proxy http://registry.npm.taobao.org
 // 取消代理
 npm config delete proxy
 ```
