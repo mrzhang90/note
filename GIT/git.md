@@ -2,30 +2,30 @@
 git可以工作在ssh和https两种协议上，但为了安全性，更多会选择ssh
 **如果采用https，则每次git push都需要验证身份**
 
-#一、先注册一个github用户
+# 一、先注册一个github用户
     https://github.com/join
 
-#二、命令行安装(MAC 安装)
+# 二、命令行安装(MAC 安装)
     访问 http://brew.sh,
     1.拷贝首页代码到命令行,等待后,提示密码输入"123456",提示成功则表示OK;
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     2.然后在终端执行 "brew install git" 命令安装 *git
 
-#三、安装git
+# 三、安装git
     在命令行中分别配置用户名和邮箱
     git config --global user.name "mrzhang90" //你的github用户名
     git config --global user.email "sp6688@vip.qq.com" //你的github邮箱
     git config --global user.name 查看用户邮箱
     git config --list
 
-#四、初始化仓库
+# 四、初始化仓库
     windows下:先在任意目录右键打开`git-bash`
     mkdir 201602git 创建空目录
     cd 201602git    进入此目录
     git init       初始化GIT仓库 //输入git init命令把这个目录变成Git可以管理的仓库
     PS:如果你没有看到.git目录，那是因为这个目录默认是隐藏的，用ls -al命令就可以看见。
 
-#工作流程
+# 工作流程
 git clone [地址] :把自己的项目下载到本地
 ```js
 git clone ssh://user:pssword@url
@@ -36,48 +36,57 @@ git clone ssh://user:pssword@url
 ps:Git支持多种协议，包括https(速度慢)，但通过ssh支持的原生git协议速度最快。
 touch 1.txt :创建一个名字叫 1.txt的文件
 
-#删除：
-    git rm [文件名] :删除本地文件
-    git rm -f [文件名] :删除本地文件,以及暂存区中的文件
-    git rm --cached [文件名] :删除暂存区文件
-    git rm -r 目录名
+# 删除：
+```js
+git rm [文件名] //删除本地文件
+git rm -f [文件名] //删除本地文件,以及暂存区中的文件
+git rm --cached [文件名] //删除暂存区文件
+git rm -r //目录名
+```
 
-#查看:
-    git status 查看工作区的状态
-    git reflog :查看命令历史记录(方便回滚用),以便确定要回到未来的哪个版本
-    git log 查看暂存区的记录
-    git log --pretty 文件名   :查看文件的修改记录
-    git log --pretty=oneline :查看暂存区记录的简介
-    git log --graph :可以看到分支合并图
-    git remote  默认为origin,说明连接成功;查看当前远程仓库
-    git remote -v :查看当前项目对应的地址;查看当前本地仓库关联了哪些远程仓库
-    git remote add url(对应的项目地址) :如果不小心把远程仓库的名字给删除了，那么就自己创建一个远程仓库
-        -.再添加上游的讲师的仓库地址，起名叫teacher
-        git remote add  origin https://github.com/zhufengnodejs/201602node_homework.git
-    git diff 查看本地与暂存区的区别
-    git diff HEAD -- [文件名] :查看工作区与版本库的区别
-    git diff --cached 查看暂存区与版本区的区别
-    git diff master 查看工作区与版本去的区别
+# 查看:
+```js
+git status //查看工作区的状态
+git reflog //查看命令历史记录(方便回滚用),以便确定要回到未来的哪个版本
+git log //查看暂存区的记录
+git log --pretty 文件名   //查看文件的修改记录
+git log --pretty=oneline //查看暂存区记录的简介
+git log --graph //可以看到分支合并图
+git remote  //默认为origin,说明连接成功;查看当前远程仓库
+git remote -v //查看当前项目对应的地址;查看当前本地仓库关联了哪些远程仓库
+git diff //查看本地与暂存区的区别
+git diff HEAD -- [文件名] //查看工作区与版本库的区别
+git diff --cached //查看暂存区与版本区的区别
+git diff master //查看工作区与版本去的区别
+```
 
-#提交到版本库:
-    git add . [等同于] git add -A::把工作区中的所有的修改添到暂存区
-    git add 1.txt 添加暂存区,添加文件
-    git commit -m "注释" 把文件提交到缓存区
-    git commit -a -m "注释" //工作区直接到到版本区
+# 提交到版本库:
+```js
+git add . //[等同于] git add -A 把工作区中的所有的修改添到暂存区
+git add 1.txt //添加暂存区,添加文件
+git commit -m "注释" //把文件提交到缓存区
+git commit -a -m "注释" //工作区直接到到版本区
+```
 
-#撤销：
+# 撤销：
 1. 回滚
     ```js
         git reset --hard commitID
         git push -f origin
     ```
-1. git reset HEAD 文件名   将暂存区的代码撤销到工作区。
+1. 撤销，放弃本地修改，放弃已提交修改
+    ```js
+        git reset HEAD . //从暂存区撤回到工作区 (git reset HEAD filepathname)
+        git checkout .  //从工作区放弃所有的文件修改 (git checkout -- filepathname 不要忘记中间的“--”,不写就就成了检出分支了)
+    ```
 2. 将工作区的代码还原成版本库的代码:
+    ```js
     git checkout -- [文件名] //撤销,讲版本区撤销到工作区
     git checkout [历史记录] [文件名] //恢复某个指定的文件
+    ```
 3. 在已经提交到版本库的时候，如果遗漏了某个文件，那么先将这个遗漏文件放到
-    暂存区，然后git commit -m "新的注释" --amend
-    就能将之前提交到版本库的文件与遗漏的文件一起保存到版本库。
+    - 暂存区，然后git commit -m "新的注释" --amend
+    - 就能将之前提交到版本库的文件与遗漏的文件一起保存到版本库。
 #恢复：
     git checkout -- [文件名]
         把指定文件在工作区的修改全部撤销,两种情况:1.修改后还没有被放到暂存区,那么撤销和版本库一样;2.已经添加到暂存区后，又作了修改,那么撤销回新添加暂存区后的状态
