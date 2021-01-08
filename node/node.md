@@ -86,6 +86,10 @@
 	}
 
 # Node和Npm版本升级到最新版
+1. 查看node安装路径
+	```js
+	which node
+	```
 1. 先查看本机node.js版本：
 	```js
 	node -v

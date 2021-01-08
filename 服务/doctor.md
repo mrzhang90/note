@@ -24,16 +24,36 @@ docker run -t -i ubuntu:15.10 /bin/bash
 docker exec -t -i c882805648e4 /bin/bash
 1. 容器拷贝
 docker cp /www/runoob 96f7f14e99ab:/www/
+### nginx
+1. 安装nginx最新版本镜像
+docket pull nginx
+docket pull nginx:latest
+1. 查看nginx版本
+docker search nginx
+1. 运行nginx容器
+docker run --name nginx-test -p 8080:80 -d nginx
+1. 访问页面
+location:8080
+1. 配置nginx
+    1. 进入容器
+        docker exec -it nginx-test bash
+    1. vim /etc/nginx/nginx.conf
+        - 如果vim不可用，解决办法：
+            1. apt-get  update
+            1. apt-get install vim
+1. 停止Nginx
+    docker stop nginx
+    docker start nginx
 ### node
 1. 安装最新node
-docker pull node:latest
-1. 安装指定node版本
-docker pull node:11.4.0
+docker pull node:latest //最新版本
+docker pull node:11.4.0 //指定版本
 1. 运行node
 docker run -itd --name node-test node
 1. 安装指定node版本
 docker run -t -i node:7.10.1 /bin/bash
 docker exec -t -i node:7.10.1 /bin/bash
+docker exec -t -i node-test bash
 ### 退出容器
 exit 或者 CTRL+D
 

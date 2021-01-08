@@ -119,8 +119,17 @@
 	nginx: [error] invalid PID number "" in "/usr/local/var/run/nginx/nginx.pid"
 	```
 
-	解决办法：
+	解决办法1：
 	```js
-	$ sudo nginx -c /usr/local/etc/nginx/nginx.conf
-	$ sudo nginx -s reload
+	rm -rf /usr/local/var/run/nginx/nginx.pid //删掉错误文件
+	nginx -s reload
+	//如果reload失败，则杀掉nginx进程，然后再重启nginx
+	ps aux | grep nginx
+	kill -9 进程ID
+	nginx -s reload
+	```
+	解决办法2：
+	```js
+	sudo nginx -c /usr/local/etc/nginx/nginx.conf
+	sudo nginx -s reload
 	```
