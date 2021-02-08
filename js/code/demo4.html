@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+var num=1
+function yideng(){
+  'use strict';
+  // 严格模式下，在函数内部，this不允许指向全局对象 或者说 this必须明确指向谁
+  console.log(++this.num)  //undefined
+}
+function yideng2(){
+  console.log(++this.num)
+}
+(function(){
+  'use strict'; //无效，严格模式不能影响到子作用域；要么写到函数内部，要么写在全局函数
+  yideng2()
+})()
+yideng()
+</script>
+</body>
+</html>

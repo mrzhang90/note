@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<ul id="ul">
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+  <li>5</li>
+  <li>6</li>
+</ul>
+<script>
+var ul=document.getElementById('ul')
+var li=ul.getElementsByTagName('li')
+// 第一种 let块级作用域
+// for(let i=0,len=li.length;i<len;i++){
+//   li[i].addEventListener('click',function(){
+//     console.log(i+1)
+//   })
+// }
+// 第二种 this访问dom
+// for(var i=0,len=li.length;i<len;i++){
+//   li[i].addEventListener('click',function(){
+//     console.log(this.innerHTML)
+//   })
+// }
+// 第三种 闭包
+for(var i=0,len=li.length;i<len;i++){
+  (function(i){
+    li[i].addEventListener('click',function(){
+      console.log(this.innerHTML)
+    })
+  })(i)
+}
+</script>
+</body>
+</html>

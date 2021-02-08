@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  this.a=20
+  function go(){
+    console.log(this.a) //这里有一个坑，构造函数的属性不会变量提升，所以找不到this.a=30
+    this.a=30
+  }
+  go.prototype.a=40 //正常情况,优先去构造函数上a，原型链优先级低
+  var test={
+    a:50,
+    init:function(fn){
+      fn()
+      console.log(this.a)
+      return fn
+    }
+  }
+  console.log((new go()).a) //40 30
+  test.init(go) //20 50
+  var p=test.init(go) //30 50   //得出30是因为上一步执行go函数的时候，将window下的a重写为30
+  p() //30
+  console.log(this.a) //30  window下的a被重写了
+</script>
+</body>
+</html>

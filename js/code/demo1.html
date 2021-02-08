@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  alert(a)             // f a() {console.log(10)}
+  a()                  // 10
+  var a=11
+  function a(){
+    alert(10)
+  }
+  alert(a)            // 11
+  a=6
+  a()                 // a is not a function
+</script>
+<pre>
+  // 由此可见 函数提升要比变量提升的优先级高；且不会被覆盖，但是赋值后会覆盖
+  // 相当于
+  function a(){
+    alert(10)
+  }
+  var a
+  alert(a)
+  a()
+  a=11
+  alert(a)
+  a=6
+  a()
+</pre>
+</body>
+</html>
