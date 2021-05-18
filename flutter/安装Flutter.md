@@ -20,6 +20,9 @@
   当遇到报错：**提示没有安装证书**
   flutter doctor --android-licenses
 1. 模拟器 可以安装**雷电模拟器**
+1. [Xcode 发行说明](https://developer.apple.com/documentation/xcode-release-notes)
+1. [知乎-macOS系统升级](https://www.zhihu.com/question/65579584)
+1. [macOS Big Sur系统升级 或 在 App Store 上搜索“macOS Big Sur”](https://www.apple.com.cn/macos/how-to-upgrade/)
 1. 安装依赖和环境检测
 ```js
   // 查真机
