@@ -230,12 +230,24 @@ Wasm同样在JavaScript虚拟机中运行，但是它表现得更好。两者可
         ]
     }
     ```
-1. prettier，使用ESLint运行Prettier
+1. 安装 eslint 相关插件
+	```
+	babel-eslint
+	eslint
+	eslint-plugin-import（import语句规则）
+	eslint-plugin-node（支持nodejs规则）
+	eslint-plugin-promise
+	eslint-plugin-vue（支持vue规则）
+	eslint-config-standard //eslint规则为standard标准
+	
+	vue add eslint //安装后，@vue/cli-plugin-eslint
+	```
+1. ~~prettier，使用ESLint运行Prettier~~
 	```js
 	//或者选择npm安装
 	npm i --save-dev prettier eslint-plugin-prettier
 	```
-1. vsCode安装插件-Vetur，格式化vue代码
+1. ~~vsCode安装插件-Vetur，格式化vue代码~~
 ## git commit提交检测
 [参考](https://www.jianshu.com/p/cdd749c624d9)
 安装
