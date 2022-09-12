@@ -227,7 +227,7 @@ let ks = {
             }
           });
         if (!existsDrwm) {
-          choujiang();
+          that.choujiang();
           break;
         }
         // 检测抽奖按钮是否存在 end ****************
@@ -474,4 +474,5 @@ ks.open()
   .goKanShiPin()
   .goGuangJie()
   .kanZhibo()
-  .choujiang();
+  .choujiang()
+  .home();
